@@ -1,0 +1,25 @@
+-*- encoding: utf-8; indent-tabs-mode: nil -*-
+
+=head1 L'AS DES AS POUR UNE MACHINE AUTODIDACTE
+
+=head2 DESCRIPTION
+
+Les programmes de ce dépôt sont basés sur la série de jeux
+« Ace of Aces » de Nova Games.
+
+Dans le dossier Preparation, les programmes permettent de
+composer un livret de jeu en spécifiant les mouvements disponibles
+pour l'aéronef.
+
+Dans le dossier Jeu, les programmes reprennent le principe
+de Google Alpha Go Zero, c'est-à-dire un apprentissage autonome
+du jeu en accumulant les parties et en différenciant les coups
+favorables des coups défavorables.
+
+Une description détaillée se trouve dans le répetoire F<description>.
+
+=head2 LICENCE
+
+Les programmes de ce dépôt sont sous la même licence que S<Perl :>
+GPL et licence artistique. Voir le texte (en anglais) dans le
+fichier F<LICENSE>.

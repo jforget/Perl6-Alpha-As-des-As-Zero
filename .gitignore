@@ -1,0 +1,11 @@
+*~
+*.html
+*.html1
+*.tex
+*.tex1
+*.dvi
+*.log
+*.aux
+*.out
+*.pdf
+pod2*

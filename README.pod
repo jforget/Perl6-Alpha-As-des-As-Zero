@@ -1,0 +1,26 @@
+-*- encoding: utf-8; indent-tabs-mode: nil -*-
+
+=encoding utf8
+
+=head1 ACE OF ACES FOR A SELF-LEARNING MACHINE
+
+=head2 PURPOSE
+
+The programs in this repository are based on the game series
+"Ace of Aces", published in the 1980's by Nova Games.
+
+In the F<Preparation> folder, the programs allow the user to compose
+a game booklet, after listing the movements allowed to the flying object.
+
+In the F<Jeu> (= "game") folder, the programs apply to the "Ace of Aces"
+game the same principles that "Google Alpha Go Zero" applied to Go:
+self-learning the tricks of the trade.
+
+=head2 LICENSE
+
+The programs in this repository are licensed under the same terms
+as Perl 5: GPL and Artistic License. For more details, please
+read the F<LICENSE> file in this repository.
+
+The various texts of this repository are licensed under the terms of
+Creative Commons, with attribution and share-alike (CC-BY-SA).
