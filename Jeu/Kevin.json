@@ -1,0 +1,8 @@
+{
+    "id": "Kevin",
+    "nom": "Kevin",
+    "avion": "Drone",
+    "perspicacité": 0.5,
+    "psycho-rigidité": 1,
+    "ref": [ "Drone" ]
+}
