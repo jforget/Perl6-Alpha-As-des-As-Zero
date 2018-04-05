@@ -18,8 +18,8 @@ use MongoDB::Collection;
 use JSON::Class;
 
 my MongoDB::Client     $client  .= new(:uri('mongodb://'));
-my MongoDB::Database   $database = $client.database('Aces_of_Aces');
-my MongoDB::Collection $pages    = $database.collection('Jeux');
+my MongoDB::Database   $database = $client.database('Ace_of_Aces');
+my MongoDB::Collection $coups    = $database.collection('Coups');
 
 class Pilote does JSON::Class {
   has Str $.id;
@@ -52,6 +52,46 @@ sub MAIN (Str :$date-heure, Str :$identité) {
     $pilote.avion           = $identité;
   }
   say "combat de ", $pilote.nom, " sur ", $pilote.avion, " perspicacité ", $pilote.perspicacité, ", psycho-rigidité ", $pilote.psycho-rigidité;
+  my Bool $on_joue = True;
+  my Int  $numéro_coup = 1;
+  while $on_joue {
+    my BSON::Document $coup = lire_coup($date-heure, $identité, $numéro_coup);
+    say $coup.perl;
+    last
+      if $coup<fini>;
+    ++ $numéro_coup;
+  }
+}
+
+sub lire_coup ($dh, $id, $n) {
+  my BSON::Document $coup;
+
+  my $tentative_max = 50;
+  my $tentative     =  0;
+SONDER:
+  while $tentative ≤ $tentative_max {
+    ++ $tentative;
+    my MongoDB::Cursor $cursor = $coups.find(
+      criteria   => ( 'date-heure' => $dh,
+                      'identité'   => $id,
+                      'numéro'     => +$n, ),
+      projection => ( _id => 0, )
+    );
+    while $cursor.fetch -> BSON::Document $d {
+      say $d.perl;
+      if $d<numéro> == $n {
+        $coup = $d;
+        last SONDER;
+      }
+    }
+    $cursor.kill;
+    sleep 1;
+  }
+  if $tentative ≥ $tentative_max {
+    die "Plus de réponse de l'arbitre, on arrête";
+  }
+
+  return $coup;
 }
 
 =begin POD
