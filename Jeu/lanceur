@@ -1,0 +1,10 @@
+#!/bin/sh
+# -*- encoding: utf-8; indent-tabs-mode: nil -*-
+#
+# Lancement d'une partie
+
+export dh=$(date +'%Y-%m-%d_%H-%M-%S')
+
+perl6 arbitre.p6 --date-heure=$dh --gentil=Plume-Noire --mechant=Kevin &
+perl6 joueur.p6  --date-heure=$dh --identité=Kevin
+#perl6 joueur.p6  --date-heure=$dh --identité=Plume-Noire
