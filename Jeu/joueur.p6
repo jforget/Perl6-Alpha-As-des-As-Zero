@@ -54,13 +54,32 @@ sub MAIN (Str :$date-heure, Str :$identité) {
   say "combat de ", $pilote.nom, " sur ", $pilote.avion, " perspicacité ", $pilote.perspicacité, ", psycho-rigidité ", $pilote.psycho-rigidité;
   my Bool $on_joue = True;
   my Int  $numéro_coup = 1;
+
+  # Partie proprement dite
   while $on_joue {
     my BSON::Document $coup = lire_coup($date-heure, $identité, $numéro_coup);
-    say $coup.perl;
-    last
-      if $coup<fini>;
+    #say $coup.perl;
+    if $coup<fini> {
+      retour_d'expérience($date-heure, $identité, $numéro_coup, $coup<résultat>);
+      last;
+    }
+    my $choix = $coup<choix>;
+    $coup<manoeuvre> = $choix.pick;
+    maj_coup($coup);
     ++ $numéro_coup;
   }
+}
+
+# Retour d'expérience
+sub retour_d'expérience($dh, $id, $n_c, $res) {
+  for 1..^$n_c -> $n {
+say "retour  d'expérience sur ", $n;
+    my BSON::Document $coup = lire_coup($dh, $id, $n);
+    $coup<résultat> = $res;
+    $coup<délai>    = $n_c - $n;
+    maj_coup($coup);
+  }
+
 }
 
 sub lire_coup ($dh, $id, $n) {
@@ -78,7 +97,7 @@ SONDER:
       projection => ( _id => 0, )
     );
     while $cursor.fetch -> BSON::Document $d {
-      say $d.perl;
+      #say $d.perl;
       if $d<numéro> == $n {
         $coup = $d;
         last SONDER;
@@ -92,6 +111,23 @@ SONDER:
   }
 
   return $coup;
+}
+
+sub maj_coup(BSON::Document $coup) {
+   my BSON::Document $req .= new: (
+    update => 'Coups',
+    updates => [ (
+        q =>  ( 'date-heure' =>  $coup<date-heure>,
+                'identité'   =>  $coup<identité>,
+                'numéro'     => +$coup<numéro>, ),
+        u => $coup,
+      ),
+    ],
+  );
+  my BSON::Document $doc = $database.run-command($req);
+  if $doc<ok> == 0 {
+    say "update ok : ", $doc<ok>, " nb : ", $doc<n>;
+  }
 }
 
 =begin POD
