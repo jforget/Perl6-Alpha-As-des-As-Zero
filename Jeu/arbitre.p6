@@ -62,14 +62,16 @@ sub MAIN (Str :$date-heure, Str :$gentil, Str :$méchant) {
   }
 
   my $num = 0;
-  for <abc def ghi 0.5pv> -> $ch-manv {
+  for <ABC DEF GHI 0.5PV> -> $ch-manv {
     my BSON::Document $coup;
-    if $ch-manv ~~ /(.*)pv/ {
-      my $résultat = $0;
+    if $ch-manv ~~ /(.*)PV/ {
+      my $résultat = $0.Num;
       $coup .= new: (
            date-heure => $date-heure,
            identité   => $gentil,
            numéro     => ++ $num,
+           page       => 123,
+           résultat   => $résultat,
            fini       => 1,
       );
 
@@ -79,12 +81,13 @@ sub MAIN (Str :$date-heure, Str :$gentil, Str :$méchant) {
            date-heure => $date-heure,
            identité   => $gentil,
            numéro     => ++ $num,
+           page       => 123,
            choix      => [ $ch-manv.comb ],
            dh1        => DateTime.now.Str,
       );
     }
     écrire-coup($coup);
-    sleep 10.rand;
+    sleep 5.rand;
   }
 }
 
