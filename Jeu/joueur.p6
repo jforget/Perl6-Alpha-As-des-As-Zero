@@ -74,7 +74,7 @@ sub MAIN (Str :$date-heure, Str :$identité) {
 # Retour d'expérience
 sub retour_d'expérience($dh, $id, $n_c, $res) {
   for 1..^$n_c -> $n {
-say "retour  d'expérience sur ", $n;
+    #say "retour  d'expérience sur ", $n;
     my BSON::Document $coup = lire_coup($dh, $id, $n);
     $coup<résultat> = $res;
     $coup<délai>    = $n_c - $n;

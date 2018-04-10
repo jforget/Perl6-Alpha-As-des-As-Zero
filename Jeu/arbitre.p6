@@ -99,12 +99,55 @@ sub MAIN (Str :$date-heure, Str :$gentil, Str :$méchant) {
     écrire-coup($coup_m);
     $coup_g     = lire_coup($date-heure, $gentil , $num);
     $coup_m     = lire_coup($date-heure, $méchant, $num);
-    my ($page_g , $page_m );
-    my ($page_gf, $page_mf);
+    my ($page_g , $page_m );  # pages intermédiaires
+    my ($page_gf, $page_mf);  # pages finales
     my $man_g   = $coup_g<manoeuvre>;
     my $man_m   = $coup_m<manoeuvre>;
     if $page == 223 {
-      # à compléter
+      if $man_g eq 'Attaque' && $man_m eq 'Attaque' {
+        $page_gf = 170;
+        $page_mf = 170;
+        $page_g  =   0; # pour faire passer un test numérique un peu plus bas
+        $page_m  =   0; # idem
+      }
+      else {
+        $on_joue = 0;
+        $coup_g .= new: (
+             date-heure => $date-heure,
+             identité   => $gentil,
+             numéro     => $num + 1,
+             page       => 223,
+             fini       =>   1,
+             dh1        => DateTime.now.Str,
+        );
+        $coup_m .= new: (
+             date-heure => $date-heure,
+             identité   => $méchant,
+             numéro     => $num + 1,
+             page       => 223,
+             fini       =>   1,
+             dh1        => DateTime.now.Str,
+        );
+        if $man_g eq 'Attaque' {
+          # le gentil résiste, le méchant fuit
+          $coup_g<résultat> =  0.5e0;
+          $coup_m<résultat> = -0.5e0;
+        }
+        elsif $man_m eq 'Attaque' {
+          # le méchant résiste, le gentil fuit
+          $coup_g<résultat> = -0.5e0;
+          $coup_m<résultat> =  0.5e0;
+        }
+        else {
+          # match nul, les deux pilotes fuient
+          $coup_g<résultat> = 0e0;
+          $coup_m<résultat> = 0e0;
+        }
+
+        écrire-coup($coup_g);
+        écrire-coup($coup_m);
+        last;
+      }
     }
     else {
       $page_g  = $avion_g.pages[$page]<enchainement>{$man_g};
@@ -113,19 +156,19 @@ sub MAIN (Str :$date-heure, Str :$gentil, Str :$méchant) {
     if $page_m == 223 {
       $page_gf = 223;
     }
-    else {
+    elsif $page != 223 {
       $page_gf = $avion_g.pages[$page_m]<enchainement>{$man_g};
     }
     if $page_g == 223 {
       $page_mf = 223;
     }
-    else {
+    elsif $page != 223 {
       $page_mf = $avion_m.pages[$page_g]<enchainement>{$man_m};
     }
-say join ' ', $page, '->', $man_g, $page_g, $man_m, $page_m, '->', $page_gf, $page_mf;
+    say join ' ', $page, '->', $man_g, $page_g, $man_m, $page_m, '->', $page_gf, $page_mf;
     $page = min($page_gf, $page_mf);
     last
-      if $num > 2;
+      if $num > 10;
   }
 }
 
@@ -166,7 +209,7 @@ sub écrire-coup(BSON::Document $coup) {
     documents => [ $coup ],
   );
   my BSON::Document $result = $database.run-command($req);
-  say "Création coup ok : ", $result<ok>, " nb : ", $result<n>;
+  #say "Création coup ok : ", $result<ok>, " nb : ", $result<n>;
 
 }
 
