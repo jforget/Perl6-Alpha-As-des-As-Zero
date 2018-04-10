@@ -23,7 +23,9 @@ my MongoDB::Collection $coups    = $database.collection('Coups');
 
 class Pilote does JSON::Class {
   has Str $.id;
-  has Str $.avion;
+  has Str $.avion           is rw;
+  has Num $.perspicacité    is rw;
+  has Num $.psycho-rigidité is rw;
 }
 
 class Avion does JSON::Class {
@@ -32,7 +34,6 @@ class Avion does JSON::Class {
 sub MAIN (Str :$date-heure, Str :$gentil, Str :$méchant) {
   my Pilote $pilote_g .= from-json(slurp "$gentil.json");
   my Pilote $pilote_m .= from-json(slurp "$méchant.json");
-  say "Combat de $gentil contre $méchant, ", $pilote_g.avion, " contre ", $pilote_m.avion;
   say "Référence $date-heure";
   my Avion $avion_g;
   my Avion $avion_m;
@@ -60,35 +61,75 @@ sub MAIN (Str :$date-heure, Str :$gentil, Str :$méchant) {
     $pilote_m.psycho-rigidité = 1.Num;
     $pilote_m.avion           = $méchant;
   }
+  say "Combat de $gentil contre $méchant, ", $pilote_g.avion, " contre ", $pilote_m.avion;
 
-  my $num = 0;
-  for <ABC DEF GHI 0.5PV> -> $ch-manv {
-    my BSON::Document $coup;
-    if $ch-manv ~~ /(.*)PV/ {
-      my $résultat = $0.Num;
-      $coup .= new: (
-           date-heure => $date-heure,
-           identité   => $gentil,
-           numéro     => ++ $num,
-           page       => 123,
-           résultat   => $résultat,
-           fini       => 1,
-      );
-
-    }
-    else {
-      $coup .= new: (
-           date-heure => $date-heure,
-           identité   => $gentil,
-           numéro     => ++ $num,
-           page       => 123,
-           choix      => [ $ch-manv.comb ],
-           dh1        => DateTime.now.Str,
-      );
-    }
-    écrire-coup($coup);
-    sleep 5.rand;
+  my $num     =   0;
+  my $on_joue =   1;
+  my $page    = 170;
+  while $on_joue {
+    ++ $num;
+    my BSON::Document $coup_g;
+    $coup_g .= new: (
+         date-heure => $date-heure,
+         identité   => $gentil,
+         numéro     => $num,
+         page       => $page,
+         choix      => [ $avion_g.pages[$page]<enchainement>.keys.sort ],
+         dh1        => DateTime.now.Str,
+    );
+    écrire-coup($coup_g);
+    my BSON::Document $coup_m;
+    $coup_m .= new: (
+         date-heure => $date-heure,
+         identité   => $méchant,
+         numéro     => $num,
+         page       => $page,
+         choix      => [ $avion_m.pages[$page]<enchainement>.keys.sort ],
+         dh1        => DateTime.now.Str,
+    );
+    écrire-coup($coup_m);
+    $coup_g     = lire_coup($date-heure, $gentil , $num);
+    $coup_m     = lire_coup($date-heure, $méchant, $num);
+    my $man_g   = $coup_g<manoeuvre>;
+    my $man_m   = $coup_m<manoeuvre>;
+    my $page_g  = $avion_g.pages[$page]<enchainement>{$man_g};
+    my $page_m  = $avion_m.pages[$page]<enchainement>{$man_m};
+    my $page_gf = $avion_g.pages[$page_m]<enchainement>{$man_g};
+    my $page_mf = $avion_m.pages[$page_g]<enchainement>{$man_m};
+say join ' ', $page, '->', $man_g, $page_g, $man_m, $page_m, '->', $page_gf, $page_mf;
+    last;
   }
+}
+
+sub lire_coup ($dh, $id, $n) {
+  my BSON::Document $coup;
+
+  my $tentative_max = 50;
+  my $tentative     =  0;
+SONDER:
+  while $tentative ≤ $tentative_max {
+    ++ $tentative;
+    my MongoDB::Cursor $cursor = $coups.find(
+      criteria   => ( 'date-heure' => $dh,
+                      'identité'   => $id,
+                      'numéro'     => +$n, ),
+      projection => ( _id => 0, )
+    );
+    while $cursor.fetch -> BSON::Document $d {
+      #say $d.perl;
+      if $d<numéro> == $n && ($d<manoeuvre> // '') ne '' {
+        $coup = $d;
+        last SONDER;
+      }
+    }
+    $cursor.kill;
+    sleep 1;
+  }
+  if $tentative ≥ $tentative_max {
+    die "Plus de réponse du joueur $id, on arrête";
+  }
+
+  return $coup;
 }
 
 sub écrire-coup(BSON::Document $coup) {

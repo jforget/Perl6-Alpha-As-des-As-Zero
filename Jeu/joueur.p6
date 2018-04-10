@@ -77,6 +77,7 @@ say "retour  d'expérience sur ", $n;
     my BSON::Document $coup = lire_coup($dh, $id, $n);
     $coup<résultat> = $res;
     $coup<délai>    = $n_c - $n;
+    $coup<dh2>      = DateTime.now.Str;
     maj_coup($coup);
   }
 
