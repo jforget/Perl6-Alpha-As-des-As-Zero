@@ -47,8 +47,8 @@ sub MAIN (Str :$date-heure, Str :$identité) {
     # pilote anonyme, on ne connaît que l'avion
     # également, c'est pour l'entraînement
     $avion .= from-json(slurp "$identité.json");
-    $pilote.perspicacité    = 0.Num;
-    $pilote.psycho-rigidité = 1.Num;
+    $pilote.perspicacité    = 0E0;
+    $pilote.psycho-rigidité = 1E0;
     $pilote.avion           = $identité;
   }
   say "combat de ", $pilote.nom, " sur ", $pilote.avion, " perspicacité ", $pilote.perspicacité, ", psycho-rigidité ", $pilote.psycho-rigidité;
@@ -65,6 +65,7 @@ sub MAIN (Str :$date-heure, Str :$identité) {
     }
     my $choix = $coup<choix>;
     $coup<manoeuvre> = $choix.pick;
+    $coup<dh2>       = DateTime.now.Str;
     maj_coup($coup);
     ++ $numéro_coup;
   }
@@ -77,7 +78,6 @@ say "retour  d'expérience sur ", $n;
     my BSON::Document $coup = lire_coup($dh, $id, $n);
     $coup<résultat> = $res;
     $coup<délai>    = $n_c - $n;
-    $coup<dh2>      = DateTime.now.Str;
     maj_coup($coup);
   }
 

@@ -68,13 +68,22 @@ sub MAIN (Str :$date-heure, Str :$gentil, Str :$méchant) {
   my $page    = 170;
   while $on_joue {
     ++ $num;
+    my (@choix_g, @choix_m);
+    if $page == 223 {
+      @choix_g = <Attaque Fuite>;
+      @choix_m = @choix_g;
+    }
+    else {
+      @choix_g = $avion_g.pages[$page]<enchainement>.keys.sort;
+      @choix_m = $avion_m.pages[$page]<enchainement>.keys.sort;
+    }
     my BSON::Document $coup_g;
     $coup_g .= new: (
          date-heure => $date-heure,
          identité   => $gentil,
          numéro     => $num,
          page       => $page,
-         choix      => [ $avion_g.pages[$page]<enchainement>.keys.sort ],
+         choix      => [ @choix_g ],
          dh1        => DateTime.now.Str,
     );
     écrire-coup($coup_g);
@@ -84,20 +93,39 @@ sub MAIN (Str :$date-heure, Str :$gentil, Str :$méchant) {
          identité   => $méchant,
          numéro     => $num,
          page       => $page,
-         choix      => [ $avion_m.pages[$page]<enchainement>.keys.sort ],
+         choix      => [ @choix_m ],
          dh1        => DateTime.now.Str,
     );
     écrire-coup($coup_m);
     $coup_g     = lire_coup($date-heure, $gentil , $num);
     $coup_m     = lire_coup($date-heure, $méchant, $num);
+    my ($page_g , $page_m );
+    my ($page_gf, $page_mf);
     my $man_g   = $coup_g<manoeuvre>;
     my $man_m   = $coup_m<manoeuvre>;
-    my $page_g  = $avion_g.pages[$page]<enchainement>{$man_g};
-    my $page_m  = $avion_m.pages[$page]<enchainement>{$man_m};
-    my $page_gf = $avion_g.pages[$page_m]<enchainement>{$man_g};
-    my $page_mf = $avion_m.pages[$page_g]<enchainement>{$man_m};
+    if $page == 223 {
+      # à compléter
+    }
+    else {
+      $page_g  = $avion_g.pages[$page]<enchainement>{$man_g};
+      $page_m  = $avion_m.pages[$page]<enchainement>{$man_m};
+    }
+    if $page_m == 223 {
+      $page_gf = 223;
+    }
+    else {
+      $page_gf = $avion_g.pages[$page_m]<enchainement>{$man_g};
+    }
+    if $page_g == 223 {
+      $page_mf = 223;
+    }
+    else {
+      $page_mf = $avion_m.pages[$page_g]<enchainement>{$man_m};
+    }
 say join ' ', $page, '->', $man_g, $page_g, $man_m, $page_m, '->', $page_gf, $page_mf;
-    last;
+    $page = min($page_gf, $page_mf);
+    last
+      if $num > 2;
   }
 }
 
