@@ -30,6 +30,7 @@ class Pilote does JSON::Class {
 
 class Avion does JSON::Class {
   has @.pages;
+  has %.manoeuvres;
 }
 sub MAIN (Str :$date-heure, Str :$gentil, Str :$méchant) {
   my Pilote $pilote_g .= from-json(slurp "$gentil.json");
@@ -68,37 +69,92 @@ sub MAIN (Str :$date-heure, Str :$gentil, Str :$méchant) {
   my $page    = 170;
   while $on_joue {
     ++ $num;
-    my (@choix_g, @choix_m);
+    my (@choix_g, @choix_m, $poursuite_g, $poursuite_m);
     if $page == 223 {
-      @choix_g = <Attaque Fuite>;
-      @choix_m = @choix_g;
+      @choix_g     = <Attaque Fuite>;
+      @choix_m     = @choix_g;
+      $poursuite_g = '';
+      $poursuite_m = '';
     }
     else {
-      @choix_g = $avion_g.pages[$page]<enchainement>.keys.sort;
-      @choix_m = $avion_m.pages[$page]<enchainement>.keys.sort;
+      @choix_g     = $avion_g.pages[$page]<enchainement>.keys.sort;
+      @choix_m     = $avion_m.pages[$page]<enchainement>.keys.sort;
+      $poursuite_g = $avion_g.pages[$page]<poursuite>;
+      $poursuite_m = $avion_m.pages[$page]<poursuite>;
+say $poursuite_g, '-', $poursuite_m;
     }
     my BSON::Document $coup_g;
-    $coup_g .= new: (
-         date-heure => $date-heure,
-         identité   => $gentil,
-         numéro     => $num,
-         page       => $page,
-         choix      => [ @choix_g ],
-         dh1        => DateTime.now.Str,
-    );
-    écrire-coup($coup_g);
     my BSON::Document $coup_m;
-    $coup_m .= new: (
-         date-heure => $date-heure,
-         identité   => $méchant,
-         numéro     => $num,
-         page       => $page,
-         choix      => [ @choix_m ],
-         dh1        => DateTime.now.Str,
-    );
-    écrire-coup($coup_m);
-    $coup_g     = lire_coup($date-heure, $gentil , $num);
-    $coup_m     = lire_coup($date-heure, $méchant, $num);
+    if $poursuite_g eq 'T' {
+say "$gentil poursit $méchant";
+      $coup_m .= new: (
+           date-heure => $date-heure,
+           identité   => $méchant,
+           numéro     => $num,
+           page       => $page,
+           choix      => [ @choix_m ],
+           dh1        => DateTime.now.Str,
+      );
+      écrire-coup($coup_m);
+      $coup_m     = lire_coup($date-heure, $méchant, $num);
+      my $man_m   = $coup_m<manoeuvre>;
+      $coup_g .= new: (
+           date-heure => $date-heure,
+           identité   => $gentil,
+           numéro     => $num,
+           page       => $page ~ $avion_m.manoeuvres{$man_m}<virage>,
+           choix      => [ @choix_g ],
+           dh1        => DateTime.now.Str,
+      );
+      écrire-coup($coup_g);
+      $coup_g     = lire_coup($date-heure, $gentil , $num);
+    }
+    elsif $poursuite_m eq 'T' {
+say "$méchant poursuit $gentil";
+      $coup_g .= new: (
+           date-heure => $date-heure,
+           identité   => $gentil,
+           numéro     => $num,
+           page       => $page,
+           choix      => [ @choix_g ],
+           dh1        => DateTime.now.Str,
+      );
+      écrire-coup($coup_g);
+      $coup_g     = lire_coup($date-heure, $gentil , $num);
+      my $man_g   = $coup_g<manoeuvre>;
+      $coup_m .= new: (
+           date-heure => $date-heure,
+           identité   => $méchant,
+           numéro     => $num,
+           page       => $page ~ $avion_g.manoeuvres{$man_g}<virage>,
+           choix      => [ @choix_m ],
+           dh1        => DateTime.now.Str,
+      );
+      écrire-coup($coup_m);
+      $coup_m     = lire_coup($date-heure, $méchant, $num);
+    }
+    else {
+      $coup_g .= new: (
+           date-heure => $date-heure,
+           identité   => $gentil,
+           numéro     => $num,
+           page       => $page,
+           choix      => [ @choix_g ],
+           dh1        => DateTime.now.Str,
+      );
+      écrire-coup($coup_g);
+      $coup_m .= new: (
+           date-heure => $date-heure,
+           identité   => $méchant,
+           numéro     => $num,
+           page       => $page,
+           choix      => [ @choix_m ],
+           dh1        => DateTime.now.Str,
+      );
+      écrire-coup($coup_m);
+      $coup_g     = lire_coup($date-heure, $gentil , $num);
+      $coup_m     = lire_coup($date-heure, $méchant, $num);
+    }
     my ($page_g , $page_m );  # pages intermédiaires
     my ($page_gf, $page_mf);  # pages finales
     my $man_g   = $coup_g<manoeuvre>;
