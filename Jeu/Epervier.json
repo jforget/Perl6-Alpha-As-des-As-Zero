@@ -2920,5 +2920,6 @@
   ],
   "nom": "Epervier",
   "identité": "Epervier",
-  "camp": "G"
+  "camp": "G",
+  "capacité": 12
 }

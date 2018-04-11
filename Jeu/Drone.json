@@ -3598,5 +3598,6 @@
   ],
   "nom": "Drone de loisir",
   "identité": "Drone",
-  "camp": "M"
+  "camp": "M",
+  "capacité": 12
 }
