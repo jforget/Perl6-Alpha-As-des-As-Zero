@@ -26,21 +26,26 @@ class Pilote does JSON::Class {
   has Str $.avion           is rw;
   has Num $.perspicacité    is rw;
   has Num $.psycho-rigidité is rw;
+  has Int $.capacité        is rw;
 }
 
 class Avion does JSON::Class {
-  has @.pages;
-  has %.manoeuvres;
+  has     @.pages;
+  has     %.manoeuvres;
+  has Int $.capacité;
 }
 sub MAIN (Str :$date-heure, Str :$gentil, Str :$méchant) {
   my Pilote $pilote_g .= from-json(slurp "$gentil.json");
   my Pilote $pilote_m .= from-json(slurp "$méchant.json");
-  say "Référence $date-heure";
+  #say "Référence $date-heure";
   my Avion $avion_g;
   my Avion $avion_m;
   if $pilote_g.avion {
     # véritable pilote, il faut compléter en lisant les caractéristiques de l'avion
     $avion_g .= from-json(slurp "{$pilote_g.avion}.json");
+    unless $pilote_g.capacité {
+      $pilote_g.capacité = $avion_g.capacité;
+    }
   }
   else {
     # pilote anonyme, on ne connaît que l'avion
@@ -49,10 +54,14 @@ sub MAIN (Str :$date-heure, Str :$gentil, Str :$méchant) {
     $pilote_g.perspicacité    = 0.Num;
     $pilote_g.psycho-rigidité = 1.Num;
     $pilote_g.avion           = $gentil;
+    $pilote_g.capacité        = $avion_g.capacité;
   }
   if $pilote_m.avion {
     # véritable pilote
     $avion_m .= from-json(slurp "{$pilote_m.avion}.json");
+    unless $pilote_m.capacité {
+      $pilote_m.capacité = $avion_m.capacité;
+    }
   }
   else {
     # pilote anonyme, on ne connaît que l'avion
@@ -61,12 +70,15 @@ sub MAIN (Str :$date-heure, Str :$gentil, Str :$méchant) {
     $pilote_m.perspicacité    = 0.Num;
     $pilote_m.psycho-rigidité = 1.Num;
     $pilote_m.avion           = $méchant;
+    $pilote_m.capacité        = $avion_m.capacité;
   }
   say "Combat de $gentil contre $méchant, ", $pilote_g.avion, " contre ", $pilote_m.avion;
 
   my $num     =   0;
   my $on_joue =   1;
   my $page    = 170;
+  my $pts_dégâts_g = $pilote_g.capacité;
+  my $pts_dégâts_m = $pilote_m.capacité;
   while $on_joue {
     ++ $num;
     my (@choix_g, @choix_m, $poursuite_g, $poursuite_m);
@@ -81,18 +93,23 @@ sub MAIN (Str :$date-heure, Str :$gentil, Str :$méchant) {
       @choix_m     = $avion_m.pages[$page]<enchainement>.keys.sort;
       $poursuite_g = $avion_g.pages[$page]<poursuite>;
       $poursuite_m = $avion_m.pages[$page]<poursuite>;
-say $poursuite_g, '-', $poursuite_m;
+      $pts_dégâts_m -= $avion_g.pages[$page]<tir>;
+      $pts_dégâts_g -= $avion_m.pages[$page]<tir>;
+      if $pts_dégâts_g ≤ 0 or $pts_dégâts_m ≤ 0 {
+        # au moins un avion abattu
+        $on_joue = 0;
+      }
     }
     my BSON::Document $coup_g;
     my BSON::Document $coup_m;
     if $poursuite_g eq 'T' {
-say "$gentil poursit $méchant";
       $coup_m .= new: (
            date-heure => $date-heure,
            identité   => $méchant,
            numéro     => $num,
            page       => $page,
            choix      => [ @choix_m ],
+           potentiel  => $pts_dégâts_m,
            dh1        => DateTime.now.Str,
       );
       écrire-coup($coup_m);
@@ -104,19 +121,20 @@ say "$gentil poursit $méchant";
            numéro     => $num,
            page       => $page ~ $avion_m.manoeuvres{$man_m}<virage>,
            choix      => [ @choix_g ],
+           potentiel  => $pts_dégâts_g,
            dh1        => DateTime.now.Str,
       );
       écrire-coup($coup_g);
       $coup_g     = lire_coup($date-heure, $gentil , $num);
     }
     elsif $poursuite_m eq 'T' {
-say "$méchant poursuit $gentil";
       $coup_g .= new: (
            date-heure => $date-heure,
            identité   => $gentil,
            numéro     => $num,
            page       => $page,
            choix      => [ @choix_g ],
+           potentiel  => $pts_dégâts_g,
            dh1        => DateTime.now.Str,
       );
       écrire-coup($coup_g);
@@ -128,6 +146,7 @@ say "$méchant poursuit $gentil";
            numéro     => $num,
            page       => $page ~ $avion_g.manoeuvres{$man_g}<virage>,
            choix      => [ @choix_m ],
+           potentiel  => $pts_dégâts_m,
            dh1        => DateTime.now.Str,
       );
       écrire-coup($coup_m);
@@ -140,6 +159,7 @@ say "$méchant poursuit $gentil";
            numéro     => $num,
            page       => $page,
            choix      => [ @choix_g ],
+           potentiel  => $pts_dégâts_g,
            dh1        => DateTime.now.Str,
       );
       écrire-coup($coup_g);
@@ -149,6 +169,7 @@ say "$méchant poursuit $gentil";
            numéro     => $num,
            page       => $page,
            choix      => [ @choix_m ],
+           potentiel  => $pts_dégâts_m,
            dh1        => DateTime.now.Str,
       );
       écrire-coup($coup_m);
@@ -167,42 +188,11 @@ say "$méchant poursuit $gentil";
         $page_m  =   0; # idem
       }
       else {
-        $on_joue = 0;
-        $coup_g .= new: (
-             date-heure => $date-heure,
-             identité   => $gentil,
-             numéro     => $num + 1,
-             page       => 223,
-             fini       =>   1,
-             dh1        => DateTime.now.Str,
-        );
-        $coup_m .= new: (
-             date-heure => $date-heure,
-             identité   => $méchant,
-             numéro     => $num + 1,
-             page       => 223,
-             fini       =>   1,
-             dh1        => DateTime.now.Str,
-        );
-        if $man_g eq 'Attaque' {
-          # le gentil résiste, le méchant fuit
-          $coup_g<résultat> =  0.5e0;
-          $coup_m<résultat> = -0.5e0;
-        }
-        elsif $man_m eq 'Attaque' {
-          # le méchant résiste, le gentil fuit
-          $coup_g<résultat> = -0.5e0;
-          $coup_m<résultat> =  0.5e0;
-        }
-        else {
-          # match nul, les deux pilotes fuient
-          $coup_g<résultat> = 0e0;
-          $coup_m<résultat> = 0e0;
-        }
-
-        écrire-coup($coup_g);
-        écrire-coup($coup_m);
-        last;
+        # au moins un avion en fuite
+        $on_joue =   0;
+        $page    = 223;
+        $page_g  = 223;
+        $page_m  = 223;
       }
     }
     else {
@@ -221,10 +211,61 @@ say "$méchant poursuit $gentil";
     elsif $page != 223 {
       $page_mf = $avion_m.pages[$page_g]<enchainement>{$man_m};
     }
-    say join ' ', $page, '->', $man_g, $page_g, $man_m, $page_m, '->', $page_gf, $page_mf;
+    if $on_joue == 0 {
+      $coup_g .= new: (
+           date-heure => $date-heure,
+           identité   => $gentil,
+           numéro     => $num + 1,
+           page       => $page,
+           fini       =>   1,
+           dh1        => DateTime.now.Str,
+      );
+      $coup_m .= new: (
+           date-heure => $date-heure,
+           identité   => $méchant,
+           numéro     => $num + 1,
+           page       => $page,
+           fini       =>   1,
+           dh1        => DateTime.now.Str,
+      );
+      if $pts_dégâts_g ≤ 0 and $pts_dégâts_m ≤ 0 {
+        say "Match nul, les deux pilotes se sont abattus simultanément";
+        $coup_g<résultat> = 0e0;
+        $coup_m<résultat> = 0e0;
+      }
+      elsif $pts_dégâts_m ≤ 0 {
+        say "Une victoire pour $gentil !";
+        $coup_g<résultat> =  1e0;
+        $coup_m<résultat> = -1e0;
+      }
+      elsif $pts_dégâts_g ≤ 0 {
+        say "Une victoire pour $méchant !";
+        $coup_g<résultat> = -1e0;
+        $coup_m<résultat> =  1e0;
+      }
+      elsif $man_g eq 'Attaque' {
+        say "$gentil résiste, $méchant fuit";
+        $coup_g<résultat> =  0.5e0;
+        $coup_m<résultat> = -0.5e0;
+      }
+      elsif $man_m eq 'Attaque' {
+        say "$méchant résiste, $gentil fuit";
+        $coup_g<résultat> = -0.5e0;
+        $coup_m<résultat> =  0.5e0;
+      }
+      else {
+        say "Match nul, les deux pilotes fuient";
+        $coup_g<résultat> = 0e0;
+        $coup_m<résultat> = 0e0;
+      }
+
+      écrire-coup($coup_g);
+      écrire-coup($coup_m);
+      say "Terminé !";
+      last;
+    }
+    say join ' ', $page, '->', $man_g, $page_g, $man_m, $page_m, '->', $page_gf, $page_mf, "($pts_dégâts_g $pts_dégâts_m)";
     $page = min($page_gf, $page_mf);
-    last
-      if $num > 10;
   }
 }
 
