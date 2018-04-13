@@ -35,8 +35,8 @@ class Avion does JSON::Class {
   has Str $.nom;
 }
 sub MAIN (Str :$date-heure, Str :$identité) {
-  say "Combat de $identité";
-  say "Référence $date-heure";
+  #say "Combat de $identité";
+  #say "Référence $date-heure";
   my Pilote $pilote .= from-json(slurp "$identité.json");
   my Avion  $avion;
   if $pilote.avion {
@@ -51,7 +51,7 @@ sub MAIN (Str :$date-heure, Str :$identité) {
     $pilote.psycho-rigidité = 1E0;
     $pilote.avion           = $identité;
   }
-  say "combat de ", $pilote.nom, " sur ", $pilote.avion, " perspicacité ", $pilote.perspicacité, ", psycho-rigidité ", $pilote.psycho-rigidité;
+  #say "combat de ", $pilote.nom, " sur ", $pilote.avion, " perspicacité ", $pilote.perspicacité, ", psycho-rigidité ", $pilote.psycho-rigidité;
   my Bool $on_joue = True;
   my Int  $numéro_coup = 1;
 
