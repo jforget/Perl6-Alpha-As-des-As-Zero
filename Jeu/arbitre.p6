@@ -81,7 +81,9 @@ sub MAIN (Str :$date-heure, Str :$gentil, Str :$méchant) {
   my $pts_dégâts_m = $pilote_m.capacité;
   while $on_joue {
     ++ $num;
-    my (@choix_g, @choix_m, $poursuite_g, $poursuite_m);
+    my (@choix_g, @choix_m, $poursuite_g, $poursuite_m, $man_g, $man_m);
+    my ($page_g , $page_m );  # pages intermédiaires
+    my ($page_gf, $page_mf);  # pages finales
     if $page == 223 {
       @choix_g     = <Attaque Fuite>;
       @choix_m     = @choix_g;
@@ -102,114 +104,114 @@ sub MAIN (Str :$date-heure, Str :$gentil, Str :$méchant) {
     }
     my BSON::Document $coup_g;
     my BSON::Document $coup_m;
-    if $poursuite_g eq 'T' {
-      $coup_m .= new: (
-           date-heure => $date-heure,
-           identité   => $méchant,
-           numéro     => $num,
-           page       => $page,
-           choix      => [ @choix_m ],
-           potentiel  => $pts_dégâts_m,
-           dh1        => DateTime.now.Str,
-      );
-      écrire-coup($coup_m);
-      $coup_m     = lire_coup($date-heure, $méchant, $num);
-      my $man_m   = $coup_m<manoeuvre>;
-      $coup_g .= new: (
-           date-heure => $date-heure,
-           identité   => $gentil,
-           numéro     => $num,
-           page       => $page ~ $avion_m.manoeuvres{$man_m}<virage>,
-           choix      => [ @choix_g ],
-           potentiel  => $pts_dégâts_g,
-           dh1        => DateTime.now.Str,
-      );
-      écrire-coup($coup_g);
-      $coup_g     = lire_coup($date-heure, $gentil , $num);
-    }
-    elsif $poursuite_m eq 'T' {
-      $coup_g .= new: (
-           date-heure => $date-heure,
-           identité   => $gentil,
-           numéro     => $num,
-           page       => $page,
-           choix      => [ @choix_g ],
-           potentiel  => $pts_dégâts_g,
-           dh1        => DateTime.now.Str,
-      );
-      écrire-coup($coup_g);
-      $coup_g     = lire_coup($date-heure, $gentil , $num);
-      my $man_g   = $coup_g<manoeuvre>;
-      $coup_m .= new: (
-           date-heure => $date-heure,
-           identité   => $méchant,
-           numéro     => $num,
-           page       => $page ~ $avion_g.manoeuvres{$man_g}<virage>,
-           choix      => [ @choix_m ],
-           potentiel  => $pts_dégâts_m,
-           dh1        => DateTime.now.Str,
-      );
-      écrire-coup($coup_m);
-      $coup_m     = lire_coup($date-heure, $méchant, $num);
-    }
-    else {
-      $coup_g .= new: (
-           date-heure => $date-heure,
-           identité   => $gentil,
-           numéro     => $num,
-           page       => $page,
-           choix      => [ @choix_g ],
-           potentiel  => $pts_dégâts_g,
-           dh1        => DateTime.now.Str,
-      );
-      écrire-coup($coup_g);
-      $coup_m .= new: (
-           date-heure => $date-heure,
-           identité   => $méchant,
-           numéro     => $num,
-           page       => $page,
-           choix      => [ @choix_m ],
-           potentiel  => $pts_dégâts_m,
-           dh1        => DateTime.now.Str,
-      );
-      écrire-coup($coup_m);
-      $coup_g     = lire_coup($date-heure, $gentil , $num);
-      $coup_m     = lire_coup($date-heure, $méchant, $num);
-    }
-    my ($page_g , $page_m );  # pages intermédiaires
-    my ($page_gf, $page_mf);  # pages finales
-    my $man_g   = $coup_g<manoeuvre>;
-    my $man_m   = $coup_m<manoeuvre>;
-    if $page == 223 {
-      if $man_g eq 'Attaque' && $man_m eq 'Attaque' {
-        $page_gf = 170;
-        $page_mf = 170;
-        $page_g  =   0; # pour faire passer un test numérique un peu plus bas
-        $page_m  =   0; # idem
+    if $on_joue {
+      if $poursuite_g eq 'T' {
+        $coup_m .= new: (
+             date-heure => $date-heure,
+             identité   => $méchant,
+             numéro     => $num,
+             page       => $page,
+             choix      => [ @choix_m ],
+             potentiel  => $pts_dégâts_m,
+             dh1        => DateTime.now.Str,
+        );
+        écrire-coup($coup_m);
+        $coup_m  = lire_coup($date-heure, $méchant, $num);
+        $man_m   = $coup_m<manoeuvre>;
+        $coup_g .= new: (
+             date-heure => $date-heure,
+             identité   => $gentil,
+             numéro     => $num,
+             page       => $page ~ $avion_m.manoeuvres{$man_m}<virage>,
+             choix      => [ @choix_g ],
+             potentiel  => $pts_dégâts_g,
+             dh1        => DateTime.now.Str,
+        );
+        écrire-coup($coup_g);
+        $coup_g     = lire_coup($date-heure, $gentil , $num);
+      }
+      elsif $poursuite_m eq 'T' {
+        $coup_g .= new: (
+             date-heure => $date-heure,
+             identité   => $gentil,
+             numéro     => $num,
+             page       => $page,
+             choix      => [ @choix_g ],
+             potentiel  => $pts_dégâts_g,
+             dh1        => DateTime.now.Str,
+        );
+        écrire-coup($coup_g);
+        $coup_g  = lire_coup($date-heure, $gentil , $num);
+        $man_g   = $coup_g<manoeuvre>;
+        $coup_m .= new: (
+             date-heure => $date-heure,
+             identité   => $méchant,
+             numéro     => $num,
+             page       => $page ~ $avion_g.manoeuvres{$man_g}<virage>,
+             choix      => [ @choix_m ],
+             potentiel  => $pts_dégâts_m,
+             dh1        => DateTime.now.Str,
+        );
+        écrire-coup($coup_m);
+        $coup_m     = lire_coup($date-heure, $méchant, $num);
       }
       else {
-        # au moins un avion en fuite
-        $on_joue =   0;
-        $page    = 223;
-        $page_g  = 223;
-        $page_m  = 223;
+        $coup_g .= new: (
+             date-heure => $date-heure,
+             identité   => $gentil,
+             numéro     => $num,
+             page       => $page,
+             choix      => [ @choix_g ],
+             potentiel  => $pts_dégâts_g,
+             dh1        => DateTime.now.Str,
+        );
+        écrire-coup($coup_g);
+        $coup_m .= new: (
+             date-heure => $date-heure,
+             identité   => $méchant,
+             numéro     => $num,
+             page       => $page,
+             choix      => [ @choix_m ],
+             potentiel  => $pts_dégâts_m,
+             dh1        => DateTime.now.Str,
+        );
+        écrire-coup($coup_m);
+        $coup_g     = lire_coup($date-heure, $gentil , $num);
+        $coup_m     = lire_coup($date-heure, $méchant, $num);
       }
-    }
-    else {
-      $page_g  = $avion_g.pages[$page]<enchainement>{$man_g};
-      $page_m  = $avion_m.pages[$page]<enchainement>{$man_m};
-    }
-    if $page_m == 223 {
-      $page_gf = 223;
-    }
-    elsif $page != 223 {
-      $page_gf = $avion_g.pages[$page_m]<enchainement>{$man_g};
-    }
-    if $page_g == 223 {
-      $page_mf = 223;
-    }
-    elsif $page != 223 {
-      $page_mf = $avion_m.pages[$page_g]<enchainement>{$man_m};
+      $man_g   = $coup_g<manoeuvre>;
+      $man_m   = $coup_m<manoeuvre>;
+      if $page == 223 {
+        if $man_g eq 'Attaque' && $man_m eq 'Attaque' {
+          $page_gf = 170;
+          $page_mf = 170;
+          $page_g  =   0; # pour faire passer un test numérique un peu plus bas
+          $page_m  =   0; # idem
+        }
+        else {
+          # au moins un avion en fuite
+          $on_joue =   0;
+          $page    = 223;
+          $page_g  = 223;
+          $page_m  = 223;
+        }
+      }
+      else {
+        $page_g  = $avion_g.pages[$page]<enchainement>{$man_g};
+        $page_m  = $avion_m.pages[$page]<enchainement>{$man_m};
+      }
+      if $page_m == 223 {
+        $page_gf = 223;
+      }
+      elsif $page != 223 {
+        $page_gf = $avion_g.pages[$page_m]<enchainement>{$man_g};
+      }
+      if $page_g == 223 {
+        $page_mf = 223;
+      }
+      elsif $page != 223 {
+        $page_mf = $avion_m.pages[$page_g]<enchainement>{$man_m};
+      }
     }
     if $on_joue == 0 {
       $coup_g .= new: (
