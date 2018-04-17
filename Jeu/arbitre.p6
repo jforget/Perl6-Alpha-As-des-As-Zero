@@ -34,7 +34,7 @@ class Avion does JSON::Class {
   has     %.manoeuvres;
   has Int $.capacité;
 }
-sub MAIN (Str :$date-heure, Str :$gentil, Str :$méchant) {
+sub MAIN (Str :$date-heure, Str :$gentil, Str :$méchant, Bool :$à-outrance) {
   my Pilote $pilote_g .= from-json(slurp "$gentil.json");
   my Pilote $pilote_m .= from-json(slurp "$méchant.json");
   #say "Référence $date-heure";
@@ -72,7 +72,7 @@ sub MAIN (Str :$date-heure, Str :$gentil, Str :$méchant) {
     $pilote_m.avion           = $méchant;
     $pilote_m.capacité        = $avion_m.capacité;
   }
-  say "Combat de $gentil contre $méchant, ", $pilote_g.avion, " contre ", $pilote_m.avion;
+  say "Combat de $gentil contre $méchant, ", $pilote_g.avion, " contre ", $pilote_m.avion, $à-outrance ?? ' à outrance' !! '';
 
   my $num     =   0;
   my $on_joue =   1;
@@ -85,14 +85,27 @@ sub MAIN (Str :$date-heure, Str :$gentil, Str :$méchant) {
     my ($page_g , $page_m );  # pages intermédiaires
     my ($page_gf, $page_mf);  # pages finales
     if $page == 223 {
-      @choix_g     = <Attaque Fuite>;
+      if $à-outrance {
+        @choix_g     = <Attaque Attaque Attaque Attaque Attaque Fuite>;
+      }
+      else {
+        @choix_g     = <Attaque Fuite>;
+      }
       @choix_m     = @choix_g;
       $poursuite_g = '';
       $poursuite_m = '';
+      #say join ' ', @choix_g, '/', @choix_m;
     }
     else {
       @choix_g     = $avion_g.pages[$page]<enchainement>.keys.sort;
       @choix_m     = $avion_m.pages[$page]<enchainement>.keys.sort;
+      if $à-outrance {
+        #say join ' ', @choix_g, '/', @choix_m;
+        @choix_g = grep { $avion_g.pages[$page]<enchainement>{$_} != 223 }, @choix_g;
+        @choix_m = grep { $avion_m.pages[$page]<enchainement>{$_} != 223 }, @choix_m;
+        #say join ' ', @choix_g, '/', @choix_m;
+      }
+
       $poursuite_g = $avion_g.pages[$page]<poursuite>;
       $poursuite_m = $avion_m.pages[$page]<poursuite>;
       $pts_dégâts_m -= $avion_g.pages[$page]<tir>;
@@ -165,7 +178,6 @@ sub MAIN (Str :$date-heure, Str :$gentil, Str :$méchant) {
              potentiel  => $pts_dégâts_g,
              dh1        => DateTime.now.Str,
         );
-        écrire-coup($coup_g);
         $coup_m .= new: (
              date-heure => $date-heure,
              identité   => $méchant,
@@ -175,6 +187,7 @@ sub MAIN (Str :$date-heure, Str :$gentil, Str :$méchant) {
              potentiel  => $pts_dégâts_m,
              dh1        => DateTime.now.Str,
         );
+        écrire-coup($coup_g);
         écrire-coup($coup_m);
         $coup_g     = lire_coup($date-heure, $gentil , $num);
         $coup_m     = lire_coup($date-heure, $méchant, $num);
@@ -340,6 +353,12 @@ pour tous les coups de cette partie.
 
 Nom des joueurs simulés, associés à un fichier JSON donnant les caractéristiques de ces joueurs.
 
+=item à-outrance
+
+Booléen, utilisé pour les entraînements. S'il est à C<True>, alors les avions ne peuvent pas
+choisir 223 comme page intermédiaire. Il peut arriver toutefois qu'ils se retrouvent en
+page finale 223, mais dans ce cas, les probabilités sont ajustées pour favoriser
+l'attaque.
 
 =head1 COPYRIGHT et LICENCE
 
