@@ -276,6 +276,19 @@ sub MAIN (Str :$date-heure, Str :$gentil, Str :$méchant, Bool :$à-outrance) {
 
       écrire-coup($coup_g);
       écrire-coup($coup_m);
+      my BSON::Document $résumé;
+      $résumé .= new: (
+           date-heure => $date-heure,
+           gentil     => $gentil,
+           méchant    => $méchant,
+           avion_g    => $pilote_g.avion,
+           avion_m    => $pilote_m.avion,
+           résultat_g => $coup_g<résultat>,
+           résultat_m => $coup_m<résultat>,
+           fin        => $num + 1e0,
+           dh_fin     => DateTime.now.Str,
+      );
+      écrire-partie($résumé);
       say "Terminé !";
       last;
     }
@@ -324,6 +337,16 @@ sub écrire-coup(BSON::Document $coup) {
   #say "Création coup ok : ", $result<ok>, " nb : ", $result<n>;
 
 }
+
+sub écrire-partie(BSON::Document $partie) {
+  my BSON::Document $req .= new: (
+    insert => 'Partie',
+    documents => [ $partie ],
+  );
+  my BSON::Document $result = $database.run-command($req);
+  #say "Création partie ok : ", $result<ok>, " nb : ", $result<n>;
+}
+
 
 =begin POD
 
