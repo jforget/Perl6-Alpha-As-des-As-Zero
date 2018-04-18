@@ -32,7 +32,7 @@
 
 export dh=$(date +'%Y-%m-%d_%H-%M-%S')
 
-perl6 arbitre.p6 --date-heure=$dh --gentil=Epervier --méchant=Drone &
+perl6 arbitre.p6 --date-heure=$dh --gentil=Epervier --méchant=Drone --à-outrance &
 perl6 joueur.p6  --date-heure=$dh --identité=Drone    &
 perl6 joueur.p6  --date-heure=$dh --identité=Epervier &
 

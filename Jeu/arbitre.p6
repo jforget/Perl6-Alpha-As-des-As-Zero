@@ -101,8 +101,14 @@ sub MAIN (Str :$date-heure, Str :$gentil, Str :$méchant, Bool :$à-outrance) {
       @choix_m     = $avion_m.pages[$page]<enchainement>.keys.sort;
       if $à-outrance {
         #say join ' ', @choix_g, '/', @choix_m;
-        @choix_g = grep { $avion_g.pages[$page]<enchainement>{$_} != 223 }, @choix_g;
-        @choix_m = grep { $avion_m.pages[$page]<enchainement>{$_} != 223 }, @choix_m;
+        my @choix = grep { $avion_g.pages[$page]<enchainement>{$_} != 223 }, @choix_g;
+        if @choix.elems > 0 {
+          @choix_g = @choix;
+        }
+        @choix = grep { $avion_m.pages[$page]<enchainement>{$_} != 223 }, @choix_m;
+        if @choix.elems > 0 {
+          @choix_m = @choix;
+        }
         #say join ' ', @choix_g, '/', @choix_m;
       }
 
@@ -285,7 +291,7 @@ sub MAIN (Str :$date-heure, Str :$gentil, Str :$méchant, Bool :$à-outrance) {
            avion_m    => $pilote_m.avion,
            résultat_g => $coup_g<résultat>,
            résultat_m => $coup_m<résultat>,
-           fin        => $num + 1e0,
+           nb_coups   => $num + 1e0,
            dh_fin     => DateTime.now.Str,
       );
       écrire-partie($résumé);
@@ -340,7 +346,7 @@ sub écrire-coup(BSON::Document $coup) {
 
 sub écrire-partie(BSON::Document $partie) {
   my BSON::Document $req .= new: (
-    insert => 'Partie',
+    insert => 'Parties',
     documents => [ $partie ],
   );
   my BSON::Document $result = $database.run-command($req);
@@ -382,6 +388,12 @@ Booléen, utilisé pour les entraînements. S'il est à C<True>, alors les avion
 choisir 223 comme page intermédiaire. Il peut arriver toutefois qu'ils se retrouvent en
 page finale 223, mais dans ce cas, les probabilités sont ajustées pour favoriser
 l'attaque.
+
+Exception : si toutes les manœuvres disponibles pointent vers la page intermédiaire 223,
+alors on ne tient pas compte du paramètre C<à-outrance> pour ce coup et cet avion.
+Cela ne peut pas arriver avec les avions standards de l'As des As et des jeux dérivés,
+mais cela peut arriver avec les livrets personnalisés. Cela arrive notamment avec
+le livret Epervier.
 
 =head1 COPYRIGHT et LICENCE
 
