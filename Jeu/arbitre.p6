@@ -80,7 +80,6 @@ sub MAIN (Str :$date-heure, Str :$gentil, Str :$méchant, Bool :$à-outrance) {
   my $pts_dégâts_g = $pilote_g.capacité;
   my $pts_dégâts_m = $pilote_m.capacité;
   while $on_joue {
-    ++ $num;
     my (@choix_g, @choix_m, $poursuite_g, $poursuite_m, $man_g, $man_m);
     my ($page_g , $page_m );  # pages intermédiaires
     my ($page_gf, $page_mf);  # pages finales
@@ -124,6 +123,7 @@ sub MAIN (Str :$date-heure, Str :$gentil, Str :$méchant, Bool :$à-outrance) {
     my BSON::Document $coup_g;
     my BSON::Document $coup_m;
     if $on_joue {
+      ++ $num;
       if $poursuite_g eq 'T' {
         $coup_m .= new: (
              date-heure => $date-heure,

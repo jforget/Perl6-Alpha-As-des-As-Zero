@@ -108,7 +108,7 @@ SONDER:
     sleep 1;
   }
   if $tentative ≥ $tentative_max {
-    die "Plus de réponse de l'arbitre, on arrête";
+    die "Plus de réponse de l'arbitre, on arrête (date-heure = {$dh}, identité = {$id}, numéro = {$n}";
   }
 
   return $coup;
