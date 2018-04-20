@@ -9,3 +9,4 @@
 *.out
 *.pdf
 pod2*
+.precomp
