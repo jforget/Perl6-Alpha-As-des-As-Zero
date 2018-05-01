@@ -1,0 +1,629 @@
+-*- encoding: utf-8; indent-tabs-mode: nil -*-
+
+=encoding utf-8
+
+=head1 L'As des AS
+
+=head2 Rappel
+
+L'an dernier, j'ai présenté un système de reconnaissance
+de caractères basé sur une interface entre un humain et une
+machine. Dans les grandes lignes, Le fonctionnement était
+le suivant.
+
+=for html
+<img src='comparaison-l-1.png' alt='Comparaison entre une cellule l (Lima) et un glyphe 1 (unité)' />
+
+I<Copie d'écran personnelle. Les conditions de licence sont les mêmes que pour le texte.>
+
+-- Maître, cette cellule contient un chiffre « 1 ».
+
+-- Petit Scarabée, c'est la lettre « l ».
+
+-- Ah, maître, je comprends la nature du « l ».
+
+Présenté comme cela, vous avez reconnu, c'est du I<machine learning>
+(et ça fera bien dans mon CV).
+
+=head2 Cette année
+
+Récemment, nous avons appris que Google avait fait du machine learning
+avec Google Alpha Go. Puis nous avons appris qu'ils avaient fait
+une autre expérience sur le jeu de Go,
+Google Alpha Go Zero, basé sur un mécanisme d'auto-apprentissage, ainsi
+que l'équivalent pour les échecs, Google Alpha Chess Zero.
+Le système ne connaît que les règles du jeu et le fait qu'une position
+finale est gagnante ou perdante. Le système joue un grand nombre de
+parties contre lui-même, analyse les résultats et en déduit les positions
+et coups avantageux et les positions et coups foireux.
+
+Cette idée ne date pas de 2017 ou 2018, je l'ai déjà rencontrée dans
+les années 1970 avec le tic-tac-toe. Et depuis longtemps j'avais moi-même un projet
+de « machine self-learning », que je vous présente ci-dessous.
+
+=head2 Digression sur les précurseurs des liens hypertexte
+
+Quand a-t-on commencé à numéroter les pages des livres (ou des rouleaux de papyrus) ?
+Quand a-t-on écrit pour la première fois "cf. page n" ?
+Quand a-t-on écrit un ouvrage qui utilise de façon intensive les renvois
+à une autre page ?
+
+À la suite des travaux des naturalistes du XVIIe siècle (Jussieu, Buffon, Cuvier, etc)
+on a commencé à publier des flores, des livres décrivant l'ensemble des végétaux
+d'une région ou d'un biotope. Mon père m'en a montré une datant des années 1950
+et qui était organisée sous la forme d'une série de questions-réponses :
+
+Comment sont les nervures des feuilles ? Si elles sont parallèles, voyez page 17.
+Si elles forment un réseau arborescent avec une nervure centrale, des nervures primaires
+se détachant de la nervure centrale, des nervures secondaires se détachant d'une nervure
+primaire et ainsi de suite, voyez page 33.
+
+Page 17 et page 33 vous aviez d'autres questions, d'autres réponses et d'autres renvois.
+
+Années 1960 : on m'a raconté qu'IBM avait composé des
+manuels de dépannage sur le même principe :
+
+  Si de la fumée sort de l'unité de disque, voyez page 17.
+  Si cela fait « crrr crrr crrr » voyez page 33.
+
+Dans les années 1970, j'ai vu à la télévision le sketch d'un duo d'humoristes
+sur « le dictionnaire le plus petit du monde ». Ce qui prend de la place dans un dictionnaire
+ce sont les définitions. Donc, en éliminant les définitions, on peut imprimer un
+dictionnaire complet sur un livre de poche. Exemple
+
+  Clown : voir Cirque.
+  Cirque : voir Cercle.
+  Cercle : voir Assemblée
+  Assemblée : voir Parlement.
+  Parlement : voir Député.
+  Député : voir Politicien.
+  Politicien : voir Clown.
+
+=head3 Le sorcier de la Montagne de Feu
+
+En 1982, est paru un livre d'un genre nouveau,
+L<Warlock of the Firetop Mountain|http://fightingfantasy.wikia.com/wiki/The_Warlock_of_Firetop_Mountain_(book)>, 
+bientôt traduit en français par
+L<Gallimard Folio Junior|http://planete-ldvelh.com/page/dossier-edition-gallimard.html> 
+sous le titre
+« le Sorcier de la Montagne de Feu », le premier de la série
+L<« les Livres dont vous êtes le héros »|http://www.gallimard-jeunesse.fr/Catalogue/GALLIMARD-JEUNESSE/Un-Livre-dont-vous-etes-le-Heros>.
+
+J'en ai eu cinq, dont deux édités par Gallimard et trois par Solar, il m'en reste quatre.
+
+=for HTML
+<img src='Les_livres_dont_vous_etes_le_heros.jpg' alt="Quatres livres dont vous êtes le héros" width='85%' />
+
+I<Photo personnelle. Les conditions de licence sont les mêmes que pour le texte.>
+
+=head2 L'As des As
+
+En 1981, un dénommé Alfred Leonardi a déposé un brevet pour un
+nouveau type de jeu. Au lieu de réunir les deux joueurs sur une même
+carte où ils poussent des pions, chaque joueur est muni d'un livret.
+
+=for HTML
+<img src='pic1051809-l.jpg' alt="Exemple de partie" width='85%' />
+
+I<Photo prise par Chris Norwood et publiée sur L<Boardgame Geek|https://boardgamegeek.com/image/1051809/ace-aces-handy-rotary-series?size=large>. 
+Licence L<Creative Commons Attribution 3.0 Unported, CC BY 3.0|https://creativecommons.org/licenses/by/3.0/>.>
+
+=head3 Aperçu des règles
+
+Le brevet donne un exemple de tour de jeu. Les deux joueurs commencent page 1. Dans
+les deux livrets, cette page montre que les deux avions ont le même cap et
+que le DR1 est dans les 4 heures du Camel, c'est-à-dire que le Camel est dans
+les 10 heures du DR1.
+
+=for HTML
+<img src='Page-1-All.png' alt="Livret allemand page 1" width='45%' />
+<img src='Page-1-GB.png' alt="Livret britannique page 1" width='45%' />
+
+I<Copies d'écran provenant du brevet USP 4,378,118, dans le domaine public depuis 2001.>
+
+En bas de la page, vous pouvez remarquer une série de flèches et une
+série de nombres, des numéros de page. Chaque joueur choisit une flèche et
+annonce le numéro de page correspondant à son adversaire. Par exemple, le joueur
+allemand choisit la flèche la plus à gauche dans la page et annonce :
+
+-- Je t'envoie en page 8.
+
+Simultanément, le Britannique choisit la manœuvre en dessous de S<« EF »>
+S<« Cruising> S<Left »> et répond :
+
+-- Et toi, tu vas page 48.
+
+Le joueur allemand ouvre son livret page 48 et applique la même manœuvre que
+précédemment, ce qui donne la page 96. De même, le joueur britannique ouvre
+son livret page 8, repère la manœuvre choisie et obtient le même numéro de page, 96.
+
+=for HTML
+<img src='Page-48-All.png' alt="Livret allemand page 48" width='45%' />
+<img src='Page-8-GB.png' alt="Livret britannique page 8" width='45%' />
+
+I<Copies d'écran provenant du brevet USP 4,378,118, dans le domaine public depuis 2001.>
+
+La page finale du tour est donc la page 96. Et comme vous pouvez le voir,
+non seulement l'As des As est un précurseur des liens hypertextes, mais
+c'est aussi un précurseur des jeux de tir en vision subjective
+(I<First Person Shooters> en anglais), douze ans avant Wolfenstein 3D, treize ans
+avant Doom..
+
+=for HTML
+<img src='Page-96-All.png' alt="Livret allemand page 96" width='45%' />
+<img src='Page-96-GB.png' alt="Livret britannique page 96" width='45%' />
+
+I<Copies d'écran provenant du brevet USP 4,378,118, dans le domaine public depuis 2001.>
+
+Avec ce mécanisme, les pages finales sont toujours identiques. Cela émerveille les joueurs
+qui découvrent le jeu, mais cela peut s'expliquer simplement. Oublions les cieux au-dessus
+de Poelkappelle et de Vaux-sur-Somme, et imaginons un parking de supermarché. Toutes
+les voitures sont garées à proximité du bâtiment et il y a donc un large espace libre un
+peu plus loin. Dans cet espace libre, se trouvent une Mini Austin et une VW Coccinelle
+disposées ainsi :
+
+image
+
+Cela correspond à la page 1 des deux livrets.
+
+Maintenant, imaginons que la VW fasse ce mouvement pendant que la Mini reste immobile.
+
+image
+
+On obtient alors la disposition de la page 8. À ce moment-là, la Coccinelle s'arrête
+et l'Austin démarre en faisant ce mouvement
+
+image
+
+Le résultat est celui de la page 96.
+
+Deuxième étape de l'expérience. Les deux voitures se remettent dans la disposition correspondant
+à la page 1. Puis c'est la Mini qui bouge la première pendant que la VW reste immobile.
+On aboutit alors à la disposition de la page 48.
+
+Et lorsque la Coccinelle effectue son mouvement, on aboutit à la configuration de la page 96.
+
+Troisième étape. Les voitures se remettent dans la position de la page 1, puis elles effectuent
+I<simultanément> leur mouvement. Comme les deux fois précédentes, on obtient la disposition de
+la page 96.
+
+Ainsi donc, il est équivalent de faire les mouvements simultanément ou de les faire séquentiellement
+dans un ordre ou dans l'autre. Et ce, aussi bien sur un parking de supermarché que dans
+l'espace aérien de la Picardie ou des Flandres.
+
+=head3 Cas particulier, la page 223.
+
+Un livret n'a qu'un nombre limité de pages, correspondant à une distance limitée entre les
+deux avions. Si, du fait de leurs manœuvres, les avions se retrouvent plus loin que cette
+distance limite, le livret affiche une page spéciale, la page 223 qui représente des
+nuages derrière lesquels l'ennemi a disparu. Même si cette page montre le ciel en avant de l'avion,
+il est possible que l'ennemi ait disparu sur un côté ou derrière.
+
+Si un seul joueur a une page intermédiaire à 223, on utilise la page intermédiaire de l'autre
+pour obtenir la page finale. Impossible dans ce cas de faire la vérification présentée, expliquée et démythifiée
+au paragraphe précédent. Un tel cas de figure se produit par exemple lorsqu'un avion est dans
+les six heures de l'autre à grande distance (page xxx ou yyy si vous avez un exemplaire du jeu).
+Si les deux avions font exactement le même mouvement en ligne droite vers l'avant, alors
+si l'on exécute d'abord le mouvement du poursuivant, on verra que la situation finale est
+identique à la situation initiale, tandis que si l'on exécute d'abord le mouvement du
+poursuivi, on obtient une page intermédiaire 223 et on ne peut pas trouver la vraie
+page finale.
+
+D'un autre côté, si les deux pages intermédiaires sont 223, ou bien si la page finale est
+223, alors les avions se sont perdus de vue. Chaque joueur décide alors de continuer le
+combat ou de s'éclipser. Si les deux avions fuient, c'est un match nul. Si les deux
+avions décident de continuer, le combat reprend sur une page avec une position neutre, chaque avion
+conservant les dégâts déjà subis. Si un seul avion fuit, il accorde une demi-victoire
+à son adversaire, mais c'est parfois préférable, plutôt que de prendre le risque de se
+faire descendre et d'accorder ainsi une victoire complète à son adversaire.
+
+=head3 Autre cas particulier, la poursuite
+
+Lorsqu'un avion est dans le quadrant arrièrre d'un autre (4 à 8 heures) et que
+son cap est identique ou presque, alors on dit qu'il poursuit l'autre avion.
+C'était le cas sur la page 1 présentée ci-dessus. Pour des raisons pédagogiques,
+j'ai préféré faire le silence sur cette particularité.
+La simultanéité du choix des manœuvres est partiellement annulée. La séquence est la suivante
+
+=over 4
+
+=item 1 L'avion poursuivi choisit une manœuvre.
+
+=item 2 Il indique au poursuivant s'il s'agit d'une manœuvre vers
+la gauche, d'une manœuvre vers la droite ou d'une manœuvre en ligne droite
+vers l'avant. Il ne donne pas le numéro de la page intermédiaire.
+
+=item 3 L'avion poursuivant choisit une manœuvre.
+
+=item 4 Les deux joueurs annoncent simultanément les pages intermédiaires.
+
+=item 5 Les deux joueurs déterminent la page finale.
+
+=back
+
+=head3 Extensions
+
+Deux extensions sont sorties avec des avions plus récents (I<Powerhouse> : Spad XIII contre Fokker D.VII) ou plus anciens
+(I<Flying Machines> Airco DH2 contre Fokker E.III). Également, il y a la version Seconde Guerre Mondiale (I<Wingleader>, P-51 Mustang
+contre FW190), la version Guerre Froide (I<Jet Eagles>, F-15 Eagle contre MiG-29 Fulcrum) et 
+même la version Guerre des Étoiles (I<Star Wars : Starfighter Battle Books>, X-Wing contre TIE-Fighter, extension publiée par West End Games).
+
+À remarquer que toutes ces versions ont la même pagination. Dans tous les livrets, la page 96 montre
+le « méchant » derrière le « gentil », à distance moyenne, avec le même cap et en train de lui tirer dessus.
+Il est possible de jouer avec un livret « gentil » d'un jeu et un livret « méchant » d'un autre jeu, quitte
+à faire combattre un X-Wing contre un Fokker E.III !
+
+=begin html
+
+<img src='Serie_As-des-As.jpg' alt="L'As des As, les jeux de la Première Guerre Mondiale " width='45%' />
+<img src='Wingleader_Jet_Eagles.jpg' alt="L'As des As, Seconde Guerre Mondiale et Guerre Froide" width='45%' />
+<img src='Jet-Eagles-96M.jpg' alt="Page 96 pour Jet Eagles, livret 'Red Force'" width='45%' />
+<img src='Jet-Eagles-96G.jpg' alt="Page 96 pour Jet Eagles, livret 'Blue Force'" width='45%' />
+
+=end html
+
+I<Photos personnelles. Les conditions de licence sont les mêmes que pour le texte.>
+
+Il y a également une extension I<Balloon Busters>, où l'on fait du 2-contre-1. Le joueur allemand
+contrôle un ballon d'observation (assez passif) plus un canon anti-aérien, contre un avion britannique.
+
+Autres extensions dans la même lignée, mais impossibles à mélanger avec les premières :
+I<Shootout at the Saloon> traduit chez Gallimard avec le titre
+I<Le shérif et le hors-la-loi>,
+I<Dragons Riders of Pern> et une série dont je n'avais jamais entendu parler
+avant de rédiger ces explications, I<Lost Worlds>.
+
+=begin html
+
+<img src='Le_sherif_et_le_hors-la-loi.jpg' alt="Le Shérif et le Hors-la-loi" width='30%' />
+<img src='Sherif.jpg' alt="Le shérif apercevant le hors-la-loi" width='30%' />
+<img src='Hors-la-loi.jpg' alt="Le hors-la-loi apercevant le shérif" width='30%' />
+
+=end html
+
+I<Photos personnelles. Les conditions de licence sont les mêmes que pour le texte.>
+
+Pour en revenir au combat aérien, puisque le brevet est tombé dans le domaine public,
+n'importe qui peut publier des extensions dans la lignée :
+
+=over 4
+
+=item * Apache AH-64 vs Mi-24 Hind
+
+=item * Quidditch : Griffindor vs Slytherin
+
+=item * Superman vs Ironman
+
+=item * Épervier vs drone de loisir
+
+=back
+
+C'est d'ailleurs cette dernière extension que j'ai choisie pour disposer de données
+de tests dans mes programmes. J'étais réticent à reprendre les caractéristiques des
+avions de l'un des jeux existants, car si le brevet est expiré, le copyright ne l'est pas.
+
+=head1 Description des programmes
+
+Deux parties : construction du livret, jeu
+
+=head1 Perl 6
+
+=head2 Installation
+
+Faut-il installer le paquet de la distribution ou faut-il compiler Rakudo Star à partir
+des sources ? Il faut peser le pour et le contre entre la version proposée par votre
+distribution et le temps que prendrait la compilation. Sans oublier qu'un valeureux
+volontaire propose un 
+L<dépôt Github|https://github.com/nxadm/rakudo-pkg/releases>
+avec des paquets pour certaines distributions.
+
+Dans mon cas, mes différentes machines physiques et virtuelles et
+les paquets correspondants sont :
+
+  physique    xubuntu-12.04   rakudo 2011.07
+  virtuelle   xubuntu-14.10   rakudo 2013.12
+  virtuelle   lubuntu-15.10   rakudo 2014.07
+  physique    xubuntu-16.10   rakudo 2016.06
+  virtuelle   Mageia-5        pas trouvé
+
+Les paquets sont vraiment trop anciens.
+Du coup, j'ai installé rakudo star 2018.01 à partir des sources. La première fois que
+j'ai compilé rakudo star, cela a pris beaucoup de temps, plusieurs heures.
+La deuxième fois, pour éviter d'avoir à surveiller ma machine pour saisir la
+commande suivante (C<make>, C<make test>, C<make install>), j'ai écrit un script
+qui enchaîne ces commandes et donne la date et l'heure entre deux.
+
+  #!/bin/sh
+  # -*- encoding: utf-8; indent-tabs-mode: nil -*-
+
+  interlude() {
+    echo
+    echo
+    date +'%Y-%m-%d %H:%M:%S'
+    echo
+    echo
+  }
+
+  mkdir ~/rakudo && cd $_
+  wget https://rakudo.perl6.org/downloads/star/rakudo-star-2018.01.tar.gz
+  interlude
+  tar -xvzf rakudo-star-2018.01.tar.gz
+  interlude
+  cd rakudo-star-2018.01/
+  interlude
+  perl Configure.pl --backend=moar --gen-moar
+  interlude
+  make
+  interlude
+  # If you wish, you can run the tests
+  # Depending on your machine, they could take over half an hour to run
+  make rakudo-test
+  interlude
+  make rakudo-spectest
+  interlude
+  make install
+  interlude
+  echo "export PATH=$(pwd)/install/bin/:$(pwd)/install/share/perl6/site/bin:\$PATH" >> ~/.bashrc
+  source ~/.bashrc
+
+Certes, j'ai lancé ce script sur une machine virtuelle, donc nécessairement moins puissante 
+que la machine physique hôte. Néanmoins, cela donne une idée du temps nécessaire.
+
+  make                   1h 40mn
+  make rakudo-test          20mn
+  make rakudo-spectest   3h 10mn
+  make install           1h
+
+Notons qu'il y a des erreurs, mais que je suis passé outre. Et je pense que c'est justifié, au moins
+dans le cas de "spectest". En effet, on sait que Rakudo Star n'implémente pas complètement la spécification
+de Perl 6, ce qui se traduit par des erreurs dans "spectest". C'est normal.
+
+=head2 Utilisation
+
+=head3 Indices négatifs
+
+À un moment, dans un programme, il fallait que j'additionne ainsi
+les éléments de deux tableaux (en syntaxe Perl 5)
+
+  $t[0] = $a[0] + $b[4];
+  $t[1] = $a[1] + $b[5];
+  $t[2] = $a[2] + $b[0];
+  $t[3] = $a[3] + $b[1];
+  $t[4] = $a[4] + $b[2];
+  $t[5] = $a[5] + $b[3];
+
+Avec les index négatifs, on peut réécrire ces lignes ainsi en Perl 5 :
+
+  $t[0] = $a[0] + $b[-2];
+  $t[1] = $a[1] + $b[-1];
+  $t[2] = $a[2] + $b[ 0];
+  $t[3] = $a[3] + $b[ 1];
+  $t[4] = $a[4] + $b[ 2];
+  $t[5] = $a[5] + $b[ 3];
+
+ou avec une boucle
+
+  for (0..5) {
+    $t[$_] = $a[$_] + $b[$_ - 2];
+  }
+
+Mais en Perl 6, les indices négatifs sont interdits,
+il faut écrire :
+
+  @t[0] = @a[0] + @b[* - 2];
+  @t[1] = @a[1] + @b[* - 1];
+  @t[2] = @a[2] + @b[ 0];
+  @t[3] = @a[3] + @b[ 1];
+  @t[4] = @a[4] + @b[ 2];
+  @t[5] = @a[5] + @b[ 3];
+
+Donc impossible de faire cela en une seule boucle, il faut
+en faire au moins deux. C'est nul, Perl 6...
+
+... Puis j'ai pensé à APL. En APL, comment aurais-je fait ?
+APL permet de faire cela sans même faire de boucle, en traitant
+les vecteurs (nom indigène pour « tableaux ») dans leur totalité.
+On commence par faire tourner le vecteur B sur lui-même pour
+amener l'élément d'indice 4 (*) en première position.
+Puis on l'additionne au vecteur A et on stocke le résultat
+dans la variable T
+
+(*) En fait, en APL, on a coutume de faire commencer les indices en 1.
+Donc, c'est plutôt l'élément d'indice 5 que l'on place en position initiale.
+
+  T ← A + (-2) ⌽ B
+
+Éh bien avec Perl 6, on peut faire l'équivalent :
+
+  @t = @a «+» @b.rotate(-2);
+
+APL, c'est génial, Perl 6 c'est génial !
+
+=head3 Opérateurs Unicode
+
+Un autre point que j'aime beaucoup dans APL, c'est que l'on peut
+comparer des valeurs avec ≤ et ≥ au lieu de <= et >=. Et surtout,
+on peut multiplier des nombres avec × au lieu de cette abominable étoile.
+Éh bien on peut faire la même chose avec Perl 6 et utiliser ≤ ≥ et ×.
+Lorsque j'ai fait un projet APL en 2014-2015, je m'étais écrit
+une fonction C<apl-insert> pour insérer des caractères spéciaux dans
+un source APL sous Emacs. Lorsque j'ai découvert la possibilité
+d'utiliser ≤ ≥ et × en Perl 6, j'ai dupliqué ma fonction dans le
+répertoire Perl 6 sans même purger les caractères APL qui ne
+servent pas pour Perl 6 ni changer le nom de la fonction.
+
+Remarque. Perl 5 connaissait déjà x pour multiplier une chaîne
+par un nombre ou une liste par un nombre. Mais hélas, la
+multiplication numérique utilisait toujours l'étoile.
+
+À ce propos, la répétition de chaîne et la répétition de liste
+sont deux opérateurs différents en Perl 6, respectivement « x »
+et « xx ». Évitez d'utiliser l'un pour l'autre comme je l'ai fait !
+
+=head3 Notation fonctionnelle
+
+Image g rond f
+
+Lorsque j'ai appris les relations et les fonctions en classe de 6e,
+il y avait un point que je n'aimais pas et qui piégeait nombre de mes
+camarades de classe, la notation pour la composition des fonctions.
+Ainsi, « f suivie de g » se note « g rond f » et non pas « f rond g ».
+La raison invoquée est qu'avec la notation fonctionnelle proposée par
+Euler, on a :
+
+     y = f(x)
+     z = g(y)
+
+donc
+
+     z = g(f(x)) = gof (x)
+
+J'ai beau être accoutumé à cette notation où les fonctions s'emboîtent
+les unes dans les autres de façon que l'ordre chronologique se lit de droite
+à gauche, je persiste à ne pas aimer. Et en plus, la quasi-totalité des
+langages de programmation ont pris la suite du S<« traducteur> de S<formules »>
+de Backus (FORTRAN) et reprennent allègrement cette monstruosité syntaxique.
+Par exemple, vous prenez une valeur x, vous lui appliquez successivement
+la fonction logarithme, la fonction cosinus, vous en prenez la valeur absolue
+puis la racine carrée et vous terminez par la partie entière.
+En notation mathématique, cela donne :
+
+latex
+
+et en programmation, par exemple avec Perl 5 :
+
+  $y = int(sqrt(abs(cos(log($x)))))
+
+Seul rayon de soleil dans cette grisaille, les calculatrices
+HP mais aussi TI, qui permettent de coder :
+
+  RCL 0
+  LN
+  COS
+  ABS
+  SQRT
+  INT
+
+plus peut-être d'autres langages tels que Forth et Postscript que je n'ai jamais
+appris, ou Smalltalk que j'ai à peine pratiqué.
+
+Et maintenant, il y a aussi Perl 6 :
+
+  $y = $x.log.cos.abs.sqrt.floor;
+
+=head3 transformée schwartzienne
+
+A COMPLETER
+
+=head3 Alignement vertical
+
+A COMPLETER
+
+=head3 Expressions régulières
+
+La syntaxe des regexps a été remaniée en profondeur. Reportez-vous systématiqement à la
+doc lors de vos premières tentatives. Un exemple où je me suis fait avoir.
+Pour tester qu'une chaîne de caractères ne contient que des chiffres 0, 1 et
+5, ne pas écrire
+
+  if $ch ~~ /^[015]+$/
+
+mais
+
+  if $ch ~~ /^[0|1|5]+$/
+
+En fait, en lisant la documentation, la syntaxe est :
+
+  if $ch ~~ /^<[015]>$/
+
+=head3 Typage des valeurs et des variables
+
+Une grande nouveauté de Perl 6, c'est le fait que l'on peut associer
+un type à une variable et que l'interpréteur fera les
+vérifications de type associées. Seulement voilà, les contrôles sont parfois
+un peu trop stricts. Soit le bout de code suivant
+
+  class Exemple {
+    has Num $.grandeur is rw;
+  }
+  my Exemple $donnée;
+  $donnée.grandeur = 1;
+
+Cet exemple de code plante, parce que l'interpréteur attend un
+C<(Num)> et qu'on lui donne un C<(Int)>. Non, il n'y a pas de conversion
+implicite des entiers vers les flottants. Qu'à cela ne tienne,
+il suffit d'écrire
+
+  $donnée.grandeur = 1.0;
+
+et le tour est joué ! Éh bien non, ça plante encore, cette fois-ci
+parce que paraît-il on veut mettre un C<(Rat)> dans un C<(Num)> !
+Je m'en suis tiré d'abord avec une conversion explicite :
+
+  $donnée.grandeur = 1.Num;
+
+ce qui n'est pas élégant. Puis je me suis rappelé de certains
+modules Perl 5 qui devaient renvoyer un résultat « vrai » en contexte booléen avec
+une valeur donnant zéro en contexte numérique. Il y a les modules qui écrivent
+
+  return 0 but true;
+
+Astucieux, mais cela ne m'aide pas. Et il y a les autres qui écrivent
+
+  return "0e0";
+
+Beaucoup plus intéressant. J'ai donc écrit
+
+  $donnée.grandeur = 1e0;
+
+=head3 Références
+
+Lorsque j'ai lu les livres qui m'ont servi à apprendre le langage,
+j'ai constaté certaines omissions (Désolé Laurent). L'omission la
+plus flagrante pour moi est concerne les références. Même si l'on écrit
+
+  @t[2]
+
+au lieu de
+
+  $t[2]
+
+pour accéder à un élément de tableau, la notation
+
+  $t[2]
+
+existe toujours et concerne la variable $t qui contient une référence à une liste.
+L'équivalent en Perl 5 est
+
+  $t->[2]
+
+Je ne me suis pas privé d'utiliser des références dans mes programmes, mais j'aurais
+bien aimé avoir l'aval des gourous sur la question.
+
+=head3 Undef et (nil)
+
+=head3 Opérateurs spécifiques
+
+Une autre lacune, mais qui est restée pour l'instant théorique pour mes besoins, c'est
+la possibilité de créer ses propres opérateurs. Comment définit-on la
+priorité de ces opérateurs par rapport aux opérateurs traditionnels ?
+
+=head2 MongoDB
+
+version 2.6 ou 3.x ?
+
+installation du module
+
+message de débug
+
+faire un livre de recettes
+
+options sort, limit et skip du find
+
+démarrage automatique
+
+=head1 LICENCE
+
+Texte diffusé sous la licence CC-BY-NC-ND : Creative Commons avec clause de paternité, excluant l'utilisation commerciale et excluant la modification. 
+
+Certaines illustrations sont diffusées avec une licence libre différente. Celle-ci est mentionnée à la suite de l'illustration.
