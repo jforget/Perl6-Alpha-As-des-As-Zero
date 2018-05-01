@@ -11,11 +11,50 @@
 
 unit module site-liste-parties;
 
-our sub affichage {
-  return q:to/EOF/;
+sub aff-partie($d) {
+  my $coups = "en $d<nb_coups> coup"; # sans "s"
+  if $d<nb_coups> > 1 {
+    $coups ~= "s";
+  }
+  my $résultat;
+  if $d<résultat_g> == 0 {
+    $résultat = "match nul";
+  }
+  elsif $d<résultat_g> == 0.5 {
+    $résultat = "$d<méchant> a pris la fuite";
+  }
+  elsif $d<résultat_m> == 0.5 {
+    $résultat = "$d<gentil> a pris la fuite";
+  }
+  elsif $d<résultat_g> == 1 {
+    $résultat = "$d<gentil> a abattu $d<méchant>";
+  }
+  elsif $d<résultat_m> == 1 {
+    $résultat = "$d<méchant> a abattu $d<gentil>";
+  }
+  if (defined $d<capacité_g>) and (defined $d<capacité_m>) {
+    $résultat ~= " (points de dégâts restants : $d<gentil> = $d<capacité_g>, $d<méchant> = $d<capacité_m>)";
+  }
+  return "<a href='/partie/$d<date-heure>'>{$d<date-heure>}</a> $d<gentil> contre $d<méchant> $coups, $résultat";
+}
+
+our sub affichage($début, @liste) {
+  @liste ==> sort { $^a<date-heure> cmp $^b<date-heure> } \
+         ==> map -> $d { "<li>{aff-partie($d)}</li>\n"; } \
+         ==> my @liste_li;
+  my $liste_li = join('', @liste_li);
+
+  return qq:to/EOF/;
   <html>
-  <head><title>Liste des parties</title></head>
-  <body>L'excuse habituelle : site en travaux</body>
+  <head>
+  <title>Liste des parties</title>
+  <meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
+  </head>
+  <body>
+  <ul>
+  $liste_li
+  </ul>
+  </body>
   </html>
   EOF
 }

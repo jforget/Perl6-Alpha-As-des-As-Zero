@@ -19,11 +19,18 @@ use MongoDB::Collection;
 use JSON::Class;
 use Bailador;
 
+use acces-mongodb;
 use site-liste-parties;
 use site-partie;
 
 get '/' => sub {
-  return site-liste-parties::affichage();
+  my @liste = acces-mongodb::liste-parties('');
+  return site-liste-parties::affichage('', @liste);
+}
+
+get '/liste/:dh' => sub ($dh) {
+  my @liste = acces-mongodb::liste-parties(~ $dh);
+  return site-liste-parties::affichage($dh, @liste);
 }
 
 get '/partie/:dh' => sub ($dh) {

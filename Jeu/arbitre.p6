@@ -291,6 +291,8 @@ sub MAIN (Str :$date-heure, Str :$gentil, Str :$méchant, Bool :$à-outrance) {
            avion_m    => $pilote_m.avion,
            résultat_g => $coup_g<résultat>,
            résultat_m => $coup_m<résultat>,
+           capacité_g => $pts_dégâts_g,
+           capacité_m => $pts_dégâts_m,
            nb_coups   => $num + 1e0,
            dh_fin     => DateTime.now.Str,
       );
