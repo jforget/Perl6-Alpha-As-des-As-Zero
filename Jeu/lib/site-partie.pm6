@@ -11,7 +11,53 @@
 
 unit module site-partie;
 
-our sub affichage($dh) {
+our sub affichage($dh, $partie, @coups) {
+  my $liste-coups = '';
+  my $format = q:to/EOF/;
+  <tr><td align='right'>%3d</td>
+      <td align='center'>%s</td>
+      <td>%d</td>
+      <td>%s</td>
+      <td>%d</td>
+      <td>%s</td>
+      <td align='center'>%s</td></tr>
+  EOF
+
+  my $gentil  = $partie<gentil>;
+  my $méchant = $partie<méchant>;
+  my @coups_g;
+  my @coups_m;
+  for @coups -> $coup {
+    if $coup<identité> eq $gentil {
+      @coups_g[$coup<numéro>] = $coup;
+    }
+    else {
+      @coups_m[$coup<numéro>] = $coup;
+    }
+  }
+  for 1..$partie<nb_coups> -> $n {
+    my $coup_g = @coups_g[$n];
+    my $coup_m = @coups_m[$n];
+    my $page_d = min($coup_g<page>, $coup_m<page>); # min pour remplacer, par exemple, 1G par 1
+    my $man_g  = $coup_g<manoeuvre> // ''; # vide pour le coup final
+    my $man_m  = $coup_m<manoeuvre> // '';
+    my $pot_g  = $coup_g<potentiel> // $partie<capacité_g> // 0;
+    my $pot_m  = $coup_m<potentiel> // $partie<capacité_m> // 0;
+    my $page_a = '';
+    if $coup_g<page> ~~ /(<[ADG]>)$/ {
+      $man_g = "($0) $man_g";
+      $man_m =  "(T) $man_m";
+    }
+    if $coup_m<page> ~~ /(<[ADG]>)$/ {
+      $man_m = "($0) $man_m";
+      $man_g =  "(T) $man_g";
+    }
+
+    if $n != $partie<nb_coups> {
+      $page_a = min(@coups_g[$n+1]<numéro>, @coups_m[$n + 1]<numéro>);
+    }
+    $liste-coups ~= sprintf $format, $n, $page_d, + $pot_g, $man_g, + $pot_m, $man_m, $page_a;
+  }
   return qq:to/EOF/;
   <html>
   <head>
@@ -20,7 +66,14 @@ our sub affichage($dh) {
   </title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   </head>
-  <body>Partie {$dh} <br />L'avertissement traditionnel : site en travaux</body>
+  <body>
+  <p>Partie {$dh}
+  </p>
+  <table border='1'>
+  <tr><th>Numéro</th><th>Page de départ</th><th colspan='2'>{$gentil}</th><th colspan='2'>{$méchant}</th><th>Page d'arrivée</th></tr>
+  $liste-coups
+  </table>
+  </body>
   </html>
   EOF
 }

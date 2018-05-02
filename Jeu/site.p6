@@ -34,7 +34,9 @@ get '/liste/:dh' => sub ($dh) {
 }
 
 get '/partie/:dh' => sub ($dh) {
-  return site-partie::affichage($dh);
+  my $partie = acces-mongodb::partie(~ $dh);
+  my @coups  = acces-mongodb::coups-parties(~ $dh);
+  return site-partie::affichage($dh, $partie, @coups);
 }
 
 baile();

@@ -24,10 +24,36 @@ my MongoDB::Collection $coups    = $database.collection('Coups');
 my MongoDB::Collection $parties  = $database.collection('Parties');
 
 
+our sub partie($dh) {
+  my $résultat;
+  my MongoDB::Cursor $cursor = $parties.find(
+      criteria   => ( 'date-heure' => $dh,
+                       ),
+      projection => ( _id => 0, )
+    );
+  while $cursor.fetch -> BSON::Document $d {
+    $résultat = $d;
+  }
+  return $résultat;
+}
+
 our sub liste-parties($dh) {
   my @liste;
   my MongoDB::Cursor $cursor = $parties.find(
       criteria   => ( 'date-heure' => ( '$gt' => $dh, ),
+                       ),
+      projection => ( _id => 0, )
+    );
+  while $cursor.fetch -> BSON::Document $d {
+    @liste.push($d);
+  }
+  return @liste;
+}
+
+our sub coups-parties($dh) {
+  my @liste;
+  my MongoDB::Cursor $cursor = $coups.find(
+      criteria   => ( 'date-heure' => $dh,
                        ),
       projection => ( _id => 0, )
     );
