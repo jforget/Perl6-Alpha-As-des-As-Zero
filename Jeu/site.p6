@@ -22,6 +22,7 @@ use Bailador;
 use acces-mongodb;
 use site-liste-parties;
 use site-partie;
+use site-coup;
 
 get '/' => sub {
   my @liste = acces-mongodb::liste-parties('');
@@ -37,6 +38,12 @@ get '/partie/:dh' => sub ($dh) {
   my $partie = acces-mongodb::partie(~ $dh);
   my @coups  = acces-mongodb::coups-parties(~ $dh);
   return site-partie::affichage($dh, $partie, @coups);
+}
+
+get '/coup/:dh/:num/:id' => sub ($dh, $num, $id) {
+  my $partie = acces-mongodb::partie(~ $dh);
+  my $coup   = acces-mongodb::coup-partie(~ $dh, + $num, ~ $id);
+  return site-coup::affichage($dh, $num, $id, $partie, $coup);
 }
 
 baile();

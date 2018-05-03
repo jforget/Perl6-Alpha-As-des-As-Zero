@@ -16,9 +16,9 @@ our sub affichage($dh, $partie, @coups) {
   my $format = q:to/EOF/;
   <tr><td align='right'>%3d</td>
       <td align='center'>%s</td>
-      <td>%d</td>
+      <td align='center'>%d</td>
       <td>%s</td>
-      <td>%d</td>
+      <td align='center'>%d</td>
       <td>%s</td>
       <td align='center'>%s</td></tr>
   EOF
@@ -53,8 +53,15 @@ our sub affichage($dh, $partie, @coups) {
       $man_g =  "(T) $man_g";
     }
 
+    if $man_g ne '' {
+      $man_g = "<a href='/coup/$dh/$n/$gentil'>{$man_g}</a>";
+    }
+    if $man_m ne '' {
+      $man_m = "<a href='/coup/$dh/$n/$méchant'>{$man_m}</a>";
+    }
+
     if $n != $partie<nb_coups> {
-      $page_a = min(@coups_g[$n+1]<numéro>, @coups_m[$n + 1]<numéro>);
+      $page_a = min(@coups_g[$n+1]<page>, @coups_m[$n + 1]<page>);
     }
     $liste-coups ~= sprintf $format, $n, $page_d, + $pot_g, $man_g, + $pot_m, $man_m, $page_a;
   }
@@ -67,10 +74,12 @@ our sub affichage($dh, $partie, @coups) {
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   </head>
   <body>
-  <p>Partie {$dh}
+  <p><a href='/'>Liste des parties</a> <a href='/liste/$dh'>depuis la partie courante</a>
   </p>
+  <h2>Partie {$dh}</h2>
   <table border='1'>
-  <tr><th>Numéro</th><th>Page de départ</th><th colspan='2'>{$gentil}</th><th colspan='2'>{$méchant}</th><th>Page d'arrivée</th></tr>
+  <tr><th>Numéro</th><th>Page de départ</th><th colspan='2'>{$gentil}     </th><th colspan='2'>{$méchant}    </th><th>Page d'arrivée</th></tr>
+  <tr><th>      </th><th>              </th><th>Potentiel</th><th>Manœuvre</th><th>Potentiel</th><th>Manœuvre</th><th>              </th></tr>
   $liste-coups
   </table>
   </body>

@@ -40,7 +40,7 @@ our sub partie($dh) {
 our sub liste-parties($dh) {
   my @liste;
   my MongoDB::Cursor $cursor = $parties.find(
-      criteria   => ( 'date-heure' => ( '$gt' => $dh, ),
+      criteria   => ( 'date-heure' => ( '$gte' => $dh, ),
                        ),
       projection => ( _id => 0, )
     );
@@ -61,6 +61,22 @@ our sub coups-parties($dh) {
     @liste.push($d);
   }
   return @liste;
+}
+
+our sub coup-partie($dh, Int $num, $id) {
+  my @liste;
+  my $résultat;
+  my MongoDB::Cursor $cursor = $coups.find(
+      criteria   => ( 'date-heure' => $dh,
+                      'numéro'     => $num,
+                      'identité'   => $id,
+                       ),
+      projection => ( _id => 0, )
+    );
+  while $cursor.fetch -> BSON::Document $d {
+    $résultat = $d;
+  }
+  return $résultat;
 }
 
 sub écrire-coup(BSON::Document $coup) {
