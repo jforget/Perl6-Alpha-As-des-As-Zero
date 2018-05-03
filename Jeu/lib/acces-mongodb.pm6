@@ -79,6 +79,21 @@ our sub coup-partie($dh, Int $num, $id) {
   return $résultat;
 }
 
+our sub coup4($dh, Int $num, $id) {
+  my @liste;
+  my $résultat;
+  my MongoDB::Cursor $cursor = $coups.find(
+      criteria   => ( 'date-heure' => $dh,
+                      'numéro'     => ( '$in' => [ $num, $num + 1 ] ),
+                       ),
+      projection => ( _id => 0, )
+    );
+  while $cursor.fetch -> BSON::Document $d {
+    @liste.push($d);
+  }
+  return @liste;
+}
+
 sub écrire-coup(BSON::Document $coup) {
   my BSON::Document $req .= new: (
     insert => 'Coups',

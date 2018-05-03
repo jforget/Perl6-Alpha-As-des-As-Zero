@@ -11,7 +11,44 @@
 
 unit module site-coup;
 
-our sub affichage($dh, $numéro, $id, $partie, $coup) {
+our sub affichage($dh, $numéro, $id, $partie, @coup) {
+  my $coup_1;   # coup affiché
+  my $coup_2;   # coup suivant
+  my $coup_e;   # coup de l'ennemi
+  my $coup_f;   # coup suivant de l'ennemi
+  my $dégâts;   # points de dégâts encaissés
+  my $dégâts_e; # points de dégâts infligés à l'ennemi
+  my $pot_2;
+  my $pot_f;
+  for @coup -> $coup {
+    if $coup<numéro> == $numéro && $coup<identité> eq $id {
+      $coup_1 = $coup;
+    }
+    elsif  $coup<identité> eq $id {
+      $coup_2 = $coup;
+      $pot_2  = $coup<potentiel>;
+    }
+    elsif $coup<numéro> == $numéro {
+      $coup_e = $coup;
+    }
+    else {
+      $coup_f = $coup;
+      $pot_f  = $coup<potentiel>;
+    }
+  }
+
+  if $id eq $partie<gentil> {
+    $pot_2 //= $partie<capacité_g> // 0;
+    $pot_f //= $partie<capacité_m> // 0;
+  }
+  else {
+    $pot_f //= $partie<capacité_g> // 0;
+    $pot_2 //= $partie<capacité_m> // 0;
+  }
+
+  $dégâts   = $coup_1<potentiel> - $pot_2;
+  $dégâts_e = $coup_e<potentiel> - $pot_f;
+
   return qq:to/EOF/;
   <html>
   <head>
@@ -23,8 +60,12 @@ our sub affichage($dh, $numéro, $id, $partie, $coup) {
   <body>
   <p><a href='/'>Liste des parties</a> <a href='/liste/$dh'>depuis la partie courante</a> <a href='/partie/$dh'>partie courante</a>
   </p>
-  <h2>Coup $dh $numéro {$id}</h2>
-  <p>En travaux</a>
+  <h2>Coup $dh $numéro $id </h2>
+  <p>Page de départ $coup_1<page> </a>
+  <p>Manœuvre de $coup_1<identité>&nbsp;: $coup_1<manoeuvre>, de $coup_e<identité>&nbsp;: $coup_e<manoeuvre> </p>
+  <p>Page d'arrivée $coup_2<page> </a>
+  <p>Dégâts encaissés&nbsp;: $dégâts sur $id ($coup_1<potentiel> -&gt; $pot_2), $dégâts_e sur $coup_e<identité>  ($coup_e<potentiel> -&gt; $pot_f)</p>
+  <h2>Choix</h2>
   </body>
   </html>
   EOF

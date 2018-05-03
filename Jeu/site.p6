@@ -42,8 +42,8 @@ get '/partie/:dh' => sub ($dh) {
 
 get '/coup/:dh/:num/:id' => sub ($dh, $num, $id) {
   my $partie = acces-mongodb::partie(~ $dh);
-  my $coup   = acces-mongodb::coup-partie(~ $dh, + $num, ~ $id);
-  return site-coup::affichage($dh, $num, $id, $partie, $coup);
+  my @coup4  = acces-mongodb::coup4(~ $dh, + $num, ~ $id);
+  return site-coup::affichage($dh, $num, $id, $partie, @coup4);
 }
 
 baile();
