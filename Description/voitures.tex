@@ -1,0 +1,41 @@
+% -*- encoding: utf-8 -*-
+%
+%     Document to draw the cars version of the gameturn example of Ace of Aces
+%     Document pour dessiner la métaphore "voitures dans un parc de supermarché" pour
+%     l'exemple de tour de jeu de l'As des As
+%     Copyright (C) 2018 Jean Forget
+%
+%     This program is distributed under the same terms as Perl 5.16.3:
+%     GNU Public License version 1 or later and Perl Artistic License.
+%
+%    Here is the summary of GPL:
+%
+%    This program is free software; you can redistribute it and/or modify
+%    it under the terms of the GNU General Public License as published by
+%    the Free Software Foundation; either version 1, or (at your option)
+%    any later version.
+%
+%    This program is distributed in the hope that it will be useful,
+%    but WITHOUT ANY WARRANTY; without even the implied warranty of
+%    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+%    GNU General Public License for more details.
+%
+%    You should have received a copy of the GNU General Public License
+%    along with this program; if not, write to the Free Software Foundation,
+%    Inc., https://www.fsf.org/.
+%
+
+\documentclass[a4paper]{article}
+\usepackage{luamplib}
+\directlua{dofile("voitures.lua")}
+
+\begin{document}
+\directlua{dessin("D", "D", "N", "N")}
+\directlua{dessin("F", "D", "O", "N")}
+\directlua{dessin("F", "F", "N", "O")}
+\directlua{dessin("F", "F", "N", "N")}
+\directlua{dessin("D", "F", "N", "O")}
+\directlua{dessin("F", "F", "O", "N")}
+\directlua{dessin("F", "F", "O", "O")}
+
+\end{document}

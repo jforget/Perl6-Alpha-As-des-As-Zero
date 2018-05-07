@@ -157,35 +157,66 @@ I<Copies d'écran provenant du brevet USP 4,378,118, dans le domaine public depu
 
 Avec ce mécanisme, les pages finales sont toujours identiques. Cela émerveille les joueurs
 qui découvrent le jeu, mais cela peut s'expliquer simplement. Oublions les cieux au-dessus
-de Poelkappelle et de Vaux-sur-Somme, et imaginons un parking de supermarché. Toutes
+de L<Poelcapelle|http://acepilots.com/wwi/fr_guynemer.html> 
+et de L<Vaux-sur-Somme|http://military.wikia.com/wiki/Manfred_von_Richthofen>,
+et imaginons un parking de supermarché. Toutes
 les voitures sont garées à proximité du bâtiment et il y a donc un large espace libre un
 peu plus loin. Dans cet espace libre, se trouvent une Mini Austin et une VW Coccinelle
 disposées ainsi :
 
-image
+=for html
+<img src='voitures-0.png' width='30%' alt='Position de départ des deux voitures' />
+
+I<Image personnelle. Les conditions de licence sont les mêmes que pour le texte.>
 
 Cela correspond à la page 1 des deux livrets.
 
 Maintenant, imaginons que la VW fasse ce mouvement pendant que la Mini reste immobile.
 
-image
+=for html
+<img src='voitures-1.png' width='30%' alt="Mini dans sa position de départ et VW dans sa position d'arrivée" />
+
+I<Image personnelle. Les conditions de licence sont les mêmes que pour le texte.>
 
 On obtient alors la disposition de la page 8. À ce moment-là, la Coccinelle s'arrête
 et l'Austin démarre en faisant ce mouvement
 
-image
+=for html
+<img src='voitures-2.png' width='30%' alt="Position d'arrivée des deux voitures" />
+
+I<Image personnelle. Les conditions de licence sont les mêmes que pour le texte.>
 
 Le résultat est celui de la page 96.
+
+=for html
+<img src='voitures-3.png' width='30%' alt="Position d'arrivée des deux voitures" />
+
+I<Image personnelle. Les conditions de licence sont les mêmes que pour le texte.>
 
 Deuxième étape de l'expérience. Les deux voitures se remettent dans la disposition correspondant
 à la page 1. Puis c'est la Mini qui bouge la première pendant que la VW reste immobile.
 On aboutit alors à la disposition de la page 48.
 
+=for html
+<img src='voitures-4.png' width='30%' alt="VW dans sa position de départ et Mini dans sa position d'arrivée" />
+
+I<Image personnelle. Les conditions de licence sont les mêmes que pour le texte.>
+
 Et lorsque la Coccinelle effectue son mouvement, on aboutit à la configuration de la page 96.
+
+=for html
+<img src='voitures-5.png' width='30%' alt="Position d'arrivée des deux voitures" />
+
+I<Image personnelle. Les conditions de licence sont les mêmes que pour le texte.>
 
 Troisième étape. Les voitures se remettent dans la position de la page 1, puis elles effectuent
 I<simultanément> leur mouvement. Comme les deux fois précédentes, on obtient la disposition de
 la page 96.
+
+=for html
+<img src='voitures-6.png' width='30%' alt="Position d'arrivée des deux voitures" />
+
+I<Image personnelle. Les conditions de licence sont les mêmes que pour le texte.>
 
 Ainsi donc, il est équivalent de faire les mouvements simultanément ou de les faire séquentiellement
 dans un ordre ou dans l'autre. Et ce, aussi bien sur un parking de supermarché que dans
