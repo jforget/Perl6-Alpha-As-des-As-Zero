@@ -324,7 +324,7 @@ avant de rédiger ces explications, I<Lost Worlds>.
 
 =end html
 
-I<Photos personnelles reprenant « Le Shérif et le Hors-la-loi, Copyright © 1982 Nova Games Design Inc, copyright © 1986 Emithill Limited,
+I<Photos personnelles reprenant « Le Shérif et le Hors-la-loi », Copyright © 1982 Nova Games Design Inc, copyright © 1986 Emithill Limited,
 copyright © 1986 Gallimard pour la traduction française et pour les illustrations de couverture.>
 
 Pour en revenir au combat aérien, puisque le brevet est tombé dans le domaine public,
@@ -658,17 +658,92 @@ priorité de ces opérateurs par rapport aux opérateurs traditionnels ?
 
 =head2 MongoDB
 
-version 2.6 ou 3.x ?
+S<Avertissement :> hélas, je n'ai pas pris de notes lorsque j'ai installé le module MongoDB
+pour Perl 6. J'expose ici mes souvenirs, qui ne sont pas fiables à S<100 %>.
 
-installation du module
+Tout d'abord, un problème qui n'a rien à voir avec Perl 6. Sur ma machine,
+la version de MongoDB est la version 2.6, alors que le site web donne
+la documentation d'une version 3.x. Par exemple, le site propose une commande
+C<findAndUpdate>, qui n'existe pas sur ma machine. D'accord, il y a la possibilité d'accéder
+à la doc 2.6 (ou par anticipation à la doc 4.0), mais je me suis contenté
+d'avoir une doc légèrement déphasée plutôt que de cliquer sur de nombreux liens
+pour trouver la doc parfaitement adaptée.
 
-message de débug
+Avec l'installateur intégré C<zef> de Rakudo Star, l'installation du 
+L<module MongoDB|https://modules.perl6.org/t/DATABASE>
+se fait simplement par :
 
-faire un livre de recettes
+  zef install MongoDB
 
-options sort, limit et skip du find
+Et ça plante. Normal, il faut lire le F<README>, qui indique qu'il y a des problèmes
+dans les scripts de tests et qu'il faut donc ne pas bloquer sur les erreurs obtenues.
+Donc, faire :
 
-démarrage automatique
+  zef install --/test MongoDB
+
+Et le module est istallé ! Maintenant, il reste à écrire quelques programmes.
+J'ai commencé par copier-coller l'exemple fourni dans la documentation
+du programme. Mais ça plante ! D'après ce que je comprends des messages d'erreur,
+cela plante à cause d'un sous-programme qui attend un paramètre C<(Str)> et qui
+reçoit un C<(Int)>. Pour votre gouverne, il s'agit de trois lignes :
+
+     debug-message("command done {$command.find-key(0)}");
+ 
+Je vais donc dans le fichier désigné par le message d'erreur
+(un fichier avec un nom horrible tiré d'un SHA1 ou d'un MD5) et je corrige en
+supprimant les trois lignes en cause. Les messages de débug que je ne sais pas
+interpréter, je me sens autorisé à les supprimer. Je reteste,
+cela ne change rien. Je pense que le module figure en deux exemplaires : le fichier
+source que j'ai modifié et un fichier de I<bytecode> que je n'ai pas vu.
+Le I<bytecode> n'ayant pas changé, le bug est toujours là.
+
+Je clone donc le
+L<dépôt Git Hub|https://github.com/MARTIMM/mongo-perl6-driver/>, 
+je supprime les trois messages de débug et je réinstalle par :
+
+  zef install --/test .
+
+(où « C<.> » désigne le répertoire courant, c'est à dire le dépôt Git local plutôt
+que le dépôt hébergé par Github). Et C<zef> refuse car, me dit-il, le module est à jour.
+En cherchant dans l'aide en ligne de C<zef>, je trouve une solution :
+
+  zef install --force --/test .
+
+Est-ce la bonne solution ? Je ne sais pas, mais au moins, ça fonctionne.
+Le programme proposé dans la documentation du module fonctionne, à condition
+d'enlever le C<findAndUpdate> qui n'existe pas en version 2.6.
+
+Quand j'essaie de faire mes propres accès à MongoDB, j'ai de nouveau un 
+problème, une histoire de promesse non tenue. Après moult tentatives, j'en viens
+à la conclusion que dans un C<find>, il est indispensable de coder le paramètre :
+
+      projection => ( _id => 0, )
+
+c'est-à-dire, prendre tous les attributs du documents, sauf l'attribut C<_id>.
+Pourquoi cette exclusion ? Je ne sais pas. Tout ce que je sais, c'est que si l'on
+exclut C<_id> ça fonctionne assez souvent, si l'on inclut implicitement C<_id> ça
+ne fonctionne jamais. Donc maintenant, je code cette exclusion dans tous mes C<find>.
+
+Tiens, j'ai mentionné S<« moult> S<tentatives »>. Le problème, c'est qu'à force de
+zigzaguer dans les méandres de la syntaxe, j'ai effectué plusieurs tentatives identiques.
+Pour éviter cette perte de temps, j'ai décidé d'écrire mon livre de recettes, où je
+mémorise chaque variante testée des accès à la base de données, avec les messages d'erreur
+obtenus.
+
+Par exemple, bien noter que l'instruction C<find> dans un programme Perl 6 ne reconnaîtra
+pas les options C<sort>, C<limit> et C<find>. Et ce n'est pas un problème de version 2.6
+contre 3.x, ces trois options sont mentionnées dans le livre O'Reilly de 2013 (page 68 si vous
+voulez vérifier).
+
+head2 Bailador
+
+Au début, je n'avais pas l'intention de faire du web dynamique. Puis j'ai trouvé que
+les fichiers HTML, avec les liens hypertextes qui conviennent, c'est plus facile à 
+lire que le résultat d'une requête écrite dans un interpréteur de JavaScript.
+
+Donc, alors que j'ai installé Bailador. Que dire ? J'ai installé le module, j'ai 
+écrit un programme basé sur Bailador, et ça tourne. Je n'ai rien de croustillant 
+à raconter.
 
 =head1 LICENCE
 
