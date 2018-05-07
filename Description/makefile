@@ -1,5 +1,10 @@
 -*- encoding: utf-8 -*-
 
+html: description.html
+
+description.html: description.pod
+	pod2html --infile description.pod --outfile description.html 
+
 visu: voitures-0.png
 	display voitures-0.png
 

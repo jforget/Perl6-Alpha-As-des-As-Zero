@@ -60,7 +60,7 @@ primaire et ainsi de suite, voyez page 33.
 
 Page 17 et page 33 vous aviez d'autres questions, d'autres réponses et d'autres renvois.
 
-Années 1960 : on m'a raconté qu'IBM avait composé des
+Années 1960 (je crois) : on m'a raconté qu'IBM avait composé des
 manuels de dépannage sur le même principe :
 
   Si de la fumée sort de l'unité de disque, voyez page 17.
@@ -73,7 +73,8 @@ dictionnaire complet sur un livre de poche. Exemple
 
   Clown : voir Cirque.
   Cirque : voir Cercle.
-  Cercle : voir Assemblée
+  Cercle : voir Club
+  Club : voir Assemblée
   Assemblée : voir Parlement.
   Parlement : voir Député.
   Député : voir Politicien.
@@ -146,14 +147,18 @@ I<Copies d'écran provenant du brevet USP 4,378,118, dans le domaine public depu
 La page finale du tour est donc la page 96. Et comme vous pouvez le voir,
 non seulement l'As des As est un précurseur des liens hypertextes, mais
 c'est aussi un précurseur des jeux de tir en vision subjective
-(I<First Person Shooters> en anglais), douze ans avant Wolfenstein 3D, treize ans
-avant Doom..
+(I<First Person Shooters> en anglais), une douzaine d'années avant Wolfenstein 3D et Doom.
 
 =for HTML
 <img src='Page-96-All.png' alt="Livret allemand page 96" width='45%' />
 <img src='Page-96-GB.png' alt="Livret britannique page 96" width='45%' />
 
 I<Copies d'écran provenant du brevet USP 4,378,118, dans le domaine public depuis 2001.>
+
+Quant au mécanisme des tirs, c'est très simple. Vous commencez avec 12 points de vie. 
+Chaque fois que vous aboutissez sur une page finale où vous recevez des pruneaux de l'avion
+ennemi, vous perdez 1, 2 ou 4 points de vie, selon la page. Quand votre total de points de vie
+est négatif ou nul, votre avion est abattu.
 
 Avec ce mécanisme, les pages finales sont toujours identiques. Cela émerveille les joueurs
 qui découvrent le jeu, mais cela peut s'expliquer simplement. Oublions les cieux au-dessus
@@ -288,12 +293,19 @@ Il est possible de jouer avec un livret « gentil » d'un jeu et un livret « m�
 
 <img src='Serie_As-des-As.jpg' alt="L'As des As, les jeux de la Première Guerre Mondiale " width='45%' />
 <img src='Wingleader_Jet_Eagles.jpg' alt="L'As des As, Seconde Guerre Mondiale et Guerre Froide" width='45%' />
+
+=end html
+
+I<Photos personnelles. Les conditions de licence sont les mêmes que pour le texte.>
+
+=begin html
+
 <img src='Jet-Eagles-96M.jpg' alt="Page 96 pour Jet Eagles, livret 'Red Force'" width='45%' />
 <img src='Jet-Eagles-96G.jpg' alt="Page 96 pour Jet Eagles, livret 'Blue Force'" width='45%' />
 
 =end html
 
-I<Photos personnelles. Les conditions de licence sont les mêmes que pour le texte.>
+I<Photos personnelles reprenant une page dans les deux livrets de Jet Eagles, copyright 1990 Nova Game Desins, Inc.>
 
 Il y a également une extension I<Balloon Busters>, où l'on fait du 2-contre-1. Le joueur allemand
 contrôle un ballon d'observation (assez passif) plus un canon anti-aérien, contre un avion britannique.
@@ -312,7 +324,8 @@ avant de rédiger ces explications, I<Lost Worlds>.
 
 =end html
 
-I<Photos personnelles. Les conditions de licence sont les mêmes que pour le texte.>
+I<Photos personnelles reprenant « Le Shérif et le Hors-la-loi, Copyright © 1982 Nova Games Design Inc, copyright © 1986 Emithill Limited,
+copyright © 1986 Gallimard pour la traduction française et pour les illustrations de couverture.>
 
 Pour en revenir au combat aérien, puisque le brevet est tombé dans le domaine public,
 n'importe qui peut publier des extensions dans la lignée :
@@ -432,11 +445,15 @@ Avec les index négatifs, on peut réécrire ces lignes ainsi en Perl 5 :
   $t[4] = $a[4] + $b[ 2];
   $t[5] = $a[5] + $b[ 3];
 
-ou avec une boucle
+ou avec une boucle explicite
 
   for (0..5) {
     $t[$_] = $a[$_] + $b[$_ - 2];
   }
+
+ou implicite
+
+  @t = map { $a[$_] + $b[$_ - 2] } 0..5;
 
 Mais en Perl 6, les indices négatifs sont interdits,
 il faut écrire :
@@ -542,7 +559,7 @@ Et maintenant, il y a aussi Perl 6 :
 
   $y = $x.log.cos.abs.sqrt.floor;
 
-=head3 transformée schwartzienne
+=head3 Transformée schwartzienne
 
 A COMPLETER
 
