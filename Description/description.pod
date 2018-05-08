@@ -80,7 +80,7 @@ dictionnaire complet sur un livre de poche. Exemple
   Député : voir Politicien.
   Politicien : voir Clown.
 
-=head3 Le sorcier de la Montagne de Feu
+=head3 Le Sorcier de la Montagne de Feu
 
 En 1982, est paru un livre d'un genre nouveau,
 L<Warlock of the Firetop Mountain|http://fightingfantasy.wikia.com/wiki/The_Warlock_of_Firetop_Mountain_(book)>, 
@@ -170,49 +170,68 @@ peu plus loin. Dans cet espace libre, se trouvent une Mini Austin et une VW Cocc
 disposées ainsi :
 
 =for html
-<img src='voitures-0.png' width='30%' alt='Position de départ des deux voitures' />
+<img src='voitures-0.png' width='45%' alt='Position de départ des deux voitures' />
+<img src='Page-1-GB.png' alt="Livret britannique page 1" width='45%' />
 
 I<Image personnelle. Les conditions de licence sont les mêmes que pour le texte.>
+I<Copie d'écran provenant du brevet USP 4,378,118, dans le domaine public depuis 2001.>
 
 Cela correspond à la page 1 des deux livrets.
 
 Maintenant, imaginons que la VW fasse ce mouvement pendant que la Mini reste immobile.
 
 =for html
-<img src='voitures-1.png' width='30%' alt="Mini dans sa position de départ et VW dans sa position d'arrivée" />
+<img src='voitures-1.png' width='45%' alt="Mini dans sa position de départ et VW dans sa position d'arrivée" />
+<img src='Page-8-GB.png' alt="Livret britannique page 8" width='45%' />
 
 I<Image personnelle. Les conditions de licence sont les mêmes que pour le texte.>
+I<Copie d'écran provenant du brevet USP 4,378,118, dans le domaine public depuis 2001.>
 
 On obtient alors la disposition de la page 8. À ce moment-là, la Coccinelle s'arrête
 et l'Austin démarre en faisant ce mouvement
 
 =for html
-<img src='voitures-2.png' width='30%' alt="Position d'arrivée des deux voitures" />
+<img src='voitures-2.png' width='45%' alt="Position d'arrivée des deux voitures" />
+<img src='Page-96-GB.png' alt="Livret britannique page 96" width='45%' />
 
 I<Image personnelle. Les conditions de licence sont les mêmes que pour le texte.>
+I<Copie d'écran provenant du brevet USP 4,378,118, dans le domaine public depuis 2001.>
 
 Le résultat est celui de la page 96.
 
 =for html
-<img src='voitures-3.png' width='30%' alt="Position d'arrivée des deux voitures" />
+<img src='voitures-3.png' width='45%' alt="Position d'arrivée des deux voitures" />
 
 I<Image personnelle. Les conditions de licence sont les mêmes que pour le texte.>
+I<Copie d'écran provenant du brevet USP 4,378,118, dans le domaine public depuis 2001.>
 
-Deuxième étape de l'expérience. Les deux voitures se remettent dans la disposition correspondant
-à la page 1. Puis c'est la Mini qui bouge la première pendant que la VW reste immobile.
+Deuxième étape de l'expérience. Les deux voitures se remettent dans la disposition correspondant à la page 1.
+
+=for html
+<img src='voitures-0.png' width='45%' alt='Position de départ des deux voitures' />
+<img src='Page-1-All.png' alt="Livret allemand page 1" width='45%' />
+
+I<Image personnelle. Les conditions de licence sont les mêmes que pour le texte.>
+I<Copie d'écran provenant du brevet USP 4,378,118, dans le domaine public depuis 2001.>
+
+Puis c'est la Mini qui bouge la première pendant que la VW reste immobile.
 On aboutit alors à la disposition de la page 48.
 
 =for html
-<img src='voitures-4.png' width='30%' alt="VW dans sa position de départ et Mini dans sa position d'arrivée" />
+<img src='voitures-4.png' width='45%' alt="VW dans sa position de départ et Mini dans sa position d'arrivée" />
+<img src='Page-48-All.png' alt="Livret allemand page 48" width='45%' />
 
 I<Image personnelle. Les conditions de licence sont les mêmes que pour le texte.>
+I<Copie d'écran provenant du brevet USP 4,378,118, dans le domaine public depuis 2001.>
 
 Et lorsque la Coccinelle effectue son mouvement, on aboutit à la configuration de la page 96.
 
 =for html
-<img src='voitures-5.png' width='30%' alt="Position d'arrivée des deux voitures" />
+<img src='voitures-5.png' width='45%' alt="Position d'arrivée des deux voitures" />
+<img src='Page-96-All.png' alt="Livret allemand page 96" width='45%' />
 
 I<Image personnelle. Les conditions de licence sont les mêmes que pour le texte.>
+I<Copie d'écran provenant du brevet USP 4,378,118, dans le domaine public depuis 2001.>
 
 Troisième étape. Les voitures se remettent dans la position de la page 1, puis elles effectuent
 I<simultanément> leur mouvement. Comme les deux fois précédentes, on obtient la disposition de
@@ -220,8 +239,11 @@ la page 96.
 
 =for html
 <img src='voitures-6.png' width='30%' alt="Position d'arrivée des deux voitures" />
+<img src='Page-96-GB.png' alt="Livret britannique page 96" width='30%' />
+<img src='Page-96-All.png' alt="Livret allemand page 96" width='30%' />
 
 I<Image personnelle. Les conditions de licence sont les mêmes que pour le texte.>
+I<Copie d'écran provenant du brevet USP 4,378,118, dans le domaine public depuis 2001.>
 
 Ainsi donc, il est équivalent de faire les mouvements simultanément ou de les faire séquentiellement
 dans un ordre ou dans l'autre. Et ce, aussi bien sur un parking de supermarché que dans
@@ -594,8 +616,13 @@ un peu trop stricts. Soit le bout de code suivant
   class Exemple {
     has Num $.grandeur is rw;
   }
-  my Exemple $donnée;
+  my Exemple $donnée .= new;
   $donnée.grandeur = 1;
+
+Résultat :
+
+  Type check failed in assignment to $!grandeur; expected Num but got Int (1)
+    in block <unit> at exemple1.p6 line 5
 
 Cet exemple de code plante, parce que l'interpréteur attend un
 C<(Num)> et qu'on lui donne un C<(Int)>. Non, il n'y a pas de conversion
@@ -735,15 +762,22 @@ pas les options C<sort>, C<limit> et C<find>. Et ce n'est pas un problème de ve
 contre 3.x, ces trois options sont mentionnées dans le livre O'Reilly de 2013 (page 68 si vous
 voulez vérifier).
 
-head2 Bailador
+=head2 Bailador
 
 Au début, je n'avais pas l'intention de faire du web dynamique. Puis j'ai trouvé que
 les fichiers HTML, avec les liens hypertextes qui conviennent, c'est plus facile à 
 lire que le résultat d'une requête écrite dans un interpréteur de JavaScript.
 
-Donc, alors que j'ai installé Bailador. Que dire ? J'ai installé le module, j'ai 
+Donc, alors que j'ai installé Bailador. Que S<dire ?> J'ai installé le module, j'ai 
 écrit un programme basé sur Bailador, et ça tourne. Je n'ai rien de croustillant 
 à raconter.
+
+Il faut dire que mon utilisation de Bailador est aussi rustique que l'utilisation 
+de Dancer2 que j'ai présentée l'an dernier. Si vous vous attendez à avoir autant
+L<de modules pour Bailador|https://modules.perl6.org/t/WEB>
+que ce dont vous disposez
+L<pour Dancer2|https://metacpan.org/search?q=Dancer2>,
+il va falloir attendre un peu (et, pourquoi pas, contribuer à l'effort).
 
 =head1 LICENCE
 
