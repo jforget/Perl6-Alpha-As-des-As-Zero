@@ -43,7 +43,17 @@ get '/partie/:dh' => sub ($dh) {
 get '/coup/:dh/:num/:id' => sub ($dh, $num, $id) {
   my $partie = acces-mongodb::partie(~ $dh);
   my @coup4  = acces-mongodb::coup4(~ $dh, + $num, ~ $id);
-  return site-coup::affichage($dh, $num, $id, $partie, @coup4);
+  my $page;
+  for @coup4 -> $coup {
+    if $coup<numéro> == $num &&$coup<identité> eq $id {
+      $page = $coup<page>;
+      last;
+    }
+  }
+  my @similaires; # coups similaires, à partir de la même page
+  my @id = ~ $id;
+  @similaires = acces-mongodb::coups-page(~ $page, @id, ~ $dh);
+  return site-coup::affichage($dh, $num, $id, $partie, @coup4, @similaires);
 }
 
 baile();

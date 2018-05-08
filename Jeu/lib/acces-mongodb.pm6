@@ -50,10 +50,37 @@ our sub liste-parties($dh) {
   return @liste;
 }
 
+# Liste des coups joués dans une partie
 our sub coups-parties($dh) {
   my @liste;
   my MongoDB::Cursor $cursor = $coups.find(
       criteria   => ( 'date-heure' => $dh,
+                       ),
+      projection => ( _id => 0, )
+    );
+  while $cursor.fetch -> BSON::Document $d {
+    @liste.push($d);
+  }
+  return @liste;
+}
+
+# Liste des coups à partir d'une page
+our sub coups-page(Str $page, @id, Str $dh) {
+  my @liste;
+  my $page-critère;
+
+  # Problème : de temps en temps les pages sont alphabétiques (cas des poursuites),
+  # mais la plupart du temps elles sont numériques dans la base.
+  if $page ~~ /(\d+) <[ADG]>/ {
+    $page-critère = + $0;
+  }
+  else {
+    $page-critère = + $page;
+  }
+  my MongoDB::Cursor $cursor = $coups.find(
+      criteria   => ( 'page'       => $page-critère,
+                      'identité'   => ( '$in' => [ @id ] ),
+                      'date-heure' => ( '$lt' =>  $dh ),
                        ),
       projection => ( _id => 0, )
     );
