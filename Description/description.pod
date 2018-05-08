@@ -389,15 +389,33 @@ Deux parties : construction du livret, jeu
 
 =head2 Installation
 
-Faut-il installer le paquet de la distribution ou faut-il compiler Rakudo Star à partir
-des sources ? Il faut peser le pour et le contre entre la version proposée par votre
-distribution et le temps que prendrait la compilation. Sans oublier qu'un valeureux
-volontaire propose un 
-L<dépôt Github|https://github.com/nxadm/rakudo-pkg/releases>
-avec des paquets pour certaines distributions.
+Je connais quatre méthodes pour installer Rakudo Star sur une machine Linux.
 
-Dans mon cas, mes différentes machines physiques et virtuelles et
-les paquets correspondants sont :
+=over 4
+
+=item 1
+
+Installer le paquet F<.rpm> ou F<.deb> fourni par votre distribution.
+
+=item 2
+
+Installer le paquet F<.rpm> ou F<.deb> fourni par un L<volontaire|https://github.com/nxadm>
+dans un L<dépôt Github|https://github.com/nxadm/rakudo-pkg/releases>
+
+=item 3
+
+Récupérer une image Docker, comme le propose Moritz Lentz dans son livre I<Perl 6 Fundamentals>.
+
+=item 4
+
+Compiler à partir des sources.
+
+=back
+
+Dans mon cas, la deuxième méthode est inapplicable (pas de paquet pour
+xubuntu 16.10) et la première méthode donne des versions vraiment trop
+anciennes. Mes différentes machines physiques et virtuelles et les
+paquets correspondants sont :
 
   physique    xubuntu-12.04   rakudo 2011.07
   virtuelle   xubuntu-14.10   rakudo 2013.12
@@ -405,7 +423,11 @@ les paquets correspondants sont :
   physique    xubuntu-16.10   rakudo 2016.06
   virtuelle   Mageia-5        pas trouvé
 
-Les paquets sont vraiment trop anciens.
+Pour Docker, il faudrait d'une part que Docker soit installé sur ma machine, d'autre
+part que je sois à l'aise avec Docker. Or Docker n'est pas installé et les dépôts xubuntu
+ne sont plus disponibles depuis un certain temps. Et je ne maîtrise pas l'utilisation
+de Docker.
+
 Du coup, j'ai installé rakudo star 2018.01 à partir des sources. La première fois que
 j'ai compilé rakudo star, cela a pris beaucoup de temps, plusieurs heures.
 La deuxième fois, pour éviter d'avoir à surveiller ma machine pour saisir la
