@@ -23,11 +23,12 @@ I<Copie d'écran personnelle. Les conditions de licence sont les mêmes que pour
 -- Ah, maître, je comprends la nature du « l ».
 
 Présenté comme cela, vous avez reconnu, c'est du I<machine learning>
+ou plus précisément du I<supervised machine learning>
 (et ça fera bien dans mon CV).
 
 =head2 Cette année
 
-Récemment, nous avons appris que Google avait fait du machine learning
+Récemment, nous avons appris que Google avait fait du I<supervised machine learning>
 avec Google Alpha Go. Puis nous avons appris qu'ils avaient fait
 une autre expérience sur le jeu de Go,
 Google Alpha Go Zero, basé sur un mécanisme d'auto-apprentissage, ainsi
@@ -41,7 +42,7 @@ Cette idée ne date pas de 2017 ou 2018, je l'ai déjà rencontrée dans
 les années 1970 avec le tic-tac-toe. Et depuis longtemps j'avais moi-même un projet
 de « machine self-learning », que je vous présente ci-dessous.
 
-=head2 Digression sur les précurseurs des liens hypertexte
+=head2 Digression sur les précurseurs des liens hypertextes
 
 Quand a-t-on commencé à numéroter les pages des livres (ou des rouleaux de papyrus) ?
 Quand a-t-on écrit pour la première fois "cf. page n" ?
@@ -58,13 +59,25 @@ Si elles forment un réseau arborescent avec une nervure centrale, des nervures 
 se détachant de la nervure centrale, des nervures secondaires se détachant d'une nervure
 primaire et ainsi de suite, voyez page 33.
 
+=for html
+<blockquote>
+
 Page 17 et page 33 vous aviez d'autres questions, d'autres réponses et d'autres renvois.
+
+=for html
+</blockquote>
 
 Années 1960 (je crois) : on m'a raconté qu'IBM avait composé des
 manuels de dépannage sur le même principe :
 
-  Si de la fumée sort de l'unité de disque, voyez page 17.
-  Si cela fait « crrr crrr crrr » voyez page 33.
+
+=for html
+<blockquote>
+Si de la fumée sort de l'unité de disque, voyez page 17.
+Si cela fait « crrr crrr crrr » voyez page 33.
+
+=for html
+</blockquote>
 
 Dans les années 1970, j'ai vu à la télévision le sketch d'un duo d'humoristes
 sur « le dictionnaire le plus petit du monde ». Ce qui prend de la place dans un dictionnaire
@@ -746,14 +759,14 @@ problème, une histoire de promesse non tenue. Après moult tentatives, j'en vie
 
       projection => ( _id => 0, )
 
-c'est-à-dire, prendre tous les attributs du documents, sauf l'attribut C<_id>.
+c'est-à-dire, prendre tous les attributs du document, sauf l'attribut C<_id>.
 Pourquoi cette exclusion ? Je ne sais pas. Tout ce que je sais, c'est que si l'on
 exclut C<_id> ça fonctionne assez souvent, si l'on inclut implicitement C<_id> ça
 ne fonctionne jamais. Donc maintenant, je code cette exclusion dans tous mes C<find>.
 
 Tiens, j'ai mentionné S<« moult> S<tentatives »>. Le problème, c'est qu'à force de
 zigzaguer dans les méandres de la syntaxe, j'ai effectué plusieurs tentatives identiques.
-Pour éviter cette perte de temps, j'ai décidé d'écrire mon livre de recettes, où je
+Pour éviter cette perte de temps, j'ai décidé au bout d'un certain temps d'écrire un livre de recettes, où je
 mémorise chaque variante testée des accès à la base de données, avec les messages d'erreur
 obtenus.
 
