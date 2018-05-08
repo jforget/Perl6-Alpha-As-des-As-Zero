@@ -1,5 +1,10 @@
 -*- encoding: utf-8 -*-
 
+texte: description-txt.html
+
+description-txt.html: description.html
+	perl enlever-images.pl description.html description-txt.html
+
 html: description.html
 
 description.html: description.pod
