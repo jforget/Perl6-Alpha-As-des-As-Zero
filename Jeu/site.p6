@@ -45,7 +45,7 @@ get '/coup/:dh/:num/:id' => sub ($dh, $num, $id) {
   my @coup4  = acces-mongodb::coup4(~ $dh, + $num, ~ $id);
   my $page;
   for @coup4 -> $coup {
-    if $coup<numéro> == $num &&$coup<identité> eq $id {
+    if $coup<tour> == $num &&$coup<identité> eq $id {
       $page = $coup<page>;
       last;
     }

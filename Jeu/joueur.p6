@@ -94,12 +94,12 @@ SONDER:
     my MongoDB::Cursor $cursor = $coups.find(
       criteria   => ( 'date-heure' => $dh,
                       'identité'   => $id,
-                      'numéro'     => +$n, ),
+                      'tour'       => +$n, ),
       projection => ( _id => 0, )
     );
     while $cursor.fetch -> BSON::Document $d {
       #say $d.perl;
-      if $d<numéro> == $n {
+      if $d<tour> == $n {
         $coup = $d;
         last SONDER;
       }
@@ -108,7 +108,7 @@ SONDER:
     sleep 1;
   }
   if $tentative ≥ $tentative_max {
-    die "Plus de réponse de l'arbitre, on arrête (date-heure = {$dh}, identité = {$id}, numéro = {$n}";
+    die "Plus de réponse de l'arbitre, on arrête (date-heure = {$dh}, identité = {$id}, tour = {$n}";
   }
 
   return $coup;
@@ -120,7 +120,7 @@ sub maj_coup(BSON::Document $coup) {
     updates => [ (
         q =>  ( 'date-heure' =>  $coup<date-heure>,
                 'identité'   =>  $coup<identité>,
-                'numéro'     => +$coup<numéro>, ),
+                'tour'       => +$coup<tour>, ),
         u => $coup,
       ),
     ],

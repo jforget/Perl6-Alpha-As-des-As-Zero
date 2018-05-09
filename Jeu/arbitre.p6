@@ -128,7 +128,7 @@ sub MAIN (Str :$date-heure, Str :$gentil, Str :$méchant, Bool :$à-outrance) {
         $coup_m .= new: (
              date-heure => $date-heure,
              identité   => $méchant,
-             numéro     => $num,
+             tour       => $num,
              page       => $page,
              choix      => [ @choix_m ],
              potentiel  => $pts_dégâts_m,
@@ -140,7 +140,7 @@ sub MAIN (Str :$date-heure, Str :$gentil, Str :$méchant, Bool :$à-outrance) {
         $coup_g .= new: (
              date-heure => $date-heure,
              identité   => $gentil,
-             numéro     => $num,
+             tour       => $num,
              page       => $page ~ $avion_m.manoeuvres{$man_m}<virage>,
              choix      => [ @choix_g ],
              potentiel  => $pts_dégâts_g,
@@ -153,7 +153,7 @@ sub MAIN (Str :$date-heure, Str :$gentil, Str :$méchant, Bool :$à-outrance) {
         $coup_g .= new: (
              date-heure => $date-heure,
              identité   => $gentil,
-             numéro     => $num,
+             tour       => $num,
              page       => $page,
              choix      => [ @choix_g ],
              potentiel  => $pts_dégâts_g,
@@ -165,7 +165,7 @@ sub MAIN (Str :$date-heure, Str :$gentil, Str :$méchant, Bool :$à-outrance) {
         $coup_m .= new: (
              date-heure => $date-heure,
              identité   => $méchant,
-             numéro     => $num,
+             tour       => $num,
              page       => $page ~ $avion_g.manoeuvres{$man_g}<virage>,
              choix      => [ @choix_m ],
              potentiel  => $pts_dégâts_m,
@@ -178,7 +178,7 @@ sub MAIN (Str :$date-heure, Str :$gentil, Str :$méchant, Bool :$à-outrance) {
         $coup_g .= new: (
              date-heure => $date-heure,
              identité   => $gentil,
-             numéro     => $num,
+             tour       => $num,
              page       => $page,
              choix      => [ @choix_g ],
              potentiel  => $pts_dégâts_g,
@@ -187,7 +187,7 @@ sub MAIN (Str :$date-heure, Str :$gentil, Str :$méchant, Bool :$à-outrance) {
         $coup_m .= new: (
              date-heure => $date-heure,
              identité   => $méchant,
-             numéro     => $num,
+             tour       => $num,
              page       => $page,
              choix      => [ @choix_m ],
              potentiel  => $pts_dégâts_m,
@@ -236,7 +236,7 @@ sub MAIN (Str :$date-heure, Str :$gentil, Str :$méchant, Bool :$à-outrance) {
       $coup_g .= new: (
            date-heure => $date-heure,
            identité   => $gentil,
-           numéro     => $num + 1,
+           tour       => $num + 1,
            page       => $page,
            fini       =>   1,
            dh1        => DateTime.now.Str,
@@ -244,7 +244,7 @@ sub MAIN (Str :$date-heure, Str :$gentil, Str :$méchant, Bool :$à-outrance) {
       $coup_m .= new: (
            date-heure => $date-heure,
            identité   => $méchant,
-           numéro     => $num + 1,
+           tour       => $num + 1,
            page       => $page,
            fini       =>   1,
            dh1        => DateTime.now.Str,
@@ -316,12 +316,12 @@ SONDER:
     my MongoDB::Cursor $cursor = $coups.find(
       criteria   => ( 'date-heure' => $dh,
                       'identité'   => $id,
-                      'numéro'     => +$n, ),
+                      'tour'       => +$n, ),
       projection => ( _id => 0, )
     );
     while $cursor.fetch -> BSON::Document $d {
       #say $d.perl;
-      if $d<numéro> == $n && ($d<manoeuvre> // '') ne '' {
+      if $d<tour> == $n && ($d<manoeuvre> // '') ne '' {
         $coup = $d;
         last SONDER;
       }

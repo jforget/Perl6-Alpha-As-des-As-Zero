@@ -11,7 +11,7 @@
 
 unit module site-coup;
 
-our sub affichage($dh, $numéro, $id, $partie, @coup, @similaires) {
+our sub affichage($dh, $tour, $id, $partie, @coup, @similaires) {
   my $coup_1;   # coup affiché
   my $coup_2;   # coup suivant
   my $coup_e;   # coup de l'ennemi
@@ -22,14 +22,14 @@ our sub affichage($dh, $numéro, $id, $partie, @coup, @similaires) {
   my $pot_f;    # potentiel de l'ennemi au coup suivant
 
   for @coup -> $coup {
-    if $coup<numéro> == $numéro && $coup<identité> eq $id {
+    if $coup<tour> == $tour && $coup<identité> eq $id {
       $coup_1 = $coup;
     }
     elsif  $coup<identité> eq $id {
       $coup_2 = $coup;
       $pot_2  = $coup<potentiel>;
     }
-    elsif $coup<numéro> == $numéro {
+    elsif $coup<tour> == $tour {
       $coup_e = $coup;
     }
     else {
@@ -52,7 +52,7 @@ our sub affichage($dh, $numéro, $id, $partie, @coup, @similaires) {
 
   my @critères;
   for @similaires -> $sim {
-    my $l = "<br /><a href='/partie/{$sim<date-heure>}'>{$sim<date-heure>}</a> <a href='/coup/{$sim<date-heure>}/{$sim<numéro>}/{$sim<identité>}'>{$sim<numéro>}</a>";
+    my $l = "<br /><a href='/partie/{$sim<date-heure>}'>{$sim<date-heure>}</a> <a href='/coup/{$sim<date-heure>}/{$sim<tour>}/{$sim<identité>}'>{$sim<tour>}</a>";
     @critères.push($l);
   }
   my $critères = join "\n", @critères;
@@ -61,14 +61,14 @@ our sub affichage($dh, $numéro, $id, $partie, @coup, @similaires) {
   <html>
   <head>
   <title>
-  Coup $dh $numéro $id
+  Coup $dh $tour $id
   </title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   </head>
   <body>
   <p><a href='/'>Liste des parties</a> <a href='/liste/$dh'>depuis la partie courante</a> <a href='/partie/$dh'>partie courante</a>
   </p>
-  <h2>Coup $dh $numéro $id </h2>
+  <h2>Coup $dh $tour $id </h2>
   <p>Page de départ $coup_1<page> </a>
   <p>Manœuvre de $coup_1<identité>&nbsp;: $coup_1<manoeuvre>, de $coup_e<identité>&nbsp;: $coup_e<manoeuvre> </p>
   <p>Page d'arrivée $coup_2<page> </a>

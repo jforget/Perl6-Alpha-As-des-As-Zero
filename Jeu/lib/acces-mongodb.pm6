@@ -95,7 +95,7 @@ our sub coup-partie($dh, Int $num, $id) {
   my $résultat;
   my MongoDB::Cursor $cursor = $coups.find(
       criteria   => ( 'date-heure' => $dh,
-                      'numéro'     => $num,
+                      'tour'       => $num,
                       'identité'   => $id,
                        ),
       projection => ( _id => 0, )
@@ -111,7 +111,7 @@ our sub coup4($dh, Int $num, $id) {
   my $résultat;
   my MongoDB::Cursor $cursor = $coups.find(
       criteria   => ( 'date-heure' => $dh,
-                      'numéro'     => ( '$in' => [ $num, $num + 1 ] ),
+                      'tour'       => ( '$in' => [ $num, $num + 1 ] ),
                        ),
       projection => ( _id => 0, )
     );

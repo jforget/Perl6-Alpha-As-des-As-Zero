@@ -29,10 +29,10 @@ our sub affichage($dh, $partie, @coups) {
   my @coups_m;
   for @coups -> $coup {
     if $coup<identité> eq $gentil {
-      @coups_g[$coup<numéro>] = $coup;
+      @coups_g[$coup<tour>] = $coup;
     }
     else {
-      @coups_m[$coup<numéro>] = $coup;
+      @coups_m[$coup<ntour>] = $coup;
     }
   }
   for 1..$partie<nb_coups> -> $n {
@@ -78,8 +78,8 @@ our sub affichage($dh, $partie, @coups) {
   </p>
   <h2>Partie {$dh}</h2>
   <table border='1'>
-  <tr><th>Numéro</th><th>Page de départ</th><th colspan='2'>{$gentil}     </th><th colspan='2'>{$méchant}    </th><th>Page d'arrivée</th></tr>
-  <tr><th>      </th><th>              </th><th>Potentiel</th><th>Manœuvre</th><th>Potentiel</th><th>Manœuvre</th><th>              </th></tr>
+  <tr><th>Tour</th><th>Page de départ</th><th colspan='2'>{$gentil}     </th><th colspan='2'>{$méchant}    </th><th>Page d'arrivée</th></tr>
+  <tr><th>    </th><th>              </th><th>Potentiel</th><th>Manœuvre</th><th>Potentiel</th><th>Manœuvre</th><th>              </th></tr>
   $liste-coups
   </table>
   </body>
