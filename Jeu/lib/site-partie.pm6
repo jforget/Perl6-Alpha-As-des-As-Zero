@@ -36,21 +36,21 @@ our sub affichage($dh, $partie, @coups) {
     }
   }
   for 1..$partie<nb_coups> -> $n {
-    my $coup_g = @coups_g[$n];
-    my $coup_m = @coups_m[$n];
-    my $page_d = min($coup_g<page>, $coup_m<page>); # min pour remplacer, par exemple, 1G par 1
-    my $man_g  = $coup_g<manoeuvre> // ''; # vide pour le coup final
-    my $man_m  = $coup_m<manoeuvre> // '';
-    my $pot_g  = $coup_g<potentiel> // $partie<capacité_g> // 0;
-    my $pot_m  = $coup_m<potentiel> // $partie<capacité_m> // 0;
-    my $page_a = '';
+    my     $coup_g = @coups_g[$n];
+    my     $coup_m = @coups_m[$n];
+    my Str $page_d = min($coup_g<page>, $coup_m<page>); # min pour remplacer, par exemple, 1G par 1
+    my Str $man_g  = $coup_g<manoeuvre> // ''; # vide pour le coup final
+    my Str $man_m  = $coup_m<manoeuvre> // '';
+    my Int $pot_g  = $coup_g<potentiel> // $partie<capacité_g> // 0;
+    my Int $pot_m  = $coup_m<potentiel> // $partie<capacité_m> // 0;
+    my Str $page_a = '';
     if $coup_g<page> ~~ /(<[ADG]>)$/ {
-      $man_g = "($0) $man_g";
-      $man_m =  "(T) $man_m";
-    }
-    if $coup_m<page> ~~ /(<[ADG]>)$/ {
       $man_m = "($0) $man_m";
       $man_g =  "(T) $man_g";
+    }
+    if $coup_m<page> ~~ /(<[ADG]>)$/ {
+      $man_g = "($0) $man_g";
+      $man_m =  "(T) $man_m";
     }
 
     if $man_g ne '' {

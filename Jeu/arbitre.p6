@@ -74,15 +74,15 @@ sub MAIN (Str :$date-heure, Str :$gentil, Str :$méchant, Bool :$à-outrance) {
   }
   say "Combat de $gentil contre $méchant, ", $pilote_g.avion, " contre ", $pilote_m.avion, $à-outrance ?? ' à outrance' !! '';
 
-  my $num     =   0;
-  my $on_joue =   1;
-  my $num_page    = 170;
-  my $pts_dégâts_g = $pilote_g.capacité;
-  my $pts_dégâts_m = $pilote_m.capacité;
+  my Int $num          =   0;
+  my Int $on_joue      =   1;
+  my Int $num_page     = 170;
+  my Int $pts_dégâts_g = $pilote_g.capacité;
+  my Int $pts_dégâts_m = $pilote_m.capacité;
   while $on_joue {
     my (@choix_g, @choix_m, $poursuite_g, $poursuite_m, $man_g, $man_m);
-    my ($num_page_g , $num_page_m );  # pages intermédiaires
-    my ($num_page_gf, $num_page_mf);  # pages finales
+    my (Int $num_page_g , Int $num_page_m );  # pages intermédiaires
+    my (Int $num_page_gf, Int $num_page_mf);  # pages finales
     if $num_page == 223 {
       if $à-outrance {
         @choix_g     = <Attaque Attaque Attaque Attaque Attaque Fuite>;
