@@ -76,14 +76,14 @@ sub MAIN (Str :$date-heure, Str :$gentil, Str :$méchant, Bool :$à-outrance) {
 
   my $num     =   0;
   my $on_joue =   1;
-  my $page    = 170;
+  my $num_page    = 170;
   my $pts_dégâts_g = $pilote_g.capacité;
   my $pts_dégâts_m = $pilote_m.capacité;
   while $on_joue {
     my (@choix_g, @choix_m, $poursuite_g, $poursuite_m, $man_g, $man_m);
-    my ($page_g , $page_m );  # pages intermédiaires
-    my ($page_gf, $page_mf);  # pages finales
-    if $page == 223 {
+    my ($num_page_g , $num_page_m );  # pages intermédiaires
+    my ($num_page_gf, $num_page_mf);  # pages finales
+    if $num_page == 223 {
       if $à-outrance {
         @choix_g     = <Attaque Attaque Attaque Attaque Attaque Fuite>;
       }
@@ -96,25 +96,25 @@ sub MAIN (Str :$date-heure, Str :$gentil, Str :$méchant, Bool :$à-outrance) {
       #say join ' ', @choix_g, '/', @choix_m;
     }
     else {
-      @choix_g     = $avion_g.pages[$page]<enchainement>.keys.sort;
-      @choix_m     = $avion_m.pages[$page]<enchainement>.keys.sort;
+      @choix_g     = $avion_g.pages[$num_page]<enchainement>.keys.sort;
+      @choix_m     = $avion_m.pages[$num_page]<enchainement>.keys.sort;
       if $à-outrance {
         #say join ' ', @choix_g, '/', @choix_m;
-        my @choix = grep { $avion_g.pages[$page]<enchainement>{$_} != 223 }, @choix_g;
+        my @choix = grep { $avion_g.pages[$num_page]<enchainement>{$_} != 223 }, @choix_g;
         if @choix.elems > 0 {
           @choix_g = @choix;
         }
-        @choix = grep { $avion_m.pages[$page]<enchainement>{$_} != 223 }, @choix_m;
+        @choix = grep { $avion_m.pages[$num_page]<enchainement>{$_} != 223 }, @choix_m;
         if @choix.elems > 0 {
           @choix_m = @choix;
         }
         #say join ' ', @choix_g, '/', @choix_m;
       }
 
-      $poursuite_g = $avion_g.pages[$page]<poursuite>;
-      $poursuite_m = $avion_m.pages[$page]<poursuite>;
-      $pts_dégâts_m -= $avion_g.pages[$page]<tir>;
-      $pts_dégâts_g -= $avion_m.pages[$page]<tir>;
+      $poursuite_g = $avion_g.pages[$num_page]<poursuite>;
+      $poursuite_m = $avion_m.pages[$num_page]<poursuite>;
+      $pts_dégâts_m -= $avion_g.pages[$num_page]<tir>;
+      $pts_dégâts_g -= $avion_m.pages[$num_page]<tir>;
       if $pts_dégâts_g ≤ 0 or $pts_dégâts_m ≤ 0 {
         # au moins un avion abattu
         $on_joue = 0;
@@ -129,7 +129,7 @@ sub MAIN (Str :$date-heure, Str :$gentil, Str :$méchant, Bool :$à-outrance) {
              date-heure => $date-heure,
              identité   => $méchant,
              tour       => $num,
-             page       => $page,
+             page       => ~ $num_page,
              choix      => [ @choix_m ],
              potentiel  => $pts_dégâts_m,
              dh1        => DateTime.now.Str,
@@ -141,7 +141,7 @@ sub MAIN (Str :$date-heure, Str :$gentil, Str :$méchant, Bool :$à-outrance) {
              date-heure => $date-heure,
              identité   => $gentil,
              tour       => $num,
-             page       => $page ~ $avion_m.manoeuvres{$man_m}<virage>,
+             page       => $num_page ~ $avion_m.manoeuvres{$man_m}<virage>,
              choix      => [ @choix_g ],
              potentiel  => $pts_dégâts_g,
              dh1        => DateTime.now.Str,
@@ -154,7 +154,7 @@ sub MAIN (Str :$date-heure, Str :$gentil, Str :$méchant, Bool :$à-outrance) {
              date-heure => $date-heure,
              identité   => $gentil,
              tour       => $num,
-             page       => $page,
+             page       => ~ $num_page,
              choix      => [ @choix_g ],
              potentiel  => $pts_dégâts_g,
              dh1        => DateTime.now.Str,
@@ -166,7 +166,7 @@ sub MAIN (Str :$date-heure, Str :$gentil, Str :$méchant, Bool :$à-outrance) {
              date-heure => $date-heure,
              identité   => $méchant,
              tour       => $num,
-             page       => $page ~ $avion_g.manoeuvres{$man_g}<virage>,
+             page       => $num_page ~ $avion_g.manoeuvres{$man_g}<virage>,
              choix      => [ @choix_m ],
              potentiel  => $pts_dégâts_m,
              dh1        => DateTime.now.Str,
@@ -179,7 +179,7 @@ sub MAIN (Str :$date-heure, Str :$gentil, Str :$méchant, Bool :$à-outrance) {
              date-heure => $date-heure,
              identité   => $gentil,
              tour       => $num,
-             page       => $page,
+             page       => ~ $num_page,
              choix      => [ @choix_g ],
              potentiel  => $pts_dégâts_g,
              dh1        => DateTime.now.Str,
@@ -188,7 +188,7 @@ sub MAIN (Str :$date-heure, Str :$gentil, Str :$méchant, Bool :$à-outrance) {
              date-heure => $date-heure,
              identité   => $méchant,
              tour       => $num,
-             page       => $page,
+             page       => ~ $num_page,
              choix      => [ @choix_m ],
              potentiel  => $pts_dégâts_m,
              dh1        => DateTime.now.Str,
@@ -200,36 +200,36 @@ sub MAIN (Str :$date-heure, Str :$gentil, Str :$méchant, Bool :$à-outrance) {
       }
       $man_g   = $coup_g<manoeuvre>;
       $man_m   = $coup_m<manoeuvre>;
-      if $page == 223 {
+      if $num_page == 223 {
         if $man_g eq 'Attaque' && $man_m eq 'Attaque' {
-          $page_gf = 170;
-          $page_mf = 170;
-          $page_g  =   0; # pour faire passer un test numérique un peu plus bas
-          $page_m  =   0; # idem
+          $num_page_gf = 170;
+          $num_page_mf = 170;
+          $num_page_g  =   0; # pour faire passer un test numérique un peu plus bas
+          $num_page_m  =   0; # idem
         }
         else {
           # au moins un avion en fuite
           $on_joue =   0;
-          $page    = 223;
-          $page_g  = 223;
-          $page_m  = 223;
+          $num_page    = 223;
+          $num_page_g  = 223;
+          $num_page_m  = 223;
         }
       }
       else {
-        $page_g  = $avion_g.pages[$page]<enchainement>{$man_g};
-        $page_m  = $avion_m.pages[$page]<enchainement>{$man_m};
+        $num_page_g  = $avion_g.pages[$num_page]<enchainement>{$man_g};
+        $num_page_m  = $avion_m.pages[$num_page]<enchainement>{$man_m};
       }
-      if $page_m == 223 {
-        $page_gf = 223;
+      if $num_page_m == 223 {
+        $num_page_gf = 223;
       }
-      elsif $page != 223 {
-        $page_gf = $avion_g.pages[$page_m]<enchainement>{$man_g};
+      elsif $num_page != 223 {
+        $num_page_gf = $avion_g.pages[$num_page_m]<enchainement>{$man_g};
       }
-      if $page_g == 223 {
-        $page_mf = 223;
+      if $num_page_g == 223 {
+        $num_page_mf = 223;
       }
-      elsif $page != 223 {
-        $page_mf = $avion_m.pages[$page_g]<enchainement>{$man_m};
+      elsif $num_page != 223 {
+        $num_page_mf = $avion_m.pages[$num_page_g]<enchainement>{$man_m};
       }
     }
     if $on_joue == 0 {
@@ -237,7 +237,7 @@ sub MAIN (Str :$date-heure, Str :$gentil, Str :$méchant, Bool :$à-outrance) {
            date-heure => $date-heure,
            identité   => $gentil,
            tour       => $num + 1,
-           page       => $page,
+           page       => ~ $num_page,
            fini       =>   1,
            dh1        => DateTime.now.Str,
       );
@@ -245,7 +245,7 @@ sub MAIN (Str :$date-heure, Str :$gentil, Str :$méchant, Bool :$à-outrance) {
            date-heure => $date-heure,
            identité   => $méchant,
            tour       => $num + 1,
-           page       => $page,
+           page       => ~ $num_page,
            fini       =>   1,
            dh1        => DateTime.now.Str,
       );
@@ -300,8 +300,8 @@ sub MAIN (Str :$date-heure, Str :$gentil, Str :$méchant, Bool :$à-outrance) {
       say "Terminé !";
       last;
     }
-    say join ' ', $page, '->', $man_g, $page_g, $man_m, $page_m, '->', $page_gf, $page_mf, "($pts_dégâts_g $pts_dégâts_m)";
-    $page = min($page_gf, $page_mf);
+    say join ' ', $num_page, '->', $man_g, $num_page_g, $man_m, $num_page_m, '->', $num_page_gf, $num_page_mf, "($pts_dégâts_g $pts_dégâts_m)";
+    $num_page = min($num_page_gf, $num_page_mf);
   }
 }
 

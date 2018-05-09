@@ -32,7 +32,7 @@ our sub affichage($dh, $partie, @coups) {
       @coups_g[$coup<tour>] = $coup;
     }
     else {
-      @coups_m[$coup<ntour>] = $coup;
+      @coups_m[$coup<tour>] = $coup;
     }
   }
   for 1..$partie<nb_coups> -> $n {

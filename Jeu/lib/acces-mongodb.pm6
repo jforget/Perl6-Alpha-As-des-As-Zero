@@ -67,18 +67,9 @@ our sub coups-parties($dh) {
 # Liste des coups à partir d'une page
 our sub coups-page(Str $page, @id, Str $dh) {
   my @liste;
-  my $page-critère;
 
-  # Problème : de temps en temps les pages sont alphabétiques (cas des poursuites),
-  # mais la plupart du temps elles sont numériques dans la base.
-  if $page ~~ /(\d+) <[ADG]>/ {
-    $page-critère = + $0;
-  }
-  else {
-    $page-critère = + $page;
-  }
   my MongoDB::Cursor $cursor = $coups.find(
-      criteria   => ( 'page'       => $page-critère,
+      criteria   => ( 'page'       => $page,
                       'identité'   => ( '$in' => [ @id ] ),
                       'date-heure' => ( '$lt' =>  $dh ),
                        ),
