@@ -567,7 +567,10 @@ et « xx ». Évitez d'utiliser l'un pour l'autre comme je l'ai fait !
 
 =head3 Notation fonctionnelle
 
-Image g rond f
+=for html
+<img src='gof.png' width='45%' alt='Diagramme de Venn de la composition de deux fonctions' />
+
+I<Image personnelle. Les conditions de licence sont les mêmes que pour le texte.>
 
 Lorsque j'ai appris les relations et les fonctions en classe de 6e,
 il y avait un point que je n'aimais pas et qui piégeait nombre de mes
@@ -590,14 +593,17 @@ langages de programmation ont pris la suite du S<« traducteur> de S<formules »
 de Backus (FORTRAN) et reprennent allègrement cette monstruosité syntaxique.
 Par exemple, vous prenez une valeur x, vous lui appliquez successivement
 la fonction logarithme, la fonction cosinus, vous en prenez la valeur absolue
-puis la racine carrée et vous terminez par la partie entière.
-En notation mathématique, cela donne :
+puis la racine carrée.
+En dessinant un diagramme de Venn, cela donne :
 
-latex
+=for html
+<img src='hogof.png' width='45%' alt='Diagramme de Venn de la composition de quatre fonctions' />
+
+I<Image personnelle. Les conditions de licence sont les mêmes que pour le texte.>
 
 et en programmation, par exemple avec Perl 5 :
 
-  $y = int(sqrt(abs(cos(log($x)))))
+  $y = sqrt(abs(cos(log($x))))
 
 Seul rayon de soleil dans cette grisaille, les calculatrices
 HP mais aussi TI, qui permettent de coder :
@@ -607,7 +613,7 @@ HP mais aussi TI, qui permettent de coder :
   COS
   ABS
   SQRT
-  INT
+  RTN
 
 plus peut-être d'autres langages tels que Forth et Postscript que je n'ai jamais
 appris, ou Smalltalk que j'ai à peine pratiqué.
