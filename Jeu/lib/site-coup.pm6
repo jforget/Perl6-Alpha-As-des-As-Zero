@@ -72,6 +72,7 @@ our sub affichage(Str $dh, Int $tour, Str $id, BSON::Document $partie, @coup, @s
               ==> my @simil;
   my $cumul = 0;
   my $manoeuvre-précédente = '';
+  my %note_manoeuvre;
   for @simil -> BSON::Document $sim {
     my $résultat = $sim<résultat> // '';
     my $délai    = $sim<délai>    // '';
@@ -88,6 +89,7 @@ our sub affichage(Str $dh, Int $tour, Str $id, BSON::Document $partie, @coup, @s
       $note   = $résultat × $perspicacité ** $délai;
       $cumul += $note;
       $note_aff  = sprintf('%.4g', $note);
+      %note_manoeuvre{$sim<manoeuvre>} = $cumul;
     }
     else {
       $note_aff = '';
@@ -105,6 +107,16 @@ our sub affichage(Str $dh, Int $tour, Str $id, BSON::Document $partie, @coup, @s
     @critères.push($l);
   }
   my $critères = join "\n", @critères;
+
+  my @choix;
+  for %note_manoeuvre.keys.sort -> $man {
+    my $coef = $psycho-rigidité ** %note_manoeuvre{$man};
+    my $note_aff = sprintf("%.4g", %note_manoeuvre{$man});
+    my $coef_aff = sprintf("%.4g", $coef);
+    my $l = "<tr><td> $man </td><td> $note_aff </td><td> $coef_aff </td></tr>";
+    @choix.push($l);
+  }
+  my $choix = join "\n", @choix;
 
   return qq:to/EOF/;
   <html>
@@ -124,6 +136,10 @@ our sub affichage(Str $dh, Int $tour, Str $id, BSON::Document $partie, @coup, @s
   <p>Dégâts encaissés&nbsp;: $dégâts sur $id ($coup_1<potentiel> -&gt; $pot_2), $dégâts_e sur $coup_e<identité>  ($coup_e<potentiel> -&gt; $pot_f)</p>
   <h2>Choix</h2>
   <p>Psycho-rigidité $qualificatif : $psycho-rigidité </p>
+  <table>
+  <tr><th>Manœuvre</th><th>Note</th><th>coef</th><tr>
+  $choix
+  </table>
   <h2>Critères</h2>
   <p>Perspicacité $qualificatif : $perspicacité </p>
   <table>
