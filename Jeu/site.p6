@@ -52,6 +52,14 @@ get '/coup/:dh/:num/:id' => sub ($dh, $num, $id) {
   }
   my @similaires; # coups similaires, à partir de la même page
   my @id = ~ $id;
+  if $id ne $partie<avion_g> && $id ne $partie<avion_m> {
+    if $id eq $partie<gentil> {
+      @id.push($partie<avion_g>);
+    }
+    if $id eq $partie<méchant> {
+      @id.push($partie<avion_m>);
+    }
+  }
   @similaires = acces-mongodb::coups-page(~ $page, @id, ~ $dh);
   return site-coup::affichage($dh, $num, $id, $partie, @coup4, @similaires);
 }
