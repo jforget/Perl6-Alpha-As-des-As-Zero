@@ -9,19 +9,22 @@
 #     See the license in the embedded documentation below.
 #
 
+use BSON::Document;
+
 unit module site-coup;
 
-our sub affichage($dh, $tour, $id, $partie, @coup, @similaires) {
-  my $coup_1;   # coup affiché
-  my $coup_2;   # coup suivant
-  my $coup_e;   # coup de l'ennemi
-  my $coup_f;   # coup suivant de l'ennemi
-  my $dégâts;   # points de dégâts encaissés
-  my $dégâts_e; # points de dégâts infligés à l'ennemi
-  my $pot_2;    # potentiel au coup suivant
-  my $pot_f;    # potentiel de l'ennemi au coup suivant
+our sub affichage(Str $dh, Int $tour, Str $id, BSON::Document $partie, @coup, @similaires) {
+  my BSON::Document $coup_1;   # coup affiché
+  my BSON::Document $coup_2;   # coup suivant
+  my BSON::Document $coup_e;   # coup de l'ennemi
+  my BSON::Document $coup_f;   # coup suivant de l'ennemi
 
-  for @coup -> $coup {
+  my Int $dégâts;   # points de dégâts encaissés
+  my Int $dégâts_e; # points de dégâts infligés à l'ennemi
+  my Int $pot_2;    # potentiel au coup suivant
+  my Int $pot_f;    # potentiel de l'ennemi au coup suivant
+
+  for @coup -> BSON::Document $coup {
     if $coup<tour> == $tour && $coup<identité> eq $id {
       $coup_1 = $coup;
     }
@@ -51,8 +54,19 @@ our sub affichage($dh, $tour, $id, $partie, @coup, @similaires) {
   $dégâts_e = $coup_e<potentiel> - $pot_f;
 
   my @critères;
-  for @similaires -> $sim {
-    my $l = "<br /><a href='/partie/{$sim<date-heure>}'>{$sim<date-heure>}</a> <a href='/coup/{$sim<date-heure>}/{$sim<tour>}/{$sim<identité>}'>{$sim<tour>}</a>";
+
+  @similaires ==> sort { $^a<manoeuvre> leg $^b<manoeuvre> } \
+              ==> my @simil;
+  for @simil -> BSON::Document $sim {
+    my $résultat = $sim<résultat> // '';
+    my $délai    = $sim<délai>    // '';
+    my $l = qq:to/EOF/;
+    <tr><td><a href='/partie/{$sim<date-heure>}'>{$sim<date-heure>}</a></td>
+        <td align='center'><a href='/coup/{$sim<date-heure>}/{$sim<tour>}/{$sim<identité>}'> $sim<tour> </a></td>
+        <td align='center'> $sim<manoeuvre> </td>
+        <td align='center'> $résultat       </td>
+        <td align='center'> $délai          </td></tr>
+    EOF
     @critères.push($l);
   }
   my $critères = join "\n", @critères;
@@ -75,7 +89,10 @@ our sub affichage($dh, $tour, $id, $partie, @coup, @similaires) {
   <p>Dégâts encaissés&nbsp;: $dégâts sur $id ($coup_1<potentiel> -&gt; $pot_2), $dégâts_e sur $coup_e<identité>  ($coup_e<potentiel> -&gt; $pot_f)</p>
   <h2>Choix</h2>
   <h2>Critères</h2>
+  <table>
+  <tr><th>Partie</th><th>Tour</th><th>Manœuvre</th><th>Résultat</th><th>Délai</th></tr>
   $critères
+  </table>
   </body>
   </html>
   EOF

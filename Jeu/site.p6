@@ -41,10 +41,10 @@ get '/partie/:dh' => sub ($dh) {
 }
 
 get '/coup/:dh/:num/:id' => sub ($dh, $num, $id) {
-  my $partie = acces-mongodb::partie(~ $dh);
+  my BSON::Document $partie = acces-mongodb::partie(~ $dh);
   my @coup4  = acces-mongodb::coup4(~ $dh, + $num, ~ $id);
   my $page;
-  for @coup4 -> $coup {
+  for @coup4 -> BSON::Document $coup {
     if $coup<tour> == $num &&$coup<identité> eq $id {
       $page = $coup<page>;
       last;
@@ -61,7 +61,7 @@ get '/coup/:dh/:num/:id' => sub ($dh, $num, $id) {
     }
   }
   @similaires = acces-mongodb::coups-page(~ $page, @id, ~ $dh);
-  return site-coup::affichage($dh, $num, $id, $partie, @coup4, @similaires);
+  return site-coup::affichage(~ $dh, + $num, ~ $id, $partie, @coup4, @similaires);
 }
 
 baile();
