@@ -22,12 +22,26 @@ my MongoDB::Client     $client  .= new(:uri('mongodb://'));
 my MongoDB::Database   $database = $client.database('Ace_of_Aces');
 my MongoDB::Collection $coups    = $database.collection('Coups');
 my MongoDB::Collection $parties  = $database.collection('Parties');
+my MongoDB::Collection $pilotes  = $database.collection('Pilotes');
 
 
 our sub partie($dh) {
   my $résultat;
   my MongoDB::Cursor $cursor = $parties.find(
       criteria   => ( 'date-heure' => $dh,
+                       ),
+      projection => ( _id => 0, )
+    );
+  while $cursor.fetch -> BSON::Document $d {
+    $résultat = $d;
+  }
+  return $résultat;
+}
+
+our sub pilote(Str $id) {
+  my $résultat;
+  my MongoDB::Cursor $cursor = $pilotes.find(
+      criteria   => ( 'identité' => $id,
                        ),
       projection => ( _id => 0, )
     );
@@ -119,6 +133,16 @@ sub écrire-coup(BSON::Document $coup) {
   );
   my BSON::Document $result = $database.run-command($req);
   #say "Création coup ok : ", $result<ok>, " nb : ", $result<n>;
+
+}
+
+our sub écrire-pilote(BSON::Document $pilote) {
+  my BSON::Document $req .= new: (
+    insert => 'Pilotes',
+    documents => [ $pilote ],
+  );
+  my BSON::Document $result = $database.run-command($req);
+  #say "Création pilote ok : ", $result<ok>, " nb : ", $result<n>;
 
 }
 
