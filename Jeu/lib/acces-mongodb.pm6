@@ -86,6 +86,7 @@ our sub coups-page(Str $page, @id, Str $dh) {
       criteria   => ( 'page'       => $page,
                       'identité'   => ( '$in' => [ @id ] ),
                       'date-heure' => ( '$lt' =>  $dh ),
+                      'fini'       => ( '$ne' => 1 ),
                        ),
       projection => ( _id => 0, )
     );
