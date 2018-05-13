@@ -7,9 +7,9 @@
 =head2 Rappel
 
 L'an dernier, j'ai présenté un système de reconnaissance
-de caractères basé sur une interface entre un humain et une
-machine. Dans les grandes lignes, Le fonctionnement était
-le suivant.
+de caractères basé sur une interface entre un humain (fournissant
+le moteur de reconnaissance de caractères) et une
+machine (pour la base de données). J'aurais pu le présenter autrement.
 
 =for html
 <img src='comparaison-l-1.png' alt='Comparaison entre une cellule l (Lima) et un glyphe 1 (unité)' />
@@ -46,7 +46,8 @@ de « machine self-learning », que je vous présente ci-dessous.
 
 Quand a-t-on commencé à numéroter les pages des livres (ou des rouleaux de papyrus) ?
 Quand a-t-on écrit pour la première fois "cf. page n" ?
-Quand a-t-on écrit un ouvrage qui utilise de façon intensive les renvois
+Quand a-t-on pensé à ajouter un index des mots importants en fin d'ouvrage ?
+Quand a-t-on écrit un ouvrage qui utilise de façon I<intensive> les renvois
 à une autre page ?
 
 À la suite des travaux des naturalistes du XVIIe siècle (Jussieu, Buffon, Cuvier, etc)
@@ -54,22 +55,21 @@ on a commencé à publier des flores, des livres décrivant l'ensemble des vég�
 d'une région ou d'un biotope. Mon père m'en a montré une datant des années 1950
 et qui était organisée sous la forme d'une série de questions-réponses :
 
+=for html
+<blockquote>
+
 Comment sont les nervures des feuilles ? Si elles sont parallèles, voyez page 17.
 Si elles forment un réseau arborescent avec une nervure centrale, des nervures primaires
 se détachant de la nervure centrale, des nervures secondaires se détachant d'une nervure
 primaire et ainsi de suite, voyez page 33.
 
 =for html
-<blockquote>
+</blockquote>
 
 Page 17 et page 33 vous aviez d'autres questions, d'autres réponses et d'autres renvois.
 
-=for html
-</blockquote>
-
-Années 1960 (je crois) : on m'a raconté qu'IBM avait composé des
+Années 1960 (je crois) : on m'a raconté qu'à cette époque IBM avait composé des
 manuels de dépannage sur le même principe :
-
 
 =for html
 <blockquote>
@@ -102,6 +102,22 @@ L<Gallimard Folio Junior|http://planete-ldvelh.com/page/dossier-edition-gallimar
 sous le titre
 « le Sorcier de la Montagne de Feu », le premier de la série
 L<« les Livres dont vous êtes le héros »|http://www.gallimard-jeunesse.fr/Catalogue/GALLIMARD-JEUNESSE/Un-Livre-dont-vous-etes-le-Heros>.
+
+=for html
+<blockquote>
+
+Paragraphe 1. Vous entrez dans une auberge. Devant vous, vous voyez l'aubergiste à
+son comptoir en train d'essuyer des verres. À gauche, dans un
+recoin sombre, un homme seul à une table, la tête masquée par un
+capuchon noir. Sur la droite, une demi-douzaine de nains des
+montagnes boivent de la bière en rigolant bruyamment. Que faites-vous ?
+Vous vous adressez à l'aubergiste, allez au paragraphe 17. Vous
+vous asseyez à côté de l'homme encapuchonné, allez au paragraphe 33.
+Vous vous adressez aux nains en leur disant S<« Salut les ornements de 
+S<jardin ! »> allez au paragraphe 52. 
+
+=for html
+</blockquote>
 
 J'en ai eu cinq, dont deux édités par Gallimard et trois par Solar, il m'en reste quatre.
 
@@ -142,6 +158,8 @@ allemand choisit la flèche la plus à gauche dans la page et annonce :
 
 -- Je t'envoie en page 8.
 
+image gros plan sur les flèches
+
 Simultanément, le Britannique choisit la manœuvre en dessous de S<« EF »>
 S<« Cruising> S<Left »> et répond :
 
@@ -154,6 +172,8 @@ son livret page 8, repère la manœuvre choisie et obtient le même numéro de p
 =for HTML
 <img src='Page-48-All.png' alt="Livret allemand page 48" width='45%' />
 <img src='Page-8-GB.png' alt="Livret britannique page 8" width='45%' />
+
+image gros plan sur les flèches
 
 I<Copies d'écran provenant du brevet USP 4,378,118, dans le domaine public depuis 2001.>
 
@@ -170,8 +190,11 @@ I<Copies d'écran provenant du brevet USP 4,378,118, dans le domaine public depu
 
 Quant au mécanisme des tirs, c'est très simple. Vous commencez avec 12 points de vie. 
 Chaque fois que vous aboutissez sur une page finale où vous recevez des pruneaux de l'avion
-ennemi, vous perdez 1, 2 ou 4 points de vie, selon la page. Quand votre total de points de vie
+ennemi, vous perdez 1, 2 ou 4 points de vie, selon la page. On ne tient pas
+compte des pages intermédiaires. Quand votre total de points de vie
 est négatif ou nul, votre avion est abattu.
+
+=head3 Dissection du mécanisme
 
 Avec ce mécanisme, les pages finales sont toujours identiques. Cela émerveille les joueurs
 qui découvrent le jeu, mais cela peut s'expliquer simplement. Oublions les cieux au-dessus
@@ -312,6 +335,35 @@ vers l'avant. Il ne donne pas le numéro de la page intermédiaire.
 
 =back
 
+=head3 Considérations diverses
+
+Lors d'un tour de jeu, vous devez garder à l'esprit :
+
+=over
+
+=item 1 le numéro de la page initiale,
+
+=item 2 la manœuvre choisie
+
+=item 3 la page intermédiaire que vous communiquez à votre adversaire,
+
+=item 4 la page intermédiaire que votre adversaire vous indique,
+
+=item 5 la page finale du tour,
+
+=item 6 le nombre de points de dégâts encaissés,
+
+=item 7 optionellement le nombre de points de dégâts infligés à votre adversaire.
+
+=back
+
+On dit que la mémoire à court terme d'un humain contient 7 ± 2 informations. À moins d'être
+dans la catégorie inférieure, il est possible de jouer à l'I<As des As> sans avoir besoin
+de noter quoi que ce soit, ni de déplacer des marqueurs sur des tableaux. Il est possible
+de jouer dans le bus. Et si vous êtes dans une catégorie supérieure pour cette faculté,
+vous pouvez même jouer dans le bus tout en gardant un œil sur les arrêts restants avant
+votre destination.
+
 =head3 Extensions
 
 Deux extensions sont sorties avec des avions plus récents (I<Powerhouse> : Spad XIII contre Fokker D.VII) ou plus anciens
@@ -323,6 +375,10 @@ même la version Guerre des Étoiles (I<Star Wars : Starfighter Battle Books>, X
 le « méchant » derrière le « gentil », à distance moyenne, avec le même cap et en train de lui tirer dessus.
 Il est possible de jouer avec un livret « gentil » d'un jeu et un livret « méchant » d'un autre jeu, quitte
 à faire combattre un X-Wing contre un Fokker E.III !
+
+Attention au sujet de I<Wingleader> : il existe un autre jeu beaucoup plus récent du
+même nom chez GMT. Si vous êtes intéressé par le jeu décrit et que vous voulez l'acheter
+par correspondance, vérifiez bien qu'il s'agit du bon jeu.
 
 =begin html
 
@@ -340,7 +396,15 @@ I<Photos personnelles. Les conditions de licence sont les mêmes que pour le tex
 
 =end html
 
-I<Photos personnelles reprenant une page dans les deux livrets de Jet Eagles, copyright 1990 Nova Game Desins, Inc.>
+I<Photos personnelles reprenant une page dans les deux livrets de Jet Eagles, copyright © 1990 Nova Game Desins, Inc.>
+
+Toutes ces variantes proposent également des règles avancées, pour
+l'altitude par exemple, ou le jeu 2-contre-2, ou
+encore pour les radars et les missiles dans le cas de I<Jet Eagles>.
+Hélas, ces règles avancées font perdre la compatibilité avec la capacité 7 ± 2 de la mémoire à court terme.
+À part une règle sur la compatibilité entre deux manœuvres successives
+d'un même avion, je n'ai pas l'intention de les prendre en compte dans
+mes programmes.
 
 Il y a également une extension I<Balloon Busters>, où l'on fait du 2-contre-1. Le joueur allemand
 contrôle un ballon d'observation (assez passif) plus un canon anti-aérien, contre un avion britannique.
@@ -383,7 +447,74 @@ avions de l'un des jeux existants, car si le brevet est expiré, le copyright ne
 
 =head1 Description des programmes
 
-Deux parties : construction du livret, jeu
+Il y a deux grandes parties dans le projet. Tout d'abord, la préparation,
+consistant à regénérer plutôt que recopier les enchaînements entre pages
+et manœuvres. Puis il y a le jeu proprement dit où des programmes combattent
+l'un contre l'autre.
+
+=head2 Préparation
+
+J'ai commencer par programmer cette partie, bien sûr. Je l'ai faite avant d'initialiser
+le dépôt Git. Du coup, les programmes sont dans un répertoire extérieur.
+J'ai l'intention de réintégrer ces programmes dans le dépôt Git, avec une
+phase de nettoyage. Vous ne verrez donc pas mes tout premiers pas en Perl 6.
+
+=head2 Jeu
+
+Le jeu entre humains est prévu pour deux joueurs sans arbitre.
+Pour les programmes, j'ai préféré utiliser un programme arbitre,
+ou plutôt un processus arbitre,
+communiquant avec deux processus joueurs. Les deux processus
+joueurs fonctionnent avec le même programme Perl 6, mais avec des
+arguments d'appel différents.
+
+Pour rester dans la même optique que Google Alpha Go Zero et Google Alpha Chess Zera,
+le programme joueur n'a aucune connaissance intrinsèque des mécanismes de vol
+et des doctrines de combat aérien. Il se contente de recevoir une liste
+de manœuvres de l'arbitre, d'en sélectionner une et de renvoyer la réponse
+à l'arbitre.
+
+Le programme joueur fonctionne en deux modes. Il y a le mode entraînement
+où le choix est totalement aléatoire. Et il y a le mode combat où le
+programme joueur extrait de la base de données les situations analogues
+pendant les parties précédentes pour savoir ce qui a bien marché et
+ce qui n'a pas donné de bons résultats. Il attribut des probabilités 
+plus ou moins élevées aux
+différentes manœuvres proposées par le programme arbitre et tire au
+hasard une manœuvre, en tenant compte de la loi de probabilité attribuée.
+
+Le programme arbitre, lui, a une meilleure connaissance des mécanismes
+de vol et de tir, mais rien sur la tactique ni la doctrine.
+C'est lui qui lit le fichier JSON créé par les programmes de préparation
+et qui connaît ainsi à quelle page on aboutit lorsque l'on exécute
+telle commande sur telle page de départ.
+
+=head3 Communication inter-processus
+
+Ainsi donc, il y a trois processus qui s'échangent des informations.
+Ai-je eu recours à des sockets ? À des messages transmis par une queue ?
+Non. Je me suis inspiré d'un mécanisme que l'on voit couramment
+dans les romans d'espionnage de John le Carré ou du même style,
+la S<« boîte> aux S<lettres »>. L'officier traitant donne ses instructions
+sur un microfilm qu'il dépose dans un endroit discret S<convenu :>
+souche d'arbre, fissure entre deux briques, vous voyez le genre.
+L'espion récupère le microfilm, effectue les recherches demandées
+et livre les résultats au même endroit. Et l'officier
+traitant récupère les documents secrets de la même manière. C'est pareil entre
+le processus arbitre et les processus joueurs. L'arbitre écrit dans
+la base de données un enregistrement pour chaque joueur.
+Le processus joueur lit l'enregistrement qui le concerne, le met
+à jour et le réécrit dans la base. Puis l'arbitre lit l'enregistrement
+modifié.
+
+
+Comme dans les romans de John le Carré, si un processus ne trouve pas
+l'enregistrement attendu dans la boîte aux lettres, il attend un petit peu
+et il refait une tentative de lecture. Et comme dans les romans de John le Carré,
+au bout d'un nombre important de tentatives, le processus considère qu'il s'est passé
+quelque chose de louche et il arrête toute activité. La métaphore s'arrête là, car
+d'un côté l'espion se fait exfiltrer et survit, de l'autre côté le processus
+effectue un C<die>.
 
 =head1 Perl 6
 
@@ -424,7 +555,7 @@ paquets correspondants sont :
   virtuelle   Mageia-5        pas trouvé
 
 Pour Docker, il faudrait d'une part que Docker soit installé sur ma machine, d'autre
-part que je sois à l'aise avec Docker. Or Docker n'est pas installé et les dépôts xubuntu
+part que je sois à l'aise avec Docker. Or Docker n'est pas installé et les dépôts xubuntu 16.10
 ne sont plus disponibles depuis un certain temps. Et je ne maîtrise pas l'utilisation
 de Docker.
 
@@ -729,6 +860,16 @@ priorité de ces opérateurs par rapport aux opérateurs traditionnels ?
 S<Avertissement :> hélas, je n'ai pas pris de notes lorsque j'ai installé le module MongoDB
 pour Perl 6. J'expose ici mes souvenirs, qui ne sont pas fiables à S<100 %>.
 
+D'autre part, ce que je raconte concerne l'installation que j'ai faite
+le 17 mars. J'ai pu constater que l'auteur du module MongoDB pour Perl 6
+s'était remis au travail fin avril. Les bugs que je signale ont peut-être
+disparu (et d'autres sont apparus...). Je n'ai pas voulu prendre le risque
+de réinstaller le module pendant que je réalisais mes programmes et que je
+rédigeais mon exposé. Je referai une nouvelle isntallation au moment où je
+migrerai vers xubuntu 18.04.
+
+=head3 Installation du 17 mars 2018
+
 Tout d'abord, un problème qui n'a rien à voir avec Perl 6. Sur ma machine,
 la version de MongoDB est la version 2.6, alors que le site web donne
 la documentation d'une version 3.x. Par exemple, le site propose une commande
@@ -749,7 +890,7 @@ Donc, faire :
 
   zef install --/test MongoDB
 
-Et le module est istallé ! Maintenant, il reste à écrire quelques programmes.
+Et le module est installé ! Maintenant, il reste à écrire quelques programmes.
 J'ai commencé par copier-coller l'exemple fourni dans la documentation
 du programme. Mais ça plante ! D'après ce que je comprends des messages d'erreur,
 cela plante à cause d'un sous-programme qui attend un paramètre C<(Str)> et qui
@@ -802,6 +943,10 @@ Par exemple, bien noter que l'instruction C<find> dans un programme Perl 6 ne re
 pas les options C<sort>, C<limit> et C<find>. Et ce n'est pas un problème de version 2.6
 contre 3.x, ces trois options sont mentionnées dans le livre O'Reilly de 2013 (page 68 si vous
 voulez vérifier).
+
+=head3 Installation du xx mai ou juin 2018
+
+À faire.
 
 =head2 Bailador
 
