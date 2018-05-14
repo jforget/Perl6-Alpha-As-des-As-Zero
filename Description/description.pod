@@ -106,14 +106,14 @@ L<« les Livres dont vous êtes le héros »|http://www.gallimard-jeunesse.fr/Ca
 =for html
 <blockquote>
 
-Paragraphe 1. Vous entrez dans une auberge. Devant vous, vous voyez l'aubergiste à
+Paragraphe 1. Vous entrez dans une auberge. Au fond de la salle, vous voyez l'aubergiste à
 son comptoir en train d'essuyer des verres. À gauche, dans un
 recoin sombre, un homme seul à une table, la tête masquée par un
 capuchon noir. Sur la droite, une demi-douzaine de nains des
 montagnes boivent de la bière en rigolant bruyamment. Que faites-vous ?
 Vous vous adressez à l'aubergiste, allez au paragraphe 17. Vous
 vous asseyez à côté de l'homme encapuchonné, allez au paragraphe 33.
-Vous vous adressez aux nains en leur disant S<« Salut les ornements de 
+Vous vous adressez aux nains en leur disant S<« Salut> les ornements de 
 S<jardin ! »> allez au paragraphe 52. 
 
 =for html
@@ -158,7 +158,11 @@ allemand choisit la flèche la plus à gauche dans la page et annonce :
 
 -- Je t'envoie en page 8.
 
-image gros plan sur les flèches
+=for HTML
+<img src='Manoeuvre-1-8.png' alt="Page 1, flèche pointant vers la page 8" width='25%' />
+<img src='Manoeuvre-1-48.png' alt="Page 1, flèche pointant vers la page 48" width='25%' />
+
+I<Copies d'écran provenant du brevet USP 4,378,118, dans le domaine public depuis 2001.>
 
 Simultanément, le Britannique choisit la manœuvre en dessous de S<« EF »>
 S<« Cruising> S<Left »> et répond :
@@ -172,8 +176,8 @@ son livret page 8, repère la manœuvre choisie et obtient le même numéro de p
 =for HTML
 <img src='Page-48-All.png' alt="Livret allemand page 48" width='45%' />
 <img src='Page-8-GB.png' alt="Livret britannique page 8" width='45%' />
-
-image gros plan sur les flèches
+<img src='Manoeuvre-48-96.png' alt="Page 48, flèche pointant vers la page 96" width='25%' />
+<img src='Manoeuvre-8-96.png' alt="Page 8, flèche pointant vers la page 96" width='25%' />
 
 I<Copies d'écran provenant du brevet USP 4,378,118, dans le domaine public depuis 2001.>
 
@@ -190,7 +194,7 @@ I<Copies d'écran provenant du brevet USP 4,378,118, dans le domaine public depu
 
 Quant au mécanisme des tirs, c'est très simple. Vous commencez avec 12 points de vie. 
 Chaque fois que vous aboutissez sur une page finale où vous recevez des pruneaux de l'avion
-ennemi, vous perdez 1, 2 ou 4 points de vie, selon la page. On ne tient pas
+ennemi, vous perdez 1, 2 ou 4 points de vie, selon la page finale. On ne tient pas
 compte des pages intermédiaires. Quand votre total de points de vie
 est négatif ou nul, votre avion est abattu.
 
@@ -295,13 +299,15 @@ il est possible que l'ennemi ait disparu sur un côté ou derrière.
 
 Si un seul joueur a une page intermédiaire à 223, on utilise la page intermédiaire de l'autre
 pour obtenir la page finale. Impossible dans ce cas de faire la vérification présentée, expliquée et démythifiée
-au paragraphe précédent. Un tel cas de figure se produit par exemple lorsqu'un avion est dans
-les six heures de l'autre à grande distance (page xxx ou yyy si vous avez un exemplaire du jeu).
-Si les deux avions font exactement le même mouvement en ligne droite vers l'avant, alors
-si l'on exécute d'abord le mouvement du poursuivant, on verra que la situation finale est
-identique à la situation initiale, tandis que si l'on exécute d'abord le mouvement du
-poursuivi, on obtient une page intermédiaire 223 et on ne peut pas trouver la vraie
-page finale.
+au paragraphe précédent. Un tel cas de figure se produit par exemple lorsque les deux avions se poursuivent
+à grande distance. Supposons que nous soyons page 180, où le Camel est à longue distance
+dans les onze heures du DR.1 et supposons que les deux avions avancent tout droit à vitesse
+moyenne. Si l'on applique d'abord le mouvement du Camel, le DR.1 le perd de vue temporairement et la page
+intermédiaire est la page 223, sur laquelle aucune manœuvre n'est indiquée. En revanche, si
+l'on applique d'abord la manœuvre du DR.1, la page intermédiaire est la page 60 où 
+le Camel est à distance moyenne dans les 10 heures du DR.1. Puis on applique le mouvement
+du Camel, ce qui donne la page 180. Il n'est plus possible de vérifier que la page
+finale est la même selon les deux déterminations, mais tant pis.
 
 D'un autre côté, si les deux pages intermédiaires sont 223, ou bien si la page finale est
 223, alors les avions se sont perdus de vue. Chaque joueur décide alors de continuer le
@@ -360,6 +366,8 @@ Lors d'un tour de jeu, vous devez garder à l'esprit :
 On dit que la mémoire à court terme d'un humain contient 7 ± 2 informations. À moins d'être
 dans la catégorie inférieure, il est possible de jouer à l'I<As des As> sans avoir besoin
 de noter quoi que ce soit, ni de déplacer des marqueurs sur des tableaux. Il est possible
+de jouer à la plage, il est possible de jouer à côté de la machine à café,
+il est possible de jouer dans une salle d'attente, il est possible
 de jouer dans le bus. Et si vous êtes dans une catégorie supérieure pour cette faculté,
 vous pouvez même jouer dans le bus tout en gardant un œil sur les arrêts restants avant
 votre destination.
@@ -412,7 +420,8 @@ contrôle un ballon d'observation (assez passif) plus un canon anti-aérien, con
 Autres extensions dans la même lignée, mais impossibles à mélanger avec les premières :
 I<Shootout at the Saloon> traduit chez Gallimard avec le titre
 I<Le shérif et le hors-la-loi>,
-I<Dragons Riders of Pern> et une série dont je n'avais jamais entendu parler
+I<Dragons Riders of Pern> traduit par Gallimard avec le titre
+I<les Maîtres des Dragons> et une série dont je n'avais jamais entendu parler
 avant de rédiger ces explications, I<Lost Worlds>.
 
 =begin html
@@ -644,7 +653,7 @@ ou implicite
   @t = map { $a[$_] + $b[$_ - 2] } 0..5;
 
 Mais en Perl 6, les indices négatifs sont interdits,
-il faut écrire :
+la syntaxe attendue est :
 
   @t[0] = @a[0] + @b[* - 2];
   @t[1] = @a[1] + @b[* - 1];
@@ -667,7 +676,7 @@ dans la variable T
 (*) En fait, en APL, on a coutume de faire commencer les indices en 1.
 Donc, c'est plutôt l'élément d'indice 5 que l'on place en position initiale.
 
-  T ← A + (-2) ⌽ B
+  T ← A + ¯2 ⌽ B
 
 Éh bien avec Perl 6, on peut faire l'équivalent :
 
@@ -682,7 +691,7 @@ comparer des valeurs avec ≤ et ≥ au lieu de <= et >=. Et surtout,
 on peut multiplier des nombres avec × au lieu de cette abominable étoile.
 Éh bien on peut faire la même chose avec Perl 6 et utiliser ≤ ≥ et ×.
 Lorsque j'ai fait un projet APL en 2014-2015, je m'étais écrit
-une fonction C<apl-insert> pour insérer des caractères spéciaux dans
+une fonction C<apl-insert> en Emaces-Lisp pour insérer des caractères spéciaux dans
 un source APL sous Emacs. Lorsque j'ai découvert la possibilité
 d'utiliser ≤ ≥ et × en Perl 6, j'ai dupliqué ma fonction dans le
 répertoire Perl 6 sans même purger les caractères APL qui ne
@@ -703,7 +712,7 @@ et « xx ». Évitez d'utiliser l'un pour l'autre comme je l'ai fait !
 
 I<Image personnelle. Les conditions de licence sont les mêmes que pour le texte.>
 
-Lorsque j'ai appris les relations et les fonctions en classe de 6e,
+Lorsque j'ai appris les relations et les fonctions en classe de 6e en mathématiques,
 il y avait un point que je n'aimais pas et qui piégeait nombre de mes
 camarades de classe, la notation pour la composition des fonctions.
 Ainsi, « f suivie de g » se note « g rond f » et non pas « f rond g ».
@@ -737,7 +746,7 @@ et en programmation, par exemple avec Perl 5 :
   $y = sqrt(abs(cos(log($x))))
 
 Seul rayon de soleil dans cette grisaille, les calculatrices
-HP mais aussi TI, qui permettent de coder :
+HP mais aussi TI, qui permettent de coder dans l'ordre naturel :
 
   RCL 0
   LN
@@ -751,7 +760,7 @@ appris, ou Smalltalk que j'ai à peine pratiqué.
 
 Et maintenant, il y a aussi Perl 6 :
 
-  $y = $x.log.cos.abs.sqrt.floor;
+  $y = $x.log.cos.abs.sqrt;
 
 =head3 Transformée schwartzienne
 
@@ -804,7 +813,7 @@ il suffit d'écrire
   $donnée.grandeur = 1.0;
 
 et le tour est joué ! Éh bien non, ça plante encore, cette fois-ci
-parce que paraît-il on veut mettre un C<(Rat)> dans un C<(Num)> !
+parce que paraît-il on veut mettre un C<(Rat)>, c'est-à-dire un rationnel, dans un C<(Num)> !
 Je m'en suis tiré d'abord avec une conversion explicite :
 
   $donnée.grandeur = 1.Num;
@@ -822,6 +831,8 @@ Astucieux, mais cela ne m'aide pas. Et il y a les autres qui écrivent
 Beaucoup plus intéressant. J'ai donc écrit
 
   $donnée.grandeur = 1e0;
+
+et c'est S<passé !>
 
 =head3 Références
 
@@ -865,7 +876,7 @@ le 17 mars. J'ai pu constater que l'auteur du module MongoDB pour Perl 6
 s'était remis au travail fin avril. Les bugs que je signale ont peut-être
 disparu (et d'autres sont apparus...). Je n'ai pas voulu prendre le risque
 de réinstaller le module pendant que je réalisais mes programmes et que je
-rédigeais mon exposé. Je referai une nouvelle isntallation au moment où je
+rédigeais mon exposé. Je referai une nouvelle installation au moment où je
 migrerai vers xubuntu 18.04.
 
 =head3 Installation du 17 mars 2018
@@ -930,8 +941,10 @@ problème, une histoire de promesse non tenue. Après moult tentatives, j'en vie
 
 c'est-à-dire, prendre tous les attributs du document, sauf l'attribut C<_id>.
 Pourquoi cette exclusion ? Je ne sais pas. Tout ce que je sais, c'est que si l'on
-exclut C<_id> ça fonctionne assez souvent, si l'on inclut implicitement C<_id> ça
+exclut C<_id> ça fonctionne presque toujours (*), si l'on inclut implicitement C<_id> ça
 ne fonctionne jamais. Donc maintenant, je code cette exclusion dans tous mes C<find>.
+
+(*) Presque toujours, car il m'arrive de faire des erreurs sur d'autres points.
 
 Tiens, j'ai mentionné S<« moult> S<tentatives »>. Le problème, c'est qu'à force de
 zigzaguer dans les méandres de la syntaxe, j'ai effectué plusieurs tentatives identiques.
@@ -959,7 +972,8 @@ Donc, alors que j'ai installé Bailador. Que S<dire ?> J'ai installé le module,
 à raconter.
 
 Il faut dire que mon utilisation de Bailador est aussi rustique que l'utilisation 
-de Dancer2 que j'ai présentée l'an dernier. Si vous vous attendez à avoir autant
+de Dancer2 que j'ai présentée l'an dernier. Plus rustique même, puisque je n'utilise
+pas de formulaires HTML. Si vous vous attendez à avoir autant
 L<de modules pour Bailador|https://modules.perl6.org/t/WEB>
 que ce dont vous disposez
 L<pour Dancer2|https://metacpan.org/search?q=Dancer2>,
@@ -969,4 +983,4 @@ il va falloir attendre un peu (et, pourquoi pas, contribuer à l'effort).
 
 Texte diffusé sous la licence CC-BY-NC-ND : Creative Commons avec clause de paternité, excluant l'utilisation commerciale et excluant la modification. 
 
-Certaines illustrations sont diffusées avec une licence libre différente. Celle-ci est mentionnée à la suite de l'illustration.
+Certaines illustrations sont diffusées avec une licence différente. Celle-ci est mentionnée à la suite de l'illustration.
