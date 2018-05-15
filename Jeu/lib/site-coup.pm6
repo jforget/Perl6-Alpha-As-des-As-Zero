@@ -53,6 +53,11 @@ our sub affichage(Str $dh, Int $tour, Str $id, BSON::Document $partie, @coup, @s
   $dégâts   = $coup_1<potentiel> - $pot_2;
   $dégâts_e = $coup_e<potentiel> - $pot_f;
 
+  my Str $tirage = '';
+  if $coup_1<tirage>:exists {
+    $tirage = " (tirage $coup_1<tirage>)";
+  }
+
   my Num $perspicacité;
   my Num $psycho-rigidité;
   my Str $qualificatif;
@@ -72,11 +77,14 @@ our sub affichage(Str $dh, Int $tour, Str $id, BSON::Document $partie, @coup, @s
     %note_manoeuvre{$man} = 0;
   }
 
-  @similaires ==> sort { $^a<manoeuvre> leg $^b<manoeuvre> } \
+  @similaires ==> grep { $_<manoeuvre>:exists } \
+              ==> sort { $^a<manoeuvre> leg $^b<manoeuvre> } \
               ==> my @simil;
   my $cumul = 0;
   my $manoeuvre-précédente = '';
   for @simil -> BSON::Document $sim {
+    next unless $sim<manoeuvre>:exists;
+    
     my $résultat = $sim<résultat> // '';
     my $délai    = $sim<délai>    // '';
 
@@ -143,7 +151,7 @@ our sub affichage(Str $dh, Int $tour, Str $id, BSON::Document $partie, @coup, @s
   </p>
   <h2>Coup $dh $tour $id </h2>
   <p>Page de départ $coup_1<page> </a>
-  <p>Manœuvre de $coup_1<identité>&nbsp;: $coup_1<manoeuvre>, de $coup_e<identité>&nbsp;: $coup_e<manoeuvre> </p>
+  <p>Manœuvre de $coup_1<identité>&nbsp;: $coup_1<manoeuvre>$tirage, de $coup_e<identité>&nbsp;: $coup_e<manoeuvre> </p>
   <p>Page d'arrivée $coup_2<page> </a>
   <p>Dégâts encaissés&nbsp;: $dégâts sur $id ($coup_1<potentiel> -&gt; $pot_2), $dégâts_e sur $coup_e<identité>  ($coup_e<potentiel> -&gt; $pot_f)</p>
   <h2>Choix</h2>
