@@ -241,6 +241,7 @@ Le résultat est celui de la page 96.
 
 =for html
 <img src='voitures-3.png' width='45%' alt="Position d'arrivée des deux voitures" />
+<img src='Page-96-GB.png' alt="Livret britannique page 96" width='45%' />
 
 I<Image personnelle. Les conditions de licence sont les mêmes que pour le texte.>
 I<Copie d'écran provenant du brevet USP 4,378,118, dans le domaine public depuis 2001.>
@@ -363,7 +364,8 @@ Lors d'un tour de jeu, vous devez garder à l'esprit :
 
 =back
 
-On dit que la mémoire à court terme d'un humain contient 7 ± 2 informations. À moins d'être
+On dit que la mémoire à court terme d'un humain contient 7 ± 2 informations (à part les serveurs
+de café, qui dépassent largement cette valeur). À moins d'être
 dans la catégorie inférieure, il est possible de jouer à l'I<As des As> sans avoir besoin
 de noter quoi que ce soit, ni de déplacer des marqueurs sur des tableaux. Il est possible
 de jouer à la plage, il est possible de jouer à côté de la machine à café,
@@ -487,7 +489,7 @@ Le programme joueur fonctionne en deux modes. Il y a le mode entraînement
 où le choix est totalement aléatoire. Et il y a le mode combat où le
 programme joueur extrait de la base de données les situations analogues
 pendant les parties précédentes pour savoir ce qui a bien marché et
-ce qui n'a pas donné de bons résultats. Il attribut des probabilités 
+ce qui n'a pas donné de bons résultats. Il attribue des probabilités 
 plus ou moins élevées aux
 différentes manœuvres proposées par le programme arbitre et tire au
 hasard une manœuvre, en tenant compte de la loi de probabilité attribuée.
@@ -501,7 +503,7 @@ telle commande sur telle page de départ.
 =head3 Communication inter-processus
 
 Ainsi donc, il y a trois processus qui s'échangent des informations.
-Ai-je eu recours à des sockets ? À des messages transmis par une queue ?
+Ai-je eu recours à des sockets ? À des messages mis en file d'attente ?
 Non. Je me suis inspiré d'un mécanisme que l'on voit couramment
 dans les romans d'espionnage de John le Carré ou du même style,
 la S<« boîte> aux S<lettres »>. L'officier traitant donne ses instructions
@@ -516,7 +518,6 @@ Le processus joueur lit l'enregistrement qui le concerne, le met
 à jour et le réécrit dans la base. Puis l'arbitre lit l'enregistrement
 modifié.
 
-
 Comme dans les romans de John le Carré, si un processus ne trouve pas
 l'enregistrement attendu dans la boîte aux lettres, il attend un petit peu
 et il refait une tentative de lecture. Et comme dans les romans de John le Carré,
@@ -524,6 +525,8 @@ au bout d'un nombre important de tentatives, le processus considère qu'il s'est
 quelque chose de louche et il arrête toute activité. La métaphore s'arrête là, car
 d'un côté l'espion se fait exfiltrer et survit, de l'autre côté le processus
 effectue un C<die>.
+
+S« Quand> on a un marteau, tout ressemble à un S<clou. »> 
 
 =head1 Perl 6
 
@@ -620,6 +623,19 @@ dans le cas de "spectest". En effet, on sait que Rakudo Star n'implémente pas c
 de Perl 6, ce qui se traduit par des erreurs dans "spectest". C'est normal.
 
 =head2 Utilisation
+
+=head3 Identifiants
+
+Il paraît qu'avec Perl 5, on pouvait utiliser des lettres accentuées dans les
+identifiants de variable ou de fonction. Je n'ai jamais osé le faire avec Perl 5,
+mais je ne m'en suis pas privé avec Perl 6. De plus, il est possible d'utiliser
+le tiret à l'intérieur d'un identifiant à la place du souligné. Avec quelques 
+limites, par exemple le tiret ne peut pas être suivi d'un chiffre, il faut que
+ce soit une lettre.
+
+L'inconvénient, c'est que j'ai tendance à déclarer une variable C<$code-retour>
+et à l'appeler ensuite C<$code_retour> (ou l'inverse). Je devrais utiliser
+plus souvent l'auto-complétion d'Emacs (C<M-/>).
 
 =head3 Indices négatifs
 
@@ -764,11 +780,159 @@ Et maintenant, il y a aussi Perl 6 :
 
 =head3 Transformée schwartzienne
 
-A COMPLETER
+Si vous connaissez déjà la transformée schwartzienne, allez directement
+L<au paragraphe suivant|"Transformation schwartzienne en Perl 6">.
+
+=head4 Rappel de la Transformée schwartzienne en Perl 5
+
+Supposons que je veuille trier une liste de chaînes de caractères en fonction
+d'une date qui s'y trouve. La solution basique consiste à écrire :
+
+  my @t = split /---\n/, <<'EOF';
+  Georges Guynemer disparaît le 11 septembre 1917 aux environs de Poelcappelle.
+  ---
+  Le 21 avril 1918, Manfred von Richthofen est abattu à Vaux-sur-Somme.
+  L'a-t-il été par le canadien Albert Roy Brown ou bien par les artilleurs de la 53e Batterie Australienne ?
+  ---
+  Première victoire aérienne à l'est : Petr Nicolaevitch Nesterov a volontairement percuté un Albatros autrichien le 8 septembre 1914.
+  ---
+  5 octobre 1914, première victoire en combat aérien par Frantz et Quenault sur le front ouest.
+  ---
+  Charles Nungesser, un temps surnommé « le Hussard de la Mors », est plus connu pour sa tentative de traversée
+  de l'Atlantique le 8 mai 1927 et qui s'est terminée tragiquement que pour ses 45 victoires.
+  ---
+  La RAF a été créée le 1er avril 1918. Quel sens de l'humour !
+  ---
+  Sarajevo, 28 juin 1914 : un attentat qui a fait plus de 18 millions de morts et combien de blessés...
+  ---
+  11 novembre 1918, le cauchemar s'interrompt pour une vingtaine d'années.
+  EOF
+
+  my %mois = qw/janvier  1    février   2   mars      3
+                avril    4    mai       5   juin      6
+                juillet  7    août      8   septembre 9
+                octobre 10    novembre 11   décembre 12/;
+  my $re = join '|', keys %mois;
+
+  sub extr {
+    my ($ch) = @_;
+    if ($ch =~ /(\d{1,2})(?:er)?\s+($re)\s+(\d{4})/) {
+      return $3 * 10000 + $mois{$2} * 100 + $1;
+    }
+    else {
+      return 1e8;
+    }
+  }
+
+  my @t1 = sort { extr($a) <=> extr($b) } @t;
+  say join "\n", @t1;
+
+En mettant un mouchard dans la fonction de comparaison, on constate qu'elle est appelée 15 fois,
+donc la fonction C<extr> est appelée 30 fois, pour trier 8 paragraphes. L'idée est donc de 
+remplacer 
+
+  my @t1 = sort { extr($a) <=> extr($b) } @t;
+
+par 
+  my @t0 = map {  [ $_, extr($_) ] } @t;
+  my @t1 = sort { $a->[1] <=> $b->[1] } @t0;
+  my @t2 = map { $_->[0] } @t1;
+
+Ainsi, la fonction d'extraction est appelée 8 fois au lieu de 30 et son résultat est conservé.
+Mais habituellement, on écrit de façon plus concise et plus synthétique :
+
+  my @t2 = map { $_->[0] }
+           sort { $a->[1] <=> $b->[1] }
+           map {  [ $_, extr($_) ] } @t;
+
+=head4 Transformation schwartzienne en Perl 6
+
+Le problème avec cette expression concise,
+
+  my @t2 = map { $_->[0] }
+           sort { $a->[1] <=> $b->[1] }
+           map {  [ $_, extr($_) ] } @t;
+
+c'est qu'il faut la lire de bas en haut ou de droite à gauche, dans
+le sens inverse de la lecture normale (pour nous, habitués de l'alphabet
+latin). C'est comme la composition des fonctions avec la notation
+héritée d'Euler.
+
+Avec Perl 6, nous avons l'opérateur I<feed>, ou C<< ==> >>, qui permet
+de faire comme les I<pipes> Unix, travailler de gauche à droite et
+de haut en bas. Ainsi, le programme devient :
+
+  use v6;
+
+  my @t = split "---\n", q:to/EOF/;
+  Georges Guynemer disparaît le 11 septembre 1917 aux environs de Poelcappelle.
+  ---
+  Le 21 avril 1918, Manfred von Richthofen est abattu à Vaux-sur-Somme.
+  L'a-t-il été par le canadien Albert Roy Brown ou bien par les artilleurs de la 53e Batterie Australienne ?
+  ---
+  Première victoire aérienne à l'est : Petr Nicolaevitch Nesterov a volontairement percuté un Albatros autrichien le 8 septembre 1914.
+  ---
+  5 octobre 1914, première victoire en combat aérien par Frantz et Quenault sur le front ouest.
+  ---
+  Charles Nungesser, un temps surnommé « le Hussard de la Mors », est plus connu pour sa tentative de traversée
+  de l'Atlantique le 8 mai 1927 et qui s'est terminée tragiquement que pour ses 45 victoires.
+  ---
+  La RAF a été créée le 1er avril 1918. Quel sens de l'humour !
+  ---
+  Sarajevo, 28 juin 1914 : un attentat qui a fait plus de 18 millions de morts et combien de blessés...
+  ---
+  11 novembre 1918, le cauchemar s'interrompt pour une vingtaine d'années.
+  EOF
+
+  my %mois = qw/janvier  1    février   2   mars      3
+                avril    4    mai       5   juin      6
+                juillet  7    août      8   septembre 9
+                octobre 10    novembre 11   décembre 12/;
+
+  my $re = rx/janvier|février|mars|avril|mai|juin|juillet|août|septembre|octobre|novembre|décembre/;
+
+  sub extr(Str $ch) {
+    if $ch ~~ /(\d+)'er'? \s+ ($re) \s+ (\d+)/ {
+      return $2 × 10000 + %mois{$1} × 100 + $0;
+    }
+    else {
+      return 1e8;
+    }
+  }
+
+  @t ==> map { [ $_, extr($_) ] } \
+     ==> sort { $^a[1] <=> $^b[1] } \
+     ==> map { $_[0] } \
+     ==> my @t1;
+
+  say join "\n", @t1;
 
 =head3 Alignement vertical
 
-A COMPLETER
+Pour moi, l'alignement vertical dans le code est très important pour la compréhension
+par un humain. Je ne parle pas simplement de l'indentation du premier caractère autre
+que l'espace, je parle des éléments qui se répêtent d'une ligne à l'autre.
+Par exemple, en Perl 5, je pourrais écrire :
+
+  $longueur[$n] = $longueur[$n - 1] + $dx;
+  $largeur [$n] = $largeur [$n - 1] + $dy;
+
+En Perl 6, il est interdit d'écrire :
+
+  @longueur[$n] = @longueur[$n - 1] + $dx;
+  @largeur [$n] = @largeur [$n - 1] + $dy;
+
+Car il ne doit pas y avoir d'espace entre le nom du tableau et le crochet ouvrant
+qui donne l'indice. Il faudrait donc écrire ce code horrible :
+
+  @longueur[$n] = @longueur[$n - 1] + $dx;
+  @largeur[$n] = @largeur[$n - 1] + $dy;
+
+Moi, je me suis résigné à écrire
+
+  @longueur[$n] = @longueur[$n - 1] + $dx;
+  @largeur[ $n] = @largeur[ $n - 1] + $dy;
+
 
 =head3 Expressions régulières
 
