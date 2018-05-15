@@ -11,11 +11,14 @@
 #
 
 use v6;
+use lib 'lib';
 use BSON::Document;
 use MongoDB::Client;
 use MongoDB::Database;
 use MongoDB::Collection;
 use JSON::Class;
+
+use acces-mongodb;
 
 my MongoDB::Client     $client  .= new(:uri('mongodb://'));
 my MongoDB::Database   $database = $client.database('Ace_of_Aces');
@@ -64,7 +67,58 @@ sub MAIN (Str :$date-heure, Str :$identité) {
       last;
     }
     my $choix = $coup<choix>;
-    $coup<manoeuvre> = $choix.pick;
+
+    if $pilote.psycho-rigidité == 1E0 {
+      $coup<manoeuvre> = $choix.pick;
+    }
+    else {
+      my @similaires; # coups similaires, à partir de la même page
+      my @id = ~ $pilote.id;
+      @id.push($pilote.avion);
+      @similaires = acces-mongodb::coups-page(~ $coup<page>, @id, ~ $date-heure);
+      if @similaires.elems == 0 {
+        $coup<manoeuvre> = $choix.pick;
+      }
+      else {
+        my %note_manoeuvre;
+        for $coup<choix>[*] -> $man {
+          %note_manoeuvre{$man} = 0;
+        }
+
+        @similaires ==> grep { $_<manoeuvre>:exists } \
+                    ==> sort { $^a<manoeuvre> leg $^b<manoeuvre> } \
+                    ==> my @simil;
+        my $cumul = 0;
+        my $manoeuvre-précédente = '';
+        for @simil -> BSON::Document $sim {
+          my $résultat = $sim<résultat> // '';
+          my $délai    = $sim<délai>    // '';
+
+          if $sim<manoeuvre> ne $manoeuvre-précédente {
+            $cumul = 0;
+            $manoeuvre-précédente = $sim<manoeuvre>;
+          }
+
+          my $note;
+          if $résultat && $délai {
+            $note   = $résultat × $pilote.perspicacité ** $délai;
+            $cumul += $note;
+            if %note_manoeuvre{$sim<manoeuvre>}:exists {
+              %note_manoeuvre{$sim<manoeuvre>} = $cumul;
+            }
+          }
+        }
+        my @manoeuvres = %note_manoeuvre.keys.sort;
+        my @notes = %note_manoeuvre{ @manoeuvres };
+        my @coef = $pilote.psycho-rigidité «**» @notes;
+        my @prob = @coef «/» ([+] @coef);
+        my @rép  = [\+] @prob;
+        my $tirage = 1.rand;
+        my $i = @rép.first( * > $tirage):k;
+        $coup<manoeuvre> = @manoeuvres[$i];
+        $coup<tirage>    = $tirage;
+      }
+    }
     $coup<dh2>       = DateTime.now.Str;
     maj_coup($coup);
     ++ $numéro_coup;
