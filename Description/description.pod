@@ -526,7 +526,8 @@ quelque chose de louche et il arrête toute activité. La métaphore s'arrête l
 d'un côté l'espion se fait exfiltrer et survit, de l'autre côté le processus
 effectue un C<die>.
 
-S« Quand> on a un marteau, tout ressemble à un S<clou. »> 
+S<« Quand> on a un marteau, tout ressemble à un S<clou. »> Certes, mais en procédant de
+la sorte, je n'avais qu'un module avec des bugs qu'il fallait contourner.
 
 =head1 Perl 6
 
@@ -631,7 +632,8 @@ identifiants de variable ou de fonction. Je n'ai jamais osé le faire avec Perl 
 mais je ne m'en suis pas privé avec Perl 6. De plus, il est possible d'utiliser
 le tiret à l'intérieur d'un identifiant à la place du souligné. Avec quelques 
 limites, par exemple le tiret ne peut pas être suivi d'un chiffre, il faut que
-ce soit une lettre.
+ce soit une lettre. On ne peut pas utiliser C<$coef-1>, il faut utiliser C<$coef_1>,
+car C<$coef-1> représente la valeur de C<$coef> diminuée de 1.
 
 L'inconvénient, c'est que j'ai tendance à déclarer une variable C<$code-retour>
 et à l'appeler ensuite C<$code_retour> (ou l'inverse). Je devrais utiliser
@@ -907,6 +909,15 @@ de haut en bas. Ainsi, le programme devient :
 
   say join "\n", @t1;
 
+Juste un point qui me chagrine, la définition de l'expression régulière C<$re>.
+En Perl 5, j'ai I<généré> cette expression régulière à partir du contenu
+de C<%mois>. En Perl 6, j'ai été obligé de taper deux fois le nom des mois,
+une fois pour le hachage, une autre fois pour l'expression régulière.
+Les anglophones utilisent les rétro-acronymes I<DRY> (I<Don't Repeat Yourself>) 
+et I<WET> (I<Write Everything Twice>) pour cela. Évidemment, il vaut mieux
+travailler en I<DRY> qu'en I<WET>. Je ne sais pas comment faire pour ce point
+particulier en Perl 6, mais un jour j'aurai la réponse.
+
 =head3 Alignement vertical
 
 Pour moi, l'alignement vertical dans le code est très important pour la compréhension
@@ -932,6 +943,24 @@ Moi, je me suis résigné à écrire
 
   @longueur[$n] = @longueur[$n - 1] + $dx;
   @largeur[ $n] = @largeur[ $n - 1] + $dy;
+
+Il existe une fonctionnalité intéressante que vous avez aperçue au paragraphe sur 
+la transformation schwartzienne, le I<unspace>. S'il y a un backslash suivi par
+un ou plusieurs caractères blancs (espace, saut de ligne, etc), alors l'interpréteur
+Perl 6 considère qu'il n'y a pas de blanc. Ainsi, les deux lignes suivantes
+sont équivalentes :
+
+  @longueur[$n]
+  @longueur\       [$n]
+
+Cela aurait-il pu me servir dans mon exemple longueur-largeur ? Non, car l'ajout
+du backslash pour masque le blanc dans la ligne "largeur" aurait créé un décalage d'un caractère supplémentaire.
+Il aurait donc fallu insérer un blanc dans la ligne "longueur", ce qui en cascade
+aurait nécessité d'insérer un autre backslash dans la ligne "longueur". Cela aurait
+donné au final :
+
+  @longueur\ [$n] = @longueur\ [$n - 1] + $dx;
+  @largeur\  [$n] = @largeur\  [$n - 1] + $dy;
 
 
 =head3 Expressions régulières
@@ -998,6 +1027,15 @@ Beaucoup plus intéressant. J'ai donc écrit
 
 et c'est S<passé !>
 
+=head3 Undef et (nil)
+
+Un autre point qu'il faudra que je règle, c'est le typage des paramètres 
+dans les fonctions. Si la déclaration de la fonction attribue
+un type à un paramètre et qu'on appelle cette fonction avec C<undef>,
+le programme plante parce que l'on fournit une valeur de type C<(Nil)>
+à un paramètre de type C<(Num)> (par exemple). Dans ce cas, je me résigne
+pour l'instant à ne pas spécifier de type.
+
 =head3 Références
 
 Lorsque j'ai lu les livres qui m'ont servi à apprendre le langage,
@@ -1021,8 +1059,6 @@ L'équivalent en Perl 5 est
 
 Je ne me suis pas privé d'utiliser des références dans mes programmes, mais j'aurais
 bien aimé avoir l'aval des gourous sur la question.
-
-=head3 Undef et (nil)
 
 =head3 Opérateurs spécifiques
 
@@ -1123,7 +1159,7 @@ voulez vérifier).
 
 =head3 Installation du xx mai ou juin 2018
 
-À faire.
+À faire quand j'aurai migré ma machine vers une distribution récente.
 
 =head2 Bailador
 
@@ -1142,6 +1178,39 @@ L<de modules pour Bailador|https://modules.perl6.org/t/WEB>
 que ce dont vous disposez
 L<pour Dancer2|https://metacpan.org/search?q=Dancer2>,
 il va falloir attendre un peu (et, pourquoi pas, contribuer à l'effort).
+
+=head1 RETOUR D'EXPÉRIENCE SUR L'AS DES AS
+
+Un point qui m'a surpris et auquel j'aurai pu penser, c'est la réaction
+des pilotes en page 223 en mode combat.  Le but était de permettre
+à un avion déjà bien amoché de fuir pour survivre et pour n'accorder
+qu'un demi-point de victoire, au lieu de continuer à combattre avec
+un net désavantage et d'accorder un point de victoire entier à l'ennemi.
+
+Ce qui se passe en réalité, c'est que le choix de la fuite donne en moyenne
+un résultat S<négatif :> -0.5 PV si l'adversaire préfère continuer le combat,
+0 PV si l'advesaire souhaite lui aussi fuir. En revanche, la poursuite
+du combat donne autant de chances de gagner le combat que de le perdre.
+Donc en moyenne, un résultat nul, meilleur que la moyenne des résultats
+de la fuite. C'est ainsi que les pilotes sont amenés à choisir la poursuite
+du combat.
+
+Ce qu'il faudrait faire, c'est moduler la note des résultats antérieurs
+en comparant le potentiel restant de la situation actuelle et celui de ces
+coups antérieurs. Si un pilote est en page 223 avec tout juste 2 points de
+vie sur les 12 initiaux, on privilégiera les coups antérieurs avec 1, 2 ou
+3 points de vie, tout en minimisant l'importance des coups antérieurs avec
+8 points de vie ou plus. De la sorte, peut-être que les pilotes préféreront
+fuir.
+
+À compléter.
+
+=head1 CONCLUSION
+
+J'aime beaucoup Perl 6. J'avais quelques projets pour lesquels
+j'envisageais d'utiliser APL, je pense que ces projets vont utiliser Perl 6
+à la place. J'ai encore des lacunes à combler pour une bonne utilisation
+de Perl 6, mais c'est juste une question de temps.
 
 =head1 LICENCE
 
