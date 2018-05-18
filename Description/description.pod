@@ -491,7 +491,7 @@ communiquant avec deux processus joueurs. Les deux processus
 joueurs fonctionnent avec le même programme Perl 6, mais avec des
 arguments d'appel différents.
 
-Pour rester dans la même optique que Google Alpha Go Zero et Google Alpha Chess Zera,
+Pour rester dans la même optique que Google Alpha Go Zero et Google Alpha Chess Zero,
 le programme joueur n'a aucune connaissance intrinsèque des mécanismes de vol
 et des doctrines de combat aérien. Il se contente de recevoir une liste
 de manœuvres de l'arbitre, d'en sélectionner une et de renvoyer la réponse
@@ -510,7 +510,7 @@ Le programme arbitre, lui, a une meilleure connaissance des mécanismes
 de vol et de tir, mais rien sur la tactique ni la doctrine.
 C'est lui qui lit le fichier JSON créé par les programmes de préparation
 et qui connaît ainsi à quelle page on aboutit lorsque l'on exécute
-telle commande sur telle page de départ.
+telle manœuvre sur telle page de départ.
 
 =head3 Communication inter-processus
 
@@ -533,7 +533,7 @@ modifié.
 Comme dans les romans de John le Carré, si un processus ne trouve pas
 l'enregistrement attendu dans la boîte aux lettres, il attend un petit peu
 et il refait une tentative de lecture. Et comme dans les romans de John le Carré,
-au bout d'un nombre important de tentatives, le processus considère qu'il s'est passé
+au bout d'un nombre important de tentatives infructueuses, le processus considère qu'il s'est passé
 quelque chose de louche et il arrête toute activité. La métaphore s'arrête là, car
 d'un côté l'espion se fait exfiltrer et survit, de l'autre côté le processus
 effectue un C<die>.
@@ -847,7 +847,8 @@ remplacer
 
   my @t1 = sort { extr($a) <=> extr($b) } @t;
 
-par 
+par
+
   my @t0 = map {  [ $_, extr($_) ] } @t;
   my @t1 = sort { $a->[1] <=> $b->[1] } @t0;
   my @t2 = map { $_->[0] } @t1;
