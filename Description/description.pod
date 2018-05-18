@@ -406,7 +406,7 @@ I<Photos personnelles. Les conditions de licence sont les mêmes que pour le tex
 
 =end html
 
-I<Photos personnelles reprenant une page dans les deux livrets de Jet Eagles, copyright © 1990 Nova Game Desins, Inc.>
+I<Photos personnelles reprenant une page dans les deux livrets de Jet Eagles, copyright © 1990 Nova Game Designs, Inc.>
 
 Toutes ces variantes proposent également des règles avancées, pour
 l'altitude par exemple, ou le jeu 2-contre-2, ou
@@ -436,6 +436,18 @@ avant de rédiger ces explications, I<Lost Worlds>.
 
 I<Photos personnelles reprenant « Le Shérif et le Hors-la-loi », Copyright © 1982 Nova Games Design Inc, copyright © 1986 Emithill Limited,
 copyright © 1986 Gallimard pour la traduction française et pour les illustrations de couverture.>
+
+=begin html
+
+<img src='Mai-68-A.jpg' alt="Mai 68, première édition" width='45%' />
+<img src='Mai-68-B.jpg' alt="Mai 68, deuxième édition" width='45%' />
+
+=end html
+
+I<Photos personnelles reprenant le jeu "Mai 68" de F. Nédelec et D. Vitale, Copyright © 1980, 1982, 1988>
+
+Oups ! Qu'est-ce que cela vient faire dans cet exposé sur le centenaire de la RAF et sur
+le centenaire de l'armistice ?
 
 Pour en revenir au combat aérien, puisque le brevet est tombé dans le domaine public,
 n'importe qui peut publier des extensions dans la lignée :
@@ -1060,6 +1072,17 @@ L'équivalent en Perl 5 est
 Je ne me suis pas privé d'utiliser des références dans mes programmes, mais j'aurais
 bien aimé avoir l'aval des gourous sur la question.
 
+Et pour convertir une référence de liste en liste ? Impossible d'écrire :
+
+  my $ref = <A B C D E F>;
+  my @liste = $ref;
+
+car cela crée une liste avec un seul élément, la référence à une liste.
+Il faut en fait écrire :
+
+  my $ref = <A B C D E F>;
+  my @liste = $ref[*];
+
 =head3 Opérateurs spécifiques
 
 Une autre lacune, mais qui est restée pour l'instant théorique pour mes besoins, c'est
@@ -1179,9 +1202,9 @@ que ce dont vous disposez
 L<pour Dancer2|https://metacpan.org/search?q=Dancer2>,
 il va falloir attendre un peu (et, pourquoi pas, contribuer à l'effort).
 
-=head1 RETOUR D'EXPÉRIENCE SUR L'AS DES AS
+=head1 Retour d'expérience sur l'As des As
 
-Un point qui m'a surpris et auquel j'aurai pu penser, c'est la réaction
+Un point qui m'a surpris et auquel j'aurais pu penser, c'est la réaction
 des pilotes en page 223 en mode combat.  Le but était de permettre
 à un avion déjà bien amoché de fuir pour survivre et pour n'accorder
 qu'un demi-point de victoire, au lieu de continuer à combattre avec
@@ -1189,7 +1212,7 @@ un net désavantage et d'accorder un point de victoire entier à l'ennemi.
 
 Ce qui se passe en réalité, c'est que le choix de la fuite donne en moyenne
 un résultat S<négatif :> -0.5 PV si l'adversaire préfère continuer le combat,
-0 PV si l'advesaire souhaite lui aussi fuir. En revanche, la poursuite
+0 PV si l'adversaire souhaite lui aussi fuir. En revanche, la poursuite
 du combat donne autant de chances de gagner le combat que de le perdre.
 Donc en moyenne, un résultat nul, meilleur que la moyenne des résultats
 de la fuite. C'est ainsi que les pilotes sont amenés à choisir la poursuite
@@ -1205,12 +1228,19 @@ fuir.
 
 À compléter.
 
-=head1 CONCLUSION
+=head1 Conclusion
 
 J'aime beaucoup Perl 6. J'avais quelques projets pour lesquels
 j'envisageais d'utiliser APL, je pense que ces projets vont utiliser Perl 6
 à la place. J'ai encore des lacunes à combler pour une bonne utilisation
 de Perl 6, mais c'est juste une question de temps.
+
+Quant au choix de l'As des As pour un projet dans le genre Google Alpha Go Zero,
+il faut avoir à l'esprit que c'est un jeu beaucoup plus simple que le go
+ou les échecs. Plus complexe que le tic-tac-toe certes, mais largement plus simple
+de plusieurs ordres de grandeur que les deux jeux classiques. C'est pour cela
+que j'ai pu créer un S<« Alpha> As des As S<Zéro »> sur un datacenter constitué
+d'un seul PC de puissance moyenne.
 
 =head1 LICENCE
 
