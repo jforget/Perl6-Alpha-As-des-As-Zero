@@ -5,7 +5,7 @@
 =head1 Introduction
 
 Voici la présentation que j'ai donnée aux Journées Perl 2018, le 18 mai 2018.
-J'y ajoute certaines réflexions que l'assistance m'a faires lors de l'exposé.
+J'y ajoute certaines réflexions que l'assistance m'a faites lors de l'exposé.
 
 Je cherchais un projet utilisant Perl 6 et MongoDB. J'ai donc exhumé des tréfonds
 de ma mémoire une idée consistant à écrire un programme jouant à l'As des As.
@@ -94,6 +94,8 @@ Si cela fait « crrr crrr crrr » voyez page 33.
 =for html
 </blockquote>
 
+(Le texte est évidemment apocryphe, mais le principe est conservé.)
+
 Dans les années 1970, j'ai vu à la télévision le sketch d'un duo d'humoristes
 sur « le dictionnaire le plus petit du monde ». Ce qui prend de la place dans un dictionnaire
 ce sont les définitions. Donc, en éliminant les définitions, on peut imprimer un
@@ -144,7 +146,7 @@ I<Photo personnelle. Les conditions de licence sont les mêmes que pour le texte
 =head2 L'As des As
 
 En 1981, un dénommé Alfred Leonardi a déposé un brevet pour un
-nouveau type de jeu. Au lieu de réunir les deux joueurs sur une même
+nouveau type de jeu, mis au point avec Douglas Kaufman. Au lieu de réunir les deux joueurs sur une même
 carte où ils poussent des pions, chaque joueur est muni d'un livret.
 
 =for HTML
@@ -155,7 +157,7 @@ Licence L<Creative Commons Attribution 3.0 Unported, CC BY 3.0|https://creativec
 
 =head3 Aperçu des règles
 
-Le brevet donne un exemple de tour de jeu. Les deux joueurs commencent page 1. Dans
+Le brevet donne un exemple de tour de jeu. Les deux joueurs commencent le tour page 1. Dans
 les deux livrets, cette page montre que les deux avions ont le même cap et
 que le DR1 est dans les 4 heures du Camel, c'est-à-dire que le Camel est dans
 les 10 heures du DR1.
@@ -335,7 +337,7 @@ faire descendre et d'accorder ainsi une victoire complète à son adversaire.
 
 =head3 Autre cas particulier, la poursuite
 
-Lorsqu'un avion est dans le quadrant arrièrre d'un autre (4 à 8 heures) et que
+Lorsqu'un avion est dans le quadrant arrière d'un autre (4 à 8 heures) et que
 son cap est identique ou presque, alors on dit qu'il poursuit l'autre avion.
 C'était le cas sur la page 1 présentée ci-dessus. Pour des raisons pédagogiques,
 j'ai préféré faire le silence sur cette particularité.
@@ -388,6 +390,16 @@ il est possible de jouer dans une salle d'attente, il est possible
 de jouer dans le bus. Et si vous êtes dans une catégorie supérieure pour cette faculté,
 vous pouvez même jouer dans le bus tout en gardant un œil sur les arrêts restants avant
 votre destination.
+
+Lorsque j'ai découvert le jeu, je me suis dit que finalement, ce jeu consistait à combiner des
+nombres (les numéros de page) et des symboles (les manœuvres) pour obtenir d'autres nombres.
+L'imaage figurant sur chaque page a  pour but d'aider le joueur humain à choisir le bon symbole
+de manœuvre, du moment que ce joueur a une idée suffisamment précise du vol d'un avion et qu'il connaît
+les Dicta Boelke, les conseils de Sailor Malan, l'ouvrage I<No Guts, No Glory> de S<« Boots »> Blesse
+et autres livres du même genre. Il est possible d'enlever tout cet habillage aéronautique pour ne
+conserver que le mécanisme abstrait reposant sur un automate à états finis éventuellement mâtiné 
+d'une dose de fonction I<random>. D'où l'idée d'un programme jouant à ce jeu sans rien connaître
+du contexte réel, mais se basant uniquement sur une analyse statistique des parties passées.
 
 =head3 Extensions
 
@@ -527,6 +539,25 @@ C'est lui qui lit le fichier JSON créé par les programmes de préparation
 et qui connaît ainsi à quelle page on aboutit lorsque l'on exécute
 telle manœuvre sur telle page de départ.
 
+=head3 Base de données
+
+Le choix de la base de données MongoDB s'appuie sur les mêmes raisons que celles
+que j'ai données lors de ma présentation aux Journées Perl 2017. J'en sais déjà
+suffisamment sur les manipulations de données en SQL, alors que j'ai plus à découvrir
+avec les bases NoSQL. Il aurait été possible d'écrire les programmes avec une base
+de données SQLite ou une autre base SQL, mais je trouvais cela moins intéressant.
+
+Lors de ma présentation, on m'a fait remarquer que MongoDB permet de stocker des
+images, ce qui est intéressant pour un jeu tel que l'As des As, basé sur des images
+représentant des avions. Le stockage des images n'a pas joué dans mon choix de MongoDB.
+Je n'ai jamais eu l'intention de recopier les images dans la base de données.
+
+Notons que certaines données sont stockées dans un fichier texte avec la syntaxe S<JSON :>
+les caractéristiques  des avions. Au début, c'était la même chose pour les pilotes, qui
+figuraient dans des fichiers JSON. Puis je me suis dit que c'était plus facile dans certains 
+cas si les pilotes étaient stockés dans une collection de la base MongoDB, en plusdu fichier
+JSON.
+
 =head3 Communication inter-processus
 
 Ainsi donc, il y a trois processus qui s'échangent des informations.
@@ -650,6 +681,24 @@ Notons qu'il y a des erreurs, mais que je suis passé outre. Et je pense que c'e
 dans le cas de "spectest". En effet, on sait que Rakudo Star n'implémente pas complètement la spécification
 de Perl 6, ce qui se traduit par des erreurs dans "spectest". C'est normal.
 
+=head3 Autres témoignages et remarques
+
+On m'a fait remarquer que la compilation des sources nécessite beaucoup d'accès disque
+et que l'utilisation d'une machine virtuelle pénalise ainsi la compilation. Donc les durées
+que j'ai trouvées ne sont pas significatives. Néanmoins, ne croyez pas que ce sera réglé en
+cinq minutes sur votre machine.
+
+Un participant Des journées Perl a essayé de compiler Rakudo Star pendant la conférence.
+Je ne sais pas s'il est passé par l'étape S<rakudo-spectest>, je sais par contre que l'étape
+C<install> lui a pris beaucoup de temps.
+
+Un autre participant, qui utilise Perl 6 depuis plusieurs années et, même, participe à son
+développement, a dit qu'il compilait la version de développement de Rakudo Star chaque jour.
+En fait, il semble que le temps énorme que prend la compilation est dû à l'installation de
+mdules Perl 5 nécessaires pour certaines étapes de cette compilation ou des tests. Donc, si
+l'on compile Rakudo Star tous les matins, les modules utilitaires sont déjà installés et 
+les étapes de la compilation prennent moins de temps que le premier jour.
+
 =head2 Utilisation
 
 =head3 Identifiants
@@ -732,11 +781,12 @@ APL, c'est génial, Perl 6 c'est génial !
 =head3 Opérateurs Unicode
 
 Un autre point que j'aime beaucoup dans APL, c'est que l'on peut
-comparer des valeurs avec ≤ et ≥ au lieu de <= et >=. Et surtout,
-on peut multiplier des nombres avec × au lieu de cette abominable étoile.
+comparer des valeurs avec ≤ et ≥ (U+2264 et U+2265) au lieu de <= et >=. Et surtout,
+on peut multiplier des nombres avec × (U+00D7) au lieu de cette abominable étoile
+que tous les autres langages utilisent.
 Éh bien on peut faire la même chose avec Perl 6 et utiliser ≤ ≥ et ×.
 Lorsque j'ai fait un projet APL en 2014-2015, je m'étais écrit
-une fonction C<apl-insert> en Emaces-Lisp pour insérer des caractères spéciaux dans
+une fonction C<apl-insert> en Emacs-Lisp pour insérer des caractères spéciaux dans
 un source APL sous Emacs. Lorsque j'ai découvert la possibilité
 d'utiliser ≤ ≥ et × en Perl 6, j'ai dupliqué ma fonction dans le
 répertoire Perl 6 sans même purger les caractères APL qui ne
@@ -773,7 +823,7 @@ donc
 
 J'ai beau être accoutumé à cette notation où les fonctions s'emboîtent
 les unes dans les autres de façon que l'ordre chronologique se lit de droite
-à gauche, je persiste à ne pas aimer. Et en plus, la quasi-totalité des
+à gauche, je persiste à ne pas aimer. Et en plus, presque tous les
 langages de programmation ont pris la suite du S<« traducteur> de S<formules »>
 de Backus (FORTRAN) et reprennent allègrement cette monstruosité syntaxique.
 Par exemple, vous prenez une valeur x, vous lui appliquez successivement
@@ -946,6 +996,11 @@ et I<WET> (I<Write Everything Twice>) pour cela. Évidemment, il vaut mieux
 travailler en I<DRY> qu'en I<WET>. Je ne sais pas comment faire pour ce point
 particulier en Perl 6, mais un jour j'aurai la réponse.
 
+Un autre point qui m'ennuie (sans pour autant me chagriner), c'est le fait d'être
+obligé d'ajouter un backslash en fin de ligne pour indiquer que l'instruction
+se poursuit à la ligne suivante. Comme l'a dit une personne dans la salle,
+S<« C'est> un retour quarante ans en S<arrière. »>. Voir le point suivant.
+
 =head3 Alignement vertical
 
 Pour moi, l'alignement vertical dans le code est très important pour la compréhension
@@ -990,10 +1045,24 @@ donné au final :
   @longueur\ [$n] = @longueur\ [$n - 1] + $dx;
   @largeur\  [$n] = @largeur\  [$n - 1] + $dy;
 
+On m'a donné d'autres suggestions pour traiter ce problème. L'une consiste à commettre
+une faute d'orthographe et à écrire soit
+
+  $longuer[$n] = $longuer[$n - 1] + $dx;
+  $largeur[$n] = $largeur[$n - 1] + $dy;
+
+soit 
+
+  $longueur[$n] = $longueur[$n - 1] + $dx;
+  $largeurr[$n] = $largeurr[$n - 1] + $dy;
+
+Une autre suggestion consiste à installer un module qui change la syntaxe de Perl 6 pour admettre
+des espaces là où la syntaxe standard les refuse. Hélas, je n'ai pas retenu le nom du module ni
+celui de son auteur.
 
 =head3 Expressions régulières
 
-La syntaxe des regexps a été remaniée en profondeur. Reportez-vous systématiqement à la
+La syntaxe des regexps a été remaniée en profondeur. Reportez-vous systématiquement à la
 doc lors de vos premières tentatives. Un exemple où je me suis fait avoir.
 Pour tester qu'une chaîne de caractères ne contient que des chiffres 0, 1 et
 5, ne pas écrire
@@ -1007,6 +1076,8 @@ mais
 En fait, en lisant la documentation, la syntaxe est :
 
   if $ch ~~ /^<[015]>$/
+
+Il y a énormément à dire sur ce sujet, il est préférable que je passe à autre chose.
 
 =head3 Typage des valeurs et des variables
 
@@ -1103,7 +1174,26 @@ Il faut en fait écrire :
 
 Une autre lacune, mais qui est restée pour l'instant théorique pour mes besoins, c'est
 la possibilité de créer ses propres opérateurs. Comment définit-on la
-priorité de ces opérateurs par rapport aux opérateurs traditionnels ?
+priorité de ces opérateurs par rapport aux opérateurs S<traditionnels ?>
+
+La réponse a été donnée pendant les Journées Perl. Elle consiste à utiliser
+les S<« traits »> C<is tigher> ou C<is looser>. 
+L<C'est marqué dans la doc|http://design.perl6.org/S06.html#Subroutine_traits>
+à condition de savoir où chercher.
+
+=head3 POD
+
+Je ne me suis pas du tout intéressé à POD. J'ai écrit la documentation de mes
+programmes avec du POD tel que je le codais en Perl 5. La seule différence, 
+c'est qu'il faut obligatoirement une balise C<=begin POD> et une balise C<=end POD>.
+Et il n'y a pas de commande C<perl6doc>, à la place il faut utliser C<perl6>
+avec l'option C<--doc>.
+
+Néanmoins, si vous regardez les statistiques calculées par Github sur mon dépôt, 
+vous verrez que parmi les langages utilisés, Perl 6 est très largement dominant.
+Ce qui veut dire que le présent texte, entièrement écrit en POD version Perl 5,
+n'a pas été pris en compte par les statistiques de Github, voire a été pris
+en compte mais en tant que POD version Perl 6.
 
 =head2 MongoDB
 
@@ -1206,7 +1296,7 @@ Au début, je n'avais pas l'intention de faire du web dynamique. Puis j'ai trouv
 les fichiers HTML, avec les liens hypertextes qui conviennent, c'est plus facile à 
 lire que le résultat d'une requête écrite dans un interpréteur de JavaScript.
 
-Donc, alors que j'ai installé Bailador. Que S<dire ?> J'ai installé le module, j'ai 
+Donc, j'ai installé Bailador. Que S<dire ?> J'ai installé le module, j'ai 
 écrit un programme basé sur Bailador, et ça tourne. Je n'ai rien de croustillant 
 à raconter.
 
@@ -1217,6 +1307,17 @@ L<de modules pour Bailador|https://modules.perl6.org/t/WEB>
 que ce dont vous disposez
 L<pour Dancer2|https://metacpan.org/search?q=Dancer2>,
 il va falloir attendre un peu (et, pourquoi pas, contribuer à l'effort).
+
+Il y a juste un point à ajouter. Ce point n'est pas une conséquence de l'utilisation
+de Bailador, mais je l'ai découvert parce que j'ai décidé d'utiliser Bailador.
+Même si je ne connais rien à l'architecture MVC (I<Model, View, Controller>), j'ai
+décidé de scinder mon programme Bailador en plusieurs fichiers. Le premier, 
+F<site.p6> correspond, je pense, au Contrôleur. Dans un sous-répertoire,
+j'ai F<lib/acces-mongodb.pm6>, correspondant au Modèle. Et j'ai d'autres
+fichiers F<lib/site-coup.pm6>, >lib/site-liste-parties.pm6> et F<lib/site-partie.pm6>
+correspondant aux Vues. J'arrive à appeler les fonctions de F<lib/acces-mongodb.pm6>
+depuis le Contrôleur F<site.p6>, mais pas depuis les Vues F<lib/site-xxx.pm6>.
+J'ai encore quelques notions à apprendre sur les C<use> et les C<require> en Perl 6.
 
 =head1 Retour d'expérience sur l'As des As
 
