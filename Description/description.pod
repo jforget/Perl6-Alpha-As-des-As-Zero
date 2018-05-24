@@ -1314,7 +1314,7 @@ Même si je ne connais rien à l'architecture MVC (I<Model, View, Controller>), 
 décidé de scinder mon programme Bailador en plusieurs fichiers. Le premier, 
 F<site.p6> correspond, je pense, au Contrôleur. Dans un sous-répertoire,
 j'ai F<lib/acces-mongodb.pm6>, correspondant au Modèle. Et j'ai d'autres
-fichiers F<lib/site-coup.pm6>, >lib/site-liste-parties.pm6> et F<lib/site-partie.pm6>
+fichiers F<lib/site-coup.pm6>, F<lib/site-liste-parties.pm6> et F<lib/site-partie.pm6>
 correspondant aux Vues. J'arrive à appeler les fonctions de F<lib/acces-mongodb.pm6>
 depuis le Contrôleur F<site.p6>, mais pas depuis les Vues F<lib/site-xxx.pm6>.
 J'ai encore quelques notions à apprendre sur les C<use> et les C<require> en Perl 6.
