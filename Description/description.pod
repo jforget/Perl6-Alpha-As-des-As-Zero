@@ -2,6 +2,19 @@
 
 =encoding utf-8
 
+=head1 Introduction
+
+Voici la présentation que j'ai donnée aux Journées Perl 2018, le 18 mai 2018.
+J'y ajoute certaines réflexions que l'assistance m'a faires lors de l'exposé.
+
+Je cherchais un projet utilisant Perl 6 et MongoDB. J'ai donc exhumé des tréfonds
+de ma mémoire une idée consistant à écrire un programme jouant à l'As des As.
+Ce n'est que plus tard que j'ai constaté que ce projet pouvait bénéficier de
+l'utilisation de Bailador (la version Perl 6 de Dancer2) et que cela me permettait
+de célébrer le centenaire de la création de la RAF (1er avril 1918) et de la mort
+de Manfred von Richthofen (21 avril 1918) ou, plus approximativement, la disparition 
+de Georges Guynemer (11 septembre 1917) et l'armistice (11 novembre 1918).
+
 =head1 L'As des AS
 
 =head2 Rappel
@@ -40,7 +53,9 @@ et coups avantageux et les positions et coups foireux.
 
 Cette idée ne date pas de 2017 ou 2018, je l'ai déjà rencontrée dans
 les années 1970 avec le tic-tac-toe. Et depuis longtemps j'avais moi-même un projet
-de « machine self-learning », que je vous présente ci-dessous.
+de « machine self-learning », que je vous présente ci-dessous. Et c'était le moment rêvé
+de réaliser ce projet cette année, car 2018 c'est le centenaire de la création
+de la RAF, de la mort au combat de Mannfred von Richthofen et de l'armistice.
 
 =head2 Digression sur les précurseurs des liens hypertextes
 
@@ -447,7 +462,7 @@ copyright © 1986 Gallimard pour la traduction française et pour les illustrati
 I<Photos personnelles reprenant le jeu "Mai 68" de F. Nédelec et D. Vitale, Copyright © 1980, 1982, 1988>
 
 Oups ! Qu'est-ce que cela vient faire dans cet exposé sur le centenaire de la RAF et sur
-le centenaire de l'armistice ?
+le centenaire de S<l'armistice ?> Est-ce que Danny le Rouge a évincé le Baron S<Rouge ?>
 
 Pour en revenir au combat aérien, puisque le brevet est tombé dans le domaine public,
 n'importe qui peut publier des extensions dans la lignée :
@@ -1132,7 +1147,7 @@ cela plante à cause d'un sous-programme qui attend un paramètre C<(Str)> et qu
 reçoit un C<(Int)>. Pour votre gouverne, il s'agit de trois lignes :
 
      debug-message("command done {$command.find-key(0)}");
- 
+
 Je vais donc dans le fichier désigné par le message d'erreur
 (un fichier avec un nom horrible tiré d'un SHA1 ou d'un MD5) et je corrige en
 supprimant les trois lignes en cause. Les messages de débug que je ne sais pas
