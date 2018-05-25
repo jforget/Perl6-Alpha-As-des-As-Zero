@@ -555,7 +555,7 @@ Je n'ai jamais eu l'intention de recopier les images dans la base de données.
 Notons que certaines données sont stockées dans un fichier texte avec la syntaxe S<JSON :>
 les caractéristiques  des avions. Au début, c'était la même chose pour les pilotes, qui
 figuraient dans des fichiers JSON. Puis je me suis dit que c'était plus facile dans certains 
-cas si les pilotes étaient stockés dans une collection de la base MongoDB, en plusdu fichier
+cas si les pilotes étaient stockés dans une collection de la base MongoDB, en plus du fichier
 JSON.
 
 =head3 Communication inter-processus
@@ -1286,6 +1286,39 @@ pas les options C<sort>, C<limit> et C<find>. Et ce n'est pas un problème de ve
 contre 3.x, ces trois options sont mentionnées dans le livre O'Reilly de 2013 (page 68 si vous
 voulez vérifier).
 
+On trouve avec MongoDB une variante du problème évoqué dans le 
+L<paragraphe sur le typage des données|"Typage des valeurs et des variables">.
+MongoDB connaît les entiers C<(Int)> et les flottants C<(Num)>, mais pas les 
+rationnels C<(Rat)>. Le message d'erreur n'est pas très S<clair :>
+
+  2018-05-25 05:31:06.093687 [E]  1: localhost:27017: encode() on 0.5, error: Not yet implemented
+  . At site#sources/9F1921D0AA42F2C1C0229F51082ED0A3E384968C (MongoDB::Wire):112
+  2018-05-25 05:31:06.097117 [E]  1: No server reply on query. At site#sources/C727D6F914B4AE4082E938B9310DC8D2F4CD7B53 (MongoDB::Collection):101 in find()
+  2018-05-25 05:31:06.098900 [E]  1: No cursor returned. At site#sources/BC4819BBBB818C799983157518CA75F0C1A6DFC7 (MongoDB::Database):73 in run-command()
+
+Et si vous voulez le script minimal ayant donné cette erreur, le S<voici :>
+
+  use v6;
+  use BSON::Document;
+  use MongoDB::Client;
+  use MongoDB::Database;
+  use MongoDB::Collection;
+
+  my MongoDB::Client     $client  .= new(:uri('mongodb://'));
+  my MongoDB::Database   $database = $client.database('exemple2');
+  my MongoDB::Collection $coll     = $database.collection('exemple2');
+
+  my BSON::Document $doc .= new: (
+       numéro => 0.5,
+       );
+  my BSON::Document $req .= new: (
+    insert => 'exemple2',
+    documents => [ $doc ],
+    );
+
+  my BSON::Document $result = $database.run-command($req);
+  #say "Création exemple2 ok : ", $result<ok>, " nb : ", $result<n>;
+
 =head3 Installation du xx mai ou juin 2018
 
 À faire quand j'aurai migré ma machine vers une distribution récente.
@@ -1364,3 +1397,4 @@ d'un seul PC de puissance moyenne.
 Texte diffusé sous la licence CC-BY-NC-ND : Creative Commons avec clause de paternité, excluant l'utilisation commerciale et excluant la modification. 
 
 Certaines illustrations sont diffusées avec une licence différente. Celle-ci est mentionnée à la suite de l'illustration.
+
