@@ -1,14 +1,14 @@
 -*- encoding: utf-8 -*-
 
-texte: description-txt.html
+texte: description-fr-txt.html
 
-description-txt.html: description.html
-	perl enlever-images.pl description.html description-txt.html
+description-fr-txt.html: description-fr.html
+	perl enlever-images.pl description-fr.html description-fr-txt.html
 
-html: description.html
+html: description-fr.html
 
-description.html: description.pod
-	pod2html --infile description.pod --outfile description.html 
+description-fr.html: description-fr.pod
+	pod2html --infile description-fr.pod --outfile description-fr.html 
 
 visu: voitures-0.png
 	display voitures-0.png
