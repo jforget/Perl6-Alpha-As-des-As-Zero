@@ -7,7 +7,8 @@
 Voici la présentation que j'ai donnée aux Journées Perl 2018, le 18 mai 2018.
 J'y ajoute certaines réflexions que l'assistance m'a faites lors de l'exposé.
 
-Je cherchais un projet utilisant Perl 6 et MongoDB. J'ai donc exhumé des tréfonds
+Je cherchais un projet utilisant Perl 6 et MongoDB et qui puisse intéresser l'auditoire
+des Journées Perl. J'ai donc exhumé des tréfonds
 de ma mémoire une idée consistant à écrire un programme jouant à l'As des As.
 Ce n'est que plus tard que j'ai constaté que ce projet pouvait bénéficier de
 l'utilisation de Bailador (la version Perl 6 de Dancer2) et que cela me permettait
@@ -98,8 +99,9 @@ Si cela fait « crrr crrr crrr » voyez page 33.
 
 Dans les années 1970, j'ai vu à la télévision le sketch d'un duo d'humoristes
 sur « le dictionnaire le plus petit du monde ». Ce qui prend de la place dans un dictionnaire
-ce sont les définitions. Donc, en éliminant les définitions, on peut imprimer un
-dictionnaire complet sur un livre de poche. Exemple
+ce sont les définitions. Le personnage de l'un des humoristes avait pu
+imprimer un dictionnaire au format de poche juste en éliminant les définitions.
+Il expliquait à son interlocuteur avec un exemple ressemblant S<à :>
 
   Clown : voir Cirque.
   Cirque : voir Cercle.
@@ -110,7 +112,7 @@ dictionnaire complet sur un livre de poche. Exemple
   Député : voir Politicien.
   Politicien : voir Clown.
 
-=head3 Le Sorcier de la Montagne de Feu
+=head3 Les Livres dont vous êtes le héros, Le Sorcier de la Montagne de Feu
 
 En 1982, est paru un livre d'un genre nouveau,
 L<Warlock of the Firetop Mountain|http://fightingfantasy.wikia.com/wiki/The_Warlock_of_Firetop_Mountain_(book)>, 
@@ -309,8 +311,13 @@ l'espace aérien de la Picardie ou des Flandres.
 
 =head3 Cas particulier, la page 223.
 
-Un livret n'a qu'un nombre limité de pages, correspondant à une distance limitée entre les
-deux avions. Si, du fait de leurs manœuvres, les avions se retrouvent plus loin que cette
+Si vous consultez certains fichiers d'aide fournis par 
+L<Boardgame Geek|https://www.boardgamegeek.com/boardgame/798/ace-aces-handy-rotary-series/files>,
+vous verrez que le jeu de base sur une grille de 37 hexagones, permettant de 
+générer 222 pages, représentant toutes les positions relatives des deux avions
+du moment qu'ils sont à une distance inférieure ou égale à trois hexagones.
+Et que se passe-t-il si la distance est S<supérieure ?>
+Si, du fait de leurs manœuvres, les avions se retrouvent plus loin que cette
 distance limite, le livret affiche une page spéciale, la page 223 qui représente des
 nuages derrière lesquels l'ennemi a disparu. Même si cette page montre le ciel en avant de l'avion,
 il est possible que l'ennemi ait disparu sur un côté ou derrière.
@@ -509,6 +516,22 @@ le dépôt Git. Du coup, les programmes sont dans un répertoire extérieur.
 J'ai l'intention de réintégrer ces programmes dans le dépôt Git, avec une
 phase de nettoyage. Vous ne verrez donc pas mes tout premiers pas en Perl 6.
 
+Les programmes de ce dossier tiennent compte de la géométrie sous-jacente des pages.
+Dans un premier temps, en se basant sur un seul livret de la série, on cherche à
+retrouver l'interprétation de chaque page sur la grille heagonale implicite.
+On commence par charger la base de données avec une page codée S<« en> S<dur »>, 
+plus la page spéciale 223. Ensuite, le processus est itératif. On prend une page
+déjà référencée dans la base de données, puis on fournit au programme la liste des
+associations manoœuvres → page d'arrivée de cette page de départ. Cela permet de
+définir à quel hexagone et à quelle orientation ces pages d'arrivée correspondent.
+Au bout d'un certain temps, on a passé en revue toutes les pages du livret et donc
+on connaît la grille hexagonale entière.
+
+Dans un deuxième temps, on initialise un fichier JSON avec les manœuvres d'un avion,
+on croise avec la base de données de la première étape, et on génère un livret 
+donnant la liste des associations page de départ + manœuvre → page d'arrivée.
+Ce livret est codé sous la forme d'un fichier JSON.
+
 =head2 Jeu
 
 Le jeu entre humains est prévu pour deux joueurs sans arbitre.
@@ -533,11 +556,21 @@ plus ou moins élevées aux
 différentes manœuvres proposées par le programme arbitre et tire au
 hasard une manœuvre, en tenant compte de la loi de probabilité attribuée.
 
+J'ai choisi une méthode aléatoire pour le choix des manœuvres, de manière
+à éviter d'aboutir à un jeu stéréotypé, chaque programme joueur faisant
+un calcul de minimax sur les manœuvres pour toujours obtenir le même choix
+dans la même situation. Avec un tirage aléatoire, la meilleure solution 
+est celle qui a la plus forte probabilité, mais cela n'exclut pas de temps
+en temps de choisir une manœuvre inhabituelle S<« pour> dérouter S<l'adversaire »>
+(non, l'argument est foireux dans le cas d'un combat programme contre programme).
+
 Le programme arbitre, lui, a une meilleure connaissance des mécanismes
 de vol et de tir, mais rien sur la tactique ni la doctrine.
 C'est lui qui lit le fichier JSON créé par les programmes de préparation
 et qui connaît ainsi à quelle page on aboutit lorsque l'on exécute
-telle manœuvre sur telle page de départ.
+telle manœuvre sur telle page de départ. Ce qui ne veut pas dire qu'il
+connaît la géométrie sous-jacente, il se contente d'utiliser le fichier
+JSON comme un table d'associations page de départ + manœuvre → page d'arrivée..
 
 =head3 Base de données
 
@@ -685,10 +718,11 @@ de Perl 6, ce qui se traduit par des erreurs dans "spectest". C'est normal.
 
 On m'a fait remarquer que la compilation des sources nécessite beaucoup d'accès disque
 et que l'utilisation d'une machine virtuelle pénalise ainsi la compilation. Donc les durées
-que j'ai trouvées ne sont pas significatives. Néanmoins, ne croyez pas que ce sera réglé en
+que j'ai trouvées ne sont pas significatives. Néanmoins, cela montre que vous ne devez
+pas vous attendre à ce que l'installation par compilation des sources soit réglée en 
 cinq minutes sur votre machine.
 
-Un participant Des journées Perl a essayé de compiler Rakudo Star pendant la conférence.
+Un participant des journées Perl a essayé de compiler Rakudo Star pendant la conférence.
 Je ne sais pas s'il est passé par l'étape S<rakudo-spectest>, je sais par contre que l'étape
 C<install> lui a pris beaucoup de temps.
 
@@ -999,7 +1033,33 @@ particulier en Perl 6, mais un jour j'aurai la réponse.
 Un autre point qui m'ennuie (sans pour autant me chagriner), c'est le fait d'être
 obligé d'ajouter un backslash en fin de ligne pour indiquer que l'instruction
 se poursuit à la ligne suivante. Comme l'a dit une personne dans la salle,
-S<« C'est> un retour quarante ans en S<arrière. »>. Voir le point suivant.
+S<« C'est> un retour quarante ans en S<arrière. »>. Voir le 
+L<point suivant|"Alignement vertical">.
+
+=head4 Au-delà de la transformation schwartzienne
+
+En fait, comme on m'a fait remarquer, la transformation schwartzienne perd pas mal
+d'intérêt en Perl 6. Dans le cas particulier assez fréquent d'un tri avec une comparaison mono-critère,
+vous pouvez remplacer la fonction de comparaison par la fonction d'extraction de 
+ce critère unique. Cela S<donne :>
+
+  @t ==>  sort { extr($_) } \
+     ==> my @t1;
+
+Et à ce moment-là, Perl 6 mémorise en cache les valeurs des critères pour chaque élément à
+trier. Le C<map> de stockage et le C<map> de déstockage ne sont donc plus utiles. Vous pouvez
+faire le test en ajoutant un mouchard dans la fonction d'extraction (compteur ou impression
+de message).
+
+La transformation schwartzienne reste utile pour les tris multi-critères. En reprenant l'exemple
+ci-dessus, on peut ne pas agglomérer le jour avec le mois et l'année et coder S<ainsi :>
+
+  @t ==> map { [ $_, annee($_), mois($_), jour($_) ] } \
+     ==> sort { $^a[1] <=> $^b[1] || $^a[2] <=> $^b[2] || $^a[3] <=> $^b[3] } \
+     ==> map { $_[0] } \
+     ==> my @t1;
+
+Mais c'est plus laborieux et moins stylé.
 
 =head3 Alignement vertical
 
@@ -1026,6 +1086,8 @@ Moi, je me suis résigné à écrire
 
   @longueur[$n] = @longueur[$n - 1] + $dx;
   @largeur[ $n] = @largeur[ $n - 1] + $dy;
+
+Tous les éléments restent alignés verticalement, sauf les crochets ouvrants.
 
 Il existe une fonctionnalité intéressante que vous avez aperçue au paragraphe sur 
 la transformation schwartzienne, le I<unspace>. S'il y a un backslash suivi par
@@ -1183,7 +1245,7 @@ L<C'est marqué dans la doc|http://design.perl6.org/S06.html#Subroutine_traits>
 
 =head3 POD
 
-Je ne me suis pas du tout intéressé à POD. J'ai écrit la documentation de mes
+Je ne me suis pas du tout intéressé à POD en version Perl 6. J'ai écrit la documentation de mes
 programmes avec du POD tel que je le codais en Perl 5. La seule différence, 
 c'est qu'il faut obligatoirement une balise C<=begin POD> et une balise C<=end POD>.
 Et il n'y a pas de commande C<perl6doc>, à la place il faut utliser C<perl6>
