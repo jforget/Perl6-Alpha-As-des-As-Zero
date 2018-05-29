@@ -400,7 +400,7 @@ votre destination.
 
 Lorsque j'ai découvert le jeu, je me suis dit que finalement, ce jeu consistait à combiner des
 nombres (les numéros de page) et des symboles (les manœuvres) pour obtenir d'autres nombres.
-L'imaage figurant sur chaque page a  pour but d'aider le joueur humain à choisir le bon symbole
+L'image figurant sur chaque page a  pour but d'aider le joueur humain à choisir le bon symbole
 de manœuvre, du moment que ce joueur a une idée suffisamment précise du vol d'un avion et qu'il connaît
 les Dicta Boelke, les conseils de Sailor Malan, l'ouvrage I<No Guts, No Glory> de S<« Boots »> Blesse
 et autres livres du même genre. Il est possible d'enlever tout cet habillage aéronautique pour ne
@@ -419,6 +419,11 @@ même la version Guerre des Étoiles (I<Star Wars : Starfighter Battle Books>, X
 le « méchant » derrière le « gentil », à distance moyenne, avec le même cap et en train de lui tirer dessus.
 Il est possible de jouer avec un livret « gentil » d'un jeu et un livret « méchant » d'un autre jeu, quitte
 à faire combattre un X-Wing contre un Fokker E.III !
+
+Juste quelques hics, l'échelle des distances n'est pas la même d'un jeu à l'autre et les
+points de dégâts n'ont rien à voir. Il vous faudra une bonne dose de
+L<suspension délibérée de l'incrédulité|http://tvtropes.org/pmwiki/pmwiki.php/Main/WillingSuspensionOfDisbelief>
+pour les parties de ce S<type !>
 
 Attention au sujet de I<Wingleader> : il existe un autre jeu beaucoup plus récent du
 même nom chez GMT. Si vous êtes intéressé par le jeu décrit et que vous voulez l'acheter
@@ -511,18 +516,18 @@ l'un contre l'autre.
 
 =head2 Préparation
 
-J'ai commencer par programmer cette partie, bien sûr. Je l'ai faite avant d'initialiser
+J'ai commencé par programmer cette partie, bien sûr. Je l'ai faite avant d'initialiser
 le dépôt Git. Du coup, les programmes sont dans un répertoire extérieur.
 J'ai l'intention de réintégrer ces programmes dans le dépôt Git, avec une
 phase de nettoyage. Vous ne verrez donc pas mes tout premiers pas en Perl 6.
 
 Les programmes de ce dossier tiennent compte de la géométrie sous-jacente des pages.
 Dans un premier temps, en se basant sur un seul livret de la série, on cherche à
-retrouver l'interprétation de chaque page sur la grille heagonale implicite.
+retrouver l'interprétation de chaque page sur la grille hexagonale implicite.
 On commence par charger la base de données avec une page codée S<« en> S<dur »>, 
 plus la page spéciale 223. Ensuite, le processus est itératif. On prend une page
 déjà référencée dans la base de données, puis on fournit au programme la liste des
-associations manoœuvres → page d'arrivée de cette page de départ. Cela permet de
+associations manœuvres → page d'arrivée de cette page de départ. Cela permet de
 définir à quel hexagone et à quelle orientation ces pages d'arrivée correspondent.
 Au bout d'un certain temps, on a passé en revue toutes les pages du livret et donc
 on connaît la grille hexagonale entière.
@@ -530,7 +535,7 @@ on connaît la grille hexagonale entière.
 Dans un deuxième temps, on initialise un fichier JSON avec les manœuvres d'un avion,
 on croise avec la base de données de la première étape, et on génère un livret 
 donnant la liste des associations page de départ + manœuvre → page d'arrivée.
-Ce livret est codé sous la forme d'un fichier JSON.
+Ce livret est codé sous la forme d'un fichier JSON avec en prime un fichier HTML.
 
 =head2 Jeu
 
@@ -1410,7 +1415,7 @@ décidé de scinder mon programme Bailador en plusieurs fichiers. Le premier,
 F<site.p6> correspond, je pense, au Contrôleur. Dans un sous-répertoire,
 j'ai F<lib/acces-mongodb.pm6>, correspondant au Modèle. Et j'ai d'autres
 fichiers F<lib/site-coup.pm6>, F<lib/site-liste-parties.pm6> et F<lib/site-partie.pm6>
-correspondant aux Vues. J'arrive à appeler les fonctions de F<lib/acces-mongodb.pm6>
+correspondant aux Vues. J'arrive à appeler les fonctions du Modèle F<lib/acces-mongodb.pm6>
 depuis le Contrôleur F<site.p6>, mais pas depuis les Vues F<lib/site-xxx.pm6>.
 J'ai encore quelques notions à apprendre sur les C<use> et les C<require> en Perl 6.
 
