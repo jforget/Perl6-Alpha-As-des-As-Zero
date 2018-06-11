@@ -78,26 +78,6 @@ $req .= new: (
 $result = $database.run-command($req);
 say "Création manœuvres ok : ", $result<ok>, " nb : ", $result<n>;
 
-#$req .= new: (
-#  insert => 'Manoeuvres',
-#  documents => [ ( code => 'A', chemin =>  ';5', ), # left stall
-#                 ( code => 'B', chemin =>  ';0', ), # straight stall
-#                 ( code => 'C', chemin =>  ';1', ), # right stall
-#                 ( code => 'D', chemin => '0;5', ), # left turn
-#                 ( code => 'E', chemin => '5;5', ), # left bank
-#                 ( code => 'F', chemin =>  ';4', ), # left wingover
-#                 ( code => 'G', chemin => '0;0', ), # straight cruising
-#                 ( code => 'H', chemin =>  ';3', ), # immelmann
-#                 ( code => 'I', chemin => '5;0', ), # left sideslip
-#                 ( code => 'J', chemin => '1;0', ), # right sideslip
-#                 ( code => 'K', chemin => '0;1', ), # right turn
-#                 ( code => 'L', chemin => '1;1', ), # right bank
-#                 ( code => 'M', chemin =>  ';2', ), # right wingover
-#   ],
-#);
-#$result = $database.run-command($req);
-#say "Création manœuvres ok : ", $result<ok>, " nb : ", $result<n>;
-
 
 =begin POD
 
