@@ -1,0 +1,38 @@
+{
+    "livret":   "Test",
+    "camp":     "M",
+    "identité": "Drone",
+    "nom":      "Drone de loisir",
+    "capacité": 12,
+    "manoeuvres": {
+        "A": { "chemin": ";5"  , "virage": "G", "vitesse": "0" }
+      , "B": { "chemin": ";0"  , "virage": "A", "vitesse": "0" }
+      , "C": { "chemin": ";1"  , "virage": "D", "vitesse": "0" }
+      , "D": { "chemin": "4;0" , "virage": "G", "vitesse": "1" }
+      , "E": { "chemin": "5;0" , "virage": "G", "vitesse": "1" }
+      , "F": { "chemin": "0;0" , "virage": "A", "vitesse": "1" }
+      , "G": { "chemin": "3;0" , "virage": "A", "vitesse": "1" }
+      , "H": { "chemin": "1;0" , "virage": "D", "vitesse": "1" }
+      , "I": { "chemin": "2;0" , "virage": "D", "vitesse": "1" }
+    },
+    "tirs": {
+          "2": "4"
+      ,   "8": "4"
+      ,  "13": "4"
+      ,  "20": "4"
+      ,  "26": "4"
+      ,  "36": "4"
+      ,  "38": "2"
+      ,  "50": "2"
+      ,  "62": "2"
+      ,  "73": "2"
+      ,  "85": "2"
+      ,  "96": "2"
+      , "116": "1"
+      , "122": "1"
+      , "128": "1"
+      , "134": "1"
+      , "137": "1"
+      , "143": "1"
+    }
+}

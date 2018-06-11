@@ -1,0 +1,23 @@
+{
+    "livret":   "Test",
+    "camp":     "G",
+    "identité": "Epervier",
+    "nom":      "Epervier",
+    "capacité": 12,
+    "manoeuvres": {
+        "A": { "chemin": "0;5" , "virage": "G", "vitesse": "1" }
+      , "B": { "chemin": "0;0" , "virage": "A", "vitesse": "1" }
+      , "C": { "chemin": "0;1" , "virage": "D", "vitesse": "1" }
+      , "D": { "chemin": "00;5", "virage": "G", "vitesse": "2" }
+      , "E": { "chemin": "00;0", "virage": "A", "vitesse": "2" }
+      , "F": { "chemin": "00;1", "virage": "D", "vitesse": "2" }
+    },
+    "tirs": {
+        "187": "4"
+      , "188": "4"
+      , "198": "4"
+      , "205": "4"
+      , "209": "4"
+      , "213": "4"
+    }
+}

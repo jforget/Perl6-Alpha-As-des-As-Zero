@@ -1,0 +1,220 @@
+# -*- encoding: utf-8; indent-tabs-mode: nil -*-
+
+=encoding utf-8
+
+=head1 INTRODUCTION
+
+Les programmes de jeu pour l'As des As se basent sur une table
+d'association (page de départ, manœuvre) → page d'arrivée,
+stockée dans un fichier JSON.
+Recopier un livret avec 222 pages et 25 manœuvres, soit 5550 entrées,
+est fastidieux, donc sujet à erreur. Et il faut le faire pour au moins
+deux livrets.
+
+Heureusement, les différentes pages correspondent au positionnement d'un
+avion sur une grille de 37 hexagones avec 6 orientations possibles.
+En se basant sur cette géométrie sous-jacente, il est possible 
+de saisir un sous-ensemble représentatif 
+d'associations (page de départ, manœuvre) → page d'arrivée
+et d'obtenir toutes les autres par calcul et par déduction.
+
+J'ai ainsi reconstitué la grille hexagonale en me basant sur le
+livret FW190 de I<Wingleader>, puis j'ai généré le fichier JSON
+pour le Sopwith Camel et le Fokker DR1 de I<Handy Rotary>,
+pour le P-51 et le FW190 de I<Wingleader> (à titre de vérification)
+et pour un jeu similaire mettant en scène un épervier aux prises
+avec un drone de loisir.
+
+=head1 ÉPERVIER CONTRE DRONE DE LOISIR
+
+Pour des raisons de copyright, je ne peux pas diffuser sur Github
+les fichiers JSON du Camel, du DR1, du Mustang ou du FW. Le brevet
+sur le mécanisme du jeu a expiré, mais le copyright sur I<Handy Rotary>
+et sur I<Wingleader> est toujours actif. J'ai donc créé un jeu
+S<« épervier> contre drone de S<loisir »> en me basant sur des
+anecdotes récentes racontant les rencontres brutales entre des oiseaux
+de proie et des drones de loisir. Le but du drone est de filmer l'épervier,
+tandis que le but de l'épervier est de détruire le drone.
+
+Je ne prétend pas que ce jeu soit très intéressant, surtout
+qu'il n'y a pas les dessins qui sont l'un des points forts
+de l'I<As des As>. Je ne prétend pas non plus qu'il soit
+équilibré. Mais ce jeu est ma création, donc
+je peux le diffuser sur Github à ma guise, avec la licence libre
+qui me plaît.
+
+Donc dans la suite, je présente la préparation comme si je m'étais basé
+sur un livret S<« drone »> existant au lieu du livret FW190.
+
+=head1 ÉTAPES
+
+=head2 Saisie
+
+Sous éditeur de texte, écrire un fichier F<Drone-init.json>.
+Ce fichier contient la description des manœuvres du drone, ainsi que les
+pages où le drone peut tirer sur l'épervier. Le fichier ne contient aucune
+association (page de départ, manœuvre) → page d'arrivée.
+
+=head2 Initialisation
+
+Le programme recopie le fichier F<Drone-init.json> dans
+une collection de la base MongoDB. Il initialise une autre
+collection avec deux S<pages :> la page 223, puisqu'elle a un statut
+spécial, et la page 187 qui est une page normale.
+
+Le choix de la page 187 est en partie arbitraire. C'est la page qui correspond
+à la situation où les deux joueurs sont l'un au-dessus de l'autre dans le
+même hexagone et avec le même cap. Mais j'aurais très bien pu choisir
+une autre page initiale.
+
+=head2 Mise à jour incrémentale
+
+Le programme F<maj.p6> est un prgramme en ligne de commande
+qui reçoit comme paramètres un numéro de page de départ
+et la liste des associations manœuvre → page d'arrivée
+pour cette page. Par exemple la première fois qu'on l'exécutera,
+ce sera forcément avec la page 187, donc la ligne de commande S<sera :>
+
+XXXXXXX
+
+Le programme met à jour les 
+associations (page de départ, manœuvre) → page d'arrivée.
+Si la ligne de commande mentionne des pages d'arrivée que l'on n'avait pas
+encore rencontrées jusqu'à présent, le programme détermine où se situe
+cette page dans la grille hexagonale et quelle est l'orientation de
+l'avion (ou du drone, ou de l'oiseau, etc).
+
+En outre, le programme applique toutes les manœuvres à chacune des
+nouvelles pages. Si le résultat est une page déjà identifiée, le programme
+renseigne cette associations (page de départ, manœuvre) → page d'arrivée
+dans la base de données.
+
+Également, le programme applique les manœuvres
+S<« à> S<rebrousse-poil »> pour déterminer les
+associations (page de départ, manœuvre) → page d'arrivée
+dans laquelle la page d'arrivée est la nouvelle page et la page
+de départ est une page déjà ajoutée précédemment.
+
+Cette recherche S<« à> S<rebrousse-poil »> n'existait pas dans
+la version de mars 2018, je l'ai ajoutée en juin 2018. À la place,
+j'avais un paramètre S<« recalcul> S<complet »> qui passait en
+revue I<toutes> les pages, les anciennes comme les nouvelles
+et qui déterminait pour chaque manœuvre la page d'arrivée.
+Très chronophage.
+
+=head3 Exemple
+
+Prenons un engin avec très peu de manœuvres disponibles.
+La manœuvre A, qui permet un déplacement en crabe vers l'hexagone
+voisin à 10 heure, la manœuvre B qui fait avancer dans l'hexagone
+juste devant la position initiale et la manœuvre C qui permet un
+déplacement en crabe vers l'hexagone voisin à 2 heures.
+
+Désolé pour les hexagones en I<ASCII art>, un jour je referai les
+schémas en METAPOST. Peut-être.
+
+
+                        ----------
+                        |        |
+               ---------|   B    |---------
+               |        |        |        |
+               |   A    |--------|    C   |
+               |        |        |        |
+               ---------| départ |---------
+                        |        |
+                        ----------
+
+Suite à F<init.p6>, la seule page connue est la page 187 (outre la
+page 223 dont le statut est spécial). Le premier appel de F<maj.p6>
+est donc :
+
+  perl6 maj.p6 -p=187 -a=15 -b=16 -c=17
+
+Le programme met à jour les enchaînements avec :
+
+  (187, A) → 15
+  (187, B) → 16
+  (187, C) → 17
+
+Et la carte est complétée avec :
+
+                        ----------
+                        |        |
+               ---------|   16   |---------
+               |        |        |        |
+               |   15   |--------|   17   |
+               |        |        |        |
+               ---------|  187   |---------
+                        |        |
+                        ----------
+
+En examinant les pages nouvellement créées 15, 16 et 17 et en leur appliquant
+les manœuvres A, B et C, le programme
+ajoute les enchaînements 
+
+  ( 15, C) → 16
+  ( 17, A) → 16
+
+Le deuxième appel à F<maj.p6> s'applique à la page 16 :
+
+  perl6 maj.p6 -p=16  -a=46 -b=91 -c=107
+
+Le programme met à jour les enchaînements avec :
+
+  ( 16, A) →  46
+  ( 16, B) →  91
+  ( 16, C) → 107
+
+Et la carte est complétée avec :
+
+                        ----------
+                        |        |
+               ---------|   91   |---------
+               |        |        |        |
+               |   46   |--------|  107   |
+               |        |        |        |
+               ---------|   16   |---------
+               |        |        |        |
+               |   15   |--------|   17   |
+               |        |        |        |
+               ---------|  187   |---------
+                        |        |
+                        ----------
+
+En examinant les pages nouvellement créées 46, 91 et 107 et en leur appliquant
+les manœuvres A, B et C, le programme
+ajoute les enchaînements 
+
+  ( 46, C) → 91
+  (107, A) → 91
+
+Le programme applique également les manœuvres A, B et C à rebrousse-poil
+sur les pages 46, 91 et 107. On retrouve certains enchaînements déjà créés,
+mais on trouve également les noueaux enchaînements :
+
+  ( 15, B) →  46
+  ( 17, B) → 107
+
+=head2 Affichage
+
+Le programme F<aff.p6> affiche le contenu de la base de données
+sous la forme d'un tableau HTML. Cela me sert lors du processus
+itératif à choisir quelle page je vais utiliser lors du prochain appel
+de F<maj.p6> (ou des deux prochains appels, ou des trois, ou...). Inutile de saisir une
+page pour laquelle on connaît déjà les deux tiers des enchaînements
+s'il en existe pour lesquelles on n'en connaît qu'un ou deux.
+
+=head2 Génération du livret
+
+Le processus itératif se termine lorsque toutes les pages
+ont été citées au moins une fois lors des appels à F<maj.p6>
+et donc quand on connaît la position de toutes les pages.
+
+On peut alors générer un livret pour n'importe quel objet volant
+ou n'importe quelle créature volante. Le programme F<livret.p6>
+lit en entrée un fichier F<epervier-init.json> de taille réduite
+et produit un fichier complet F<epervier.json> et un fichier
+F<epervier.html> qui contiennent la totalité des
+associations (page de départ, manœuvre) → page d'arrivée.
+
+=head1 FONCTIONNEMENT INTERNE
