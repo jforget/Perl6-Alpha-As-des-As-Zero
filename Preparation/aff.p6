@@ -14,27 +14,23 @@ use BSON::Document;
 use MongoDB::Client;
 use MongoDB::Database;
 use MongoDB::Collection;
-use JSON::Class;
-
-class Avion does JSON::Class {
-  has %.manoeuvres;
-}
-
-my $fic-init     = 'Drone-init.json';
-my Avion $avion .= from-json(slurp $fic-init);
-my @manoeuvres   = $avion.manoeuvres.keys.sort;
 
 my MongoDB::Client     $client  .= new(:uri('mongodb://'));
 my MongoDB::Database   $database = $client.database('aoa_prep');
 my MongoDB::Collection $pages    = $database.collection('Pages');
+my MongoDB::Collection $manv     = $database.collection('Manoeuvres');
 
-my MongoDB::Cursor $cursor = $pages.find( projection => ( _id => 0, ) );
+my MongoDB::Cursor $cursor = $manv.find( projection => ( _id => 0, ) );
+my @manoeuvres;
+while $cursor.fetch -> BSON::Document $d {
+  @manoeuvres.push(  $d<code>  );
+}
+@manoeuvres .= sort;
 
+$cursor = $pages.find( projection => ( _id => 0, ) );
 my @pages;
 while $cursor.fetch -> BSON::Document $d {
-  #@pages.push( { numero => $d<numero>, chemin => $d<chemin> } );
   @pages.push(  $d  );
-  #say $d<numero>;
 }
 
 print q:to/EOF/;

@@ -75,7 +75,7 @@ et la liste des associations manœuvre → page d'arrivée
 pour cette page. Par exemple la première fois qu'on l'exécutera,
 ce sera forcément avec la page 187, donc la ligne de commande S<sera :>
 
-XXXXXXX
+  perl6 maj.p6 --page=187 -a=205 -b=187 -c=198 -d=3 -e=15 -f=16 -g=2 -h=17 -i=1
 
 Le programme met à jour les 
 associations (page de départ, manœuvre) → page d'arrivée.
