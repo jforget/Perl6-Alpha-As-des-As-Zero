@@ -9,6 +9,7 @@
 #     Voir la licence dans la documentation incluse ci-dessous.
 #     See the license in the embedded documentation below.
 #
+
 use v6;
 use BSON::Document;
 use MongoDB::Client;
@@ -81,7 +82,7 @@ sub case {
 
 =head1 NOM
 
-aff.p6 -- programme affichant les pagess de l'As des As pendant la construction de la cartographie
+aff.p6 -- programme affichant les pages de l'As des As pendant la construction de la cartographie
 
 =head1 DESCRIPTION
 
