@@ -106,20 +106,38 @@ for @codes_man -> $manv {
   }
 }
 
-## Ajouter les enchaînements que l'on peut deviner
+# Ajouter les enchaînements que l'on peut deviner
 for 1..222 -> $pg {
   if 'C' eq (@action[$pg] // '') {
     my BSON::Document $page_départ = @cache[$pg];
-  for @codes_man -> $manv {
+    for @codes_man -> $manv {
       my Depl $départ .= new(chemin => $page_départ<chemin_GM>);
       my Depl $mouvmt .= new(chemin => %chemin_mnv{$manv});
       my Depl $arriv   = $départ → $mouvmt;
       my $pg_arr = recherche_chemin_GM($arriv.chemin);
       if $opt_trace +& 8 {
-        say "$pg $manv $pg_arr";
+        say "$pg → $manv → $pg_arr";
       }
       if $pg_arr ≠ 0 and (@cache[$pg]{$manv}<numero> // 0) == 0 {
         @cache[$pg]{$manv} = ( certain=> 1, numero => $pg_arr );
+      }
+    }
+  }
+}
+
+for 1..222 -> $pg_arr {
+  if 'C' eq (@action[$pg_arr] // '') {
+    my BSON::Document $page_arrivée = @cache[$pg_arr];
+    for @codes_man -> $manv {
+      my Depl $arriv  .= new(chemin => $page_arrivée<chemin_GM>);
+      my Depl $mouvmt .= new(chemin => %chemin_mnv{$manv});
+      my Depl $départ  = $arriv ← $mouvmt;
+      my $pg_dep = recherche_chemin_GM($départ.chemin);
+      if $opt_trace +& 8 {
+        say "$pg_arr ← $manv ← $pg_dep";
+      }
+      if $pg_dep ≠ 0 and (@cache[$pg_dep]{$manv}<numero> // 0) == 0 {
+        @cache[$pg_dep]{$manv} = ( certain=> 1, numero => $pg_arr );
       }
     }
   }
@@ -136,6 +154,7 @@ if $opt_trace +& 4 {
   say '';
 }
 
+# Mise à jour de la base de données, maintenant que l'on a tout calculé
 for 1..222 -> $pg {
   given @action[$pg] {
     when 'C' {
