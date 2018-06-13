@@ -114,15 +114,15 @@ Désolé pour les hexagones en I<ASCII art>, un jour je referai les
 schémas en METAPOST. Peut-être.
 
 
-  .                      ----------
-  .                      |        |
-  .             ---------|   B    |---------
-  .             |        |        |        |
-  .             |   A    |--------|    C   |
-  .             |        |        |        |
-  .             ---------| départ |---------
-  .                      |        |
-  .                      ----------
+  .                       --------
+  .                      /        \
+  .              --------    B     --------
+  .             /        \        /        \
+  .            (    A     --------     C    )
+  .             \        /        \        /
+  .              --------  départ  -------- 
+  .                      \        /
+  .                       -------- 
 
 Suite à F<init.p6>, la seule page connue est la page 187 (outre la
 page 223 dont le statut est spécial). Le premier appel de F<maj.p6>
@@ -138,15 +138,15 @@ Le programme met à jour les enchaînements avec :
 
 Et la carte est complétée avec :
 
-  .                      ----------
-  .                      |        |
-  .             ---------|   16   |---------
-  .             |        |        |        |
-  .             |   15   |--------|   17   |
-  .             |        |        |        |
-  .             ---------|  187   |---------
-  .                      |        |
-  .                      ----------
+  .                       --------
+  .                      /        \
+  .              --------    16    --------
+  .             /        \        /        \
+  .            (    15    --------    17    )
+  .             \        /        \        /
+  .              --------   187    -------- 
+  .                      \        /
+  .                       --------
 
 En examinant les pages nouvellement créées 15, 16 et 17 et en leur appliquant
 les manœuvres A, B et C, le programme
@@ -167,19 +167,19 @@ Le programme met à jour les enchaînements avec :
 
 Et la carte est complétée avec :
 
-  .                      ----------
-  .                      |        |
-  .             ---------|   91   |---------
-  .             |        |        |        |
-  .             |   46   |--------|  107   |
-  .             |        |        |        |
-  .             ---------|   16   |---------
-  .             |        |        |        |
-  .             |   15   |--------|   17   |
-  .             |        |        |        |
-  .             ---------|  187   |---------
-  .                      |        |
-  .                      ----------
+  .                       -------- 
+  .                      /        \
+  .              --------    91    --------
+  .             /        \        /        \
+  .            (    46    --------   107    )
+  .             \        /        \        /
+  .              --------    16    --------
+  .             /        \        /        \
+  .            (    15    --------    17    )
+  .             \        /        \        /
+  .              --------   187    -------- 
+  .                      \        /
+  .                       --------
 
 En examinant les pages nouvellement créées 46, 91 et 107 et en leur appliquant
 les manœuvres A, B et C, le programme
@@ -218,3 +218,4 @@ F<Epervier.html> qui contiennent la totalité des
 associations (page de départ, manœuvre) → page d'arrivée.
 
 =head1 FONCTIONNEMENT INTERNE
+
