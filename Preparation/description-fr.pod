@@ -128,7 +128,7 @@ Suite à F<init.p6>, la seule page connue est la page 187 (outre la
 page 223 dont le statut est spécial). Le premier appel de F<maj.p6>
 est donc :
 
-  perl6 maj.p6 -p=187 -a=15 -b=16 -c=17
+  perl6 maj.p6 -page=187 -a=15 -b=16 -c=17
 
 Le programme met à jour les enchaînements avec :
 
@@ -157,7 +157,7 @@ ajoute les enchaînements
 
 Le deuxième appel à F<maj.p6> s'applique à la page 16 :
 
-  perl6 maj.p6 -p=16  -a=46 -b=91 -c=107
+  perl6 maj.p6 -page=16  -a=46 -b=91 -c=107
 
 Le programme met à jour les enchaînements avec :
 
@@ -218,4 +218,76 @@ F<Epervier.html> qui contiennent la totalité des
 associations (page de départ, manœuvre) → page d'arrivée.
 
 =head1 FONCTIONNEMENT INTERNE
+
+=head2 Repérage des hexagones
+
+Au début, j'ai envisagé d'utiliser un système de coordonnées cartésiennes avec
+un repère orthonormé.
+
+  .                       -------- 
+  .                      /        \               Numéro     X         Y
+  .              --------    16    --------            2     0        -1
+  .             /        \        /        \           3    -0.866    -0.5
+  .            (    15    --------    17    )          1     0.866    -0.5
+  .             \        /        \        /         187     0         0
+  .              --------   187    --------           15    -0.866     0.5
+  .             /        \        /        \          17     0.866     0.5
+  .            (     3    --------     1    )         16     0         1
+  .             \        /        \        /
+  .              --------    2     -------- 
+  .                      \        /
+  .                       --------
+
+Puis un repère orthogonal sans être normé
+
+  .                       -------- 
+  .                      /        \               Numéro     X         Y
+  .              --------    16    --------            2     0        -1
+  .             /        \        /        \           3    -1        -0.5
+  .            (    15    --------    17    )          1     1        -0.5
+  .             \        /        \        /         187     0         0
+  .              --------   187    --------           15    -1         0.5
+  .             /        \        /        \          17     1         0.5
+  .            (     3    --------     1    )         16     0         1
+  .             \        /        \        /
+  .              --------    2     -------- 
+  .                      \        /
+  .                       --------
+
+Ou un repère normé sans être orthogonal
+
+  .                       -------- 
+  .                      /        \               Numéro     X         Y
+  .              --------    16    --------            2     0        -1
+  .             /        \        /        \           1     1        -1
+  .            (    15    --------    17    )          3    -1         0
+  .             \        /        \        /         187     0         0
+  .              --------   187    --------           17     1         0
+  .             /        \        /        \          15    -1         1
+  .            (     3    --------     1    )         16     0         1
+  .             \        /        \        /
+  .              --------    2     -------- 
+  .                      \        /
+  .                       --------
+
+Les coordonnées polaires semblent offrir plus de promesses. D'ailleurs, c'était utilisé
+par les pilotes de la Seconde Guerre Mondiale avec le système du cadran d'horloge.
+
+  .                       -------- 
+  .                      /        \               Numéro     R      angle
+  .              --------    16    --------          187     0      indéfini
+  .             /        \        /        \          16     1        12h
+  .            (    15    --------    17    )         17     1         2h
+  .             \        /        \        /           1     1         4h
+  .              --------   187    --------            2     1         6h
+  .             /        \        /        \           3     1         8h
+  .            (     3    --------     1    )         15     1        10h
+  .             \        /        \        /
+  .              --------    2     -------- 
+  .                      \        /
+  .                       --------
+
+Pour simplifier, j'ai utilisé des incréments de 60 degrés orientés dans le sens des aiguilles
+d'une montre avec une plage de 0 à 5. Cela correspond à la moitié de l'angle du cadran d'horloge,
+sachant que 12h est converti en B<0> au lieu de B<6>.
 
