@@ -291,3 +291,76 @@ Pour simplifier, j'ai utilisé des incréments de 60 degrés orientés dans le s
 d'une montre avec une plage de 0 à 5. Cela correspond à la moitié de l'angle du cadran d'horloge,
 sachant que 12h est converti en B<0> au lieu de B<6>.
 
+Si l'angle polaire ou le gisement ne correspond pas à un multiple de 60 degrés, alors
+on utilise le chemin le plus court, en utilisant deux directions de C<0> à C<5>.
+Exemple :
+
+
+  .                       -------- 
+  .                      /        \               Numéro     chemin
+  .              --------    91    --------          187     (rien)
+  .             /        \        /        \          16     0
+  .     --------   118    --------   107    )         17     1
+  .    /        \        /        \        /           1     2
+  .   (    54    --------    16    --------            2     3
+  .    \        /        \        /        \           3     4
+  .     --------    15    --------    17    )         15     5
+  .    /        \        /        \        /          54     55
+  .   (    76    --------   187    --------           76     45
+  .    \        /        \        /        \          91     00
+  .     --------     3    --------     1    )        107     01
+  .             \        /        \        /         118     05
+  .              --------    2     --------          
+  .                      \        /
+  .                       --------
+
+Dans tout cela, je n'ai pas tenu compte de la différence de cap entre
+les deux avions. On utilise la même notation de C<0> à C<5>.
+Ainsi, si les deux avions sont parallèles comme dans la page 1 de l'exemple,
+leur différence de cap sera C<0>. Mais dans la page 8, la différence
+de cap de l'Allemand relativement à l'Anglai est C<5>.
+
+=head2 Représentation interne
+
+Les programmes utilisent deux représentations pour un hexagone, la
+représentation en chaîne de caractères et la représentation numérique.
+La représentation en chaîne de caractères énumère les directions de
+déplacement depuis la position de l'avion anglais pour arriver à la
+position de l'avion allemand, ajoute un point-virgule et termine
+avec l'écart de caps entre les deux avions. Ainsi, la page 1
+est représentée S<par :>
+
+  2;0
+
+Car l'hexagone de l'avion allemand est situé dans la direction C<2> par rapport
+à celui de l'avion anglais et que les deux avions ont le même cap. La page 8
+a pour S<code :>
+
+  2;5
+
+car il s'agit du même hexagone, mais l'avion allemand a pivoté de 60 degrés
+vers babord. Cette chaîne de caractères est stockée dans l'attribut C<$.chemin>.
+
+La représentation numérique comporte un tableau C<@.avance> et un scalaire C<$.virage>
+Le scalaire C<$.virage> reprend l'écart de caps entre les deux avions. Le tableau C<@.avance>
+compte le nombre de pas dans les directions C<0> à C<5>. S<Exemples :>
+
+  page         1     8     42     159
+  $.chemin     2;0   2;5   00;1   112;1
+  @.avance[0]  0     0     2      0
+  @.avance[1]  0     0     0      2
+  @.avance[2]  1     1     0      1
+  @.avance[3]  0     0     0      0
+  @.avance[4]  0     0     0      0
+  @.avance[5]  0     0     0      0
+  $.virage     0     5     1      1
+
+=head3 Cas particuliers
+
+Il existe 6 pages représentant les deux avions dans le même hexagone, l'un au-dessus 
+de l'autre (la seule intervention de l'altitude dans le jeu d'introduction). Dans ce 
+cas, toutes les valeurs de C<@.avance> sont à zéro et le contenu de C<$.chemin> commence
+par un point-virgule. Ainsi, la page 187 représente les avions dans le même hexagone
+avec le même cap, donc C<$.chemin> contient S<« C<;0> »>. Page 188, les deux avions sont
+aussi dans le même hexagone, mais dans des directions opposées. C<$.chemin> contient
+alors S<« C<;3> »>.
