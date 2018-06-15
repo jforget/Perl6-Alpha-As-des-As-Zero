@@ -11,10 +11,12 @@
 #
 
 use v6;
+use lib '.';
 use BSON::Document;
 use MongoDB::Client;
 use MongoDB::Database;
 use MongoDB::Collection;
+use Depl;
 
 my MongoDB::Client     $client  .= new(:uri('mongodb://'));
 my MongoDB::Database   $database = $client.database('aoa_prep');
@@ -27,6 +29,8 @@ while $cursor.fetch -> BSON::Document $d {
   @manoeuvres.push(  $d<code>  );
 }
 @manoeuvres .= sort;
+
+my Str @dessin = dessin().split("\n");
 
 $cursor = $pages.find( projection => ( _id => 0, ) );
 my @pages;
@@ -50,6 +54,11 @@ print q:to/EOF/;
 <table border='1'>
 EOF
 
+my @dx-virage = ( 0,  3, 3, 0, -3, -3); # écart par rapport au centre de l'hexagone en fonction du cap
+my @dy-virage = (-2, -1, 1, 2,  1, -1); # idem en hauteur
+my @dx-chemin = 3 «×» @dx-virage; # écart par rapport à l'hexagone central
+my @dy-chemin = 3 «×» @dy-virage;
+
 for (sort { $^a<numero> <=> $^b<numero> }, @pages) -> $d {
   print "<tr><td>", $d<numero>, "</td>";
   if $d<numero> != 223 {
@@ -58,12 +67,28 @@ for (sort { $^a<numero> <=> $^b<numero> }, @pages) -> $d {
     for @manoeuvres -> $manv {
       print case($manv, $d{$manv});
     }
+    my Depl $depl .= new(chemin => $d<chemin_GM>);
+    my $x = 37 + @dx-virage[$depl.virage] + [+] @dx-chemin «×» $depl.avance;
+    my $y = 21 + @dy-virage[$depl.virage] + [+] @dy-chemin «×» $depl.avance;
+    my $etiquette;
+    if $d<numero> < 10 {
+      $etiquette = sprintf(" %d ", $d<numero>);
+    }
+    else {
+      $etiquette = sprintf("%3d", $d<numero>);
+    }
+    
+    @dessin[$y].substr-rw($x, 3) = $etiquette;
   }
   say "</tr>";
 }
 
-print q:to/EOF/;
+my $dessin = @dessin.join("\n");
+print qq:to/EOF/;
 </table>
+<pre>
+$dessin
+</pre>
 </body>
 </html>
 EOF
@@ -75,6 +100,53 @@ sub case {
   return "<td class='$style'>$k ", $v<numero> // '??', "</td>";
 }
 
+sub dessin {
+  return q:to/EOF/;
+  .                                  -------
+  .                                 /       \
+  .                                /         \
+  .                        --------           --------
+  .                       /        \         /        \
+  .                      /          \       /          \
+  .               -------            -------            -------
+  .              /       \          /       \          /       \
+  .             /         \        /         \        /         \
+  .     --------           --------           --------           --------
+  .    /        \         /        \         /        \         /        \
+  .   /          \       /          \       /          \       /          \
+  .  (            -------            -------            -------            )
+  .   \          /       \          /       \          /       \          /
+  .    \        /         \        /         \        /         \        /
+  .     --------           --------           --------           --------
+  .    /        \         /        \         /        \         /        \
+  .   /          \       /          \       /          \       /          \
+  .  (            -------            -------            -------            )
+  .   \          /       \          /       \          /       \          /
+  .    \        /         \        /         \        /         \        /
+  .     --------           --------           --------           --------
+  .    /        \         /        \         /        \         /        \
+  .   /          \       /          \       /          \       /          \
+  .  (            -------            -------            -------            )
+  .   \          /       \          /       \          /       \          /
+  .    \        /         \        /         \        /         \        /
+  .     --------           --------           --------           --------
+  .    /        \         /        \         /        \         /        \
+  .   /          \       /          \       /          \       /          \
+  .  (            -------            -------            -------            )
+  .   \          /       \          /       \          /       \          /
+  .    \        /         \        /         \        /         \        /
+  .     --------           --------           --------           --------
+  .             \         /        \         /        \         /
+  .              \       /          \       /          \       /
+  .               -------            -------            -------
+  .                      \          /       \          /
+  .                       \        /         \        /
+  .                        --------           --------
+  .                                \         /
+  .                                 \       /
+  .                                  -------
+  EOF
+}
 
 =begin POD
 
