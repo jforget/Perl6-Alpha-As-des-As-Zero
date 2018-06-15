@@ -839,6 +839,40 @@ multiplication numérique utilisait toujours l'étoile.
 sont deux opérateurs différents en Perl 6, respectivement « x »
 et « xx ». Évitez d'utiliser l'un pour l'autre comme je l'ai fait !
 
+=head3 Modification d'une sous-chaîne de caractères
+
+Lorsque j'ai appris Perl 5 il y a un vingtaine d'années, une fonctionnalité
+m'a fait comprendre que Perl 5 n'était pas simplement S<« un> langage de programmation
+de S<plus »> mais bien un domaine dont l'exploration promettait d'être passionnante.
+Cette fonctionnalité, c'est la possibilité d'utiliser C<substr> en partie gauche
+d'une S<affectation :>
+
+  substr($_,  0, 0) = "Larry";
+  substr($_,  0, 1) = "Moe";
+  substr($_, -1, 1) = "Curly";
+
+dans I<Programming Perl> 2e édition pages 227 et 228.
+
+Avec Perl 6, je n'ai pas pensé à vérifier que cela continuait à fonctionner, pour
+moi c'était évident que Perl 6 reprendrait cette idée géniale.
+
+Éh bien non, C<substr> ne peut pas être utilisé en partie gauche en Perl 6.
+Le résultat est une erreur :
+
+  Cannot modify an immutable Str
+
+Je n'ai rien trouvé sur ce sujet dans les livres qui m'ont servi à apprendre Perl 6.
+J'ai essayé avec L<la documentation en ligne de substr|https://docs.perl6.org/routine/substr>,
+rien non plus sur ce sujet. J'ai essayé de regarder dans la 
+L<documentation du type Str|https://docs.perl6.org/type/Str>
+et pour cela il n'y avait pas de lien hypertexte depuis 
+L<la documentation en ligne de substr|https://docs.perl6.org/routine/substr>,
+j'ai dû passer par 
+L<la liste des types standards|https://docs.perl6.org/type.html>.
+Et sur la L<documentation du type Str|https://docs.perl6.org/type/Str>,
+j'ai enfin trouvé ce que je cherchais, la 
+L<fonction C<substr-rw>|https://docs.perl6.org/type/Str#method_substr-rw>.
+
 =head3 Notation fonctionnelle
 
 =for html
