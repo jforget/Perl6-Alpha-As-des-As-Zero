@@ -133,11 +133,16 @@ for 1..222 -> $pg_arr {
       my Depl $mouvmt .= new(chemin => %chemin_mnv{$manv});
       my Depl $départ  = $arriv ← $mouvmt;
       my $pg_dep = recherche_chemin_GM($départ.chemin);
+      unless defined @cache[$pg_dep] {
+        recherche_page($pg_dep);
+      }
       if $opt_trace +& 8 {
         say "$pg_arr ← $manv ← $pg_dep";
       }
       if $pg_dep ≠ 0 and (@cache[$pg_dep]{$manv}<numero> // 0) == 0 {
-        @cache[$pg_dep]{$manv} = ( certain=> 1, numero => $pg_arr );
+        @cache[ $pg_dep]{$manv} = ( certain=> 1, numero => $pg_arr );
+        @action[$pg_dep] = 'U'
+          unless @action[$pg_dep] eq 'C';
       }
     }
   }
@@ -216,12 +221,14 @@ sub recherche_page(Int $n) {
       projection => ( _id => 0, )
     );
     while $cursor.fetch -> BSON::Document $d {
-      #say $d<numero>;
+      #say $d<numero>, ' ', $d<chemin_GB>;
       if $d<numero> == $n {
         $ok         = $d;
         @cache[$n]  = $d;
         @action[$n] = 'R';
-        %numéro_de_chemin{$d<chemin_GM>} = $n;
+        if $n ≠ 223 {
+          %numéro_de_chemin{$d<chemin_GM>} = $n;
+        }
         last;
       }
     }
@@ -232,7 +239,7 @@ sub recherche_page(Int $n) {
 }
 
 sub recherche_chemin_GM(Str $chemin) {
-  if $chemin.chars >= 6 {
+  if $chemin.chars ≥ 6 {
     # quatre hexagones ou plus, plus le point-virgule et le changement d'orientation
     return 223;
   }
