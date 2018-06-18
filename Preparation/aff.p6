@@ -56,16 +56,24 @@ EOF
 
 my @dx-virage = ( 0,  3, 3, 0, -3, -3); # écart par rapport au centre de l'hexagone en fonction du cap
 my @dy-virage = (-2, -1, 1, 2,  1, -1); # idem en hauteur
-my @dx-chemin = 3 «×» @dx-virage; # écart par rapport à l'hexagone central
-my @dy-chemin = 3 «×» @dy-virage;
+my @dx-chemin = 3 «×» @dx-virage; # écart par rapport à l'hexagone central en fonction du déplacement élémentaire
+my @dy-chemin = 3 «×» @dy-virage; # idem en hauteur
+my @attributs;
 
 for (sort { $^a<numero> <=> $^b<numero> }, @pages) -> $d {
   print "<tr><td>", $d<numero>, "</td>";
   if $d<numero> != 223 {
     print "<td>", $d<chemin_GM> // '??', "</td>";
     print "<td>", $d<chemin_MG> // '??', "</td>";
+    my $attribut = 'certain';
+    my $num_min  = 3;
     for @manoeuvres -> $manv {
-      print case($manv, $d{$manv});
+      my ($case, $attr, $num) = case($manv, $d{$manv});
+      print $case;
+      if $num < $num_min {
+        $num_min  = $num;
+        $attribut = $attr;
+      }
     }
     my Depl $depl .= new(chemin => $d<chemin_GM>);
     my $x = 37 + @dx-virage[$depl.virage] + [+] @dx-chemin «×» $depl.avance;
@@ -79,8 +87,16 @@ for (sort { $^a<numero> <=> $^b<numero> }, @pages) -> $d {
     }
     
     @dessin[$y].substr-rw($x, 3) = $etiquette;
+    @attributs.push([$x, $y, $attribut]);
   }
   say "</tr>";
+}
+
+# Coloriage des numéros de page dans la carte en fonction de leur certitude
+for (sort { -$_[0] }, @attributs) -> $triplet {
+  my ($x, $y, $attr) = $triplet[*];
+  @dessin[$y].substr-rw($x + 3, 0) = '</span>';
+  @dessin[$y].substr-rw($x    , 0) = "<span class='$attr'>";
 }
 
 my $dessin = @dessin.join("\n");
@@ -94,10 +110,11 @@ $dessin
 EOF
 
 sub case {
-  my ($k, $v) = @_;
-  my @style = <inconnu hypoth certain>;
-  my $style = @style[+($v<certain> // 0)];
-  return "<td class='$style'>$k ", $v<numero> // '??', "</td>";
+  my ($k, $v)   = @_;
+  my @style     = <inconnu hypoth certain>;
+  my $num_style = +($v<certain> // 0);
+  my $style     = @style[$num_style];
+  return ("<td class='$style'>$k ", $v<numero> // '??', "</td>"), $style, $num_style;
 }
 
 sub dessin {
