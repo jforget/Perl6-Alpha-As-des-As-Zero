@@ -31,11 +31,40 @@ then
   perl6 maj.p6 --page=50  -a=40  -b=50  -c=71  -d=129 -e=39  -f=13  -g=128 -h=61  -i=127
   perl6 maj.p6 --page=71  -a=50  -b=71  -c=81  -d=49  -e=7   -f=82  -g=174 -h=172 -i=173
   perl6 maj.p6 --page=81  -a=71  -b=81  -c=103 -d=17  -e=107 -f=151 -g=70  -h=152 -i=153
+  perl6 maj.p6 --page=209 -a=198 -b=209 -c=188 -d=27  -e=34  -f=33  -g=26  -h=32  -i=25
+  perl6 maj.p6 --page=33  -a=12  -b=33  -c=4   -d=34  -e=90  -f=79  -g=209 -h=68  -i=32
+  perl6 maj.p6 --page=79  -a=69  -b=79  -c=89  -d=90  -e=192 -f=193 -g=33  -h=194 -i=68
+  perl6 maj.p6 --page=89  -a=79  -b=89  -c=98  -d=195 -e=196 -f=197 -g=101 -h=78  -i=4
+  perl6 maj.p6 --page=98  -a=89  -b=98  -c=38  -d=161 -e=162 -f=99  -g=160 -h=14  -i=39
+  perl6 maj.p6 --page=38  -a=98  -b=38  -c=60  -d=123 -e=97  -f=8   -g=122 -h=49  -i=121
+  perl6 maj.p6 --page=60  -a=38  -b=60  -c=69  -d=37  -e=1   -f=70  -g=180 -h=178 -i=179
+  perl6 maj.p6 --page=69  -a=60  -b=69  -c=79  -d=12  -e=80  -f=184 -g=59  -h=185 -i=186
+  perl6 maj.p6 --page=188 -a=209 -b=188 -c=213 -d=21  -e=4   -f=5   -g=20  -h=6   -i=19
+  perl6 maj.p6 --page=5   -a=32  -b=5   -c=28  -d=4   -e=78  -f=67  -g=188 -h=57  -i=6
+  perl6 maj.p6 --page=67  -a=58  -b=67  -c=77  -d=78  -e=214 -f=215 -g=5   -h=216 -i=57
+  perl6 maj.p6 --page=77  -a=67  -b=77  -c=87  -d=189 -e=190 -f=191 -g=99  -h=66  -i=28
+  perl6 maj.p6 --page=87  -a=77  -b=87  -c=96  -d=155 -e=156 -f=88  -g=154 -h=9   -i=97
+  perl6 maj.p6 --page=96  -a=87  -b=96  -c=48  -d=117 -e=86  -f=2   -g=116 -h=37  -i=115
+  perl6 maj.p6 --page=48  -a=96  -b=48  -c=58  -d=95  -e=31  -f=59  -g=204 -h=202 -i=203
+  perl6 maj.p6 --page=58  -a=48  -b=58  -c=67  -d=32  -e=68  -f=210 -g=47  -h=211 -i=212
+  perl6 maj.p6 --page=213 -a=188 -b=213 -c=205 -d=14  -e=28  -f=29  -g=13  -h=30  -i=18
+  perl6 maj.p6 --page=29  -a=6   -b=29  -c=22  -d=28  -e=66  -f=56  -g=213 -h=45  -i=30
+  perl6 maj.p6 --page=56  -a=46  -b=56  -c=65  -d=66  -e=206 -f=207 -g=29  -h=208 -i=45
+  perl6 maj.p6 --page=65  -a=56  -b=65  -c=75  -d=181 -e=182 -f=183 -g=88  -h=55  -i=22
+  perl6 maj.p6 --page=75  -a=65  -b=75  -c=85  -d=149 -e=150 -f=76  -g=148 -h=3   -i=86
+  perl6 maj.p6 --page=85  -a=75  -b=85  -c=108 -d=144 -e=74  -f=36  -g=143 -h=95  -i=142
+  perl6 maj.p6 --page=108 -a=85  -b=108 -c=46  -d=84  -e=25  -f=47  -g=222 -h=220 -i=221
+  perl6 maj.p6 --page=46  -a=108 -b=46  -c=56  -d=6   -e=57  -f=109 -g=105 -h=110 -i=111
+  perl6 maj.p6 --page=205 -a=213 -b=205 -c=187 -d=9   -e=22  -f=23  -g=8   -h=24  -i=7
+  perl6 maj.p6 --page=23  -a=30  -b=23  -c=15  -d=22  -e=55  -f=44  -g=205 -h=92  -i=24
+  perl6 maj.p6 --page=44  -a=104 -b=44  -c=54  -d=55  -e=199 -f=200 -g=23  -h=201 -i=92
 fi
 
-perl6 maj.p6 --page=209 -a=198 -b=209 -c=188 -d=27 -e=34 -f=33 -g=26 -h=32 -i=25
-perl6 maj.p6 --page=33 -a=12 -b=33 -c=4 -d=34 -e=90 -f=79 -g=209 -h=68 -i=32
-perl6 maj.p6 --page=79 -a=69 -b=79 -c=89 -d=90 -e=192 -f=193 -g=33 -h=194 -i=68
+perl6 maj.p6 --page=54  -a=44  -b=54  -c=64  -d=175 -e=176 -f=177 -g=76  -h=43  -i=15
+perl6 maj.p6 --page=64  -a=54  -b=64  -c=73  -d=170 -e=171 -f=53  -g=169 -h=35  -i=74
+perl6 maj.p6 --page=73  -a=64  -b=73  -c=106 -d=138 -e=63  -f=26  -g=137 -h=84  -i=136
+perl6 maj.p6 --page=106 -a=73  -b=106 -c=104 -d=72  -e=19  -f=105 -g=114 -h=112 -i=113
+perl6 maj.p6 --page=104 -a=106 -b=104 -c=44  -d=30  -e=45  -f=217 -g=94  -h=218 -i=219
 perl6 aff.p6 > etape-finale.html
 exit
 
