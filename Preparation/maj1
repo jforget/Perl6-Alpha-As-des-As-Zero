@@ -2,8 +2,8 @@
 # -*- encoding: utf-8; indent-tabs-mode: nil -*-
 #
 #
-#     Programme affichant la cartographie partielle de l'As des As en HTML
-#     Program displaying the partial map of Ace of Aces as an HTML file
+#     Programme construisant la cartographie de l'As des As
+#     Program building the Ace of Aces mapping
 #     Copyright (C) 2018 Jean Forget
 #
 #     Voir la licence dans la documentation incluse ci-dessous.
@@ -80,6 +80,14 @@ maj1 -- programme récapitulant le processus itératif de construction de la car
 
 Ce programme réunit tous les appels de F<maj.p6> lors de la construction de la cartographie
 de l'As des As. Cela permet de repartir à zéro et de tout refaire sans trop se fatiguer.
+
+Pour une génération complète de la carte, changer la condition du C<if> de façon que
+la ligne F<init.p6> et toutes les lignes F<maj.p6> soient exécutées.
+
+On alors, vous pouvez diéser des lignes et exécuter les autres.
+
+L'ordre des lignes a une importance malgré tout. Le numéro de page du paramètre C<--page>
+doit avoir déjà été mentionné sur une ligne précédente avec un paramètre C<-a> à C-i>.
 
 =head1 LANCEMENT
 
