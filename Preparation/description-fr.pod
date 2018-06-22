@@ -18,6 +18,12 @@ de saisir un sous-ensemble représentatif
 d'associations (page de départ, manœuvre) → page d'arrivée
 et d'obtenir toutes les autres par calcul et par déduction.
 
+De plus, tous les jeux de la série utilisent la même grille de 37 hexagones
+avec la même numérotation. Donc, il suffit de déterminer une bonne
+fois pour toutes les numéros de page des hexagones et tous les livrets
+peuvent être alors générés en décrivant les 13 à 26 manœuvres disponibles
+(plus la table des tirs, qu'il est difficile d'automatiser).
+
 J'ai ainsi reconstitué la grille hexagonale en me basant sur le
 livret FW190 de I<Wingleader>, puis j'ai généré le fichier JSON
 pour le Sopwith Camel et le Fokker DR1 de I<Handy Rotary>,
@@ -69,7 +75,7 @@ une autre page initiale.
 
 =head2 Mise à jour incrémentale
 
-Le programme F<maj.p6> est un prgramme en ligne de commande
+Le programme F<maj.p6> est un programme en ligne de commande
 qui reçoit comme paramètres un numéro de page de départ
 et la liste des associations manœuvre → page d'arrivée
 pour cette page. Par exemple la première fois qu'on l'exécutera,
@@ -87,7 +93,8 @@ l'avion (ou du drone, ou de l'oiseau, etc).
 En outre, le programme applique chaque manœuvre à chacune des
 nouvelles pages. Si le résultat est une page déjà identifiée, le programme
 renseigne cette association (page de départ, manœuvre) → page d'arrivée
-dans la base de données.
+dans la base de données. Si le résultat n'est pas connu, le programme laisse
+tomber cette association pour l'instant.
 
 Également, le programme applique les manœuvres
 S<« à> S<rebrousse-poil »> pour déterminer les
@@ -195,6 +202,20 @@ mais on trouve également les nouveaux enchaînements :
   ( 15, B) →  46
   ( 17, B) → 107
 
+=head3 Itérations
+
+Le programme F<maj.p6> est appelé autant de fois qu'il le faut pour
+que toutes les associations soient connues pour toutes les pages
+et toutes les manœuvres. Tous ces appels sont accumulés dans le
+script shell F<maj1>, de sorte que l'on peut refaire la totalité
+des itérations en un seul appel de F<maj1>.
+
+Avec 9 manœuvres, dont une (C<B>) qui consiste à faire du sur-place,
+il faut au moins 28 itérations pour définir toutes les pages.
+Compte tenu des recouvrements inévitables, il a fallu 48 appels
+de F<maj.p6> pour définir toutes les pages. Il y avait peut-être
+plus rapide, mais pas tellement plus rapide.
+
 =head2 Affichage
 
 Le programme F<aff.p6> affiche le contenu de la base de données
@@ -254,7 +275,8 @@ Puis un repère orthogonal sans être normé
   .                      \        /
   .                       --------
 
-Ou un repère normé sans être orthogonal
+Ou un repère normé sans être orthogonal (l'axe des X est incliné, tandis que
+l'axe des Y est, comme à l'accoutumée, vertical).
 
   .                       -------- 
   .                      /        \               Numéro     X         Y
@@ -293,7 +315,7 @@ sachant que 12h est converti en B<0> au lieu de B<6>.
 
 Si l'angle polaire ou le gisement ne correspond pas à un multiple de 60 degrés, alors
 on utilise le chemin le plus court, en utilisant deux directions de C<0> à C<5>.
-Exemple :
+Voici par exemple les chemins depuis l'hexagone S<187 :>
 
 
   .                       -------- 
@@ -318,7 +340,7 @@ Dans tout cela, je n'ai pas tenu compte de la différence de cap entre
 les deux avions. On utilise la même notation de C<0> à C<5>.
 Ainsi, si les deux avions sont parallèles comme dans la page 1 de l'exemple,
 leur différence de cap sera C<0>. Mais dans la page 8, la différence
-de cap de l'Allemand relativement à l'Anglai est C<5>.
+de cap de l'Allemand relativement à l'Anglais est C<5>.
 
 =head2 Représentation interne
 
@@ -364,3 +386,33 @@ par un point-virgule. Ainsi, la page 187 représente les avions dans le même he
 avec le même cap, donc C<$.chemin> contient S<« C<;0> »>. Page 188, les deux avions sont
 aussi dans le même hexagone, mais dans des directions opposées. C<$.chemin> contient
 alors S<« C<;3> »>.
+
+=head3 Normalisation
+
+Comme cela a déjà été signalé, le chemin utilisé doit être le chemin le plus court
+possible. Cela dit, en reprenant l'exemple de la page 150, le chemin de 187 vers 150 peut être
+C<112;1>, mais aussi C<121;1> ou C<211;1>. Comme la valeur sert de clé de recherche dans les
+programmes, il faut que l'on se mette d'accord sur une valeur normalisée. On prend le
+chemin dans lequel les pas élémentaires sont dans l'ordre croissant. C'est-à-dire
+C<112;1> dans le cas de la page 150.
+
+Cette problématique ne concerne pas la représentation numérique.
+
+Une autre problématique concerne les deux représentations. Il se peut que l'on obtienne
+un chemin plus long que le chemin minimal, par exemple à la suite d'un calcul. 
+Ainsi, le chemin C<13;0> est équivalent au chemin C<2;0>. Il faut donc ajuster le
+chemin courant jusqu'à obtenir la version équivalente la plus courte. Pour ce faire,
+il suffit d'appliquer deux mécanismes.
+
+Si le chemin contient des pas avec un écart de 180°, par exemple C<0> avec C<3>, ou C<1> avec C<4>,
+alors ces pas élémentaires s'éliminent deux à deux. Par exemple, C<1244;5> devient C<24;5>, le C<1>
+ayant éliminé l'un des deux C<4>.
+
+L'autre cas est celui où le chemin contient des pas écartés de 120°. Alors on remplace ces pas
+par leur bissectrice. Voir l'exemple déjà cité, où C<13;0> devient C<2;0>, ou la suite de l'exemple
+précédent où C<24;5> devient C<3;5>. Ou bien, plus complexe,
+C<1123;3> devient C<122;3> en remplaçant C<13> par C<2>. Ou encore, C<135;1> devient C<25;1>, auquel on applique de nouveau la première
+règle de normalisation, ce qui donne un chemin vide C<;1>. Remarquez que si l'on avait normalisé en
+associant le C<3> et le C<5> pour les remplacer par C<4>, cela aurait donné un chemin C<14;1> qui, lui aussi, aurait donné
+dans un deuxième temps le chemin vide C<;1>.
+

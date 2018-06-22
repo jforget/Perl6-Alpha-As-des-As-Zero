@@ -20,7 +20,7 @@ use Depl;
 use JSON::Class;
 
 my MongoDB::Client     $client     .= new(:uri('mongodb://'));
-my MongoDB::Database   $database    = $client.database('aoa_init');
+my MongoDB::Database   $database    = $client.database('aoa_prep');
 my MongoDB::Collection $pages       = $database.collection('Pages');
 my MongoDB::Collection $manoeuvres  = $database.collection('Manoeuvres');
 
