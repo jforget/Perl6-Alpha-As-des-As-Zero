@@ -518,7 +518,7 @@ l'un contre l'autre.
 
 J'ai commencé par programmer cette partie, bien sûr. Je l'ai faite avant d'initialiser
 le dépôt Git. Du coup, les programmes sont dans un répertoire extérieur.
-J'ai l'intention de réintégrer ces programmes dans le dépôt Git, avec une
+Ces programmes ont été réintégrés après coup dans le dépôt Git, avec une
 phase de nettoyage. Vous ne verrez donc pas mes tout premiers pas en Perl 6.
 
 Les programmes de ce dossier tiennent compte de la géométrie sous-jacente des pages.
@@ -657,11 +657,11 @@ xubuntu 16.10) et la première méthode donne des versions vraiment trop
 anciennes. Mes différentes machines physiques et virtuelles et les
 paquets correspondants sont :
 
-  physique    xubuntu-12.04   rakudo 2011.07
-  virtuelle   xubuntu-14.10   rakudo 2013.12
-  virtuelle   lubuntu-15.10   rakudo 2014.07
-  physique    xubuntu-16.10   rakudo 2016.06
-  virtuelle   Mageia-5        pas trouvé
+  physique    xubuntu-12.04   32 bits  rakudo 2011.07
+  virtuelle   xubuntu-14.10   32 bits  rakudo 2013.12
+  virtuelle   lubuntu-15.10   32 bits  rakudo 2014.07
+  physique    xubuntu-16.10   64 bits  rakudo 2016.06
+  virtuelle   Mageia-5        32 bits  pas trouvé
 
 Pour Docker, il faudrait d'une part que Docker soit installé sur ma machine, d'autre
 part que je sois à l'aise avec Docker. Or Docker n'est pas installé et les dépôts xubuntu 16.10
@@ -737,6 +737,15 @@ En fait, il semble que le temps énorme que prend la compilation est dû à l'in
 mdules Perl 5 nécessaires pour certaines étapes de cette compilation ou des tests. Donc, si
 l'on compile Rakudo Star tous les matins, les modules utilitaires sont déjà installés et 
 les étapes de la compilation prennent moins de temps que le premier jour.
+
+Puis j'ai réinitialisé ma machine xubuntu-16.10 64 bits en remplaçant par une distribution
+xubuntu-18.04 64 bits. Il existe pur cette distribution des paquets NQP, Perl 6 et Rakudo.
+Toutefois, pour avoir le cœur net, j'ai préféré installer Rakudo Star à partir des sources.
+J'ai repris le même script que précédemment, auquel j'ai ajouté quelques appels à C<ifconfig>
+pour avoir le nombre d'octets échangés avec Internet. De manière étonnante, l'installation
+totale a duré moins de S<25 minutes !> Et à part le chargement de F<rakudo-star-2018.01.tar.gz>,
+il n'y a eu quasiment aucun trafic réseau pendant l'installation, donc aucun module
+Perl 5 n'a été installé.
 
 =head2 Utilisation
 
@@ -1420,9 +1429,34 @@ Et si vous voulez le script minimal ayant donné cette erreur, le S<voici :>
   my BSON::Document $result = $database.run-command($req);
   #say "Création exemple2 ok : ", $result<ok>, " nb : ", $result<n>;
 
-=head3 Installation du xx mai ou juin 2018
+=head3 Installation du 21 juin 2018
 
-À faire quand j'aurai migré ma machine vers une distribution récente.
+Après avoir migré ma machine vers xubuntu-18.04 64 bits et MongDB 3.6.3 et après avoir installé
+Rakudo Star à partir des sources, j'ai voulu installer le module MongoDB pour
+Perl 6. La commande
+
+  zef install MongoDB
+
+a planté parce que mon système ne contenait pas de F<libssl.so>. Il contient bien
+une F<libssl3.so> ainsi qu'une F<libssl.so.1.1> et une F<libssl.so.1.0.0>, mais cela
+ne semble pas avoir convenu aux tests de MongoDB. J'ai donc tlancé la deuxième
+variante de l'installation, celle qui ne tient pas compte des tests :
+
+  zef install --/test MongoDB
+
+Et l'installation s'est faite. J'ai lancé quelques programmes Perl 6 utilisant
+MongoDB et ils ont fonctionné du premier coup. Un grand pas en avant entre
+mars et juin 2018 !
+
+Remarquez que je n'ai pas cherché à voir si le problème de 
+
+      projection => ( _id => 0, )
+
+ou le problème des C<(Rat)> conduisant au message
+
+  2018-05-25 05:31:06.093687 [E]  1: localhost:27017: encode() on 0.5, error: Not yet implemented
+
+existent encore.
 
 =head2 Bailador
 
