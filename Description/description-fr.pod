@@ -575,7 +575,7 @@ C'est lui qui lit le fichier JSON créé par les programmes de préparation
 et qui connaît ainsi à quelle page on aboutit lorsque l'on exécute
 telle manœuvre sur telle page de départ. Ce qui ne veut pas dire qu'il
 connaît la géométrie sous-jacente, il se contente d'utiliser le fichier
-JSON comme un table d'associations page de départ + manœuvre → page d'arrivée..
+JSON comme un table d'associations page de départ + manœuvre → page d'arrivée.
 
 =head3 Base de données
 
@@ -739,7 +739,7 @@ l'on compile Rakudo Star tous les matins, les modules utilitaires sont déjà in
 les étapes de la compilation prennent moins de temps que le premier jour.
 
 Puis j'ai réinitialisé ma machine xubuntu-16.10 64 bits en remplaçant par une distribution
-xubuntu-18.04 64 bits. Il existe pur cette distribution des paquets NQP, Perl 6 et Rakudo.
+xubuntu-18.04 64 bits. Il existe pour cette distribution des paquets NQP, Perl 6 et Rakudo.
 Toutefois, pour avoir le cœur net, j'ai préféré installer Rakudo Star à partir des sources.
 J'ai repris le même script que précédemment, auquel j'ai ajouté quelques appels à C<ifconfig>
 pour avoir le nombre d'octets échangés avec Internet. De manière étonnante, l'installation
@@ -840,7 +840,7 @@ d'utiliser ≤ ≥ et × en Perl 6, j'ai dupliqué ma fonction dans le
 répertoire Perl 6 sans même purger les caractères APL qui ne
 servent pas pour Perl 6 ni changer le nom de la fonction.
 
-Remarque. Perl 5 connaissait déjà x pour multiplier une chaîne
+Remarque. Perl 5 connaissait déjà x (U+0078) pour multiplier une chaîne
 par un nombre ou une liste par un nombre. Mais hélas, la
 multiplication numérique utilisait toujours l'étoile.
 
