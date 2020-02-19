@@ -996,24 +996,24 @@ remplacer
 
 par
 
-  my @t0 = map {  [ $_, extr($_) ] } @t;
+  my @t0 = map  { [ $_, extr($_) ] } @t;
   my @t1 = sort { $a->[1] <=> $b->[1] } @t0;
-  my @t2 = map { $_->[0] } @t1;
+  my @t2 = map  { $_->[0] } @t1;
 
 Ainsi, la fonction d'extraction est appelée 8 fois au lieu de 30 et son résultat est conservé.
 Mais habituellement, on écrit de façon plus concise et plus synthétique :
 
-  my @t2 = map { $_->[0] }
+  my @t2 = map  { $_->[0] }
            sort { $a->[1] <=> $b->[1] }
-           map {  [ $_, extr($_) ] } @t;
+           map  { [ $_, extr($_) ] } @t;
 
 =head4 Transformation schwartzienne en Perl 6
 
 Le problème avec cette expression concise,
 
-  my @t2 = map { $_->[0] }
+  my @t2 = map  { $_->[0] }
            sort { $a->[1] <=> $b->[1] }
-           map {  [ $_, extr($_) ] } @t;
+           map  { [ $_, extr($_) ] } @t;
 
 c'est qu'il faut la lire de bas en haut ou de droite à gauche, dans
 le sens inverse de la lecture normale (pour nous, habitués de l'alphabet
@@ -1051,10 +1051,10 @@ de haut en bas. Ainsi, le programme devient :
                 juillet  7    août      8   septembre 9
                 octobre 10    novembre 11   décembre 12/;
 
-  my $re = rx/janvier|février|mars|avril|mai|juin|juillet|août|septembre|octobre|novembre|décembre/;
+  my @mois = %mois.keys;
 
   sub extr(Str $ch) {
-    if $ch ~~ /(\d+)'er'? \s+ ($re) \s+ (\d+)/ {
+    if $ch ~~ /(\d+)'er'? \s+ (@mois) \s+ (\d+)/ {
       return $2 × 10000 + %mois{$1} × 100 + $0;
     }
     else {
@@ -1062,23 +1062,14 @@ de haut en bas. Ainsi, le programme devient :
     }
   }
 
-  @t ==> map { [ $_, extr($_) ] } \
+  @t ==> map  { [ $_, extr($_) ] } \
      ==> sort { $^a[1] <=> $^b[1] } \
-     ==> map { $_[0] } \
+     ==> map  { $_[0] } \
      ==> my @t1;
 
   say join "\n", @t1;
 
-Juste un point qui me chagrine, la définition de l'expression régulière C<$re>.
-En Perl 5, j'ai I<généré> cette expression régulière à partir du contenu
-de C<%mois>. En Perl 6, j'ai été obligé de taper deux fois le nom des mois,
-une fois pour le hachage, une autre fois pour l'expression régulière.
-Les anglophones utilisent les rétro-acronymes I<DRY> (I<Don't Repeat Yourself>) 
-et I<WET> (I<Write Everything Twice>) pour cela. Évidemment, il vaut mieux
-travailler en I<DRY> qu'en I<WET>. Je ne sais pas comment faire pour ce point
-particulier en Perl 6, mais un jour j'aurai la réponse.
-
-Un autre point qui m'ennuie (sans pour autant me chagriner), c'est le fait d'être
+Un point qui m'ennuie, c'est le fait d'être
 obligé d'ajouter un backslash en fin de ligne pour indiquer que l'instruction
 se poursuit à la ligne suivante. Comme l'a dit une personne dans la salle,
 S<« C'est> un retour quarante ans en S<arrière. »>. Voir le 
@@ -1091,7 +1082,7 @@ d'intérêt en Perl 6. Dans le cas particulier assez fréquent d'un tri avec une
 vous pouvez remplacer la fonction de comparaison par la fonction d'extraction de 
 ce critère unique. Cela S<donne :>
 
-  @t ==>  sort { extr($_) } \
+  @t ==> sort { extr($_) } \
      ==> my @t1;
 
 Et à ce moment-là, Perl 6 mémorise en cache les valeurs des critères pour chaque élément à
@@ -1102,9 +1093,9 @@ de message).
 La transformation schwartzienne reste utile pour les tris multi-critères. En reprenant l'exemple
 ci-dessus, on peut ne pas agglomérer le jour avec le mois et l'année et coder S<ainsi :>
 
-  @t ==> map { [ $_, annee($_), mois($_), jour($_) ] } \
+  @t ==> map  { [ $_, annee($_), mois($_), jour($_) ] } \
      ==> sort { $^a[1] <=> $^b[1] || $^a[2] <=> $^b[2] || $^a[3] <=> $^b[3] } \
-     ==> map { $_[0] } \
+     ==> map  { $_[0] } \
      ==> my @t1;
 
 Mais c'est plus laborieux et moins stylé.
@@ -1146,7 +1137,12 @@ sont équivalentes :
   @longueur[$n]
   @longueur\       [$n]
 
-Cela aurait-il pu me servir dans mon exemple longueur-largeur ? Non, car l'ajout
+Et dans le paragrapĥe sur la transformée schwartzienne, le backslash servait à
+inhiber le saut de ligne qui suivait immédiatement, de façon que là où le lecteur
+humain voit quatre lignes de longueur raisonnable, l'interpréteur voit une
+instruction complète sur une ligne.
+
+Le I<unspace> aurait-il pu me servir dans mon exemple longueur-largeur ? Non, car l'ajout
 du backslash pour masque le blanc dans la ligne "largeur" aurait créé un décalage d'un caractère supplémentaire.
 Il aurait donc fallu insérer un blanc dans la ligne "longueur", ce qui en cascade
 aurait nécessité d'insérer un autre backslash dans la ligne "longueur". Cela aurait
@@ -1170,24 +1166,88 @@ Une autre suggestion consiste à installer un module qui change la syntaxe de Pe
 des espaces là où la syntaxe standard les refuse. Hélas, je n'ai pas retenu le nom du module ni
 celui de son auteur.
 
-=head3 Expressions régulières
+=head3 Les regex, anciennement expressions régulières
 
-La syntaxe des regexps a été remaniée en profondeur. Reportez-vous systématiquement à la
-doc lors de vos premières tentatives. Un exemple où je me suis fait avoir.
-Pour tester qu'une chaîne de caractères ne contient que des chiffres 0, 1 et
-5, ne pas écrire
+S<Note :> ce paragraphe a été remanié et allongé apès la lecture de
+I<Parsing Perl 6 Regexes and Grammars> de Moritz Lenz, éditions Apress
+et après le renommage de I<Perl 6> en I<Raku>.
 
-  if $ch ~~ /^[015]+$/
+À l'origine, aux premiers temps d'Unix et de C<grep>, voire avant, les expressions régulières
+étaient juste des chaînes de caractères dans lesquelles quelques caractères
+particuliers, peu nombreux, avaient le statut de S<« caractères> S<spéciaux »>,
+tels l'accent circonflexe et le dollar servant de balises, le point servant
+de caractère générique et l'étoile servant de quantificateur et tous les autres
+caractères avaient leur valeur littérale. Ultérieurement, 
+avec les versions évoluées de C<grep> et l'apparition de C<awk>, les caractères spéciaux
+sont devenus de plus en plus nombreux, mais dans leur essence, les expressions régulières
+étaient toujours des chaînes de caractères mêlant caractères littéraux et caractères spéciaux.
 
-mais
+D'autres langages sont partis dans une autre direction, définissant les expressions
+régulières comme une classe d'objets particulière, avec ses attributs et ses méthodes.
 
-  if $ch ~~ /^[0|1|5]+$/
+De temps en temps, un chercheur en mathématiques ou en informatique signale que telle 
+ou telle construction intellectuelle est
+L<S<« accidentellement> complète au sens de S<Turing »>|https://fr.wikipedia.org/wiki/Turing-complet#Exemples_en_dehors_des_langages_de_programmation>.
+C'est le cas du Jeu de la Vie de John Conway, c'est le cas de
+S<« Magic,> S<l'Assemblée »>, c'est le cas de Minecraft.
+Et c'est peut-être le cas des expressions régulières de PCRE ou de Perl5,
+ou d'autres langages de programmation (à vrai dire, je ne me suis pas plongé dans
+la définition de S<« complet> au sens de S<Turing »>, donc ce que je viens de déclarer
+au sujet des expressions régulières est peut-être faux).
 
-En fait, en lisant la documentation, la syntaxe est :
+Éh bien en Raku, les expressions régulières ne sont plus des données (chaînes ou objets),
+ce sont des blocs de code. C'est écrit en bas de la page 5 du livre de Moritz Lentz.
+D'ailleurs, il ne faut plus dire S<« expression> S<régulière »> ou I<regular expression>
+mais tout simplement S<« regex »>. Une regex contient du code Raku avec une syntaxe
+assez différente de la syntaxe impérative et procédurale habituelle, mais c'est du code
+Raku, mêlant chaînes littérales, variables et opérateurs. C'est dit succintement page 5, c'est dit
+de façon beaucoup plus détaillée dans la section 4.6, pages 42 à 46. Voici un exemple du
+changement de mentalité à adopter avec Raku. Reprenons l'extraction d'une date 
+figurant dans le paragraphe ci-dessus sur la transformée schwartzienne. En Perl 5,
+l'extraction se fait ainsi
 
-  if $ch ~~ /^<[015]>$/
+  my %mois = qw/janvier  1    février   2   mars      3
+                avril    4    mai       5   juin      6
+                juillet  7    août      8   septembre 9
+                octobre 10    novembre 11   décembre 12/;
+  my $re = join '|', keys %mois;
+  if ($ch =~ /(\d{1,2})(?:er)?\s+($re)\s+(\d{4})/) { ... }
 
-Il y a énormément à dire sur ce sujet, il est préférable que je passe à autre chose.
+La sous-expression servant à reconnaître un nom de mois est une variable scalaire contenant une bête
+chaîne de caractères mêlant 11 occurrences du caractère spécial S<« C<|> »>
+avec 12 chaînes littérales C<"janvier">, C<"février"> etc. En toute rigueur, j'aurais
+dû ajouter des C<quotemeta>, mais comme les noms de mois sont purement alphabétiques,
+ce n'était pas nécessaire dans cet exemple.
+
+Ma première tentative en Raku, avant de lire le livre de Moritz Lentz et 
+de comprendre quelle était la nature profonde des regex en Raku fut :
+
+  my %mois = qw/janvier  1    février   2   mars      3
+                avril    4    mai       5   juin      6
+                juillet  7    août      8   septembre 9
+                octobre 10    novembre 11   décembre 12/;
+  my $re = rx/janvier|février|mars|avril|mai|juin|juillet|août|septembre|octobre|novembre|décembre/;
+  if $ch ~~ /(\d+)'er'? \s+ ($re) \s+ (\d+)/ { ... }
+
+Et je me plaignais d'être obligé de faire du I<WET> (I<Write Everything Twice>)
+en écrivant deux fois les noms de chaque mois au lieu de faire
+du I<DRY> (I<Don't Repeat Yourself>) en les écrivant une seule fois.
+
+La solution à laquelle je suis arrivé après avoir compris les regex de Raku,
+c'est ceci :
+
+  my %mois = qw/janvier  1    février   2   mars      3
+                avril    4    mai       5   juin      6
+                juillet  7    août      8   septembre 9
+                octobre 10    novembre 11   décembre 12/;
+  my @mois = %mois.keys;
+  if $ch ~~ /(\d+)'er'? \s+ (@mois) \s+ (\d+)/ { ... }
+
+La regex utilisée fait référence à la variable C<@mois>. Mais là où Perl 5
+aurait converti le tableau en chaîne de caractères pour l'insérer dans l'expression
+régulière, la regex de Raku utilise ce tableau en tant que tableau, pour comparer
+la chaîne traitée à chacun des éléments du tableau.
+
 
 =head3 Typage des valeurs et des variables
 
