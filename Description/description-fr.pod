@@ -747,6 +747,41 @@ totale a duré moins de S<25 minutes !> Et à part le chargement de F<rakudo-sta
 il n'y a eu quasiment aucun trafic réseau pendant l'installation, donc aucun module
 Perl 5 n'a été installé.
 
+En 2020,  j'ai retenté  l'expérience en compilant  Rakudo-Star 2019.03
+sur une  machine virtuelle. J'ai  donc créé un machine  virtuelle avec
+1024 Mo de mémoire vive et j'y ai installé xubuntu-19.10 (Eoan Ermine,
+64 bits).  J'ai démarré le gestionnaire  de tâches de xfce,  puis j'ai
+lancé  la  compilation de  Rakudo  Star.  Les problèmes  ont  commencé
+lorsque  C<make>   affiche  C<stage   parse>.  Certes,   il  y   a  un
+avertissement sur la possibilité que cette étape prenne du temps. Mais
+20  minutes,  ça fait  vraiment  long.  Un  C<ps  -ef> montre  que  le
+processus C<moarvm> correspondant  prend 1 ou 2 mn de  CPU, ce qui est
+déjà lourd, mais cela ne justifie  pas le temps-horloge de 20 minutes.
+Puis j'ai remarqué que le gestionnaire de tâches S<affichait :>
+
+  Mémoire : 90 %    Fichier d'échange : 100 %
+
+En regardant  plus attentivement, le  résultat de C<ps  -ef> affichait
+que  le processus  de compilation  utilisait S<700  Mo> de  mémoire et
+continuai à grossir.  La machine virtuelle disposant de  S<1024 Mo> de
+mémoire et d'un fichier F</swapfile>  de S<760 Mo>, elle était saturée
+et passait  son temps à  sauvegarder et  charger des pages  de mémoire
+virtuelle.
+
+J'ai arrêté et  supprimé la machine virtuelle, puis j'en  ai créée une
+nouvelle  avec   S<2048  Mo>   de  mémoire  vive.   L'installation  de
+xubuntu-19.10 a créé  un F</swapfile> de S<760  Mo> comme précédemment
+(je   n'ai  pas   cherché   comment  intervenir   dans  le   processus
+d'installation  pour choisir  une autre  taille). Et  j'ai relancé  la
+compilation de Rakudo-Star 2019.03. Cette fois-ci, le C<stage parse> a
+pris un temps  raisonnable. L'étape C<make spectest> a  pris du temps,
+tout en  montrant que cela progressait.  Sauf à la fin,  où il restait
+deux  tests   qui  avaient   l'air  de  boucler,   F<s16-io/eof.t>  et
+F<s32-io/out-buffering>. L'étape  C<make spectest>  étant facultative,
+je me suis permis de faire un C<kill> sur ces deux processus et la fin
+de  l'installation   s'est  déroulée  sans  problème   dans  un  temps
+raisonnable.
+
 =head2 Utilisation
 
 =head3 Identifiants
