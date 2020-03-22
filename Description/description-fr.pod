@@ -883,6 +883,57 @@ multiplication numérique utilisait toujours l'étoile.
 sont deux opérateurs différents en Perl 6, respectivement « x »
 et « xx ». Évitez d'utiliser l'un pour l'autre comme je l'ai fait !
 
+=head3 Un autre héritage d'APL
+
+Remarque S<préliminaire :> j'aurais pu écrire ce paragraphe au moment de
+la présentation en 2018 et je n'y ai pas pensé. Je me rattrape en
+2020.
+
+Dans les scripts utilisés pour jouer l'As des As, à un moment j'ai besoin
+de calculer la fonction de répartition d'une loi de probabilité discrète
+connaissant sa loi de répartition. Je ne vais pas vous faire un cours de 
+probabilité, alors je vais utiliser un exemple similaire. En prenant une
+année normale, sans 29 février, il s'agit de prendre un tableau contenant
+le nombre de jours par mois et de calculer le tableau contenant pour chaque
+mois le nombre de jours entre le 1er janvier et la fin du mois.
+Le vecteur de départ est 
+
+  31 28 31 30 31 30 31 31 30 31 30 31
+
+en APL et
+
+  0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31
+
+en Raku. Rappelons que les indices commencent habituellement à 1 en APL et qu'ils
+commencent à 0 en Raku. Et appelons ces vecteurs C<NBJ> en APL et C<@nbj> en Raku.
+
+Si c'est pour calculer le nombre de jours dans l'année, il suffit de faire 
+
+  +/NBJ
+  [+] @nbj
+
+et l'on obtient le résultat 365. Mais pour le nombre de jours entre le 1er janvier
+et la fin de chaque S<mois ?> En APL, c'est facile, il suffit de remplacer le slash
+par un backslash
+
+  +\NBJ
+
+ce qui donne
+
+  31 59 90 120 151 181 212 243 273 304 334 365
+
+Dans mes livres francophones sur APL, cela s'appelle un S<« balayage »>.
+En en S<Raku ?>  Enhardi par les résultats des deux paragraphes précédents, je me
+suis dit que si l'on peut faire un balayage en APL, on peut en faire un en Raku
+également. Et si c'est le backslash qui fait le balayage en APL, pourquoi cela
+ne serait pas le cas aussi pour S<Raku ?> J'ai donc essayé
+
+  [\+] @nbj
+
+et S<hourra !> j'ai obtenu le résultat attendu
+
+  0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334,  365
+
 =head3 Modification d'une sous-chaîne de caractères
 
 Lorsque j'ai appris Perl 5 il y a un vingtaine d'années, une fonctionnalité
