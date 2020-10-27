@@ -56,7 +56,7 @@ Cette idée ne date pas de 2017 ou 2018, je l'ai déjà rencontrée dans
 les années 1970 avec le tic-tac-toe. Et depuis longtemps j'avais moi-même un projet
 de « machine self-learning », que je vous présente ci-dessous. Et c'était le moment rêvé
 de réaliser ce projet cette année, car 2018 c'est le centenaire de la création
-de la RAF, de la mort au combat de Mannfred von Richthofen et de l'armistice.
+de la RAF, de la mort au combat de Manfred von Richthofen et de l'armistice.
 
 =head2 Digression sur les précurseurs des liens hypertextes
 
@@ -66,7 +66,7 @@ Quand a-t-on pensé à ajouter un index des mots importants en fin d'ouvrage ?
 Quand a-t-on écrit un ouvrage qui utilise de façon I<intensive> les renvois
 à une autre page ?
 
-À la suite des travaux des naturalistes du XVIIe siècle (Jussieu, Buffon, Cuvier, etc)
+À la suite des travaux des naturalistes du XVIIIe siècle (Jussieu, Buffon, Cuvier, etc)
 on a commencé à publier des flores, des livres décrivant l'ensemble des végétaux
 d'une région ou d'un biotope. Mon père m'en a montré une datant des années 1950
 et qui était organisée sous la forme d'une série de questions-réponses :
@@ -226,7 +226,7 @@ et de L<Vaux-sur-Somme|http://military.wikia.com/wiki/Manfred_von_Richthofen>,
 et imaginons un parking de supermarché. Toutes
 les voitures sont garées à proximité du bâtiment et il y a donc un large espace libre un
 peu plus loin. Dans cet espace libre, se trouvent une Mini Austin et une VW Coccinelle
-disposées ainsi :
+disposées ainsi (prenez les images en trait plein) :
 
 =for html
 <img src='voitures-0.png' width='45%' alt='Position de départ des deux voitures' />
@@ -575,7 +575,7 @@ C'est lui qui lit le fichier JSON créé par les programmes de préparation
 et qui connaît ainsi à quelle page on aboutit lorsque l'on exécute
 telle manœuvre sur telle page de départ. Ce qui ne veut pas dire qu'il
 connaît la géométrie sous-jacente, il se contente d'utiliser le fichier
-JSON comme un table d'associations page de départ + manœuvre → page d'arrivée.
+JSON comme une table d'associations page de départ + manœuvre → page d'arrivée.
 
 =head3 Base de données
 
@@ -734,11 +734,11 @@ C<install> lui a pris beaucoup de temps.
 Un autre participant, qui utilise Perl 6 depuis plusieurs années et, même, participe à son
 développement, a dit qu'il compilait la version de développement de Rakudo Star chaque jour.
 En fait, il semble que le temps énorme que prend la compilation est dû à l'installation de
-mdules Perl 5 nécessaires pour certaines étapes de cette compilation ou des tests. Donc, si
+modules Perl 5 nécessaires pour certaines étapes de cette compilation ou des tests. Donc, si
 l'on compile Rakudo Star tous les matins, les modules utilitaires sont déjà installés et 
 les étapes de la compilation prennent moins de temps que le premier jour.
 
-Puis j'ai réinitialisé ma machine xubuntu-16.10 64 bits en remplaçant par une distribution
+Après les Journées Perl, j'ai réinitialisé ma machine xubuntu-16.10 64 bits en remplaçant par une distribution
 xubuntu-18.04 64 bits. Il existe pour cette distribution des paquets NQP, Perl 6 et Rakudo.
 Toutefois, pour avoir le cœur net, j'ai préféré installer Rakudo Star à partir des sources.
 J'ai repris le même script que précédemment, auquel j'ai ajouté quelques appels à C<ifconfig>
@@ -763,7 +763,7 @@ Puis j'ai remarqué que le gestionnaire de tâches S<affichait :>
 
 En regardant  plus attentivement, le  résultat de C<ps  -ef> affichait
 que  le processus  de compilation  utilisait S<700  Mo> de  mémoire et
-continuai à grossir.  La machine virtuelle disposant de  S<1024 Mo> de
+continuait à grossir.  La machine virtuelle disposant de S<1024 Mo> de
 mémoire et d'un fichier F</swapfile>  de S<760 Mo>, elle était saturée
 et passait  son temps à  sauvegarder et  charger des pages  de mémoire
 virtuelle.
@@ -786,13 +786,15 @@ raisonnable.
 
 =head3 Identifiants
 
-Il paraît qu'avec Perl 5, on pouvait utiliser des lettres accentuées dans les
-identifiants de variable ou de fonction. Je n'ai jamais osé le faire avec Perl 5,
-mais je ne m'en suis pas privé avec Perl 6. De plus, il est possible d'utiliser
-le tiret à l'intérieur d'un identifiant à la place du souligné. Avec quelques 
-limites, par exemple le tiret ne peut pas être suivi d'un chiffre, il faut que
-ce soit une lettre. On ne peut pas utiliser C<$coef-1>, il faut utiliser C<$coef_1>,
-car C<$coef-1> représente la valeur de C<$coef> diminuée de 1.
+Il paraît qu'avec  Perl 5, on pouvait utiliser  des lettres accentuées
+dans les identifiants  de variable ou de fonction. Je  n'ai jamais osé
+le faire avec Perl  5, mais je ne m'en suis pas privé  avec Perl 6. De
+plus,  il  est  possible  d'utiliser   le  tiret  à  l'intérieur  d'un
+identifiant à la place du souligné. Avec quelques limites, par exemple
+le tiret ne peut pas être suivi  d'un chiffre, il faut que ce soit une
+lettre.  On peut  écrire  C<$coef-a>,  mais on  ne  peut pas  utiliser
+C<$coef-1>, il faut utiliser  C<$coef_1>, car C<$coef-1> représente la
+valeur de C<$coef> diminuée de 1.
 
 L'inconvénient, c'est que j'ai tendance à déclarer une variable C<$code-retour>
 et à l'appeler ensuite C<$code_retour> (ou l'inverse). Je devrais utiliser
@@ -875,7 +877,7 @@ d'utiliser ≤ ≥ et × en Perl 6, j'ai dupliqué ma fonction dans le
 répertoire Perl 6 sans même purger les caractères APL qui ne
 servent pas pour Perl 6 ni changer le nom de la fonction.
 
-Remarque. Perl 5 connaissait déjà x (U+0078) pour multiplier une chaîne
+Remarque. Perl 5 connaissait déjà x (U+0078, la lettre "x") pour multiplier une chaîne
 par un nombre ou une liste par un nombre. Mais hélas, la
 multiplication numérique utilisait toujours l'étoile.
 
@@ -1223,7 +1225,7 @@ sont équivalentes :
   @longueur[$n]
   @longueur\       [$n]
 
-Et dans le paragrapĥe sur la transformée schwartzienne, le backslash servait à
+Et dans le paragraphe sur la transformée schwartzienne, le backslash servait à
 inhiber le saut de ligne qui suivait immédiatement, de façon que là où le lecteur
 humain voit quatre lignes de longueur raisonnable, l'interpréteur voit une
 instruction complète sur une ligne.
@@ -1433,7 +1435,7 @@ la possibilité de créer ses propres opérateurs. Comment définit-on la
 priorité de ces opérateurs par rapport aux opérateurs S<traditionnels ?>
 
 La réponse a été donnée pendant les Journées Perl. Elle consiste à utiliser
-les S<« traits »> C<is tigher> ou C<is looser>. 
+les S<« traits »> C<is tighter> ou C<is looser>. 
 L<C'est marqué dans la doc|http://design.perl6.org/S06.html#Subroutine_traits>
 à condition de savoir où chercher.
 
@@ -1457,7 +1459,7 @@ S<Avertissement :> hélas, je n'ai pas pris de notes lorsque j'ai installé le m
 pour Perl 6. J'expose ici mes souvenirs, qui ne sont pas fiables à S<100 %>.
 
 D'autre part, ce que je raconte concerne l'installation que j'ai faite
-le 17 mars. J'ai pu constater que l'auteur du module MongoDB pour Perl 6
+le 17 mars 2018. J'ai pu constater que l'auteur du module MongoDB pour Perl 6
 s'était remis au travail fin avril. Les bugs que je signale ont peut-être
 disparu (et d'autres sont apparus...). Je n'ai pas voulu prendre le risque
 de réinstaller le module pendant que je réalisais mes programmes et que je
@@ -1577,7 +1579,7 @@ Et si vous voulez le script minimal ayant donné cette erreur, le S<voici :>
 
 =head3 Installation du 21 juin 2018
 
-Après avoir migré ma machine vers xubuntu-18.04 64 bits et MongDB 3.6.3 et après avoir installé
+Après avoir migré ma machine vers xubuntu-18.04 64 bits et MongoDB 3.6.3 et après avoir installé
 Rakudo Star à partir des sources, j'ai voulu installer le module MongoDB pour
 Perl 6. La commande
 
