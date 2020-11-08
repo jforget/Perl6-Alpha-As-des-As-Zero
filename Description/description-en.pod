@@ -1,0 +1,119 @@
+-*- encoding: utf-8; indent-tabs-mode: nil -*-
+
+=encoding utf-8
+
+=head1 Introduction
+
+This document is not exactly the translation of F<description-fr.pod>.
+They are about two years apart and in the interim Perl 6 has been renamed
+Raku and I have learned much about this language.
+
+This project is what is called "Conference-driven development".
+In 2018, I was looking for a project which could use Raku and MongoDB and
+which could be interesting to the audience of the French Perl Workshop.
+So I dug out from the depths of my memory an idea I had in the early 1980's
+when I discovered Nova Games' "Ace of Aces". Only later did I discover
+that I could use Bailador, the Raku port of Dancer2 and that the conference
+would be within a few weeks of the hundredth anniversary of Richthofen's death
+and of the hundredth anniversary of the creation of the RAF. If you extend the
+celebration window to a few months, it is also the hunderth anniversary of
+Guynemer's disparition and the 1918 armistice.
+
+A few years ago, we learned that Google had experimented with I<supervised machine learning>
+with Google Alpha Go, a program to play Go. Then we learned about another
+experiment, Google Alpha Go Zero and the chees equivalent Google
+Alpha Chess Zero, which were I<machine self-learning>.
+
+The software knows only the rules of the game and how to determine the result
+of a game that has ended (win / draw / loss). Then the software plays a huge 
+number of games against itself, analyses the results and learns which are the
+good moves and which are the bad moves.
+ 
+This idea of self-learning did not appear in 2017 or 2018. I have read an article
+in the 1970's describing what would be such a system for tic-tac-toe.
+A few years later, when I discovered Nova Games' Ace of Aces, I thought that
+this game, much more complicated than tic-tac-toe but hugely simpler than chess,
+could be the ground for a similar self-learning system. For more than thirty years,
+this idea was not implemented, until I decided to prepare a talk for FPW 2018.
+
+=head2 A Sidenote about Hypertext Links Forerunners
+
+When did we begin to number the pages of a book (or of a papyrus roll)?
+When did we write for the first time "please see page #"?
+When did we think to add an index of important words at the end of a book?
+When did we write a book with an I<intensive> use of "see page #" references?
+
+With the rise of natural sciences, especially botany, in the 18th century,
+several books describing the flora of various regions were published. My father
+showed me one of them, published in the 1950's and organised in a Q&A manner.
+
+=for html
+<blockquote>
+
+In the leaves, how ar the veins organized? If they are parallel, see page 17.
+If they build a tree-like network, see page 33.
+
+=for html
+</blockquote>
+
+And on pages 17 and 33, you would find other questions, other answers and other
+target page numbers.
+
+I have been told that in the 1960's, IBM published hardware maintenance manuals
+based on a similar principle:
+
+=for html
+<blockquote>
+
+If smoke pours out of the disk drive, see page 17. If it goes "crrr crrr crrr", see
+page 33.
+
+=for html
+</blockquote>
+
+The questions above are apocryphal, of course, but you can see the pattern.
+
+In the 1970's, I watched on television a skit about "the shortest dictionary 
+in the world". In dictionaries, what is space consuming is the definitions. So
+by getting rid of the definitions, we can considerably reduce the size of the
+dictionary. They gave a few examples. One I remember would give this in English:
+
+  Clown: see circus
+  Circus: see circle
+  Circle: see club
+  Club: see member
+  Member: see parliament
+  Parliament: see politician
+  Politician: see clown
+
+=head3 Warlock of the Firetop Mountain and its Legacy
+
+In 1982, a new kind of book was published. The first title was
+L<Warlock of the Firetop Mountain|http://fightingfantasy.wikia.com/wiki/The_Warlock_of_Firetop_Mountain_(book)>. 
+In this kind of book, the player would choose how the story would develop. For example:
+
+=for html
+<blockquote>
+
+Paragraph 1. You enter an inn. In the back of the main room, you see the inn-tender
+swiping a few glasses. On your left, in a dark corner, a man sits alone at a table, his
+head covered by a black hood. On your right, you see (and hear) some boisterous 
+mountain dwarves quaffing beer and laughing loudly. What do you do? You speak to
+the inn-tender, go to paragraph 17. You sit down beside the hooded man, go to paragraph
+33. You hail the dwarves with the words "Hello lawn ornaments!", go to paragraph 52.
+
+=for html
+</blockquote>
+
+I had five of these books, in French. One is lost and I still have the four others.
+
+=for HTML
+<img src='Les_livres_dont_vous_etes_le_heros.jpg' alt="Quatres livres dont vous êtes le héros" width='85%' />
+
+I<Personal picture. License is the same as for the text.>
+
+=head1 License
+
+This text is published under the CC-BY-NC-ND license: Attribution-NonCommercial-NoDerivs 2.0 Generic.
+
+Some pictures might have a different license. In this case, it is shown after the picture.
