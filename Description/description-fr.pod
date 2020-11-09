@@ -201,8 +201,7 @@ c'est aussi un précurseur des jeux de tir en vision subjective
 (I<First Person Shooters> en anglais), une douzaine d'années avant Wolfenstein 3D et Doom.
 
 =for HTML
-<img src='Page-96-All.png' alt="Livret allemand page 96" width='45%' />
-<img src='Page-96-GB.png' alt="Livret britannique page 96" width='45%' />
+<img src='Page-96-All-GB.png' alt="Livret allemand page 96 et livret britannique page 96" />
 
 I<Copies d'écran provenant du brevet USP 4,378,118, dans le domaine public depuis 2001.>
 

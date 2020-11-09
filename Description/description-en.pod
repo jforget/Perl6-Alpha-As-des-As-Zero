@@ -158,6 +158,15 @@ I<Pictures from patent USP 4,378,118, in public domain since 2001.>
 
 I<Pictures from patent USP 4,378,118, in public domain since 2001.>
 
+The final page for the game turn is page 96. As you can see, I<Ace of Aces> is not only a forerunner
+of hypertext links, but it is also a forerunner for First Person Shooter games, 12 years or so
+before Wolfenstein 3D and Doom.
+
+=for HTML
+<img src='Page-96-All-GB.png' alt="German booklet page 96 and British booklet page 96" />
+
+I<Pictures from patent USP 4,378,118, in public domain since 2001.>
+
 =head1 License
 
 This text is published under the CC-BY-NC-ND license: Attribution-NonCommercial-NoDerivs 2.0 Generic.
