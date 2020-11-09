@@ -29,7 +29,7 @@ local substr = string.sub;
 local floor  = math.floor;
 local dq = string.char(34); -- double-quote
 
-function voiture1(x, y, angle, motif, legende)
+function voiture1(x, y, angle, motif, legende, echelle)
    local forme = { {0,0},
                           { 0, 1}, {-1, 1}, {-1, 5}, {0, 5},
 		          { 0,15}, {-1,15}, {-1,19}, {0,19},
@@ -45,14 +45,15 @@ function voiture1(x, y, angle, motif, legende)
     tex.print("(" .. dx .. "," .. dy .. ")--");
   end;
   tex.print("cycle;");
-  tex.print("draw voiture rotated " .. angle .. " shifted (" .. x .. "," .. y .. ")" .. motif .. " ;")
-  tex.print("label.rt(" .. legende .. ", (" .. x + 10 .. "," .. y + 10 .. "));");
+  tex.print("draw voiture rotated " .. angle .. " shifted (" .. x .. "," .. y .. ")" .. " scaled " .. echelle .. motif .. " ;")
+  tex.print("label.rt(" .. legende .. ", (" .. echelle * (x + 10) .. "," .. echelle * (y + 10) .. "));");
 end
 
 function dessin(pos1, pos2, mvt1, mvt2)
   tex.print("\\begin{mplibcode}\n");
   tex.print("beginfig(1);\n");
   local motif;
+  local echelle = 3;
 
   -- VW au début
   if pos1 == "D" then
@@ -62,14 +63,14 @@ function dessin(pos1, pos2, mvt1, mvt2)
     motif   = "dashed evenly";
     legende = dq .. dq;
   end
-  voiture1(100,  0,  0, motif, legende);
+  voiture1(100,  0,  0, motif, legende, echelle);
   -- mouvement de la VW
   if mvt1 == "O" then
     motif = "";
   else
     motif = "dashed evenly";
   end
-  tex.print("drawarrow (105, 22){up} .. (100, 30) " .. motif .. ";");
+  tex.print("drawarrow (" .. 105 * echelle .. "," .. 22 * echelle .. "){up} .. (" .. 100 * echelle .. "," .. 30 * echelle .. ") " .. motif .. ";");
   -- VW à la fin
   if pos1 == "F" then
     motif   = "";
@@ -78,7 +79,7 @@ function dessin(pos1, pos2, mvt1, mvt2)
     motif   = "dashed evenly";
     legende = dq .. dq;
   end
-  voiture1(95, 27, 60, motif, legende);
+  voiture1(95, 27, 60, motif, legende, echelle);
 
   -- Mini au début
   if pos2 == "D" then
@@ -88,14 +89,14 @@ function dessin(pos1, pos2, mvt1, mvt2)
     motif   = "dashed evenly";
     legende = dq .. dq;
   end
-  voiture1(50, 40,  0, motif, legende);
+  voiture1(50, 40,  0, motif, legende, echelle);
   -- mouvement de la Mini
   if mvt2 == "O" then
     motif = "";
   else
     motif = "dashed evenly";
   end
-  tex.print("drawarrow (55, 62){up} .. (10, 100){dir 140} " .. motif .. ";");
+  tex.print("drawarrow (" .. 55 * echelle .. "," .. 62 * echelle .. "){up} .. (" .. 10 * echelle .. "," .. 100 * echelle .. "){dir 140} " .. motif .. ";");
   -- Mini à la fin
   if pos2 == "F" then
     motif = "";
@@ -104,7 +105,7 @@ function dessin(pos1, pos2, mvt1, mvt2)
     motif = "dashed evenly";
     legende = dq  .. dq;
   end
-  voiture1( 0, 100, 60, motif, legende);
+  voiture1( 0, 100, 60, motif, legende, echelle);
 
   tex.print("endfig;\n");
   tex.print("\\end{mplibcode}\n");
