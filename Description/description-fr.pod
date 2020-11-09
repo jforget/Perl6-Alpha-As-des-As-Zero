@@ -176,26 +176,22 @@ allemand choisit la flèche la plus à gauche dans la page et annonce :
 
 -- Je t'envoie en page 8.
 
-=for HTML
-<img src='Manoeuvre-1-8.png' alt="Page 1, flèche pointant vers la page 8" width='25%' />
-<img src='Manoeuvre-1-48.png' alt="Page 1, flèche pointant vers la page 48" width='25%' />
-
-I<Copies d'écran provenant du brevet USP 4,378,118, dans le domaine public depuis 2001.>
-
 Simultanément, le Britannique choisit la manœuvre en dessous de S<« EF »>
 S<« Cruising> S<Left »> et répond :
 
 -- Et toi, tu vas page 48.
+
+=for HTML
+<img src='Manoeuvre-1-8-48.png' alt="Page 1, flèche pointant vers la page 8 et flèche pointant vers la page 48" />
+
+I<Copies d'écran provenant du brevet USP 4,378,118, dans le domaine public depuis 2001.>
 
 Le joueur allemand ouvre son livret page 48 et applique la même manœuvre que
 précédemment, ce qui donne la page 96. De même, le joueur britannique ouvre
 son livret page 8, repère la manœuvre choisie et obtient le même numéro de page, 96.
 
 =for HTML
-<img src='Page-48-All.png' alt="Livret allemand page 48" width='45%' />
-<img src='Page-8-GB.png' alt="Livret britannique page 8" width='45%' />
-<img src='Manoeuvre-48-96.png' alt="Page 48, flèche pointant vers la page 96" width='25%' />
-<img src='Manoeuvre-8-96.png' alt="Page 8, flèche pointant vers la page 96" width='25%' />
+<img src='Pages-48-8.png' alt="Livret allemand page 48 et livret britannique page 8" />
 
 I<Copies d'écran provenant du brevet USP 4,378,118, dans le domaine public depuis 2001.>
 

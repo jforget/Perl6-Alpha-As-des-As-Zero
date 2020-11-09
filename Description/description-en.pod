@@ -153,6 +153,10 @@ and answers:
 
 I<Pictures from patent USP 4,378,118, in public domain since 2001.>
 
+=for HTML
+<img src='Pages-48-8.png' alt="German booklet page 48 and British booklet page 8" />
+
+I<Pictures from patent USP 4,378,118, in public domain since 2001.>
 
 =head1 License
 
