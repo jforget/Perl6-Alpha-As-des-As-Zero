@@ -5,10 +5,10 @@
 =head1 Introduction
 
 This document is not exactly the translation of F<description-fr.pod>.
-They are about two years apart and in the interim Perl 6 has been renamed
+The documents are about two years apart and in the interim Perl 6 has been renamed
 Raku and I have learned much about this language.
 
-This project is what is called "Conference-driven development".
+This project was what is called I<Conference-driven development>.
 In 2018, I was looking for a project which could use Raku and MongoDB and
 which could be interesting to the audience of the French Perl Workshop.
 So I dug out from the depths of my memory an idea I had in the early 1980's
@@ -16,12 +16,12 @@ when I discovered Nova Games' "Ace of Aces". Only later did I discover
 that I could use Bailador, the Raku port of Dancer2 and that the conference
 would be within a few weeks of the hundredth anniversary of Richthofen's death
 and of the hundredth anniversary of the creation of the RAF. If you extend the
-celebration window to a few months, it is also the hunderth anniversary of
-Guynemer's disparition and the 1918 armistice.
+celebration window to a few months, it is also the hundredth anniversary of
+Guynemer's passing and the 1918 armistice.
 
 A few years ago, we learned that Google had experimented with I<supervised machine learning>
 with Google Alpha Go, a program to play Go. Then we learned about another
-experiment, Google Alpha Go Zero and the chees equivalent Google
+experiment, Google Alpha Go Zero and the chess equivalent Google
 Alpha Chess Zero, which were I<machine self-learning>.
 
 The software knows only the rules of the game and how to determine the result
@@ -34,7 +34,7 @@ in the 1970's describing what would be such a system for tic-tac-toe.
 A few years later, when I discovered Nova Games' Ace of Aces, I thought that
 this game, much more complicated than tic-tac-toe but hugely simpler than chess,
 could be the ground for a similar self-learning system. For more than thirty years,
-this idea was not implemented, until I decided to prepare a talk for FPW 2018.
+this idea was not implemented, until I decided to prepare this talk for FPW 2018.
 
 =head2 A Sidenote about Hypertext Links Forerunners
 
@@ -50,7 +50,7 @@ showed me one of them, published in the 1950's and organised in a Q&A manner.
 =for html
 <blockquote>
 
-In the leaves, how ar the veins organized? If they are parallel, see page 17.
+In the leaves, how are the veins organized? If they are parallel, see page 17.
 If they build a tree-like network, see page 33.
 
 =for html
@@ -95,11 +95,11 @@ In this kind of book, the player would choose how the story would develop. For e
 =for html
 <blockquote>
 
-Paragraph 1. You enter an inn. In the back of the main room, you see the inn-tender
+Paragraph 1. You enter an inn. In the back of the main room, you see the innkeeper
 swiping a few glasses. On your left, in a dark corner, a man sits alone at a table, his
 head covered by a black hood. On your right, you see (and hear) some boisterous 
 mountain dwarves quaffing beer and laughing loudly. What do you do? You speak to
-the inn-tender, go to paragraph 17. You sit down beside the hooded man, go to paragraph
+the innkeeper, go to paragraph 17. You sit down beside the hooded man, go to paragraph
 33. You hail the dwarves with the words "Hello lawn ornaments!", go to paragraph 52.
 
 =for html
@@ -108,9 +108,32 @@ the inn-tender, go to paragraph 17. You sit down beside the hooded man, go to pa
 I had five of these books, in French. One is lost and I still have the four others.
 
 =for HTML
-<img src='Les_livres_dont_vous_etes_le_heros.jpg' alt="Quatres livres dont vous êtes le héros" width='85%' />
+<img src='Les_livres_dont_vous_etes_le_heros.jpg' alt="Four interactive books" width='85%' />
 
 I<Personal picture. License is the same as for the text.>
+
+=head2 Ace of Aces
+
+In 1981, Alfred Leonardi filed a patent for a new type of game, which he had
+developed with Duoglas Kaufman. Instead of gathering two players around
+the same game map and meking them push cardboard markers, each player has a booklet.
+
+=for HTML
+<img src='pic1051809-l.jpg' alt="Example of game" width='85%' />
+
+I<Picture taken by Chris Norwood and published on L<Boardgame Geek|https://boardgamegeek.com/image/1051809/ace-aces-handy-rotary-series?size=large>. 
+License L<Creative Commons Attribution 3.0 Unported, CC BY 3.0|https://creativecommons.org/licenses/by/3.0/>.>
+
+=head3 Rules Summary
+
+The patent gives an example of a game turn. The players begin this turn on page 1.
+In both booklets, the picture shows that both planes have the same heading and that
+the DR1 is located at the Camel's 4 o'clock, or conversely, the Camel is at the DR1's 10 o'clock.
+
+=for HTML
+<img src='Page-1-GB-All.png' alt="Page 1 in both booklets" width='90%' />
+
+I<Pictures from patent USP 4,378,118, in public domain since 2001.>
 
 =head1 License
 
