@@ -165,8 +165,7 @@ que le DR1 est dans les 4 heures du Camel, c'est-à-dire que le Camel est dans
 les 10 heures du DR1.
 
 =for HTML
-<img src='Page-1-All.png' alt="Livret allemand page 1" width='45%' />
-<img src='Page-1-GB.png' alt="Livret britannique page 1" width='45%' />
+<img src='Page-1-GB-All.png' alt="Page 1 dans les deux livrets" width='100%' />
 
 I<Copies d'écran provenant du brevet USP 4,378,118, dans le domaine public depuis 2001.>
 

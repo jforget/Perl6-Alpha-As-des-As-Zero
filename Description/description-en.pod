@@ -131,9 +131,28 @@ In both booklets, the picture shows that both planes have the same heading and t
 the DR1 is located at the Camel's 4 o'clock, or conversely, the Camel is at the DR1's 10 o'clock.
 
 =for HTML
-<img src='Page-1-GB-All.png' alt="Page 1 in both booklets" width='90%' />
+<img src='Page-1-GB-All.png' alt="Page 1 in both booklets" width='100%' />
 
 I<Pictures from patent USP 4,378,118, in public domain since 2001.>
+
+At the bottom of each page, you notice a line of arrows and a line of numbers. 
+Each number refers to a page of the booklet and each arrow is a graphical representation
+of a maneuver the plane can execute. Each player chooses an arrow and gives the
+corresponding page number to his opponent. For example, the German player
+chooses the leftmost arrow and says:
+
+-- I send you page 8.
+
+At the same time, the British player chooses the arrow below "EF" in the "Cruising Left" part
+and answers:
+
+-- Go to page 48.
+
+=for HTML
+<img src='Manoeuvre-1-8-48.png' alt="Page 1, arrow pointing to page 8 and arrow pointing to page 48" />
+
+I<Pictures from patent USP 4,378,118, in public domain since 2001.>
+
 
 =head1 License
 
