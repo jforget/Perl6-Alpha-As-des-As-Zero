@@ -5,7 +5,7 @@
 =head1 Introduction
 
 This document is not exactly the translation of F<description-fr.pod>.
-The documents are about two years apart and in the interim Perl 6 has been renamed
+The documents are about two years apart. In the interim Perl 6 has been renamed
 Raku and I have learned much about this language.
 
 This project was what is called I<Conference-driven development>.
@@ -14,18 +14,20 @@ which could be interesting to the audience of the French Perl Workshop.
 So I dug out from the depths of my memory an idea I had in the early 1980's
 when I discovered Nova Games' "Ace of Aces". Only later did I discover
 that I could use Bailador, the Raku port of Dancer2 and that the conference
-would be within a few weeks of the hundredth anniversary of Richthofen's death
-and of the hundredth anniversary of the creation of the RAF. If you extend the
-celebration window to a few months, it is also the hundredth anniversary of
-Guynemer's passing and the 1918 armistice.
+would be within a few weeks of the 100th anniversary of Richthofen's death
+and of the 100th anniversary of the creation of the RAF. If you extend the
+celebration window to a few months, it is also the 100th anniversary of
+Guynemer's passing and of the 1918 armistice.
 
 A few years ago, we learned that Google had experimented with I<supervised machine learning>
 with Google Alpha Go, a program to play Go. Then we learned about another
 experiment, Google Alpha Go Zero and the chess equivalent Google
-Alpha Chess Zero, which were I<machine self-learning>.
+Alpha Chess Zero, which were I<unsupervised machine learning>
+or I<machine self-learning>.
 
 The software knows only the rules of the game and how to determine the result
-of a game that has ended (win / draw / loss). Then the software plays a huge 
+of a game that has ended (win / draw / loss). It knows absolutely nothing about
+the tactics or the strategy of the game. Then the software plays a huge 
 number of games against itself, analyses the results and learns which are the
 good moves and which are the bad moves.
  
@@ -40,7 +42,7 @@ this idea was not implemented, until I decided to prepare this talk for FPW 2018
 
 When did we begin to number the pages of a book (or of a papyrus roll)?
 When did we write for the first time "please see page #"?
-When did we think to add an index of important words at the end of a book?
+When did we add an index of important words at the end of a book?
 When did we write a book with an I<intensive> use of "see page #" references?
 
 With the rise of natural sciences, especially botany, in the 18th century,
@@ -96,7 +98,7 @@ In this kind of book, the player would choose how the story would develop. For e
 <blockquote>
 
 Paragraph 1. You enter an inn. In the back of the main room, you see the innkeeper
-swiping a few glasses. On your left, in a dark corner, a man sits alone at a table, his
+cleaning a few glasses. On your left, in a dark corner, a man sits alone at a table, his
 head covered by a black hood. On your right, you see (and hear) some boisterous 
 mountain dwarves quaffing beer and laughing loudly. What do you do? You speak to
 the innkeeper, go to paragraph 17. You sit down beside the hooded man, go to paragraph
@@ -116,7 +118,7 @@ I<Personal picture. License is the same as for the text.>
 
 In 1981, Alfred Leonardi filed a patent for a new type of game, which he had
 developed with Duoglas Kaufman. Instead of gathering two players around
-the same game map and meking them push cardboard markers, each player has a booklet.
+the same game map and making them push cardboard markers, each player has a booklet.
 
 =for HTML
 <img src='pic1051809-l.jpg' alt="Example of game" width='85%' />
@@ -153,6 +155,10 @@ and answers:
 
 I<Pictures from patent USP 4,378,118, in public domain since 2001.>
 
+The German player opens his booklet page 48 and applies the same maneuver as before: same arrow,
+different page number, 96. At the same time, the British player opens his booklet page 8,
+spots the same maneuver and reads the page number. They obtain the same page number, 96.
+
 =for HTML
 <img src='Pages-48-8.png' alt="German booklet page 48 and British booklet page 8" />
 
@@ -166,6 +172,16 @@ before Wolfenstein 3D and Doom.
 <img src='Page-96-All-GB.png' alt="German booklet page 96 and British booklet page 96" />
 
 I<Pictures from patent USP 4,378,118, in public domain since 2001.>
+
+=head2 Explanation of the Mechanism
+
+With this rule mechanism, the final pages are always the same for both players. 
+Many newbie players are amazed by this, yet the explanation is simple.
+Forget the skies above Poelcapelle or Vaux-sur-Somme
+and imagine you are in a big empty parking lot, with only a Mini Austin and 
+a VW Beetle. At first, they set up in the following position (use the plain lines
+and ignore the dotted lines):
+
 
 =head1 License
 
