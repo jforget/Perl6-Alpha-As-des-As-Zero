@@ -3,7 +3,7 @@
      game turn example for Ace of Aces
      Utilitaire pour dessiner la métaphore "voitures dans un parc
      de supermarché" pour l'exemple de tour de jeu de l'As des As.
-     Copyright (C) 2018 Jean Forget
+     Copyright (C) 2018, 2020 Jean Forget
 
      This program is distributed under the same terms as Perl 5.16.3:
      GNU Public License version 1 or later and Perl Artistic License.
