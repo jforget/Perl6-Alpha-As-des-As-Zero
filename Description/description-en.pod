@@ -173,6 +173,11 @@ before Wolfenstein 3D and Doom.
 
 I<Pictures from patent USP 4,378,118, in public domain since 2001.>
 
+The fire / damage rules are very simple. Each plane starts with 12 hit points. Each time
+you end your turn on a page where your plane receives bullets from the other guy, you lose
+1, 2 or 4 hit points, depending on the specific page. Intermediate pages are not taken into
+account. When your hit point total is zero or negative, your plane is shot down.
+
 =head2 Explanation of the Mechanism
 
 With this rule mechanism, the final pages are always the same for both players. 
@@ -182,6 +187,53 @@ and imagine you are in a big empty parking lot, with only a Mini Austin and
 a VW Beetle. At first, they set up in the following position (use the plain lines
 and ignore the dotted lines):
 
+=for html
+<img src='Exp-1-A.png' alt='Start position for the cars' />
+
+I<Personal picture. License is the same as for the text.>
+I<Picture from patent USP 4,378,118, in public domain since 2001.>
+
+=for html
+<img src='Exp-1-B.png' alt='Mini on its start position, Beetle on its end position' />
+
+I<Personal picture. License is the same as for the text.>
+I<Picture from patent USP 4,378,118, in public domain since 2001.>
+
+=for html
+<img src='Exp-1-C.png' alt='End position for the cars' />
+
+I<Personal picture. License is the same as for the text.>
+I<Picture from patent USP 4,378,118, in public domain since 2001.>
+
+=for html
+<img src='Exp-1-D.png' alt='End position for the cars' />
+
+I<Personal picture. License is the same as for the text.>
+I<Picture from patent USP 4,378,118, in public domain since 2001.>
+
+=for html
+<img src='Exp-2-A.png' alt='Start position for the cars' />
+
+I<Personal picture. License is the same as for the text.>
+I<Picture from patent USP 4,378,118, in public domain since 2001.>
+
+=for html
+<img src='Exp-2-B.png' alt='Beetle on its start position, Mini on its end position' />
+
+I<Personal picture. License is the same as for the text.>
+I<Picture from patent USP 4,378,118, in public domain since 2001.>
+
+=for html
+<img src='Exp-2-C.png' alt='End position for the cars' />
+
+I<Personal picture. License is the same as for the text.>
+I<Picture from patent USP 4,378,118, in public domain since 2001.>
+
+=for html
+<img src='Exp-3-B.png' alt='End position for the cars' />
+
+I<Personal picture. License is the same as for the text.>
+I<Picture from patent USP 4,378,118, in public domain since 2001.>
 
 =head1 License
 
