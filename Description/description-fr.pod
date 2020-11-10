@@ -223,8 +223,7 @@ peu plus loin. Dans cet espace libre, se trouvent une Mini Austin et une VW Cocc
 disposées ainsi (prenez les images en trait plein) :
 
 =for html
-<img src='voitures-0.png' width='45%' alt='Position de départ des deux voitures' />
-<img src='Page-1-GB.png' alt="Livret britannique page 1" width='45%' />
+<img src='Exp-1-A.png' alt='Position de départ des deux voitures' />
 
 I<Image personnelle. Les conditions de licence sont les mêmes que pour le texte.>
 I<Copie d'écran provenant du brevet USP 4,378,118, dans le domaine public depuis 2001.>
@@ -234,8 +233,7 @@ Cela correspond à la page 1 des deux livrets.
 Maintenant, imaginons que la VW fasse ce mouvement pendant que la Mini reste immobile.
 
 =for html
-<img src='voitures-1.png' width='45%' alt="Mini dans sa position de départ et VW dans sa position d'arrivée" />
-<img src='Page-8-GB.png' alt="Livret britannique page 8" width='45%' />
+<img src='Exp-1-B.png' alt="Mini dans sa position de départ et VW dans sa position d'arrivée" />
 
 I<Image personnelle. Les conditions de licence sont les mêmes que pour le texte.>
 I<Copie d'écran provenant du brevet USP 4,378,118, dans le domaine public depuis 2001.>
@@ -244,8 +242,7 @@ On obtient alors la disposition de la page 8. À ce moment-là, la Coccinelle s'
 et l'Austin démarre en faisant ce mouvement
 
 =for html
-<img src='voitures-2.png' width='45%' alt="Position d'arrivée des deux voitures" />
-<img src='Page-96-GB.png' alt="Livret britannique page 96" width='45%' />
+<img src='Exp-1-C.png' alt="Position d'arrivée des deux voitures" />
 
 I<Image personnelle. Les conditions de licence sont les mêmes que pour le texte.>
 I<Copie d'écran provenant du brevet USP 4,378,118, dans le domaine public depuis 2001.>
@@ -253,8 +250,7 @@ I<Copie d'écran provenant du brevet USP 4,378,118, dans le domaine public depui
 Le résultat est celui de la page 96.
 
 =for html
-<img src='voitures-3.png' width='45%' alt="Position d'arrivée des deux voitures" />
-<img src='Page-96-GB.png' alt="Livret britannique page 96" width='45%' />
+<img src='Exp-1-D.png' alt="Position d'arrivée des deux voitures" />
 
 I<Image personnelle. Les conditions de licence sont les mêmes que pour le texte.>
 I<Copie d'écran provenant du brevet USP 4,378,118, dans le domaine public depuis 2001.>
@@ -262,8 +258,7 @@ I<Copie d'écran provenant du brevet USP 4,378,118, dans le domaine public depui
 Deuxième étape de l'expérience. Les deux voitures se remettent dans la disposition correspondant à la page 1.
 
 =for html
-<img src='voitures-0.png' width='45%' alt='Position de départ des deux voitures' />
-<img src='Page-1-All.png' alt="Livret allemand page 1" width='45%' />
+<img src='Exp-2-A.png' alt='Position de départ des deux voitures' />
 
 I<Image personnelle. Les conditions de licence sont les mêmes que pour le texte.>
 I<Copie d'écran provenant du brevet USP 4,378,118, dans le domaine public depuis 2001.>
@@ -272,8 +267,7 @@ Puis c'est la Mini qui bouge la première pendant que la VW reste immobile.
 On aboutit alors à la disposition de la page 48.
 
 =for html
-<img src='voitures-4.png' width='45%' alt="VW dans sa position de départ et Mini dans sa position d'arrivée" />
-<img src='Page-48-All.png' alt="Livret allemand page 48" width='45%' />
+<img src='Exp-2-B.png' alt="VW dans sa position de départ et Mini dans sa position d'arrivée" />
 
 I<Image personnelle. Les conditions de licence sont les mêmes que pour le texte.>
 I<Copie d'écran provenant du brevet USP 4,378,118, dans le domaine public depuis 2001.>
@@ -281,8 +275,7 @@ I<Copie d'écran provenant du brevet USP 4,378,118, dans le domaine public depui
 Et lorsque la Coccinelle effectue son mouvement, on aboutit à la configuration de la page 96.
 
 =for html
-<img src='voitures-5.png' width='45%' alt="Position d'arrivée des deux voitures" />
-<img src='Page-96-All.png' alt="Livret allemand page 96" width='45%' />
+<img src='Exp-2-C.png' alt="Position d'arrivée des deux voitures" />
 
 I<Image personnelle. Les conditions de licence sont les mêmes que pour le texte.>
 I<Copie d'écran provenant du brevet USP 4,378,118, dans le domaine public depuis 2001.>
@@ -292,9 +285,7 @@ I<simultanément> leur mouvement. Comme les deux fois précédentes, on obtient 
 la page 96.
 
 =for html
-<img src='voitures-6.png' width='30%' alt="Position d'arrivée des deux voitures" />
-<img src='Page-96-GB.png' alt="Livret britannique page 96" width='30%' />
-<img src='Page-96-All.png' alt="Livret allemand page 96" width='30%' />
+<img src='Exp-3-B.png' alt="Position d'arrivée des deux voitures" />
 
 I<Image personnelle. Les conditions de licence sont les mêmes que pour le texte.>
 I<Copie d'écran provenant du brevet USP 4,378,118, dans le domaine public depuis 2001.>
