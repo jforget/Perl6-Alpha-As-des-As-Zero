@@ -369,7 +369,7 @@ Lors d'un tour de jeu, vous devez garder à l'esprit :
 
 =item 6 le nombre de points de dégâts encaissés,
 
-=item 7 optionellement le nombre de points de dégâts infligés à votre adversaire.
+=item 7 optionnellement le nombre de points de dégâts infligés à votre adversaire.
 
 =back
 

@@ -193,11 +193,18 @@ and ignore the dotted lines):
 I<Personal picture. License is the same as for the text.>
 I<Picture from patent USP 4,378,118, in public domain since 2001.>
 
+This position corresponds to page 1 of both booklets.
+
+Now, suppose the Beetle moves as shown below, while the Mini stays idle.
+
 =for html
 <img src='Exp-1-B.png' alt='Mini on its start position, Beetle on its end position' />
 
 I<Personal picture. License is the same as for the text.>
 I<Picture from patent USP 4,378,118, in public domain since 2001.>
+
+After this movement, we obtain the situation of page 8. And now, the Beetle stops
+and the Mini starts moving.
 
 =for html
 <img src='Exp-1-C.png' alt='End position for the cars' />
@@ -205,11 +212,16 @@ I<Picture from patent USP 4,378,118, in public domain since 2001.>
 I<Personal picture. License is the same as for the text.>
 I<Picture from patent USP 4,378,118, in public domain since 2001.>
 
+The end result is the position of page 96.
+
 =for html
 <img src='Exp-1-D.png' alt='End position for the cars' />
 
 I<Personal picture. License is the same as for the text.>
 I<Picture from patent USP 4,378,118, in public domain since 2001.>
+
+Second step of the experiment. Both cars come back to the starting position
+corresponding to page 1.
 
 =for html
 <img src='Exp-2-A.png' alt='Start position for the cars' />
@@ -217,11 +229,16 @@ I<Picture from patent USP 4,378,118, in public domain since 2001.>
 I<Personal picture. License is the same as for the text.>
 I<Picture from patent USP 4,378,118, in public domain since 2001.>
 
+Now the Mini is the first to move, while the Beetle stays idle. So we obtain
+the position like on page 48.
+
 =for html
 <img src='Exp-2-B.png' alt='Beetle on its start position, Mini on its end position' />
 
 I<Personal picture. License is the same as for the text.>
 I<Picture from patent USP 4,378,118, in public domain since 2001.>
+
+And when the Beetle moves, the end position is the position of page 96.
 
 =for html
 <img src='Exp-2-C.png' alt='End position for the cars' />
@@ -229,11 +246,74 @@ I<Picture from patent USP 4,378,118, in public domain since 2001.>
 I<Personal picture. License is the same as for the text.>
 I<Picture from patent USP 4,378,118, in public domain since 2001.>
 
+Third step of the experiment. The cars come back to their page 1 position.
+Now they move I<simultaneously>. As in both previous steps, the end position
+is the page 96 position.
+
 =for html
 <img src='Exp-3-B.png' alt='End position for the cars' />
 
 I<Personal picture. License is the same as for the text.>
 I<Picture from patent USP 4,378,118, in public domain since 2001.>
+
+So, there is no difference between moving simultaneously or moving sequentially
+in this or that order. This is true both for cars in a parking lot and for planes
+in the Picardy or Flanders sky.
+
+=head3 Special Case, Page 223
+
+If you read some help files provided by
+L<Boardgame Geek|https://www.boardgamegeek.com/boardgame/798/ace-aces-handy-rotary-series/files>,
+you will understand that the game is based on a 37-hexagon grid and on a 6-heading orientation,
+which produce 222 pages, for all relative positions of the planes, provided they are
+with 3 hexagons of each other. But what happens if the distance is greater?
+If, because of their maneuvers, the planes are separated by a distance greater than this
+threshold, the booklets display a special page, Page 223, which show clouds behind which
+the enemy plane has vanished. Even if the page shows clouds in front of the plane, the
+enemy can have disappeared behind.
+
+If only one player has an intermediate page 223, we use the intermediate page of the
+other player to obtain the final page of the game turn. You can no longer check the consistency
+of the final page as shown above. This situation arises, for example, when the planes are 
+pursuing each other at a big distance. Let us suppose we are on page 180, where the Camel
+is in the DR.1's 11 o'clock and let us suppose the plane move forward at medium speed.
+If we apply first the Camel's move, the contact is lost and the intermediate page is page 223,
+where no maneuver is shown. On the other hand, if we apply first the DR.1's move, the intermediate
+page is page 60, where the Camel is in the DR.1's 10 o'clock at medium distance. Then we apply the
+Camel's move and we arrive on page 180. This number cannot be cross-checked.
+
+On the other hand, if both players' intermediate pages are page 223, or if the final page is page 223,
+the planes have really broken contact. Each player chooses to stay and fight or to flee.
+If both planes flee, the game ends in a draw. If both planes choose to stay, the fight begins again
+on a neutral page as at the beginning of the game, but the difference is that the planes keep
+their current level of damage. If only one plane decides to flee, its opponent obtains a half-victory.
+But sometimes, it is better to flee and live and fight another day, than to press on the current
+fight and lose and give a full victory to one's opponent.
+
+=head3 Other Special Case, Tailing
+
+when a plane is in the other plane's rear quadrant (4 o'clock to 8 o'clock) with a similar
+heading, we consider that this plane is I<tailing> the other. It was the case on page 1
+above. I did not mention it for pedagogical reasons. When a plane is tailing another,
+the simultaneous moves are no longer quite simultaneous. The sequence of play is now
+the following:
+
+=over 4
+
+=item 1 The tailed plane chooses a maneuver.
+
+=item 2 The player tells his opponent whether the chosen maneuver is
+a leftward maneuver, a rightward maneuver or a forward maneuver. He does not
+give the intermediate page number.
+
+=item 3 The tailing player chooses a maneuver.
+
+=item 4 Both players simultaneously announce their intermediate page numbers.
+
+=item 5 Both players compute the final page.
+
+=back
+
 
 =head1 License
 
