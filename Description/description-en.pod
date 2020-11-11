@@ -370,6 +370,26 @@ F-15 Eagle vs MiG-29 Fulcrum). There is even a Star Wars version,
 I<L<Starfighter Battle Book|https://boardgamegeek.com/boardgame/3152/star-wars-starfighter-battle-book>>,
 X-wing vs TIE-fighter, this last one published by West End Games.
 
+All the bookets have the same positions at the same page numbers. For example, in every booklet,
+page 96 is the page where the "bad guy" is tailing the "good guy" and shooting at him, at medium distance, with the
+same heading. You can play any combination of a "good guy" booklet and a "bad guy" booklet,
+even staging a fight between a X-Wing and a Fokker E.III!
+
+There are just a few problems. The distance scale is not the same from a game to the other: a few meters
+for the WWI version, several hundred meters for the Cold War version. And the hit points are
+much different. You will need a big dose of 
+L<willing suspension of disbelief|http://tvtropes.org/pmwiki/pmwiki.php/Main/WillingSuspensionOfDisbelief>
+to play such a game!
+
+Beware about I<Wingleader>. There is 
+L<another game|https://boardgamegeek.com/boardgame/160418/wing-leader-victories-1940-1942>
+with a similar name. If you are interested by this game and if you want to buy it, be sure
+it is the right game.
+
+=for html
+<img src='As-de-As-Wingleader-Jet-Eagles.jpg' alt="Ace of Aces, First World War, Second World War and Cold War" />
+
+
 
 
 =head1 License

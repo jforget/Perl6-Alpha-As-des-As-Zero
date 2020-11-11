@@ -397,9 +397,9 @@ du contexte réel, mais se basant uniquement sur une analyse statistique des par
 =head3 Extensions
 
 Deux extensions sont sorties avec des avions plus récents
-(I<L<Powerhouse|https://boardgamegeek.com/boardgame/7104/ace-aces-powerhouse-series> :
+(I<L<Powerhouse|https://boardgamegeek.com/boardgame/7104/ace-aces-powerhouse-series>>,
 Spad XIII contre Fokker D.VII) ou plus anciens
-(I<Flying Machines|https://boardgamegeek.com/boardgame/7103/ace-aces-flying-machines>
+(I<L<Flying Machines|https://boardgamegeek.com/boardgame/7103/ace-aces-flying-machines>>,
 Airco DH2 contre Fokker E.III). Également, il y a la version Seconde Guerre Mondiale 
 (I<L<Wingleader|https://boardgamegeek.com/boardgame/6504/ace-aces-wingleader>>, 
 P-51 Mustang contre FW190), la version Guerre Froide
@@ -423,12 +423,8 @@ Attention au sujet de I<Wingleader> : il existe un autre jeu beaucoup plus réce
 même nom chez GMT. Si vous êtes intéressé par le jeu décrit et que vous voulez l'acheter
 par correspondance, vérifiez bien qu'il s'agit du bon jeu.
 
-=begin html
-
-<img src='Serie_As-des-As.jpg' alt="L'As des As, les jeux de la Première Guerre Mondiale " width='45%' />
-<img src='Wingleader_Jet_Eagles.jpg' alt="L'As des As, Seconde Guerre Mondiale et Guerre Froide" width='45%' />
-
-=end html
+=for html
+<img src='As-des-As-Wingleader-Jet-Eagles.jpg' alt="L'As des As,  Première Guerre Mondiale, Seconde Guerre Mondiale et Guerre Froide" width='45%' />
 
 I<Photos personnelles. Les conditions de licence sont les mêmes que pour le texte.>
 
