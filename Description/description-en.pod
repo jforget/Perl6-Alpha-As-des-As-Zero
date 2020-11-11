@@ -12,15 +12,17 @@ This project was what is called I<Conference-driven development>.
 In 2018, I was looking for a project which could use Raku and MongoDB and
 which could be interesting to the audience of the French Perl Workshop.
 So I dug out from the depths of my memory an idea I had in the early 1980's
-when I discovered Nova Games' "Ace of Aces". Only later did I discover
+when I discovered Nova Games'
+L<"Ace of Aces"|https://boardgamegeek.com/boardgame/798/ace-aces-handy-rotary-series>. 
+Only later did I discover
 that I could use Bailador, the Raku port of Dancer2 and that the conference
 would be within a few weeks of the 100th anniversary of Richthofen's death
 and of the 100th anniversary of the creation of the RAF. If you extend the
-celebration window to a few months, it is also the 100th anniversary of
+celebration window to a few months, it was also the 100th anniversary of
 Guynemer's passing and of the 1918 armistice.
 
 A few years ago, we learned that Google had experimented with I<supervised machine learning>
-with Google Alpha Go, a program to play Go. Then we learned about another
+writing Google Alpha Go, a program to play Go. Then we learned about another
 experiment, Google Alpha Go Zero and the chess equivalent Google
 Alpha Chess Zero, which were I<unsupervised machine learning>
 or I<machine self-learning>.
@@ -31,7 +33,7 @@ the tactics or the strategy of the game. Then the software plays a huge
 number of games against itself, analyses the results and learns which are the
 good moves and which are the bad moves.
  
-This idea of self-learning did not appear in 2017 or 2018. I have read an article
+This idea of machine self-learning did not appear in 2017 or 2018. I have read an article
 in the 1970's describing what would be such a system for tic-tac-toe.
 A few years later, when I discovered Nova Games' Ace of Aces, I thought that
 this game, much more complicated than tic-tac-toe but hugely simpler than chess,
@@ -117,8 +119,9 @@ I<Personal picture. License is the same as for the text.>
 =head2 Ace of Aces
 
 In 1981, Alfred Leonardi filed a patent for a new type of game, which he had
-developed with Duoglas Kaufman. Instead of gathering two players around
-the same game map and making them push cardboard markers, each player has a booklet.
+developed with Douglas Kaufman. Instead of gathering two players in the same room around
+the same game map and making them push cardboard markers, each player has a booklet
+in which each page shows a plane seen from the cockpit of another plane.
 
 =for HTML
 <img src='pic1051809-l.jpg' alt="Example of game" width='85%' />
@@ -313,6 +316,60 @@ give the intermediate page number.
 =item 5 Both players compute the final page.
 
 =back
+
+=head3 A Few Remarks
+
+During a game turn, you must keep in mind:
+
+=over 4
+
+=item 1 the initial page number,
+
+=item 2 the maneuver you chose,
+
+=item 3 the intermediate page number you gave to your opponent,
+
+=item 4 the intermediate page number you received from your opponent,
+
+=item 5 the final page number
+
+=item 6 the number of remaining hit points,
+
+=item 7 optionaly the number of remaining hit points for your opponent.
+
+=back
+
+According to some studies, the human short-term memory has room for 7 ± 2 pieces of data (except for
+waiters in bars, who are way beyond this limit). Unless you are in the lower part of the
+range, you can play I<Ace of Aces> without writing anything and without arraying markers on
+any board. You can play anywhere: on the beach, beside the coffee machine, in a waiting
+room, in the bus. And if your short-term memory is in the upper-range, you can even play
+in the bus and not miss your stop.
+
+When I discovered the game, I thought that, actually, the game consists in mixing numbers
+(page numbers) and symbols (maneuvers) to get other numbers. The role of the picture is 
+just to add meaning for the benefit of the players and to help them choose the proper maneuver
+symbol, provided the players know how the basics of plane flight, and provided they have 
+some notions about the I<Dicta Boelke>, Sailor Malan's advices, "Boots" Blees's 
+I<No Guts, No Glory> and similar books. But you can strip all this air combat decoration
+and keep only the abstract mechanism, based on a finite state automaton with maybe a few
+use of a I<random> function. Hence the idea of a program playing the game without any knowledge
+of air combat, but relying on a statistical analysis of previous games.
+
+=head3 Extensions
+
+This game has two extensions, one with late war planes
+(I<L<Powerhouse|https://boardgamegeek.com/boardgame/7104/ace-aces-powerhouse-series>>,
+Spad XIII vs Fokker D.VII) and early war planes
+(I<L<Flying Machines|https://boardgamegeek.com/boardgame/7103/ace-aces-flying-machines>>,
+Airco DH2 vs. Fokker E.III). There is also a WWII variant
+(I<L<Wingleader|https://boardgamegeek.com/boardgame/6504/ace-aces-wingleader>>, 
+P-51 Mustang vs FW190), a cold war version 
+(I<L<Jet Eagles|https://boardgamegeek.com/boardgame/1991/ace-aces-jet-eagles>>,
+F-15 Eagle vs MiG-29 Fulcrum). There is even a Star Wars version,
+I<L<Starfighter Battle Book|https://boardgamegeek.com/boardgame/3152/star-wars-starfighter-battle-book>>,
+X-wing vs TIE-fighter, this last one published by West End Games.
+
 
 
 =head1 License

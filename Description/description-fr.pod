@@ -9,7 +9,8 @@ J'y ajoute certaines réflexions que l'assistance m'a faites lors de l'exposé.
 
 Je cherchais un projet utilisant Perl 6 et MongoDB et qui puisse intéresser l'auditoire
 des Journées Perl. J'ai donc exhumé des tréfonds
-de ma mémoire une idée consistant à écrire un programme jouant à l'As des As.
+de ma mémoire une idée consistant à écrire un programme jouant à
+l'L<As des As|https://boardgamegeek.com/boardgame/798/ace-aces-handy-rotary-series>. 
 Ce n'est que plus tard que j'ai constaté que ce projet pouvait bénéficier de
 l'utilisation de Bailador (la version Perl 6 de Dancer2) et que cela me permettait
 de célébrer le centenaire de la création de la RAF (1er avril 1918) et de la mort
@@ -395,10 +396,18 @@ du contexte réel, mais se basant uniquement sur une analyse statistique des par
 
 =head3 Extensions
 
-Deux extensions sont sorties avec des avions plus récents (I<Powerhouse> : Spad XIII contre Fokker D.VII) ou plus anciens
-(I<Flying Machines> Airco DH2 contre Fokker E.III). Également, il y a la version Seconde Guerre Mondiale (I<Wingleader>, P-51 Mustang
-contre FW190), la version Guerre Froide (I<Jet Eagles>, F-15 Eagle contre MiG-29 Fulcrum) et 
-même la version Guerre des Étoiles (I<Star Wars : Starfighter Battle Books>, X-Wing contre TIE-Fighter, extension publiée par West End Games).
+Deux extensions sont sorties avec des avions plus récents
+(I<L<Powerhouse|https://boardgamegeek.com/boardgame/7104/ace-aces-powerhouse-series> :
+Spad XIII contre Fokker D.VII) ou plus anciens
+(I<Flying Machines|https://boardgamegeek.com/boardgame/7103/ace-aces-flying-machines>
+Airco DH2 contre Fokker E.III). Également, il y a la version Seconde Guerre Mondiale 
+(I<L<Wingleader|https://boardgamegeek.com/boardgame/6504/ace-aces-wingleader>>, 
+P-51 Mustang contre FW190), la version Guerre Froide
+(I<L<Jet Eagles|https://boardgamegeek.com/boardgame/1991/ace-aces-jet-eagles>>,
+F-15 Eagle contre MiG-29 Fulcrum) et 
+même la version Guerre des Étoiles
+(I<L<Starfighter Battle Book|https://boardgamegeek.com/boardgame/3152/star-wars-starfighter-battle-book>>,
+X-Wing contre TIE-Fighter, extension publiée par West End Games).
 
 À remarquer que toutes ces versions ont la même pagination. Dans tous les livrets, la page 96 montre
 le « méchant » derrière le « gentil », à distance moyenne, avec le même cap et en train de lui tirer dessus.
