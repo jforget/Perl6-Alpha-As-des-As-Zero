@@ -387,7 +387,7 @@ with a similar name. If you are interested by this game and if you want to buy i
 it is the right game.
 
 =for html
-<img src='As-de-As-Wingleader-Jet-Eagles.jpg' alt="Ace of Aces, First World War, Second World War and Cold War" />
+<img src='As-des-As-Wingleader-Jet-Eagles.png' alt="Ace of Aces, First World War, Second World War and Cold War" />
 
 
 

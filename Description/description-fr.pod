@@ -424,7 +424,7 @@ même nom chez GMT. Si vous êtes intéressé par le jeu décrit et que vous vou
 par correspondance, vérifiez bien qu'il s'agit du bon jeu.
 
 =for html
-<img src='As-des-As-Wingleader-Jet-Eagles.jpg' alt="L'As des As,  Première Guerre Mondiale, Seconde Guerre Mondiale et Guerre Froide" width='45%' />
+<img src='As-des-As-Wingleader-Jet-Eagles.png' alt="L'As des As,  Première Guerre Mondiale, Seconde Guerre Mondiale et Guerre Froide" />
 
 I<Photos personnelles. Les conditions de licence sont les mêmes que pour le texte.>
 
