@@ -441,15 +441,18 @@ Hélas, ces règles avancées font perdre la compatibilité avec la capacité 7 
 d'un même avion, je n'ai pas l'intention de les prendre en compte dans
 mes programmes.
 
-Il y a également une extension I<Balloon Busters>, où l'on fait du 2-contre-1. Le joueur allemand
-contrôle un ballon d'observation (assez passif) plus un canon anti-aérien, contre un avion britannique.
+Il y a également une extension 
+I<L<Balloon Buster|https://boardgamegeek.com/boardgame/5736/ace-aces-balloon-buster>
+où l'on fait du 2-contre-1. Le joueur allemand contrôle un ballon d'observation
+(assez passif) plus un canon anti-aérien, contre un avion britannique.
 
 Autres extensions dans la même lignée, mais impossibles à mélanger avec les premières :
-I<Shootout at the Saloon> traduit chez Gallimard avec le titre
-I<Le shérif et le hors-la-loi>,
-I<Dragons Riders of Pern> traduit par Gallimard avec le titre
-I<les Maîtres des Dragons> et une série dont je n'avais jamais entendu parler
-avant de rédiger ces explications, I<Lost Worlds>.
+I<L<Shootout at the Saloon|https://boardgamegeek.com/boardgame/3089/bounty-hunter-shootout-saloon>>
+traduit chez Gallimard avec le titre I<Le shérif et le hors-la-loi>,
+I<L<Dragons Riders of Pern|https://boardgamegeek.com/boardgame/5735/dragonriders-pern-book-game>>
+traduit par Gallimard avec le titre I<les Maîtres des Dragons>
+et une série dont je n'avais jamais entendu parler avant de rédiger ces explications,
+I<L<Lost Worlds|https://boardgamegeek.com/boardgame/3969/lost-worlds-adventure-set-i-ruins-ancients>>.
 
 =for html
 <img src='Le_sherif_et_le_hors-la-loi.png' alt="Le Shérif et le Hors-la-loi" />

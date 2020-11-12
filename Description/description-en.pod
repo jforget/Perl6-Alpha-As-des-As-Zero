@@ -396,6 +396,26 @@ I<Personal pictures. License is the same as for the text.>
 
 I<Personal pictures using a page in the booklets from Jet Eagles, copyright © 1990 Nova Game Designs, Inc.>
 
+All these variants propose advanced rules, e.g. altitude, 2-vs-2 or, in the case
+of I<Jet Eagles>, radars and missiles. Unfortunately, these rules are incompatible with
+the  7 ± 2 short-term memory capacity. Except a rule about compatibility between
+two successive maneuvers, I do not plan to include these advanced rules in my programs.
+
+There is also an extension 
+I<L<Balloon Buster|https://boardgamegeek.com/boardgame/5736/ace-aces-balloon-buster>
+with a 2-vs-1 fight. The German player controls an rather passive
+observation balloon and an anti-aircraft gun, while the British player
+controls a plane.
+
+Other similar extensions, but incompatible with the air combat series:
+I<L<Shootout at the Saloon|https://boardgamegeek.com/boardgame/3089/bounty-hunter-shootout-saloon>>
+translated in French as 
+I<Le shérif et le hors-la-loi>,
+I<L<Dragons Riders of Pern|https://boardgamegeek.com/boardgame/5735/dragonriders-pern-book-game>>
+translated in French as 
+I<les Maîtres des Dragons>
+and a series I had not heard about before writing these explanations,
+I<L<Lost Worlds|https://boardgamegeek.com/boardgame/3969/lost-worlds-adventure-set-i-ruins-ancients>>.
 
 =for html
 <img src='Le_sherif_et_le_hors-la-loi.png' alt="Shootout at the Saloon" />
