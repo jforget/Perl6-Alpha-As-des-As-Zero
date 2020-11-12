@@ -428,12 +428,8 @@ par correspondance, vérifiez bien qu'il s'agit du bon jeu.
 
 I<Photos personnelles. Les conditions de licence sont les mêmes que pour le texte.>
 
-=begin html
-
-<img src='Jet-Eagles-96M.jpg' alt="Page 96 pour Jet Eagles, livret 'Red Force'" width='45%' />
-<img src='Jet-Eagles-96G.jpg' alt="Page 96 pour Jet Eagles, livret 'Blue Force'" width='45%' />
-
-=end html
+=for html
+<img src='Jet-Eagles-96.png' alt="Page 96 pour Jet Eagles, livret 'Red Force' et  livret 'Blue Force'" />
 
 I<Photos personnelles reprenant une page dans les deux livrets de Jet Eagles, copyright © 1990 Nova Game Designs, Inc.>
 
@@ -455,13 +451,8 @@ I<Dragons Riders of Pern> traduit par Gallimard avec le titre
 I<les Maîtres des Dragons> et une série dont je n'avais jamais entendu parler
 avant de rédiger ces explications, I<Lost Worlds>.
 
-=begin html
-
-<img src='Le_sherif_et_le_hors-la-loi.jpg' alt="Le Shérif et le Hors-la-loi" width='30%' />
-<img src='Sherif.jpg' alt="Le shérif apercevant le hors-la-loi" width='30%' />
-<img src='Hors-la-loi.jpg' alt="Le hors-la-loi apercevant le shérif" width='30%' />
-
-=end html
+=for html
+<img src='Le_sherif_et_le_hors-la-loi.png' alt="Le Shérif et le Hors-la-loi" />
 
 I<Photos personnelles reprenant « Le Shérif et le Hors-la-loi », Copyright © 1982 Nova Games Design Inc, copyright © 1986 Emithill Limited,
 copyright © 1986 Gallimard pour la traduction française et pour les illustrations de couverture.>

@@ -381,7 +381,7 @@ much different. You will need a big dose of
 L<willing suspension of disbelief|http://tvtropes.org/pmwiki/pmwiki.php/Main/WillingSuspensionOfDisbelief>
 to play such a game!
 
-Beware about I<Wingleader>. There is 
+A bit of caution about I<Wingleader>. There is 
 L<another game|https://boardgamegeek.com/boardgame/160418/wing-leader-victories-1940-1942>
 with a similar name. If you are interested by this game and if you want to buy it, be sure
 it is the right game.
@@ -389,7 +389,19 @@ it is the right game.
 =for html
 <img src='As-des-As-Wingleader-Jet-Eagles.png' alt="Ace of Aces, First World War, Second World War and Cold War" />
 
+I<Personal pictures. License is the same as for the text.>
 
+=for html
+<img src='Jet-Eagles-96.png' alt="Page 96 for Jet Eagles, 'Red Force' booklet and 'Blue Force' booklet" />
+
+I<Personal pictures using a page in the booklets from Jet Eagles, copyright © 1990 Nova Game Designs, Inc.>
+
+
+=for html
+<img src='Le_sherif_et_le_hors-la-loi.png' alt="Shootout at the Saloon" />
+
+I<Personal pictures using "Le Shérif et le Hors-la-loi", copyright © 1986 Gallimard,
+French translation of "Shootout at the Saloon", Copyright © 1982 Nova Games Design Inc, copyright © 1986 Emithill Limited>
 
 
 =head1 License
