@@ -402,7 +402,7 @@ the  7 ± 2 short-term memory capacity. Except a rule about compatibility betwee
 two successive maneuvers, I do not plan to include these advanced rules in my programs.
 
 There is also an extension 
-I<L<Balloon Buster|https://boardgamegeek.com/boardgame/5736/ace-aces-balloon-buster>
+I<L<Balloon Buster|https://boardgamegeek.com/boardgame/5736/ace-aces-balloon-buster>>
 with a 2-vs-1 fight. The German player controls an rather passive
 observation balloon and an anti-aircraft gun, while the British player
 controls a plane.
@@ -423,6 +423,76 @@ I<L<Lost Worlds|https://boardgamegeek.com/boardgame/3969/lost-worlds-adventure-s
 I<Personal pictures using "Le Shérif et le Hors-la-loi", copyright © 1986 Gallimard,
 French translation of "Shootout at the Saloon", Copyright © 1982 Nova Games Design Inc, copyright © 1986 Emithill Limited>
 
+Since the patent is in the public domain, anyone can write and publish his own extension
+to the Ace of Aces game. Here are a few examples:
+
+=over 4
+
+=item * Apache AH-64 vs Mi-24 Hind
+
+=item * Quidditch: Griffindor vs Slytherin
+
+=item * Superman vs Ironman
+
+=item * Sparrowhawk vs hobbyist's drone
+
+=back
+
+Actually, I have chosen this last extension to add test data to my programs. I was
+reluctant to use data from an existing game, because while the patent is expired, the
+copyright is not.
+
+=head1 Program Description
+
+There are two parts in this project. First, preparation, to create booklets in electronic
+format, by generating them rather than copying them from the paper version. Second, the game
+itself, where cyber pilots fight against each other.
+
+=head2 Preparation
+
+I have started with this part, of course. But I did not write the programs within the
+Git repo, I wrote them in an external directory. Later, I cleaned them and I copied them
+into the Git repo. You will not see my very first Raku lines of code.
+
+Preparation itself is split into two steps. The first step consists in
+establishing  the  relation between  page  numbers  and the  implicit
+hexagon grid. For this, I have taken a booklet from an existing game and
+I have copied enough pages to have at least one link to every one ot the 222 pages.
+
+In the second step, for each aircraft, I write a JSON file describing the maneuvers
+this plane can execute, I merge it with the database from the first step and
+I generate a booklet, that is, the full list of associations
+(start page + maneuver) → end page. The program prints the booklet both in
+JSON format and in HTML format.
+
+=head2 Game
+
+The original game is meant for two human players with no umpire.
+For the electronic players, I have prefered to use an umpire program, or
+rather an umpire process, and two player processes. Both processes use the
+same Raku program, but the command line parameters are different.
+
+To agree with the principles of Google Alpha Go Zero, the player program has absolutely
+no knowledge of the flight mechanisms and of the air combat tactics. It just receives
+from the umpire a list of possible maneuvers, chooses one of them and send it back to
+the umpire.
+
+The player program has two different modes. The first mode is the training mode, where
+each maneuver is randomly chosen with equal probability. The second mode is the combat mode,
+where the player program search the database from similar situations encountered during the
+previous games, evaluates which ones led to success and which ones led to failure, gives
+different probabilities to these maneuvers and makes a random choice according to the probabilities.
+
+Even in the combat mode, the maneuvers are chosen with a random function. So we prevent 
+stereotypical plays, each process computing a minimax best solution and always obtaining the
+same choice when in the same situation. The random choice gives a higher probability to the
+best answer, but this does not prevent the program from choosing an unexpected maneuver
+from time to time and take the enely on his wrong foot.
+
+The umpire program has a better knowledge of the flight mechanisms and the fire mechanisms, but
+nothing about tactics. The umpire program reads the JSON files created by the preparation programs.
+This allows it to know the relation (start page + maneuver) → end page. But the umpire program
+does not know and does not care about the underlying hexagonal geometry.
 
 =head1 License
 

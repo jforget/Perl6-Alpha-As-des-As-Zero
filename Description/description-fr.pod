@@ -442,7 +442,7 @@ d'un même avion, je n'ai pas l'intention de les prendre en compte dans
 mes programmes.
 
 Il y a également une extension 
-I<L<Balloon Buster|https://boardgamegeek.com/boardgame/5736/ace-aces-balloon-buster>
+I<L<Balloon Buster|https://boardgamegeek.com/boardgame/5736/ace-aces-balloon-buster>>
 où l'on fait du 2-contre-1. Le joueur allemand contrôle un ballon d'observation
 (assez passif) plus un canon anti-aérien, contre un avion britannique.
 
