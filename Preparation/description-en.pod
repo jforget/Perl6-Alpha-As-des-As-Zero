@@ -1,0 +1,29 @@
+# -*- encoding: utf-8; indent-tabs-mode: nil -*-
+
+=encoding utf-8
+
+=head1 INTRODUCTION
+
+The programs for I<Ace of Aces> rely on an associaton table listing the associations
+(start page, maneuver) → end page, stored in a JSON file. We can type this
+JSON file by copying the 222-page booklet, with 25 maneuvers per page,
+that is, 5550 entries. This is boring and error-prone. And  you have to
+do this for at least two booklets.
+
+Fortunately, the different pages represent the location and heading of a 
+plane on a 37-hexagon grid, with 6 possible headings. By using this
+underlying geometry, we can just copy a significant subset of associations
+(start page, maneuver) → end page and generate the other by geometrical
+computation and by inference.
+
+Additionally, all the games of the series use the same 37-hexagon grid with
+the same numbering. So, you have to build an electronic version of the
+37-hexagon grid only once, and then you can initialize any booklet by 
+specifying the 13 to 26 maneuvers (plus the fire table, which is harder to
+compute).
+
+So I built the electronic version of the hex-grid using the FW190 booklet
+from I<Wingleader>, then I checked it by generating the booklets for
+the Sopwith Camel and the Fokker DR1 from I<Handy Rotary> and for the 
+P-51 and the FW190 from I<Wingleader>. I also generated booklets for
+a new game involving a sparrohawk and a hobbyist's drone.

@@ -468,6 +468,10 @@ I generate a booklet, that is, the full list of associations
 (start page + maneuver) → end page. The program prints the booklet both in
 JSON format and in HTML format.
 
+You will learn more by reading the dedicated
+L<documentation|https://github.com/jforget/Perl6-Alpha-As-des-As-Zero/blob/master/Preparation/description-en.pod>
+for this step.
+
 =head2 Game
 
 The original game is meant for two human players with no umpire.
