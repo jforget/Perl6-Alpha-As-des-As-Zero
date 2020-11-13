@@ -412,7 +412,11 @@ X-Wing contre TIE-Fighter, extension publiée par West End Games).
 À remarquer que toutes ces versions ont la même pagination. Dans tous les livrets, la page 96 montre
 le « méchant » derrière le « gentil », à distance moyenne, avec le même cap et en train de lui tirer dessus.
 Il est possible de jouer avec un livret « gentil » d'un jeu et un livret « méchant » d'un autre jeu, quitte
-à faire combattre un X-Wing contre un Fokker E.III !
+à faire combattre un X-Wing contre un Fokker E.III ! Ou vous contenter d'un duel F-15 contre FW190, 
+ce qui vous rappelera le 
+L<célèbre accrochage|https://www.youtube.com/watch?v=f3XNEWtJF0o>
+entre deux F-14 et deux A6M2 Zéro.
+ 
 
 Juste quelques hics, l'échelle des distances n'est pas la même d'un jeu à l'autre et les
 points de dégâts n'ont rien à voir. Il vous faudra une bonne dose de
@@ -520,6 +524,10 @@ Dans un deuxième temps, on initialise un fichier JSON avec les manœuvres d'un 
 on croise avec la base de données de la première étape, et on génère un livret 
 donnant la liste des associations page de départ + manœuvre → page d'arrivée.
 Ce livret est codé sous la forme d'un fichier JSON avec en prime un fichier HTML.
+
+Vous en saurez plus en lisant la
+L<documentation|../Preparation/description-fr.pod>
+particulière de cette étape.
 
 =head2 Jeu
 

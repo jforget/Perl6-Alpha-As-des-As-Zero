@@ -373,7 +373,10 @@ X-wing vs TIE-fighter, this last one published by West End Games.
 All the bookets have the same positions at the same page numbers. For example, in every booklet,
 page 96 is the page where the "bad guy" is tailing the "good guy" and shooting at him, at medium distance, with the
 same heading. You can play any combination of a "good guy" booklet and a "bad guy" booklet,
-even staging a fight between a X-Wing and a Fokker E.III!
+even staging a fight between a X-Wing and a Fokker E.III! Or you can just match
+a F-15 against a FW190, the closest way to reenact the
+L<famous fight|https://www.youtube.com/watch?v=f3XNEWtJF0o>
+between a pair of F-14's and a pair of A6M2 Zeros.
 
 There are just a few problems. The distance scale is not the same from a game to the other: a few meters
 for the WWI version, several hundred meters for the Cold War version. And the hit points are
@@ -446,13 +449,13 @@ copyright is not.
 
 There are two parts in this project. First, preparation, to create booklets in electronic
 format, by generating them rather than copying them from the paper version. Second, the game
-itself, where cyber pilots fight against each other.
+itself, where cyber pilots fight against each other and learn from their mistakes.
 
 =head2 Preparation
 
 I have started with this part, of course. But I did not write the programs within the
 Git repo, I wrote them in an external directory. Later, I cleaned them and I copied them
-into the Git repo. You will not see my very first Raku lines of code.
+into the Git repo. You will not see my very first lines of Raku code.
 
 Preparation itself is split into two steps. The first step consists in
 establishing  the  relation between  page  numbers  and the  implicit
@@ -479,15 +482,15 @@ the umpire.
 
 The player program has two different modes. The first mode is the training mode, where
 each maneuver is randomly chosen with equal probability. The second mode is the combat mode,
-where the player program search the database from similar situations encountered during the
+where the player program searches the database from similar situations encountered during 
 previous games, evaluates which ones led to success and which ones led to failure, gives
 different probabilities to these maneuvers and makes a random choice according to the probabilities.
 
 Even in the combat mode, the maneuvers are chosen with a random function. So we prevent 
-stereotypical plays, each process computing a minimax best solution and always obtaining the
-same choice when in the same situation. The random choice gives a higher probability to the
+stereotypical plays, where each process would compute a minimax best solution and always obtain the
+same choice in the same situation. The random choice gives a higher probability to the
 best answer, but this does not prevent the program from choosing an unexpected maneuver
-from time to time and take the enely on his wrong foot.
+from time to time and take the enemy on his wrong foot.
 
 The umpire program has a better knowledge of the flight mechanisms and the fire mechanisms, but
 nothing about tactics. The umpire program reads the JSON files created by the preparation programs.
