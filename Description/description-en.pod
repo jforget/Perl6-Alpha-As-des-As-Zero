@@ -317,6 +317,19 @@ give the intermediate page number.
 
 =back
 
+=head3 Altitude
+
+This is a game about planes, so we must deal with altitude, of course!
+Well, no. For the basic rules, the game
+L<just uses two dimensions|https://tvtropes.org/pmwiki/pmwiki.php/Main/TwoDSpace>.
+There is only one instance when altitude is needed. There are six pages where both
+aircraft are in the same hex. It is convenient to suppose that there are separated 
+in altitude by a few meters. This is the players' opinion, the rules say nothing about
+that.
+
+There are advanced rules which require the players to log the altitude at each game turn.
+The additional burden is not worth it. 
+
 =head3 A Few Remarks
 
 During a game turn, you must keep in mind:

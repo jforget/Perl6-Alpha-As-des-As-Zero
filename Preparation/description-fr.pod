@@ -63,7 +63,9 @@ association (page de départ, manœuvre) → page d'arrivée.
 
 =head2 Initialisation
 
-Le programme recopie le fichier F<Drone-init.json> dans
+Le programme F<init.p6> commence par vider le contenu de la base F<aoa_prep> dans MongoDB.
+
+Ensuite, il recopie le fichier F<Drone-init.json> dans
 une collection C<Manoeuvres> de la base MongoDB. Il initialise une autre
 collection C<Pages> avec deux S<pages :> la page 223, puisqu'elle a un statut
 spécial, et la page 187 qui est une page normale.

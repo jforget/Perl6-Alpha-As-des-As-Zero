@@ -352,6 +352,19 @@ vers l'avant. Il ne donne pas le numéro de la page intermédiaire.
 
 =back
 
+=head3 Altitude
+
+Le jeu met en scène des avions, donc on tient compte de l'altitude, n'est-ce S<pas ?>
+Non, pour les règles de base, le jeu se contente
+d'L<utiliser deux dimensions|https://tvtropes.org/pmwiki/pmwiki.php/Main/TwoDSpace>.
+Il y a juste un cas où l'altitude a un rôle à jouer. Il y a six pages correspondant
+au cas où les deux avions sont dans le même hexagone. Dans ce cas, on convient qu'il
+sont séparés par quelques mètres d'altitude. C'est ce que disent les joueurs, la règle
+est muette à ce sujet.
+
+Il y a des règles avancées, dont une qui demande de noter l'altitude à chaque tour
+de jeu. C'est beaucoup d'effort pour un gain mineur, le jeu n'en vaut pas la chandelle.
+
 =head3 Considérations diverses
 
 Lors d'un tour de jeu, vous devez garder à l'esprit :
