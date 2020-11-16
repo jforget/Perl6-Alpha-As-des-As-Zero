@@ -42,6 +42,15 @@ anecdotes récentes racontant les rencontres brutales entre des oiseaux
 de proie et des drones de loisir. Le but du drone est de filmer l'épervier,
 tandis que le but de l'épervier est de détruire le drone.
 
+Alors que la plupart des animaux et des véhicules sur terre ont une
+orientation avant / arrière, le drone, de type quadrocopter, n'a pas
+d'orientation précise pour ses déplacements, semblable aux méduses et
+aux anémones de mer. Il peut aussi facilement aller en avant qu'en
+arrière ou de côté. Il a quand même un avant et un arrière, car je
+suppose que la caméra est fixe et immobile par rapport au chassis du
+drone. Ainsi, l'avant du drone correspond au champ visuel de sa
+caméra.
+
 Je ne prétend pas que ce jeu soit très intéressant, surtout
 qu'il n'y a pas les dessins qui sont l'un des points forts
 de l'I<As des As>. Je ne prétend pas non plus qu'il soit

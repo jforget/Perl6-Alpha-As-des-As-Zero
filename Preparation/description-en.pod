@@ -39,6 +39,14 @@ after recent incident reports describing brutal encounters between
 birds of prey and drones. In the game, the drone tries to film the bird, while the
 brid tries to destroy the drone.
 
+While most animals and most vehicules on Earth have a front / back
+orientation, the drone, a quadcopter, has no real orientation for its
+movements, a bit like jellyfish and sea anemones. It can easily move
+backward or sideways as easily as forward. It still has a front / back
+orientation, because I consider that the camera is rigidly fixed on
+the drone frame, so the front of the drone is the view field of the
+camera.
+
 I do not pretend that the game is interesting, especially since I do not
 provide the pictures which are an important element for human players.
 I do not pretend either it is balanced. But the game has been created by me,
@@ -88,10 +96,33 @@ to them. If the result is a known page, the association maneuver → end page
 is stored in C<Pages> collection. If the end page is not known yet, no update
 takes place.
 
-The program also applies I<backwards> the maneuvers to new pages to check other
+The program also applies I<backward> the maneuvers to new pages to check other
 associations (start page, maneuver) → end page, where the end page is the page
 currently processed and the start page is hopefully a page already known.
 
-This backwards did not exist in the first version, in March 2018, I added it in
+This backward processing did not exist in the first version, in March 2018, I added it in
 June 2018. Instead, I had a paramter triggering a full computation, for all known
 pages, old and new alike. Very time-consuming.
+
+=head3 Example
+
+Let us consider a flying machine with fewer maneuvers than the drone. The only
+three maneuvers are:
+
+=item * Maneuver A, a port sideslip without heading change to the hex at 10 o'clock
+
+=item * Maneuver B, move forward
+
+=item * Maneuver C, a starboard sideslip without heading change to the hex at 2 o'clock
+
+=back
+
+  .                       --------
+  .                      /        \
+  .              --------    B     --------
+  .             /        \        /        \
+  .            (    A     --------     C    )
+  .             \        /        \        /
+  .              --------  départ  -------- 
+  .                      \        /
+  .                       -------- 
