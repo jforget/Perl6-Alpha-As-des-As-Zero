@@ -79,9 +79,11 @@ bootstraped the process with any other ordinary page.
 
 =head2 Incremental Update
 
-Program F<maj.p6> is a command-line program, which receives as input parameters
-a page number, plus the associations maneuver → end page. For example, the first
-time it will run, the command line will be:
+"Update" translates to I<mise à jour> in French, so the update program
+is named F<maj.p6>. This is a command-line program, which receives as
+input parameters a page number, plus the associations maneuver → end
+page. For example, the first time it will run, the command line will
+be:
 
   perl6 maj.p6 --page=187 -a=205 -b=187 -c=198 -d=3 -e=15 -f=16 -g=2 -h=17 -i=1
 
@@ -109,11 +111,13 @@ pages, old and new alike. Very time-consuming.
 Let us consider a flying machine with fewer maneuvers than the drone. The only
 three maneuvers are:
 
-=item * Maneuver A, a port sideslip without heading change to the hex at 10 o'clock
+=over 4
+
+=item * Maneuver A, a port sideslip to the hex at 10 o'clock without heading change
 
 =item * Maneuver B, move forward
 
-=item * Maneuver C, a starboard sideslip without heading change to the hex at 2 o'clock
+=item * Maneuver C, a starboard sideslip to the hex at 2 o'clock without heading change
 
 =back
 
@@ -123,6 +127,102 @@ three maneuvers are:
   .             /        \        /        \
   .            (    A     --------     C    )
   .             \        /        \        /
-  .              --------  départ  -------- 
+  .              --------   start  -------- 
   .                      \        /
   .                       -------- 
+
+After F<init.p6>, the only known page is 187 (except for page 223, a special one).
+So the first run of F<maj.p6> is:
+
+  perl6 maj.p6 -page=187 -a=15 -b=16 -c=17
+
+The program updates the associations with:
+
+  (187, A) → 15
+  (187, B) → 16
+  (187, C) → 17
+
+And the map is filled with:
+
+  .                       --------
+  .                      /        \
+  .              --------    16    --------
+  .             /        \        /        \
+  .            (    15    --------    17    )
+  .             \        /        \        /
+  .              --------   187    -------- 
+  .                      \        /
+  .                       --------
+
+The program processes the newly created pages, 15, 16 and 17 and applies the
+maneuvers A, B and C to them. With three hexes and three maneuvers, it makes
+nine attempts, two of which succeed. With that, the program adds the associations:
+
+  ( 15, C) → 16
+  ( 17, A) → 16
+
+The second call to F<maj.p6> applies to page 16:
+
+  perl6 maj.p6 -page=16  -a=46 -b=91 -c=107
+
+The program updates the associations with:
+
+  ( 16, A) →  46
+  ( 16, B) →  91
+  ( 16, C) → 107
+
+And the map expands with:
+
+  .                       -------- 
+  .                      /        \
+  .              --------    91    --------
+  .             /        \        /        \
+  .            (    46    --------   107    )
+  .             \        /        \        /
+  .              --------    16    --------
+  .             /        \        /        \
+  .            (    15    --------    17    )
+  .             \        /        \        /
+  .              --------   187    -------- 
+  .                      \        /
+  .                       --------
+
+Like the first time, the program applies the maneuvers to the newly
+created pages, with 9 attempts, 7 of which fail and 2 of which succeed.
+So the following associations are added:
+
+  ( 46, C) → 91
+  (107, A) → 91
+
+In addition, the program applies the maneuvers backward to the newly
+created pages. The result gives some already known associations:
+
+  (x, A) →  46 with x =  16
+  (x, A) →  91 with x = 107
+  (x, B) →  91 with x =  16
+  (x, C) →  91 with x =  46
+  (x, C) → 107 with x =  16
+
+Some attempts fail:
+
+  (x, C) →  46
+  (x, A) → 107
+
+And some attempts give new results
+
+  (x, B) →  46 with x = 15
+  (x, B) → 107 with x = 17
+
+So the following records are added:
+
+  ( 15, B) →  46
+  ( 17, B) → 107
+
+=head3 Iterations
+
+The program F<maj.p6> is called enough times to get all associations
+for all pages and all maneuvers. Since the drone has 9 maneuvers, one
+of which is immobility, only 8 maneuvers may give new results. So we
+need at least 222/8 calls, that is 28 calls. Since there is some
+overlay, I ended up with 48 calls. There was perhaps a faster
+solutionn but I doubt there could be a much faster solution.

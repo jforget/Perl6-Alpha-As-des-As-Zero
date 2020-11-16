@@ -167,8 +167,8 @@ Et la carte est complétée avec :
   .                       --------
 
 En examinant les pages nouvellement créées 15, 16 et 17 et en leur appliquant
-les manœuvres A, B et C, le programme
-ajoute les enchaînements 
+les manœuvres A, B et C, le programme constate que sur les 9 tentatives, deux
+réussissent. Par conséquent, il ajoute les enchaînements 
 
   ( 15, C) → 16
   ( 17, A) → 16
@@ -207,8 +207,25 @@ ajoute les enchaînements
   (107, A) → 91
 
 Le programme applique également les manœuvres A, B et C à rebrousse-poil
-sur les pages 46, 91 et 107. On retrouve certains enchaînements déjà créés,
-mais on trouve également les nouveaux enchaînements :
+sur les pages 46, 91 et 107. On retrouve certains enchaînements déjà S<créés :>
+
+  (x, A) →  46 avec x =  16
+  (x, A) →  91 avec x = 107
+  (x, B) →  91 avec x =  16
+  (x, C) →  91 avec x =  46
+  (x, C) → 107 avec x =  16
+
+il y a quelques S<échecs :>
+
+  (x, C) →  46
+  (x, A) → 107
+
+mais également quelques S<réussites :>
+
+  (x, B) →  46 avec x = 15
+  (x, B) → 107 avec x = 17
+
+ce qui permet d'ajouter les S<enregistrements :>
 
   ( 15, B) →  46
   ( 17, B) → 107
