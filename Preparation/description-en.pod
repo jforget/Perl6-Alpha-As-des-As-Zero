@@ -29,6 +29,12 @@ the Sopwith Camel and the Fokker DR1 from I<Handy Rotary> and for the
 P-51 and the FW190 from I<Wingleader>. I also generated booklets for
 a new game involving a sparrohawk and a hobbyist's drone.
 
+=head2 Warning
+
+When I wrote the programs, I used French names for the programs, for
+the variables, for the functions etc. Sorry about that, if you want to
+read my programs, you will need to learn French in addition to Raku.
+
 =head1 SPARROWHAWK vs. HOBBYIST DRONE
 
 For copyright reasons, I do not want to publish on Github the JSON files
@@ -226,3 +232,24 @@ of which is immobility, only 8 maneuvers may give new results. So we
 need at least 222/8 calls, that is 28 calls. Since there is some
 overlay, I ended up with 48 calls. There was perhaps a faster
 solutionn but I doubt there could be a much faster solution.
+
+=head2 Display
+
+"Display" translates as I<Affichage>, so the program name is F<aff.p6>.
+This program generates an HTML table listing all the known pages
+and associations. This helps me choosing the next page I will use
+when running F<maj.p6>, because it is more efficient to use a page
+with few known associations than a page which is nearl complete.
+
+=head2 Booklet Generation
+
+"Booklet" translates as I<livret>, so the program is named F<livret.p6>.
+
+The iterative process ends when every page has been mentioned at least once
+in the parameters of F<maj.p6>, that is, when the hexgrid is entirely known.
+
+At this time, we can generate a booklet for any flying machine or any flying
+creature. The program F<livret.p6> reads a small size F<Sparrowhawk-init.json>
+file and generates a full size F<Sparrowhawk.json> file, plus a mre user-friendly
+F<Sparrowhawk.html>, both of which contain the full list of associations
+(start page, maneuver) → end page.
