@@ -322,7 +322,7 @@ give the intermediate page number.
 This is a game about planes, so we must deal with altitude, of course!
 Well, no. For the basic rules, the game
 L<just uses two dimensions|https://tvtropes.org/pmwiki/pmwiki.php/Main/TwoDSpace>.
-There is only one instance when altitude is needed. There are six pages where both
+There is only one instance when altitude is implied. There are six pages where both
 aircraft are in the same hex. It is convenient to suppose that there are separated 
 in altitude by a few meters. This is the players' opinion, the rules say nothing about
 that.
@@ -363,7 +363,7 @@ When I discovered the game, I thought that, actually, the game consists in mixin
 (page numbers) and symbols (maneuvers) to get other numbers. The role of the picture is 
 just to add meaning for the benefit of the players and to help them choose the proper maneuver
 symbol, provided the players know how the basics of plane flight, and provided they have 
-some notions about the I<Dicta Boelke>, Sailor Malan's advices, "Boots" Blees's 
+some notions about the I<Dicta Boelke>, Sailor Malan's advices, "Boots" Blesse's 
 I<No Guts, No Glory> and similar books. But you can strip all this air combat decoration
 and keep only the abstract mechanism, based on a finite state automaton with maybe a few
 use of a I<random> function. Hence the idea of a program playing the game without any knowledge
@@ -373,7 +373,7 @@ of air combat, but relying on a statistical analysis of previous games.
 
 This game has two extensions, one with late war planes
 (I<L<Powerhouse|https://boardgamegeek.com/boardgame/7104/ace-aces-powerhouse-series>>,
-Spad XIII vs Fokker D.VII) and early war planes
+Spad XIII vs Fokker D.VII) the other with early war planes
 (I<L<Flying Machines|https://boardgamegeek.com/boardgame/7103/ace-aces-flying-machines>>,
 Airco DH2 vs. Fokker E.III). There is also a WWII variant
 (I<L<Wingleader|https://boardgamegeek.com/boardgame/6504/ace-aces-wingleader>>, 
@@ -419,7 +419,7 @@ two successive maneuvers, I do not plan to include these advanced rules in my pr
 
 There is also an extension 
 I<L<Balloon Buster|https://boardgamegeek.com/boardgame/5736/ace-aces-balloon-buster>>
-with a 2-vs-1 fight. The German player controls an rather passive
+with a 2-vs-1 fight. The German player controls a rather passive
 observation balloon and an anti-aircraft gun, while the British player
 controls a plane.
 
@@ -461,7 +461,7 @@ copyright is not.
 =head1 Program Description
 
 There are two parts in this project. First, preparation, to create booklets in electronic
-format, by generating them rather than copying them from the paper version. Second, the game
+format, by generating them rather than copying them entirely from the paper version. Second, the game
 itself, where cyber pilots fight against each other and learn from their mistakes.
 
 =head2 Preparation
@@ -489,7 +489,7 @@ for this step.
 
 The original game is meant for two human players with no umpire.
 For the electronic players, I have prefered to use an umpire program, or
-rather an umpire process, and two player processes. Both processes use the
+rather an umpire process, and two player processes. Both player processes use the
 same Raku program, but the command line parameters are different.
 
 To agree with the principles of Google Alpha Go Zero, the player program has absolutely
