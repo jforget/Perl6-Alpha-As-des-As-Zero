@@ -4,8 +4,8 @@
 
 =head1 INTRODUCTION
 
-The programs for playing I<Ace of Aces> rely on an associaton table
-listing the associations (start page, maneuver) → end page, stored in
+The programs for playing I<Ace of Aces> rely on a transition table
+listing the transitions (start page, maneuver) → end page, stored in
 a JSON file. We can type this JSON file by copying the 222-page
 booklet, with 25 maneuvers per page for I<Handy Rotary>, that is, 5550
 entries. This is boring and error-prone. And you have to do this for
@@ -14,7 +14,7 @@ page, that amounts to 2886 entries for each booklet.
 
 Fortunately, the different pages represent the location and heading of a 
 plane on a 37-hexagon grid, with 6 possible headings. By using this
-underlying geometry, we can just copy a significant subset of associations
+underlying geometry, we can just copy a significant subset of transitions
 (start page, maneuver) → end page and generate the other by geometrical
 computation and by inference.
 
@@ -69,7 +69,7 @@ since the beginning.
 Using your preferred text editor, write a F<Drone-init.json> file. This file
 describes the maneuvers the drone can execute and the pages where it can 
 "shoot" at the sparrowhawk (actually shooting film). The file does not contain
-any association (start page, maneuver) → endpage.
+any transition (start page, maneuver) → endpage.
 
 =head2 Initialization
 
@@ -88,7 +88,7 @@ bootstraped the process with any other ordinary page.
 
 "Update" translates to I<mise à jour> in French, so the update program
 is named F<maj.p6>. This is a command-line program, which receives as
-input parameters a page number, plus the associations maneuver → end
+input parameters a page number, plus the transitions maneuver → end
 page. For example, the first time it will run, the command line will
 be:
 
@@ -101,12 +101,12 @@ creates it in the C<Pages> collection, initializing its position in the
 hexgrid and the heading of the plane (or drone, or bird, or...).
 
 In addition, the program takes the new pages and applies all the maneuvers
-to them. If the result is a known page, the association maneuver → end page
+to them. If the result is a known page, the transition maneuver → end page
 is stored in C<Pages> collection. If the end page is not known yet, no update
 takes place.
 
 The program also applies I<backward> the maneuvers to new pages to check other
-associations (start page, maneuver) → end page, where the end page is the page
+transitions (start page, maneuver) → end page, where the end page is the page
 currently processed and the start page is hopefully a page already known.
 
 This backward processing did not exist in the first version, in March 2018, I added it in
@@ -143,7 +143,7 @@ So the first run of F<maj.p6> is:
 
   perl6 maj.p6 -page=187 -a=15 -b=16 -c=17
 
-The program updates the associations with:
+The program updates the transitions with:
 
   (187, A) → 15
   (187, B) → 16
@@ -163,7 +163,7 @@ And the map is filled with:
 
 The program processes the newly created pages, 15, 16 and 17 and applies the
 maneuvers A, B and C to them. With three hexes and three maneuvers, it makes
-nine attempts, two of which succeed. With that, the program adds the associations:
+nine attempts, two of which succeed. With that, the program adds the transitions:
 
   ( 15, C) → 16
   ( 17, A) → 16
@@ -172,7 +172,7 @@ The second call to F<maj.p6> applies to page 16:
 
   perl6 maj.p6 -page=16  -a=46 -b=91 -c=107
 
-The program updates the associations with:
+The program updates the transitions with:
 
   ( 16, A) →  46
   ( 16, B) →  91
@@ -196,13 +196,13 @@ And the map expands with:
 
 Like the first time, the program applies the maneuvers to the newly
 created pages, with 9 attempts, 7 of which fail and 2 of which succeed.
-So the following associations are added:
+So the following transitions are added:
 
   ( 46, C) → 91
   (107, A) → 91
 
 In addition, the program applies the maneuvers backward to the newly
-created pages. The result gives some already known associations:
+created pages. The result gives some already known transitions:
 
   (x, A) →  46 with x =  16
   (x, A) →  91 with x = 107
@@ -227,7 +227,7 @@ So the following records are added:
 
 =head3 Iterations
 
-The program F<maj.p6> is called enough times to get all associations
+The program F<maj.p6> is called enough times to get all transitions
 for all pages and all maneuvers. Since the drone has 9 maneuvers, one
 of which is immobility, only 8 maneuvers may give new results. So we
 need at least 222/8 calls, that is 28 calls. Since there is some
@@ -238,10 +238,10 @@ solutionn but I doubt there could be a much faster solution.
 
 "Display" translates as I<Affichage>, so the program name is F<aff.p6>.
 This program generates an HTML table listing all the known pages
-and associations. This helps me choosing the next page I will use
+and transitions. This helps me choosing the next page I will use
 when running F<maj.p6>, because it is more efficient to use a page
-with 2 known associations and 7 unknown associations than a page
-with 7 known associations and 2 unknown associations.
+with 2 known transitions and 7 unknown transitions than a page
+with 7 known transitions and 2 unknown transitions.
 
 =head2 Booklet Generation
 
@@ -253,7 +253,7 @@ in the parameters of F<maj.p6>, that is, when the hexgrid is entirely known.
 At this time, we can generate a booklet for any flying machine or any flying
 creature. The program F<livret.p6> reads a small size F<Sparrowhawk-init.json>
 file and generates a full size F<Sparrowhawk.json> file, plus a more user-friendly
-F<Sparrowhawk.html>, both of which contain the full list of associations
+F<Sparrowhawk.html>, both of which contain the full list of transitions
 (start page, maneuver) → end page.
 
 

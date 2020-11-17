@@ -5,7 +5,7 @@
 =head1 INTRODUCTION
 
 Les programmes de jeu pour l'As des As se basent sur une table
-d'association (page de départ, manœuvre) → page d'arrivée,
+de transition (page de départ, manœuvre) → page d'arrivée,
 stockée dans un fichier JSON. I<Handy Rotary> comporte 25 manœuvres par page.
 Recopier un livret avec 222 pages et 25 manœuvres dans un fichier JSON, soit 5550 entrées,
 est fastidieux, donc sujet à erreur. Et il faut le faire pour au moins
@@ -16,7 +16,7 @@ Heureusement, les différentes pages correspondent au positionnement d'un
 avion sur une grille de 37 hexagones avec 6 orientations possibles.
 En se basant sur cette géométrie sous-jacente, il est possible 
 de saisir un sous-ensemble représentatif 
-d'associations (page de départ, manœuvre) → page d'arrivée
+de transitions (page de départ, manœuvre) → page d'arrivée
 et d'obtenir toutes les autres par calcul et par déduction.
 
 De plus, tous les jeux de la série utilisent la même grille de 37 hexagones
@@ -69,7 +69,7 @@ sur un livret S<« drone »> existant au lieu du livret FW190.
 Sous éditeur de texte, écrire un fichier F<Drone-init.json>.
 Ce fichier contient la description des manœuvres du drone, ainsi que les
 pages où le drone peut S<« tirer »> sur l'épervier (c'est-à-dire le filmer). Le fichier ne contient aucune
-association (page de départ, manœuvre) → page d'arrivée.
+transition (page de départ, manœuvre) → page d'arrivée.
 
 =head2 Initialisation
 
@@ -89,14 +89,14 @@ une autre page initiale.
 
 Le programme F<maj.p6> est un programme en ligne de commande
 qui reçoit comme paramètres un numéro de page de départ
-et la liste des associations manœuvre → page d'arrivée
+et la liste des transitions manœuvre → page d'arrivée
 pour cette page. Par exemple la première fois qu'on l'exécutera,
 ce sera forcément avec la page 187, donc la ligne de commande S<sera :>
 
   perl6 maj.p6 --page=187 -a=205 -b=187 -c=198 -d=3 -e=15 -f=16 -g=2 -h=17 -i=1
 
 Le programme met à jour les 
-associations (page de départ, manœuvre) → page d'arrivée.
+transitions (page de départ, manœuvre) → page d'arrivée.
 Si la ligne de commande mentionne des pages d'arrivée que l'on n'avait pas
 encore rencontrées jusqu'à présent, le programme détermine où se situent
 ces pages dans la grille hexagonale et quelle est l'orientation de
@@ -104,13 +104,13 @@ l'avion (ou du drone, ou de l'oiseau, etc).
 
 En outre, le programme applique chaque manœuvre à chacune des
 nouvelles pages. Si le résultat est une page déjà identifiée, le programme
-renseigne cette association (page de départ, manœuvre) → page d'arrivée
+renseigne cette transition (page de départ, manœuvre) → page d'arrivée
 dans la base de données. Si le résultat n'est pas connu, le programme laisse
-tomber cette association pour l'instant.
+tomber cette transition pour l'instant.
 
 Également, le programme applique les manœuvres
 S<« à> S<rebrousse-poil »> pour déterminer les
-associations (page de départ, manœuvre) → page d'arrivée
+transitions (page de départ, manœuvre) → page d'arrivée
 dans laquelle la page d'arrivée est la nouvelle page et la page
 de départ est une page déjà ajoutée précédemment.
 
@@ -234,7 +234,7 @@ ce qui permet d'ajouter les S<enregistrements :>
 =head3 Itérations
 
 Le programme F<maj.p6> est appelé autant de fois qu'il le faut pour
-que toutes les associations soient connues pour toutes les pages
+que toutes les transitions soient connues pour toutes les pages
 et toutes les manœuvres. Tous ces appels sont accumulés dans le
 script shell F<maj1>, de sorte que l'on peut refaire la totalité
 des itérations en un seul appel de F<maj1>.
@@ -265,7 +265,7 @@ ou n'importe quelle créature volante. Le programme F<livret.p6>
 lit en entrée un fichier F<Epervier-init.json> de taille réduite
 et produit un fichier complet F<Epervier.json> et un fichier
 F<Epervier.html> qui contiennent la totalité des
-associations (page de départ, manœuvre) → page d'arrivée.
+transitions (page de départ, manœuvre) → page d'arrivée.
 
 =head1 FONCTIONNEMENT INTERNE
 
