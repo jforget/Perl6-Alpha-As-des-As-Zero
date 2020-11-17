@@ -305,7 +305,8 @@ Puis un repère orthogonal sans être normé
   .                       --------
 
 Ou un repère normé sans être orthogonal (l'axe des X est incliné, tandis que
-l'axe des Y est, comme à l'accoutumée, vertical).
+l'axe des Y est, comme à l'accoutumée, vertical). Ne rigolez pas, certains
+jeux d'Avalon Hill utilisent un tel système de coordonnées.
 
   .                       -------- 
   .                      /        \               Numéro     X         Y
