@@ -258,7 +258,22 @@ F<Sparrowhawk.html>, both of which contain the full list of transitions
 
 =head1 IMPLEMENTATION
 
-=head2 Hexagon Coordinates
+=head2 The C<Depl.pm6> Class
+
+A central question for the preparation programs is how to modelize
+the relative position of two aircraft, be it the position of the
+drone relative to the sparrowhawk, or the final position of the drone
+relative to its start position, when it executes a maneuver. For this,
+I have created the C<Depl.pm6> class, "depl" for I<déplacement> or "move".
+It represents the move of the drone while maneuvering, from its start position
+to its end position, or it represents the virtual move to go from the 
+sparrowhawk position to the drone position.
+
+=head3 Hexagon Coordinates
+
+To implement this class, I need first to define how I will 
+pinpoint each one of the 37 hexes in the grid. For the heading
+difference, we will see later.
 
 My first idea was to use orthonormal cartesian coordinates:
 
@@ -331,6 +346,60 @@ For simplification, I have used clockwise 60-degree increments, which gives a 0 
 The conversion from the clock system is rather simple, you just have to divide by 2,
 except for 12h which gives B<0> instead of B<6>.
 
+It is very fine for the first ring, but we have a few problems as soon as we
+reach the second ring, the radiuses are no longer integers, even if the
+angles are still simple angles, multiples of 30°.
+
+  .                       -------- 
+  .                      /        \               Number     R      angle
+  .              --------    91    --------          187     0      undef
+  .             /        \        /        \          16     1        12h    0°
+  .     --------   118    --------   107    )         17     1         2h   60°
+  .    /        \        /        \        /           1     1         4h  120°
+  .   (    54    --------    16    --------            2     1         6h  180°
+  .    \        /        \        /        \           3     1         8h  240°
+  .     --------    15    --------    17    )         15     1        10h  300°
+  .    /        \        /        \        /          54     2        10h  300°
+  .   (    76    --------   187    --------           76     1.732     9h  270°
+  .    \        /        \        /        \          91     2         0h  240°
+  .     --------     3    --------     1    )        107     1.732     1h   30°
+  .             \        /        \        /         118     1.732    11h  330°
+  .              --------    2     --------          
+  .                      \        /
+  .                       --------
+
+To deal with simpler values, we consider that the move is not executed
+in a straight line, but step by step and crossing intermediate hexagons,
+even if that means that we zigzag a little. A move is thus modelized as
+a series of directions C<0> to C<5>, the length of each step being implicitly 1.
+Here are the paths from hex 187:
+
+  .                       -------- 
+  .                      /        \               Number     path
+  .              --------    91    --------          187     (nothing)
+  .             /        \        /        \          16     0
+  .     --------   118    --------   107    )         17     1
+  .    /        \        /        \        /           1     2
+  .   (    54    --------    16    --------            2     3
+  .    \        /        \        /        \           3     4
+  .     --------    15    --------    17    )         15     5
+  .    /        \        /        \        /          54     55
+  .   (    76    --------   187    --------           76     45
+  .    \        /        \        /        \          91     00
+  .     --------     3    --------     1    )        107     01
+  .             \        /        \        /         118     05
+  .              --------    2     --------          
+  .                      \        /
+  .                       --------
+
+And we obtain the geometry that most wargamers are used to, which shows
+that from hex 187 to hex 76, the distance is 2, not 1.732.
+
+In all that, I have not dealt with the heading difference. We use the
+same angle scale C<0> to C<5>, but without mixing it with the path.
+If the planes have a common heading as in page 1 from the example from
+the patent, the heading diff is C<0>. But on page 8, the heading
+diff of the German relative to the British is C<5>.
 
 =head1 License
 

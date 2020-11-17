@@ -269,7 +269,22 @@ transitions (page de départ, manœuvre) → page d'arrivée.
 
 =head1 FONCTIONNEMENT INTERNE
 
-=head2 Repérage des hexagones
+=head2 La Classe C<Depl.pm6>
+
+Une question centrale pour les programmes de préparation, c'est comment
+représenter la position relative de deux avions, qu'il s'agisse de la position
+du drone par rapport à l'épervier ou qu'il s'agisse de la position finale
+du drone par rapport à sa position initiale, suite à l'exécution d'une
+manœuvre. Pour cela, j'ai créé une classe C<Depl.pm6>, pour S<« déplacement »>.
+Il s'agit soit du déplacement entraîné par l'exécution d'une manœuvre, soit
+du déplacement virtuel que le drone aurait effectué, en une ou plusieurs fois,
+pour aller de la position de l'épervier jusqu'à la position qu'il occupe.
+
+=head3 Repérage des hexagones
+
+Pour définir cette classe, il faut d'abord commencer par définir comment on
+peut repérer les 37 hexagones de la grille. Pour la différence de caps, on
+verra après.
 
 Au début, j'ai envisagé d'utiliser un système de coordonnées cartésiennes avec
 un repère orthonormé.
@@ -343,10 +358,33 @@ Pour simplifier, j'ai utilisé des incréments de 60 degrés orientés dans le s
 d'une montre avec une plage de 0 à 5. Cela correspond à la moitié de l'angle du cadran d'horloge,
 sachant que 12h est converti en B<0> au lieu de B<6>.
 
-Si l'angle polaire ou le gisement ne correspond pas à un multiple de 60 degrés, alors
-on utilise le chemin le plus court, en utilisant deux directions de C<0> à C<5>.
-Voici par exemple les chemins depuis l'hexagone S<187 :>
+Pour la première couronne, c'est bien beau, mais on commence à avoir des problèmes
+avec la deuxième couronne, les rayons ne sont plus entiers, même si les angles sont
+encore des angles simples, multiples de 30°.
 
+  .                       -------- 
+  .                      /        \               Numéro     R      angle
+  .              --------    91    --------          187     0      indéfini
+  .             /        \        /        \          16     1        12h    0°
+  .     --------   118    --------   107    )         17     1         2h   60°
+  .    /        \        /        \        /           1     1         4h  120°
+  .   (    54    --------    16    --------            2     1         6h  180°
+  .    \        /        \        /        \           3     1         8h  240°
+  .     --------    15    --------    17    )         15     1        10h  300°
+  .    /        \        /        \        /          54     2        10h  300°
+  .   (    76    --------   187    --------           76     1,732     9h  270°
+  .    \        /        \        /        \          91     2         0h  240°
+  .     --------     3    --------     1    )        107     1,732     1h   30°
+  .             \        /        \        /         118     1,732    11h  330°
+  .              --------    2     --------          
+  .                      \        /
+  .                       --------
+
+Pour avoir des valeurs plus simples à utiliser, on considère que le déplacement
+ne se fait pas en ligne droite, mais pas à pas en passant par des hexagones intermédiaires, 
+quitte à zigzaguer un peu. On représente ainsi un chemin par une suite de
+directions C<0> à C<5>, la longueur de chaque pas étant implicitement de 1.
+Voici par exemple les chemins depuis l'hexagone S<187 :>
 
   .                       -------- 
   .                      /        \               Numéro     chemin
@@ -366,13 +404,18 @@ Voici par exemple les chemins depuis l'hexagone S<187 :>
   .                      \        /
   .                       --------
 
+Et l'on retrouve une géométrie à laquelle les wargameurs sont habitués,
+qui indique que de l'hexagone 187 jusqu'à l'hexagone 76, la distance
+est 2 et non pas 1,732.
+
 Dans tout cela, je n'ai pas tenu compte de la différence de cap entre
-les deux avions. On utilise la même notation de C<0> à C<5>.
+les deux avions. On utilise la même notation de C<0> à C<5>, mais sans
+les mélanger avec le chemin.
 Ainsi, si les deux avions sont parallèles comme dans la page 1 de l'exemple,
 leur différence de cap sera C<0>. Mais dans la page 8, la différence
 de cap de l'Allemand relativement à l'Anglais est C<5>.
 
-=head2 Représentation interne
+=head3 Représentation interne
 
 Les programmes utilisent deux représentations pour un hexagone, la
 représentation en chaîne de caractères et la représentation numérique.
