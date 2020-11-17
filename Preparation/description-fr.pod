@@ -6,10 +6,11 @@
 
 Les programmes de jeu pour l'As des As se basent sur une table
 d'association (page de départ, manœuvre) → page d'arrivée,
-stockée dans un fichier JSON.
+stockée dans un fichier JSON. I<Handy Rotary> comporte 25 manœuvres par page.
 Recopier un livret avec 222 pages et 25 manœuvres dans un fichier JSON, soit 5550 entrées,
 est fastidieux, donc sujet à erreur. Et il faut le faire pour au moins
-deux livrets.
+deux livrets. Même dans le cas de I<Wingleader>, qui a seulement 13 manœuvres
+par page, cela ferait 2886 entrées à taper pour chaque livret.
 
 Heureusement, les différentes pages correspondent au positionnement d'un
 avion sur une grille de 37 hexagones avec 6 orientations possibles.
@@ -444,3 +445,7 @@ règle de normalisation, ce qui donne un chemin vide C<;1>. Remarquez que si l'o
 associant le C<3> et le C<5> pour les remplacer par C<4>, cela aurait donné un chemin C<14;1> qui, lui aussi, aurait donné
 dans un deuxième temps le chemin vide C<;1>.
 
+
+=head1 LICENCE
+
+Texte diffusé sous la licence CC-BY-NC-ND : Creative Commons avec clause de paternité, excluant l'utilisation commerciale et excluant la modification. 

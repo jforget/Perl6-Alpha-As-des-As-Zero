@@ -7,9 +7,10 @@
 The programs for playing I<Ace of Aces> rely on an associaton table
 listing the associations (start page, maneuver) → end page, stored in
 a JSON file. We can type this JSON file by copying the 222-page
-booklet, with 25 maneuvers per page, that is, 5550 entries. This is
-boring and error-prone. And you have to do this for at least two
-booklets.
+booklet, with 25 maneuvers per page for I<Handy Rotary>, that is, 5550
+entries. This is boring and error-prone. And you have to do this for
+at least two booklets. Even with I<Wingleader> and 13 maneuvers per
+page, that amounts to 2886 entries for each booklet.
 
 Fortunately, the different pages represent the location and heading of a 
 plane on a 37-hexagon grid, with 6 possible headings. By using this
@@ -239,7 +240,8 @@ solutionn but I doubt there could be a much faster solution.
 This program generates an HTML table listing all the known pages
 and associations. This helps me choosing the next page I will use
 when running F<maj.p6>, because it is more efficient to use a page
-with few known associations than a page which is nearl complete.
+with 2 known associations and 7 unknown associations than a page
+with 7 known associations and 2 unknown associations.
 
 =head2 Booklet Generation
 
@@ -250,6 +252,11 @@ in the parameters of F<maj.p6>, that is, when the hexgrid is entirely known.
 
 At this time, we can generate a booklet for any flying machine or any flying
 creature. The program F<livret.p6> reads a small size F<Sparrowhawk-init.json>
-file and generates a full size F<Sparrowhawk.json> file, plus a mre user-friendly
+file and generates a full size F<Sparrowhawk.json> file, plus a more user-friendly
 F<Sparrowhawk.html>, both of which contain the full list of associations
 (start page, maneuver) → end page.
+
+
+=head1 License
+
+This text is published under the CC-BY-NC-ND license: Attribution-NonCommercial-NoDerivs 2.0 Generic.
