@@ -273,7 +273,9 @@ sparrowhawk position to the drone position.
 
 To implement this class, I need first to define how I will 
 pinpoint each one of the 37 hexes in the grid. For the heading
-difference, we will see later.
+difference, we will see later. So in this paragraph, I will 
+use the words "page" and "hex" (or "hexagon") to mean the same
+thing.
 
 My first idea was to use orthonormal cartesian coordinates:
 
@@ -309,7 +311,9 @@ Then orthogonal cartesian coordinates, while not orthonormal:
 
 Even a cartesian coordinate system where the axis have the same graduations,
 but they are not perpendicular to each other, they are 60° (or 120°) apart.
-Do not laugh, some older Avalon Hill wargames use this kind of coordinates.
+Do not laugh, some 
+L<vintage Avalon Hill wargames|https://boardgamegeek.com/boardgame/1711/richthofens-war>.
+use this kind of coordinates.
 
   .                       -------- 
   .                      /        \               Number     X         Y
@@ -400,6 +404,49 @@ same angle scale C<0> to C<5>, but without mixing it with the path.
 If the planes have a common heading as in page 1 from the example from
 the patent, the heading diff is C<0>. But on page 8, the heading
 diff of the German relative to the British is C<5>.
+
+=head3 Internal Representation
+
+The class uses two different models for a move, a string model and a numeric
+model. The string is the concatenation of the path steps from the sparrowhawk's
+position (or the British plane's position) to the drone's position (or the German plane's
+position), then you have a semi-colon, and last you have 
+the heading difference between the sparrowhawk and the drone. For example,
+page 1 has the following representation:
+
+  2;0
+
+Because the drone's hexagon is in the heading C<2> respective to the sparrowhawk's hex
+and they have the same heading. At the same time, page 8 has the following representation:
+
+  2;5
+
+because the hexagon is the same, but the drone has turned 60° to port. This string is
+stored in the attribute C<$.chemin> (I<chemin> = "path").
+
+The numeric representation includes an array C<@.avance> (= "advance") and a scalar
+C<$.virage> (= "turn"). The scalar C<$.virage> stores the heading difference between
+both planes. The array C<@.avance> counts the number of steps in each direction
+
+  page         1     8     42     48     96     159
+  $.chemin     2;0   2;5   00;1   33;1   33;0   112;1
+  @.avance[0]  0     0     2      0      0      0
+  @.avance[1]  0     0     0      0      0      2
+  @.avance[2]  1     1     0      0      0      1
+  @.avance[3]  0     0     0      2      2      0
+  @.avance[4]  0     0     0      0      0      0
+  @.avance[5]  0     0     0      0      0      0
+  $.virage     0     5     1      1      0      1
+
+=head3 Special Cases
+
+Among the 222 pages, 6 of them represent the situation where both planes are in
+the same hex, one above the other (the only case when altitude plays a role).
+In this case, all C<@.avance> values are zero and the C<$.chemin> string begins
+with a semi-colon. Page 187 represents the planes in the same hex, one above the
+other, and with the same heading, so C<$.chemin> is C<";0">. Page 188 represents
+the planes in the same hex, one above the other, but this time with reciprocal headings.
+So C<$.chemin> is C<";3">.
 
 =head1 License
 

@@ -284,7 +284,8 @@ pour aller de la position de l'épervier jusqu'à la position qu'il occupe.
 
 Pour définir cette classe, il faut d'abord commencer par définir comment on
 peut repérer les 37 hexagones de la grille. Pour la différence de caps, on
-verra après.
+verra après. Du coup, dans ce paragraphe, j'assimile la notion de page avec
+la notion d'hexagone.
 
 Au début, j'ai envisagé d'utiliser un système de coordonnées cartésiennes avec
 un repère orthonormé.
@@ -322,6 +323,7 @@ Puis un repère orthogonal sans être normé
 Ou un repère normé sans être orthogonal (l'axe des X est incliné, tandis que
 l'axe des Y est, comme à l'accoutumée, vertical). Ne rigolez pas, certains
 jeux d'Avalon Hill utilisent un tel système de coordonnées.
+L<Suivez mon regard|https://boardgamegeek.com/boardgame/1711/richthofens-war>.
 
   .                       -------- 
   .                      /        \               Numéro     X         Y
@@ -417,38 +419,38 @@ de cap de l'Allemand relativement à l'Anglais est C<5>.
 
 =head3 Représentation interne
 
-Les programmes utilisent deux représentations pour un hexagone, la
+La classe utilise deux représentations pour un déplacement, la
 représentation en chaîne de caractères et la représentation numérique.
 La représentation en chaîne de caractères énumère les directions de
-déplacement depuis la position de l'avion anglais pour arriver à la
-position de l'avion allemand, ajoute un point-virgule et termine
-avec l'écart de caps entre les deux avions. Ainsi, la page 1
+déplacement depuis la position de l'épervier (ou de l'avion anglais) pour arriver à la
+position du drone (ou de l'avion allemand), ajoute un point-virgule et termine
+avec l'écart de caps entre les deux protagonistes. Ainsi, la page 1
 est représentée S<par :>
 
   2;0
 
-Car l'hexagone de l'avion allemand est situé dans la direction C<2> par rapport
-à celui de l'avion anglais et que les deux avions ont le même cap. La page 8
+Car l'hexagone du drone est situé dans la direction C<2> par rapport
+à celui de l'épervier et que les deux ont le même cap. La page 8
 a pour S<code :>
 
   2;5
 
-car il s'agit du même hexagone, mais l'avion allemand a pivoté de 60 degrés
+car il s'agit du même hexagone, mais le drone a pivoté de 60 degrés
 vers babord. Cette chaîne de caractères est stockée dans l'attribut C<$.chemin>.
 
 La représentation numérique comporte un tableau C<@.avance> et un scalaire C<$.virage>
 Le scalaire C<$.virage> reprend l'écart de caps entre les deux avions. Le tableau C<@.avance>
 compte le nombre de pas dans les directions C<0> à C<5>. S<Exemples :>
 
-  page         1     8     42     159
-  $.chemin     2;0   2;5   00;1   112;1
-  @.avance[0]  0     0     2      0
-  @.avance[1]  0     0     0      2
-  @.avance[2]  1     1     0      1
-  @.avance[3]  0     0     0      0
-  @.avance[4]  0     0     0      0
-  @.avance[5]  0     0     0      0
-  $.virage     0     5     1      1
+  page         1     8     42     48     96     159
+  $.chemin     2;0   2;5   00;1   33;1   33;0   112;1
+  @.avance[0]  0     0     2      0      0      0
+  @.avance[1]  0     0     0      0      0      2
+  @.avance[2]  1     1     0      0      0      1
+  @.avance[3]  0     0     0      2      2      0
+  @.avance[4]  0     0     0      0      0      0
+  @.avance[5]  0     0     0      0      0      0
+  $.virage     0     5     1      1      0      1
 
 =head3 Cas particuliers
 
