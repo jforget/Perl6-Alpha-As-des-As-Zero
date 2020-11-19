@@ -254,6 +254,10 @@ de F<maj.p6> (ou des deux prochains appels, ou des trois, ou...). Inutile de sai
 page pour laquelle on connaît déjà les deux tiers des enchaînements
 s'il en existe pour lesquelles on n'en connaît qu'un ou deux.
 
+L<Après la première mise à jour|https://github.com/jforget/Perl6-Alpha-As-des-As-Zero/blob/master/Preparation/etape-1.html>
+
+L<La grille terminée|https://github.com/jforget/Perl6-Alpha-As-des-As-Zero/blob/master/Preparation/etape-finale.html>
+
 =head2 Génération du livret
 
 Le processus itératif se termine lorsque toutes les pages
