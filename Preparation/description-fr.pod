@@ -248,7 +248,11 @@ plus rapide, mais pas tellement plus rapide.
 =head2 Affichage
 
 Le programme F<aff.p6> affiche le contenu de la base de données
-sous la forme d'un tableau HTML. Cela me sert lors du processus
+sous la forme d'un tableau HTML. Il y a également une grille hexagonale
+en I<ASCII art>, présentant les positions du drone pour toutes les pages connues.
+L'épervier se trouve au centre de la grille et se dirige vers le haut, tandis
+que le drone est n'importe où dans la grille et dans n'importe quelle direction.
+Cela me sert lors du processus
 itératif à choisir quelle page je vais utiliser lors du prochain appel
 de F<maj.p6> (ou des deux prochains appels, ou des trois, ou...). Inutile de saisir une
 page pour laquelle on connaît déjà les deux tiers des enchaînements
@@ -258,7 +262,7 @@ Voici deux exemples, le premier
 L<après la première mise à jour|https://github.com/jforget/Perl6-Alpha-As-des-As-Zero/blob/master/Preparation/etape1.pod>
 et le second une fois
 L<la grille terminée|https://github.com/jforget/Perl6-Alpha-As-des-As-Zero/blob/master/Preparation/etape-finale.pod>.
-À noter que l'affichage se fait en couleurs, mais que Github ne les reprend pas.
+À noter que l'affichage se fait en couleurs, mais que Github ne reprend pas ces couleurs.
 
 =head2 Génération du livret
 

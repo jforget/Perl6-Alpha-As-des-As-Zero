@@ -238,7 +238,10 @@ solutionn but I doubt there could be a much faster solution.
 
 "Display" translates as I<Affichage>, so the program name is F<aff.p6>.
 This program generates an HTML table listing all the known pages
-and transitions. This helps me choosing the next page I will use
+and transitions. It displays also an ASCII art hexgrid, showing all
+known page numbers, with the sparrowhawk at the center of the grid 
+and heading to the top of the document, and the drone anywhere in the
+grid and with any heading. This helps me choosing the next page I will use
 when running F<maj.p6>, because it is more efficient to use a page
 with 2 known transitions and 7 unknown transitions than a page
 with 7 known transitions and 2 unknown transitions.
