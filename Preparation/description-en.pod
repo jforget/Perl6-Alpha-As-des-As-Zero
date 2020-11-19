@@ -244,7 +244,7 @@ with 2 known transitions and 7 unknown transitions than a page
 with 7 known transitions and 2 unknown transitions.
 
 Here are two examples, the first one
-L<after the update of page 187|https://github.com/jforget/Perl6-Alpha-As-des-As-Zero/blob/master/Preparation/etape-1.pod>
+L<after the update of page 187|https://github.com/jforget/Perl6-Alpha-As-des-As-Zero/blob/master/Preparation/etape1.pod>
 and the second when
 L<the hexgrid is complete|https://github.com/jforget/Perl6-Alpha-As-des-As-Zero/blob/master/Preparation/etape-finale.pod>.
 Please note that the display should give you background colors, but they are stripped by Github rendering.

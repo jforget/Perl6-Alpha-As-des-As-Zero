@@ -2,17 +2,22 @@
 
 =encoding utf-8
 
-=head1 Introduction
+=head1 Explication / Explanation
+
+Le programme C<aff.p6> génère un fichier HTML. Le problème est que Github affiche les fichiers HTML en
+tant que fichiers sources et non pas en tant que documents mis en forme. J'ai donc converti ce fichier
+en fichier POD pour que Github l'affiche correctement. Il y a des problèmes néanmoins avec les styles
+permettant théoriquement d'afficher du texte sur un fond coloré. Vous pouvez toujours télécharger le fichier
+HTML sur votre poste et l'afficher dans votre navigateur web.
+
+The C<aff.p6> program generates an HTML file. The problem is that Github displays HTML files as
+source files, not as real documents. I have converted this HTML file into POD, so Github will
+render it correctly. There is still a problem with the stylesheet which, in this case, should
+change the background color for some texts. You can still download the HTML file and display it
+with your favorite web browser.
 
 =begin html
 
-<style>
-<!--
-.certain { background-color: lightgreen }
-.hypoth  { background-color: yellow }
-.inconnu { background-color: pink }
--->
-</style>
 <table border='1'>
 <tr><td>1</td><td>2;0</td><td>5;0</td><td style='background-color: pink'>A  ?? </td><td style='background-color: yellow'>B  1 </td><td style='background-color: pink'>C  ?? </td><td style='background-color: yellow'>D  2 </td><td style='background-color: yellow'>E  187 </td><td style='background-color: yellow'>F  17 </td><td style='background-color: pink'>G  ?? </td><td style='background-color: pink'>H  ?? </td><td style='background-color: pink'>I  ?? </td></tr>
 <tr><td>2</td><td>3;0</td><td>0;0</td><td style='background-color: pink'>A  ?? </td><td style='background-color: yellow'>B  2 </td><td style='background-color: pink'>C  ?? </td><td style='background-color: pink'>D  ?? </td><td style='background-color: yellow'>E  3 </td><td style='background-color: yellow'>F  187 </td><td style='background-color: pink'>G  ?? </td><td style='background-color: yellow'>H  1 </td><td style='background-color: pink'>I  ?? </td></tr>

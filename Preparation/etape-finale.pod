@@ -4,15 +4,15 @@
 
 =head1 Explication / Explanation
 
-Le programme C<aff.p6> génère un fichier HTML. Le problème est que Github affiche ces fichiers en
-tant que fichiers sources et non pas en tant que document mis en forme. J'ai donc converti ce fichier
+Le programme C<aff.p6> génère un fichier HTML. Le problème est que Github affiche les fichiers HTML en
+tant que fichiers sources et non pas en tant que documents mis en forme. J'ai donc converti ce fichier
 en fichier POD pour que Github l'affiche correctement. Il y a des problèmes néanmoins avec les styles
-permettant d'afficher du texte sur un fond coloré. Vous pouvez toujours télécharger le fichier
+permettant théoriquement d'afficher du texte sur un fond coloré. Vous pouvez toujours télécharger le fichier
 HTML sur votre poste et l'afficher dans votre navigateur web.
 
-The C<aff.p6> program generates an HTML file. The problem is that Github displays such files as
-source files, not as real documents. So I have converted this HTML file into POD, so Github will
-render it correctly. There is still a problem with the stylesheet which, in this case, is used to
+The C<aff.p6> program generates an HTML file. The problem is that Github displays HTML files as
+source files, not as real documents. I have converted this HTML file into POD, so Github will
+render it correctly. There is still a problem with the stylesheet which, in this case, should
 change the background color for some texts. You can still download the HTML file and display it
 with your favorite web browser.
 
