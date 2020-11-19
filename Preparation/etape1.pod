@@ -1,0 +1,68 @@
+=begin html
+<style>
+<!--
+.certain { background-color: lightgreen }
+.hypoth  { background-color: yellow }
+.inconnu { background-color: pink }
+-->
+</style>
+<table border='1'>
+<tr><td>1</td><td>2;0</td><td>5;0</td><td class='inconnu'>A  ?? </td><td class='hypoth'>B  1 </td><td class='inconnu'>C  ?? </td><td class='hypoth'>D  2 </td><td class='hypoth'>E  187 </td><td class='hypoth'>F  17 </td><td class='inconnu'>G  ?? </td><td class='inconnu'>H  ?? </td><td class='inconnu'>I  ?? </td></tr>
+<tr><td>2</td><td>3;0</td><td>0;0</td><td class='inconnu'>A  ?? </td><td class='hypoth'>B  2 </td><td class='inconnu'>C  ?? </td><td class='inconnu'>D  ?? </td><td class='hypoth'>E  3 </td><td class='hypoth'>F  187 </td><td class='inconnu'>G  ?? </td><td class='hypoth'>H  1 </td><td class='inconnu'>I  ?? </td></tr>
+<tr><td>3</td><td>4;0</td><td>1;0</td><td class='inconnu'>A  ?? </td><td class='hypoth'>B  3 </td><td class='inconnu'>C  ?? </td><td class='inconnu'>D  ?? </td><td class='inconnu'>E  ?? </td><td class='hypoth'>F  15 </td><td class='inconnu'>G  ?? </td><td class='hypoth'>H  187 </td><td class='hypoth'>I  2 </td></tr>
+<tr><td>15</td><td>5;0</td><td>2;0</td><td class='inconnu'>A  ?? </td><td class='hypoth'>B  15 </td><td class='inconnu'>C  ?? </td><td class='inconnu'>D  ?? </td><td class='inconnu'>E  ?? </td><td class='inconnu'>F  ?? </td><td class='hypoth'>G  3 </td><td class='hypoth'>H  16 </td><td class='hypoth'>I  187 </td></tr>
+<tr><td>16</td><td>0;0</td><td>3;0</td><td class='inconnu'>A  ?? </td><td class='hypoth'>B  16 </td><td class='inconnu'>C  ?? </td><td class='hypoth'>D  15 </td><td class='inconnu'>E  ?? </td><td class='inconnu'>F  ?? </td><td class='hypoth'>G  187 </td><td class='inconnu'>H  ?? </td><td class='hypoth'>I  17 </td></tr>
+<tr><td>17</td><td>1;0</td><td>4;0</td><td class='inconnu'>A  ?? </td><td class='hypoth'>B  17 </td><td class='inconnu'>C  ?? </td><td class='hypoth'>D  187 </td><td class='hypoth'>E  16 </td><td class='inconnu'>F  ?? </td><td class='hypoth'>G  1 </td><td class='inconnu'>H  ?? </td><td class='inconnu'>I  ?? </td></tr>
+<tr><td>187</td><td>;0</td><td>;0</td><td class='certain'>A  205 </td><td class='certain'>B  187 </td><td class='certain'>C  198 </td><td class='certain'>D  3 </td><td class='certain'>E  15 </td><td class='certain'>F  16 </td><td class='certain'>G  2 </td><td class='certain'>H  17 </td><td class='certain'>I  1 </td></tr>
+<tr><td>198</td><td>;1</td><td>;5</td><td class='hypoth'>A  187 </td><td class='hypoth'>B  198 </td><td class='inconnu'>C  ?? </td><td class='inconnu'>D  ?? </td><td class='inconnu'>E  ?? </td><td class='inconnu'>F  ?? </td><td class='inconnu'>G  ?? </td><td class='inconnu'>H  ?? </td><td class='inconnu'>I  ?? </td></tr>
+<tr><td>205</td><td>;5</td><td>;1</td><td class='inconnu'>A  ?? </td><td class='hypoth'>B  205 </td><td class='hypoth'>C  187 </td><td class='inconnu'>D  ?? </td><td class='inconnu'>E  ?? </td><td class='inconnu'>F  ?? </td><td class='inconnu'>G  ?? </td><td class='inconnu'>H  ?? </td><td class='inconnu'>I  ?? </td></tr>
+<tr><td>223</td></tr>
+</table>
+<pre>
+.                                -------
+.                               /       \
+.                              /         \
+.                       -------           -------
+.                      /       \         /       \
+.                     /         \       /         \
+.              -------           -------           -------
+.             /       \         /       \         /       \
+.            /         \       /         \       /         \
+.     -------           -------           -------           -------
+.    /       \         /       \         /       \         /       \
+.   /         \       /         \       /         \       /         \
+.  (           -------           -------           -------           )
+.   \         /       \         /  <span class='inconnu'> 16</span>  \         /       \         /
+.    \       /         \       /         \       /         \       /
+.     -------           -------           -------           -------
+.    /       \         /  <span class='inconnu'> 15</span>  \         /  <span class='inconnu'> 17</span>  \         /       \
+.   /         \       /         \       /         \       /         \
+.  (           -------           -------           -------           )
+.   \         /       \         /  <span class='certain'>187</span>  \         /       \         /
+.    \       /         \       /<span class='inconnu'>205</span>   <span class='inconnu'>198</span>\       /         \       /
+.     -------           -------           -------           -------
+.    /       \         /  <span class='inconnu'> 3 </span>  \         /  <span class='inconnu'> 1 </span>  \         /       \
+.   /         \       /         \       /         \       /         \
+.  (           -------           -------           -------           )
+.   \         /       \         /  <span class='inconnu'> 2 </span>  \         /       \         /
+.    \       /         \       /         \       /         \       /
+.     -------           -------           -------           -------
+.    /       \         /       \         /       \         /       \
+.   /         \       /         \       /         \       /         \
+.  (           -------           -------           -------           )
+.   \         /       \         /       \         /       \         /
+.    \       /         \       /         \       /         \       /
+.     -------           -------           -------           -------
+.            \         /       \         /       \         /
+.             \       /         \       /         \       /
+.              -------           -------           -------
+.                     \         /       \         /
+.                      \       /         \       /
+.                       -------           -------
+.                              \         /
+.                               \       /
+.                                -------
+
+</pre>
+
+=end html
