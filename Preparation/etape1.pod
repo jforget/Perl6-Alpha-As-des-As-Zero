@@ -16,6 +16,37 @@ render it correctly. There is still a problem with the stylesheet which, in this
 change the background color for some texts. You can still download the HTML file and display it
 with your favorite web browser.
 
+Le tableau et le schéma ci-dessous sont obtenus après l'enchaînement suivant / the table and
+the picture below are built with:
+
+  perl6 init.p6
+  perl6 maj.p6 --page=187 -a=205 -b=187 -c=198 -d=3   -e=15  -f=16  -g=2   -h=17  -i=1
+  perl6 aff.p6 > etape1.html
+
+Ce que vous ne voyez pas ci-dessous : dans le tableau, la ligne 187 est entièrement en vert,
+car les valeurs proviennent toutes des paramètres de la ligne de commande. Les cases avec des
+points d'interrogation sont en rose pour indiquer, comme vous vous en doutez, que la transition
+correspondante n'est pas connue. En dehors de la ligne 187, les cases avec un numéro sont en
+jaune pour indiquer qu'elles ont été calculées au lieu d'être directement saisies en ligne de
+commande. Dans le schéma, les numéros de page sont également imprimés sur fond S<coloré :> en
+rose s'il y a au moins une transition en rose dans le tableau, en jaune s'il y a au moins une
+transtion en jaune dans le tableau et qu'il n'y a aucune transition en rose (aucun cas dans cet
+exemple) et finalement en vert si toutes les transitions sont en vert.
+
+What you do not see below: in the table, line 187 is fully green, because all transitions
+have been entered from the command line. Transitions with question marks are in pink because,
+as you guessed it, they are yet unknown. Transitions in yellow are transitions which were
+computed by the F<maj.p6> program, without being entered as command parameters. In the picture
+below, the page numbers are also printed on a color background: pink if this page includes
+at least one pink unknown transition, yellow if the page has no unknown transition but at least
+one computed transition and green if all transitions for the page number are green.
+
+Les colonnes 2 et 3, avec des points-virgules, correspondent à l'implémentation interne
+de la classe F<Depl.pm6> utilisée par les programmes de préparation.
+
+Columns 2 and 3, with semi-colons, display part of the internal implementation of
+class F<Depl.pm6>, used by the preparation programs.
+
 =begin html
 
 <table border='1'>
@@ -78,3 +109,9 @@ with your favorite web browser.
 </pre>
 
 =end html
+
+=head1 LICENCE / LICENSE
+
+Texte diffusé sous la licence CC-BY-NC-ND : Creative Commons avec clause de paternité, excluant l'utilisation commerciale et excluant la modification. 
+
+This text is published under the CC-BY-NC-ND license: Attribution-NonCommercial-NoDerivs 2.0 Generic.
