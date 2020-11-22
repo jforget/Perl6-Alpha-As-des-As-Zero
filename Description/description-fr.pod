@@ -304,7 +304,9 @@ générer 222 pages, représentant toutes les positions relatives des deux avion
 du moment qu'ils sont à une distance inférieure ou égale à trois hexagones.
 Et que se passe-t-il si la distance est S<supérieure ?>
 Si, du fait de leurs manœuvres, les avions se retrouvent plus loin que cette
-distance limite, le livret affiche une page spéciale, la page 223 qui représente des
+distance limite, le livret affiche une page spéciale, la
+L<page 223| https://www.boardgamegeek.com/image/157327/ace-aces-handy-rotary-series>
+qui représente des
 nuages derrière lesquels l'ennemi a disparu. Même si cette page montre le ciel en avant de l'avion,
 il est possible que l'ennemi ait disparu sur un côté ou derrière.
 
@@ -429,12 +431,15 @@ Il est possible de jouer avec un livret « gentil » d'un jeu et un livret « m�
 ce qui vous rappelera le 
 L<célèbre accrochage|https://www.youtube.com/watch?v=f3XNEWtJF0o>
 entre deux F-14 et deux A6M2 Zéro.
- 
 
 Juste quelques hics, l'échelle des distances n'est pas la même d'un jeu à l'autre et les
 points de dégâts n'ont rien à voir. Il vous faudra une bonne dose de
 L<suspension délibérée de l'incrédulité|http://tvtropes.org/pmwiki/pmwiki.php/Main/WillingSuspensionOfDisbelief>
 pour les parties de ce S<type !>
+
+Et vous ne pouvez pas opposer un S<« gentil »> à un autre S<« gentil »>, par exemple un F-15 à un P-51,
+ni faire combattre un S<« méchant »> avec un autre S<« méchant »>, par exemple un Fokker D.VII
+contre un FW190.
 
 Attention au sujet de I<Wingleader> : il existe un autre jeu beaucoup plus récent du
 même nom chez GMT. Si vous êtes intéressé par le jeu décrit et que vous voulez l'acheter

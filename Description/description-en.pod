@@ -271,7 +271,9 @@ you will understand that the game is based on a 37-hexagon grid and on a 6-headi
 which produce 222 pages, for all relative positions of the planes, provided they are
 with 3 hexagons of each other. But what happens if the distance is greater?
 If, because of their maneuvers, the planes are separated by a distance greater than this
-threshold, the booklets display a special page, Page 223, which show clouds behind which
+threshold, the booklets display a special page, 
+L<Page 223|https://www.boardgamegeek.com/image/157327/ace-aces-handy-rotary-series>,
+which show clouds behind which
 the enemy plane has vanished. Even if the page shows clouds in front of the plane, the
 enemy can have disappeared behind.
 
@@ -396,6 +398,9 @@ for the WWI version, several hundred meters for the Cold War version. And the hi
 much different. You will need a big dose of 
 L<willing suspension of disbelief|http://tvtropes.org/pmwiki/pmwiki.php/Main/WillingSuspensionOfDisbelief>
 to play such a game!
+
+And you cannot set up a dogfight between two "good guys" (e.g. F-15 vs P-51) or between two "bad guys"
+(e.g. Fokker Dr1 vs FW190).
 
 A bit of caution about I<Wingleader>. There is 
 L<another game|https://boardgamegeek.com/boardgame/160418/wing-leader-victories-1940-1942>
