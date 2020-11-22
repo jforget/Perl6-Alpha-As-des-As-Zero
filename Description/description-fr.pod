@@ -305,7 +305,7 @@ du moment qu'ils sont à une distance inférieure ou égale à trois hexagones.
 Et que se passe-t-il si la distance est S<supérieure ?>
 Si, du fait de leurs manœuvres, les avions se retrouvent plus loin que cette
 distance limite, le livret affiche une page spéciale, la
-L<page 223| https://www.boardgamegeek.com/image/157327/ace-aces-handy-rotary-series>
+L<page 223|https://www.boardgamegeek.com/image/157327/ace-aces-handy-rotary-series>
 qui représente des
 nuages derrière lesquels l'ennemi a disparu. Même si cette page montre le ciel en avant de l'avion,
 il est possible que l'ennemi ait disparu sur un côté ou derrière.
@@ -533,14 +533,14 @@ retrouver l'interprétation de chaque page sur la grille hexagonale implicite.
 On commence par charger la base de données avec une page codée S<« en> S<dur »>, 
 plus la page spéciale 223. Ensuite, le processus est itératif. On prend une page
 déjà référencée dans la base de données, puis on fournit au programme la liste des
-associations manœuvres → page d'arrivée de cette page de départ. Cela permet de
+transitions manœuvres → page d'arrivée de cette page de départ. Cela permet de
 définir à quel hexagone et à quelle orientation ces pages d'arrivée correspondent.
 Au bout d'un certain temps, on a passé en revue toutes les pages du livret et donc
 on connaît la grille hexagonale entière.
 
 Dans un deuxième temps, on initialise un fichier JSON avec les manœuvres d'un avion,
 on croise avec la base de données de la première étape, et on génère un livret 
-donnant la liste des associations page de départ + manœuvre → page d'arrivée.
+donnant la liste des transitions page de départ + manœuvre → page d'arrivée.
 Ce livret est codé sous la forme d'un fichier JSON avec en prime un fichier HTML.
 
 Vous en saurez plus en lisant la
@@ -585,15 +585,19 @@ C'est lui qui lit le fichier JSON créé par les programmes de préparation
 et qui connaît ainsi à quelle page on aboutit lorsque l'on exécute
 telle manœuvre sur telle page de départ. Ce qui ne veut pas dire qu'il
 connaît la géométrie sous-jacente, il se contente d'utiliser le fichier
-JSON comme une table d'associations page de départ + manœuvre → page d'arrivée.
+JSON comme une table de transitions page de départ + manœuvre → page d'arrivée.
 
 =head3 Base de données
 
-Le choix de la base de données MongoDB s'appuie sur les mêmes raisons que celles
+Le choix de la base de données 
+L<MongoDB|https://www.mongodb.com/fr>
+s'appuie sur les mêmes raisons que celles
 que j'ai données lors de ma présentation aux Journées Perl 2017. J'en sais déjà
 suffisamment sur les manipulations de données en SQL, alors que j'ai plus à découvrir
 avec les bases NoSQL. Il aurait été possible d'écrire les programmes avec une base
-de données SQLite ou une autre base SQL, mais je trouvais cela moins intéressant.
+de données
+L<SQLite|https://sqlite.org/index.html>
+ou une autre base SQL, mais je trouvais cela moins intéressant.
 
 Lors de ma présentation, on m'a fait remarquer que MongoDB permet de stocker des
 images, ce qui est intéressant pour un jeu tel que l'As des As, basé sur des images
@@ -633,7 +637,9 @@ d'un côté l'espion se fait exfiltrer et survit, de l'autre côté le processus
 effectue un C<die>.
 
 S<« Quand> on a un marteau, tout ressemble à un S<clou. »> Certes, mais en procédant de
-la sorte, je n'avais qu'un module avec des bugs qu'il fallait contourner.
+la sorte, je n'avais qu'un seul module pour lequel je pouvais avoir des problèmes
+qu'il fallait contourner (soit des bugs, soit des 
+L<PECEC|https://fr.wiktionary.org/wiki/entre_la_chaise_et_le_clavier>.
 
 =head1 Perl 6
 

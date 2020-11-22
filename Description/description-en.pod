@@ -482,7 +482,7 @@ I have copied enough pages to have at least one link to every one ot the 222 pag
 
 In the second step, for each aircraft, I write a JSON file describing the maneuvers
 this plane can execute, I merge it with the database from the first step and
-I generate a booklet, that is, the full list of associations
+I generate a booklet, that is, the full list of transitions
 (start page + maneuver) → end page. The program prints the booklet both in
 JSON format and in HTML format.
 
@@ -518,6 +518,42 @@ The umpire program has a better knowledge of the flight mechanisms and the fire 
 nothing about tactics. The umpire program reads the JSON files created by the preparation programs.
 This allows it to know the relation (start page + maneuver) → end page. But the umpire program
 does not know and does not care about the underlying hexagonal geometry.
+
+=head3 Database
+
+I have chosen MongoDB for the database. The reasons are not technical reasons (performance, for 
+example), but the fact that I know data manipulation with SQL, but I am not familiar with
+noSQL databases. The programs could be written with a SQL database, such as 
+L<SQLite|https://sqlite.org/index.html>
+or any other, but for me, it was less interesting.
+
+During my FPW 2018 talk, someone remarked that MongoDB allows the storage of pictures,
+which would be interesting for a game such as I<Ace of Aces>, which relies heavily
+on pictures. Actually, this was not a criterion for my choice, I had no intention
+to copy the plane pictures into the database.
+
+=head3 Inter-Process Communication
+
+Like I said above, there are three processes which send data to each other. Did I
+use sockets? Message queues? No. I used a mechanism based on John le Carré spy novels,
+the mailbox. The controlling officer writes his instructions to the spy on a microfilm
+and inserts this microfilm into a agreed-upon discreet location: tree stump, crack between
+two bricks in a wall, and the like. The spy comes a few hours later, takes the microfilm
+and goes away. A few days later, after gathering the requested information, the spy 
+delivers a new microfilm by inserting in the same hidden place and the controlling
+officer takes it in the same manner. This is the same with the umpire process and the
+player processes. The umpire process writes a database record for each player. Then each
+player process reads the record which applies to it, fills the missing data and rewrites
+it. Then the umpire process reads the updated record.
+
+Just as in John le Carré novels, if a process does not find the record it is waiting for,
+it waits a few moments and it makes a new attempt. And as in John le Carré novels, 
+after a number of failed attempts, the process considers something bad has happened 
+on the other side and it stops all activities. The comparison ends there, because in
+spy novels the spy is exfiltrated, while here the process executes a C<die>.
+
+"With a hammer, everything looks like a nail". Indeed, but by doing so, I have only
+one module to deal with, which reduces the number of standing issues (bugs and PEBCAK).
 
 =head1 License
 
