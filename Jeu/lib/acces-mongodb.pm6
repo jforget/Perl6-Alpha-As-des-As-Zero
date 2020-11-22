@@ -1,9 +1,9 @@
-#!/home/jf/rakudo-star-2018.01/bin/perl6
+#!/home/jf/rakudo/bin/perl6
 # -*- encoding: utf-8; indent-tabs-mode: nil -*-
 #
 #     Accès à MongoDB pour l'As des As
 #     Access to the Ace of Aces MongoDB database
-#     Copyright (C) 2018 Jean Forget
+#     Copyright (C) 2018, 2020 Jean Forget, all rights reserved
 #
 #     Voir la licence dans la documentation incluse ci-dessous.
 #     See the license in the embedded documentation below.
@@ -11,7 +11,7 @@
 
 unit module acces-mongodb;
 
-use v6;
+#use v6;
 use BSON::Document;
 use MongoDB::Client;
 use MongoDB::Database;
@@ -172,7 +172,7 @@ et les coups de l'As des As et les mettre à jour.
 
 =head1 COPYRIGHT et LICENCE
 
-Copyright 2018, Jean Forget
+Copyright (c) 2018, 2020, Jean Forget, all rights reserved
 
 Ce programme est diffusé avec les mêmes conditions que Perl 5.16.3 :
 la licence publique GPL version 1 ou ultérieure, ou bien la

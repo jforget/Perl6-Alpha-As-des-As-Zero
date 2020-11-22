@@ -3,7 +3,7 @@
 #
 #     Module appelé par un programme Bailador pour afficher une partie de l'As des As
 #     Module called by a Bailador program to display an "Ace of Aces" game
-#     Copyright (C) 2018 Jean Forget
+#     Copyright (C) 2018, 2020 Jean Forget, all rights reserved
 #
 #     Voir la licence dans la documentation incluse ci-dessous.
 #     See the license in the embedded documentation below.
@@ -38,7 +38,8 @@ our sub affichage($dh, $partie, @coups) {
   for 1..$partie<nb_coups> -> $n {
     my     $coup_g = @coups_g[$n];
     my     $coup_m = @coups_m[$n];
-    my Str $page_d = min($coup_g<page>, $coup_m<page>); # min pour remplacer, par exemple, 1G par 1
+    my     $npage  = min($coup_g<page>, $coup_m<page>); # min pour remplacer, par exemple, 1G par 1
+    my Str $page_d = $npage.Str;  # conversion en chaîne, car la ligne précédente peut produire un entier, par exemple, min(1, 1) au lieu de min("1G", 1)
     my Str $man_g  = $coup_g<manoeuvre> // ''; # vide pour le coup final
     my Str $man_m  = $coup_m<manoeuvre> // '';
     my Int $pot_g  = $coup_g<potentiel> // $partie<capacité_g> // 0;
@@ -61,7 +62,8 @@ our sub affichage($dh, $partie, @coups) {
     }
 
     if $n != $partie<nb_coups> {
-      $page_a = min(@coups_g[$n+1]<page>, @coups_m[$n + 1]<page>);
+      my $npage = min(@coups_g[$n+1]<page>, @coups_m[$n + 1]<page>);
+      $page_a = $npage.Str;
     }
     $liste-coups ~= sprintf $format, $n, $page_d, + $pot_g, $man_g, + $pot_m, $man_m, $page_a;
   }
@@ -102,7 +104,7 @@ Ce programme génère un fichier HTML énumérant les coups successifs d'une par
 
 =head1 COPYRIGHT et LICENCE
 
-Copyright 2018, Jean Forget
+Copyright (c) 2018, 2020, Jean Forget, all rights reserved
 
 Ce programme est diffusé avec les mêmes conditions que Perl 5.16.3 :
 la licence publique GPL version 1 ou ultérieure, ou bien la
