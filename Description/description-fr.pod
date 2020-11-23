@@ -17,8 +17,6 @@ de célébrer le centenaire de la création de la RAF (1er avril 1918) et de la 
 de Manfred von Richthofen (21 avril 1918) ou, plus approximativement, la disparition 
 de Georges Guynemer (11 septembre 1917) et l'armistice (11 novembre 1918).
 
-=head1 L'As des AS
-
 =head2 Rappel
 
 L'an dernier, j'ai présenté un système de reconnaissance
@@ -146,7 +144,7 @@ J'en ai eu cinq, dont deux édités par Gallimard et trois par Solar, il m'en re
 
 I<Photo personnelle. Les conditions de licence sont les mêmes que pour le texte.>
 
-=head2 L'As des As
+=head1 L'As des AS, le Jeu
 
 En 1981, un dénommé Alfred Leonardi a déposé un brevet pour un
 nouveau type de jeu, mis au point avec Douglas Kaufman. Au lieu de réunir les deux joueurs sur une même
@@ -158,7 +156,7 @@ carte où ils poussent des pions, chaque joueur est muni d'un livret.
 I<Photo prise par Chris Norwood et publiée sur L<Boardgame Geek|https://boardgamegeek.com/image/1051809/ace-aces-handy-rotary-series?size=large>. 
 Licence L<Creative Commons Attribution 3.0 Unported, CC BY 3.0|https://creativecommons.org/licenses/by/3.0/>.>
 
-=head3 Aperçu des règles
+=head2 Aperçu des règles
 
 Le brevet donne un exemple de tour de jeu. Les deux joueurs commencent le tour page 1. Dans
 les deux livrets, cette page montre que les deux avions ont le même cap et
@@ -212,7 +210,7 @@ ennemi, vous perdez 1, 2 ou 4 points de vie, selon la page finale. On ne tient p
 compte des pages intermédiaires. Quand votre total de points de vie
 est négatif ou nul, votre avion est abattu.
 
-=head3 Dissection du mécanisme
+=head2 Dissection du mécanisme
 
 Avec ce mécanisme, les pages finales sont toujours identiques. Cela émerveille les joueurs
 qui découvrent le jeu, mais cela peut s'expliquer simplement. Oublions les cieux au-dessus
@@ -399,17 +397,7 @@ de jouer dans le bus. Et si vous êtes dans une catégorie supérieure pour cett
 vous pouvez même jouer dans le bus tout en gardant un œil sur les arrêts restants avant
 votre destination.
 
-Lorsque j'ai découvert le jeu, je me suis dit que finalement, ce jeu consistait à combiner des
-nombres (les numéros de page) et des symboles (les manœuvres) pour obtenir d'autres nombres.
-L'image figurant sur chaque page a  pour but d'aider le joueur humain à choisir le bon symbole
-de manœuvre, du moment que ce joueur a une idée suffisamment précise du vol d'un avion et qu'il connaît
-les Dicta Boelke, les conseils de Sailor Malan, l'ouvrage I<No Guts, No Glory> de S<« Boots »> Blesse
-et autres livres du même genre. Il est possible d'enlever tout cet habillage aéronautique pour ne
-conserver que le mécanisme abstrait reposant sur un automate à états finis éventuellement mâtiné 
-d'une dose de fonction I<random>. D'où l'idée d'un programme jouant à ce jeu sans rien connaître
-du contexte réel, mais se basant uniquement sur une analyse statistique des parties passées.
-
-=head3 Extensions
+=head2 Extensions
 
 Deux extensions sont sorties avec des avions plus récents
 (I<L<Powerhouse|https://boardgamegeek.com/boardgame/7104/ace-aces-powerhouse-series>>,
@@ -513,7 +501,17 @@ C'est d'ailleurs cette dernière extension que j'ai choisie pour disposer de don
 de tests dans mes programmes. J'étais réticent à reprendre les caractéristiques des
 avions de l'un des jeux existants, car si le brevet est expiré, le copyright ne l'est pas.
 
-=head1 Description des programmes
+=head1 L'As des As, description des programmes
+
+Lorsque j'ai découvert le jeu, je me suis dit que finalement, ce jeu consistait à combiner des
+nombres (les numéros de page) et des symboles (les manœuvres) pour obtenir d'autres nombres.
+L'image figurant sur chaque page a  pour but d'aider le joueur humain à choisir le bon symbole
+de manœuvre, du moment que ce joueur a une idée suffisamment précise du vol d'un avion et qu'il connaît
+les Dicta Boelke, les conseils de Sailor Malan, l'ouvrage I<No Guts, No Glory> de S<« Boots »> Blesse
+et autres écrits du même genre. Il est possible d'enlever tout cet habillage aéronautique pour ne
+conserver que le mécanisme abstrait reposant sur un automate à états finis éventuellement mâtiné 
+d'une dose de fonction I<random>. D'où l'idée d'un programme jouant à ce jeu sans rien connaître
+du contexte réel, mais se basant uniquement sur une analyse statistique des parties passées.
 
 Il y a deux grandes parties dans le projet. Tout d'abord, la préparation,
 consistant à regénérer plutôt que recopier les enchaînements entre pages
@@ -638,8 +636,37 @@ effectue un C<die>.
 
 S<« Quand> on a un marteau, tout ressemble à un S<clou. »> Certes, mais en procédant de
 la sorte, je n'avais qu'un seul module pour lequel je pouvais avoir des problèmes
-qu'il fallait contourner (soit des bugs, soit des 
+qu'il fallait contourner, soit des bugs, soit des 
 L<PECEC|https://fr.wiktionary.org/wiki/entre_la_chaise_et_le_clavier>.
+
+=head2 Retour d'expérience sur l'As des As
+
+Un point qui m'a surpris et auquel j'aurais pu penser, c'est la réaction
+des pilotes en page 223 en mode combat.  Le but était de permettre
+à un avion déjà bien amoché de fuir pour survivre et pour n'accorder
+qu'un demi-point de victoire, au lieu de continuer à combattre avec
+un net désavantage et d'accorder un point de victoire entier à l'ennemi.
+
+Ce qui se passe en réalité, c'est que le choix de la fuite donne en moyenne
+un résultat S<négatif :> -0.5 PV si l'adversaire préfère continuer le combat,
+0 PV si l'adversaire souhaite lui aussi fuir. En revanche, la poursuite
+du combat donne autant de chances de gagner le combat que de le perdre.
+Donc en moyenne, un résultat nul, meilleur que la moyenne des résultats
+de la fuite. C'est ainsi que les pilotes sont amenés à choisir la poursuite
+du combat.
+
+Ce qu'il faudrait faire, c'est moduler la note des résultats antérieurs
+en comparant le potentiel restant de la situation actuelle et celui de ces
+coups antérieurs. Si un pilote est en page 223 avec tout juste 2 points de
+vie sur les 12 initiaux, on privilégiera les coups antérieurs avec 1, 2 ou
+3 points de vie, tout en minimisant l'importance des coups antérieurs avec
+8 points de vie ou plus. De la sorte, peut-être que les pilotes préféreront
+fuir.
+
+D'un autre côté, en mode entraînement, cela ne vaut pas le coup de fuir, car
+cela écourte la séance d'entraînement et cela réduit les informations disponibles
+pour les combats ultérieurs. J'ai donc créé une option S<« à outrance »> où le
+choix de l'attaque est privilégié par rapport à la fuite.
 
 =head1 Perl 6
 
@@ -1603,7 +1630,7 @@ Perl 6. La commande
 
 a planté parce que mon système ne contenait pas de F<libssl.so>. Il contient bien
 une F<libssl3.so> ainsi qu'une F<libssl.so.1.1> et une F<libssl.so.1.0.0>, mais cela
-ne semble pas avoir convenu aux tests de MongoDB. J'ai donc tlancé la deuxième
+ne semble pas avoir convenu aux tests de MongoDB. J'ai donc lancé la deuxième
 variante de l'installation, celle qui ne tient pas compte des tests :
 
   zef install --/test MongoDB
@@ -1650,30 +1677,6 @@ fichiers F<lib/site-coup.pm6>, F<lib/site-liste-parties.pm6> et F<lib/site-parti
 correspondant aux Vues. J'arrive à appeler les fonctions du Modèle F<lib/acces-mongodb.pm6>
 depuis le Contrôleur F<site.p6>, mais pas depuis les Vues F<lib/site-xxx.pm6>.
 J'ai encore quelques notions à apprendre sur les C<use> et les C<require> en Perl 6.
-
-=head1 Retour d'expérience sur l'As des As
-
-Un point qui m'a surpris et auquel j'aurais pu penser, c'est la réaction
-des pilotes en page 223 en mode combat.  Le but était de permettre
-à un avion déjà bien amoché de fuir pour survivre et pour n'accorder
-qu'un demi-point de victoire, au lieu de continuer à combattre avec
-un net désavantage et d'accorder un point de victoire entier à l'ennemi.
-
-Ce qui se passe en réalité, c'est que le choix de la fuite donne en moyenne
-un résultat S<négatif :> -0.5 PV si l'adversaire préfère continuer le combat,
-0 PV si l'adversaire souhaite lui aussi fuir. En revanche, la poursuite
-du combat donne autant de chances de gagner le combat que de le perdre.
-Donc en moyenne, un résultat nul, meilleur que la moyenne des résultats
-de la fuite. C'est ainsi que les pilotes sont amenés à choisir la poursuite
-du combat.
-
-Ce qu'il faudrait faire, c'est moduler la note des résultats antérieurs
-en comparant le potentiel restant de la situation actuelle et celui de ces
-coups antérieurs. Si un pilote est en page 223 avec tout juste 2 points de
-vie sur les 12 initiaux, on privilégiera les coups antérieurs avec 1, 2 ou
-3 points de vie, tout en minimisant l'importance des coups antérieurs avec
-8 points de vie ou plus. De la sorte, peut-être que les pilotes préféreront
-fuir.
 
 À compléter.
 
