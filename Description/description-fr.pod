@@ -52,7 +52,7 @@ parties contre lui-même, analyse les résultats et en déduit les positions
 et coups avantageux et les positions et coups foireux.
 
 Cette idée ne date pas de 2017 ou 2018, je l'ai déjà rencontrée dans
-les années 1970 avec le tic-tac-toe. Et depuis longtemps j'avais moi-même un projet
+les années 1970 avec un article décrivant une machine jouant au tic-tac-toe. Et depuis longtemps j'avais moi-même un projet
 de « machine self-learning », que je vous présente ci-dessous. Et c'était le moment rêvé
 de réaliser ce projet cette année, car 2018 c'est le centenaire de la création
 de la RAF, de la mort au combat de Manfred von Richthofen et de l'armistice.
@@ -429,7 +429,9 @@ Et vous ne pouvez pas opposer un S<« gentil »> à un autre S<« gentil »>, pa
 ni faire combattre un S<« méchant »> avec un autre S<« méchant »>, par exemple un Fokker D.VII
 contre un FW190.
 
-Attention au sujet de I<Wingleader> : il existe un autre jeu beaucoup plus récent du
+Attention au sujet de I<Wingleader> : il existe un 
+L<autre jeu|https://boardgamegeek.com/boardgame/160418/wing-leader-victories-1940-1942>
+beaucoup plus récent du
 même nom chez GMT. Si vous êtes intéressé par le jeu décrit et que vous voulez l'acheter
 par correspondance, vérifiez bien qu'il s'agit du bon jeu.
 
@@ -514,14 +516,15 @@ d'une dose de fonction I<random>. D'où l'idée d'un programme jouant à ce jeu 
 du contexte réel, mais se basant uniquement sur une analyse statistique des parties passées.
 
 Il y a deux grandes parties dans le projet. Tout d'abord, la préparation,
-consistant à regénérer plutôt que recopier les enchaînements entre pages
+consistant à produire les livrets sous forme électronique, en générant les fichiers
+plutôt qu'en tapant la totalité des enchaînements entre pages
 et manœuvres. Puis il y a le jeu proprement dit où des programmes combattent
-l'un contre l'autre.
+l'un contre l'autre et tirent la leçon de leurs combats passés.
 
 =head2 Préparation
 
 J'ai commencé par programmer cette partie, bien sûr. Je l'ai faite avant d'initialiser
-le dépôt Git. Du coup, les programmes sont dans un répertoire extérieur.
+le dépôt Git. Du coup, les programmes étaient dans un répertoire extérieur.
 Ces programmes ont été réintégrés après coup dans le dépôt Git, avec une
 phase de nettoyage. Vous ne verrez donc pas mes tout premiers pas en Perl 6.
 
@@ -649,7 +652,7 @@ un net désavantage et d'accorder un point de victoire entier à l'ennemi.
 
 Ce qui se passe en réalité, c'est que le choix de la fuite donne en moyenne
 un résultat S<négatif :> -0.5 PV si l'adversaire préfère continuer le combat,
-0 PV si l'adversaire souhaite lui aussi fuir. En revanche, la poursuite
+0 PV si l'adversaire souhaite lui aussi fuir, soit -0,25 PV en moyenne. En revanche, la poursuite
 du combat donne autant de chances de gagner le combat que de le perdre.
 Donc en moyenne, un résultat nul, meilleur que la moyenne des résultats
 de la fuite. C'est ainsi que les pilotes sont amenés à choisir la poursuite
@@ -713,8 +716,8 @@ de Docker.
 
 Du coup, j'ai installé rakudo star 2018.01 à partir des sources. La première fois que
 j'ai compilé rakudo star, cela a pris beaucoup de temps, plusieurs heures.
-La deuxième fois, pour éviter d'avoir à surveiller ma machine pour saisir la
-commande suivante (C<make>, C<make test>, C<make install>), j'ai écrit un script
+La deuxième fois, pour éviter d'avoir à surveiller ma machine pour saisir les
+commandes l'une après l'autre (C<make>, C<make test>, C<make install>), j'ai écrit un script
 qui enchaîne ces commandes et donne la date et l'heure entre deux.
 
   #!/bin/sh
@@ -751,7 +754,8 @@ qui enchaîne ces commandes et donne la date et l'heure entre deux.
   source ~/.bashrc
 
 Certes, j'ai lancé ce script sur une machine virtuelle, donc nécessairement moins puissante 
-que la machine physique hôte. Néanmoins, cela donne une idée du temps nécessaire.
+que la machine physique hôte. Le temps est donc plus long que sur la machine physique.
+Néanmoins, cela donne une idée du temps nécessaire.
 
   make                   1h 40mn
   make rakudo-test          20mn
@@ -968,7 +972,7 @@ ce qui donne
   31 59 90 120 151 181 212 243 273 304 334 365
 
 Dans mes livres francophones sur APL, cela s'appelle un S<« balayage »>.
-En en S<Raku ?>  Enhardi par les résultats des deux paragraphes précédents, je me
+Et en S<Raku ?>  Enhardi par les résultats des deux paragraphes précédents, je me
 suis dit que si l'on peut faire un balayage en APL, on peut en faire un en Raku
 également. Et si c'est le backslash qui fait le balayage en APL, pourquoi cela
 ne serait pas le cas aussi pour S<Raku ?> J'ai donc essayé

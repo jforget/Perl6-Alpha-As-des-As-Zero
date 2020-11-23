@@ -4,9 +4,11 @@
 
 =head1 Introduction
 
-This document is not exactly the translation of F<description-fr.pod>.
+This document is not an exact translation of F<description-fr.pod>.
 The documents are about two years apart. In the interim Perl 6 has been renamed
-Raku and I have learned much about this language.
+Raku and I have learned much about this language. And I have removed
+a few jokes which would puzzle the readers who does not share the same background
+as me.
 
 This project was what is called I<Conference-driven development>.
 In 2018, I was looking for a project which could use Raku and MongoDB and
@@ -15,7 +17,9 @@ So I dug out from the depths of my memory an idea I had in the early 1980's
 when I discovered Nova Games'
 L<"Ace of Aces"|https://boardgamegeek.com/boardgame/798/ace-aces-handy-rotary-series>. 
 Only later did I discover
-that I could use Bailador, the Raku port of Dancer2 and that the conference
+that I could use Bailador, the Raku port of
+L<Dancer2|http://perldancer.org/>
+and that the conference
 would be within a few weeks of the 100th anniversary of Richthofen's death
 and of the 100th anniversary of the creation of the RAF. If you extend the
 celebration window to a few months, it was also the 100th anniversary of
@@ -185,7 +189,8 @@ account. When your hit point total is zero or negative, your plane is shot down.
 
 With this rule mechanism, the final pages are always the same for both players. 
 Many newbie players are amazed by this, yet the explanation is simple.
-Forget the skies above Poelcapelle or Vaux-sur-Somme
+Forget the skies above Poelcapelle or 
+L<Vaux-sur-Somme|http://military.wikia.com/wiki/Manfred_von_Richthofen>,
 and imagine you are in a big empty parking lot, with only a Mini Austin and 
 a VW Beetle. At first, they set up in the following position (use the plain lines
 and ignore the dotted lines):
@@ -409,7 +414,7 @@ I<Personal pictures using a page in the booklets from Jet Eagles, copyright © 1
 
 All these variants propose advanced rules, e.g. altitude, 2-vs-2 or, in the case
 of I<Jet Eagles>, radars and missiles. Unfortunately, these rules are incompatible with
-the  7 ± 2 short-term memory capacity. Except a rule about compatibility between
+the  7 ± 2 short-term memory capacity. Except for a rule about compatibility between
 two successive maneuvers, I do not plan to include these advanced rules in my programs.
 
 There is also an extension 
@@ -466,7 +471,7 @@ uses of a I<random> function. Hence the idea of a program playing the game witho
 of air combat, but relying on a statistical analysis of previous games.
 
 There are two parts in this project. First, preparation, to create booklets in electronic
-format, by generating them rather than copying them entirely from the paper version. Second, the game
+format, by generating the files rather than typing them entirely from the paper version. Second, the game
 itself, where cyber pilots fight against each other and learn from their mistakes.
 
 =head2 Preparation
@@ -521,7 +526,8 @@ does not know and does not care about the underlying hexagonal geometry.
 
 =head3 Database
 
-I have chosen MongoDB for the database. The reasons are not technical reasons (performance, for 
+I have chosen L<MongoDB|https://www.mongodb.com/>
+for the database. The reasons are not technical reasons (performance, for 
 example), but the fact that I know data manipulation with SQL, but I am not familiar with
 noSQL databases. The programs could be written with a SQL database, such as 
 L<SQLite|https://sqlite.org/index.html>
@@ -540,7 +546,7 @@ the mailbox. The controlling officer writes his instructions to the spy on a mic
 and inserts this microfilm into a agreed-upon discreet location: tree stump, crack between
 two bricks in a wall, and the like. The spy comes a few hours later, takes the microfilm
 and goes away. A few days later, after gathering the requested information, the spy 
-delivers a new microfilm by inserting in the same hidden place and the controlling
+delivers a new microfilm by inserting it in the same hidden place and the controlling
 officer takes it in the same manner. This is the same with the umpire process and the
 player processes. The umpire process writes a database record for each player. Then each
 player process reads the record which applies to it, fills the missing data and rewrites
@@ -554,6 +560,37 @@ spy novels the spy is exfiltrated, while here the process executes a C<die>.
 
 "With a hammer, everything looks like a nail". Indeed, but by doing so, I have only
 one module to deal with, which reduces the number of standing issues (bugs and PEBCAK).
+
+=head2 Lessons Learned with Ace of Aces
+
+A point  which surprised me, although  I could have guessed  it before
+discovering it, is  the answer to page 223 when  fighting. The purpose
+of the flight  (from the verb "to  flee", not "to fly") is  to allow a
+damaged plane to survive  and to grant no more than  one half point to
+the opponent, instead  of staying involved in a bad  fight and, in the
+end, grant a full victory point to the enemy.
+
+What happens  in the programs,  is that  choosing the flight  gives an
+always negative result: -0.5 VP is the  enemy stays, 0 VP if the enemy
+also chooses to flee, average -0.25 VP. On the other hand, choosing to
+go on fighting gives more or  less similar probabilities for a victory
+and for  a defeat. On average,  the win is  0 VP. So the  cyber pilots
+prefer to stay.
+
+What  should be  done is  to filter  the results  from previous  games
+according to the current level of damages. If a pilot is page 223 with
+only  2 hit  points  remaining from  the initial  12,  the search  for
+previous games will give more importance to game turns where the pilot
+had 1, 2 or  3 hit points remaining than to game turns  where he had 8
+hit points or more.  With this method, may be the  pilots will flee in
+this situation.
+
+On the other hand, in training mode, fleeing is not useful, because it
+shortens the  training session and it  reduces the amount of  data for
+future fights.  For this reason, I  have created a I<à  outrance> ("no
+quarters") mode, where  choosing the attack has  a greater probability
+than choosing to flee.
+
 
 =head1 License
 
