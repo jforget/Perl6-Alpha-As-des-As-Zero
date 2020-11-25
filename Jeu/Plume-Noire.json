@@ -1,8 +1,9 @@
 {
-    "id": "Plume-Noire",
-    "nom": "Plume-Noire",
-    "avion": "Epervier",
-    "perspicacité": 0.5,
-    "psycho-rigidité": 2,
+    "id":              "Plume-Noire",
+    "nom":             "Plume-Noire",
+    "avion":           "Epervier",
+    "perspicacité":     0.5,
+    "psycho-rigidité":  2,
+    "capacité":        12,
     "ref": [ "Epervier" ]
 }

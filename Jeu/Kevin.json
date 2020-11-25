@@ -1,8 +1,9 @@
 {
-    "id": "Kevin",
-    "nom": "Kevin",
-    "avion": "Drone",
-    "perspicacité": 0.5,
-    "psycho-rigidité": 2,
+    "id":              "Kevin",
+    "nom":             "Kevin",
+    "avion":           "Drone",
+    "perspicacité":     0.5,
+    "psycho-rigidité":  2,
+    "capacité":        12,
     "ref": [ "Drone" ]
 }
