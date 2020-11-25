@@ -10,3 +10,4 @@
 *.pdf
 pod2*
 .precomp
+MongoDB.log

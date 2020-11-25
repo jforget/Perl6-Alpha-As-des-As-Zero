@@ -3,6 +3,6 @@
     "nom": "Kevin",
     "avion": "Drone",
     "perspicacité": 0.5,
-    "psycho-rigidité": 1,
+    "psycho-rigidité": 2,
     "ref": [ "Drone" ]
 }

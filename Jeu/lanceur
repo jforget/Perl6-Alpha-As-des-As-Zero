@@ -3,7 +3,7 @@
 #
 #     Programme pour lancer une partie de l'As des As
 #     Program to launch an Ace of Aces game
-#     Copyright (C) 2018 Jean Forget
+#     Copyright (C) 2018, 2020 Jean Forget
 #    
 #    Ce programme est diffusé avec les mêmes conditions que Perl 5.16.3 :
 #    la licence publique GPL version 1 ou ultérieure, ou bien la
@@ -32,10 +32,10 @@
 
 export dh=$(date +'%Y-%m-%d_%H-%M-%S')
 
-perl6 arbitre.p6 --date-heure=$dh --gentil=Epervier --méchant=Drone --à-outrance &
-perl6 joueur.p6  --date-heure=$dh --identité=Drone    &
-perl6 joueur.p6  --date-heure=$dh --identité=Epervier &
+#perl6 arbitre.p6 --date-heure=$dh --gentil=Epervier --méchant=Drone --à-outrance &
+#perl6 joueur.p6  --date-heure=$dh --identité=Drone    &
+#perl6 joueur.p6  --date-heure=$dh --identité=Epervier &
 
-#perl6 arbitre.p6 --date-heure=$dh --gentil=Plume-Noire --mechant=Kevin &
-#perl6 joueur.p6  --date-heure=$dh --identité=Kevin
-#perl6 joueur.p6  --date-heure=$dh --identité=Plume-Noire
+perl6 arbitre.p6 --date-heure=$dh --gentil=Plume-Noire --méchant=Kevin &
+perl6 joueur.p6  --date-heure=$dh --identité=Kevin        &
+perl6 joueur.p6  --date-heure=$dh --identité=Plume-Noire  &
