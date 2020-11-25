@@ -4,7 +4,7 @@
 #
 #     Programme arbitre pour jouer à l'As des As
 #     Program to act as an Ace of Aces umpire
-#     Copyright (C) 2018 Jean Forget
+#     Copyright (C) 2018, 2020 Jean Forget
 #
 #     Voir la licence dans la documentation incluse ci-dessous.
 #     See the license in the embedded documentation below.
@@ -23,10 +23,25 @@ my MongoDB::Collection $coups    = $database.collection('Coups');
 
 class Pilote does JSON::Class {
   has Str $.id;
+  has Str $.nom             is rw;
   has Str $.avion           is rw;
   has Num $.perspicacité    is rw;
   has Num $.psycho-rigidité is rw;
   has Int $.capacité        is rw;
+  has Str @.ref;
+
+  method bson {
+    my BSON::Document $bson .= new: (
+           id               => $.id
+         , nom              => $.nom
+         , avion            => $.avion
+         , perspicacité     => $.perspicacité
+         , psycho-rigidité  => $.psycho-rigidité
+         , capacité         => $.capacité
+         , ref              => @.ref
+           );
+    return $bson;
+  }
 }
 
 class Avion does JSON::Class {
@@ -35,8 +50,8 @@ class Avion does JSON::Class {
   has Int $.capacité;
 }
 sub MAIN (Str :$date-heure, Str :$gentil, Str :$méchant, Bool :$à-outrance) {
-  my Pilote $pilote_g .= from-json(slurp "$gentil.json");
-  my Pilote $pilote_m .= from-json(slurp "$méchant.json");
+  my Pilote $pilote_g = init-pilote($gentil);
+  my Pilote $pilote_m = init-pilote($méchant);
   #say "Référence $date-heure";
   my Avion $avion_g;
   my Avion $avion_m;
@@ -336,6 +351,12 @@ SONDER:
   return $coup;
 }
 
+sub init-pilote(Str $id) {
+  my Pilote $pilote .= from-json(slurp "$id.json");
+  écrire-pilote($pilote.bson);  
+  return $pilote;
+}
+
 sub écrire-coup(BSON::Document $coup) {
   my BSON::Document $req .= new: (
     insert => 'Coups',
@@ -353,6 +374,15 @@ sub écrire-partie(BSON::Document $partie) {
   );
   my BSON::Document $result = $database.run-command($req);
   #say "Création partie ok : ", $result<ok>, " nb : ", $result<n>;
+}
+
+sub écrire-pilote(BSON::Document $pilote) {
+  my BSON::Document $req .= new: (
+    insert => 'Pilotes',
+    documents => [ $pilote ],
+  );
+  my BSON::Document $result = $database.run-command($req);
+  #say "Création pilote ok : ", $result<ok>, " nb : ", $result<n>;
 }
 
 
@@ -399,7 +429,7 @@ le livret Epervier.
 
 =head1 COPYRIGHT et LICENCE
 
-Copyright 2018, Jean Forget
+Copyright (c) 2018, 2020, Jean Forget
 
 Ce programme est diffusé avec les mêmes conditions que Perl 5.16.3 :
 la licence publique GPL version 1 ou ultérieure, ou bien la
