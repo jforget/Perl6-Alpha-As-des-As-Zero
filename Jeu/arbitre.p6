@@ -20,6 +20,7 @@ use JSON::Class;
 my MongoDB::Client     $client  .= new(:uri('mongodb://'));
 my MongoDB::Database   $database = $client.database('Ace_of_Aces');
 my MongoDB::Collection $coups    = $database.collection('Coups');
+my MongoDB::Collection $pilotes  = $database.collection('Pilotes');
 
 class Pilote does JSON::Class {
   has Str $.id;
@@ -28,11 +29,20 @@ class Pilote does JSON::Class {
   has Num $.perspicacité    is rw;
   has Num $.psycho-rigidité is rw;
   has Int $.capacité        is rw;
-  has Str @.ref;
+  has     @.ref;
 
+  method BUILD(:$bson) {
+    $!id              = $bson<identité>;
+    $!nom             = $bson<nom>;
+    $!avion           = $bson<avion>;
+    $!perspicacité    = $bson<perspicacité>;
+    $!psycho-rigidité = $bson<psycho-rigidité>;
+    $!capacité        = $bson<capacité>;
+    @!ref             = $bson<ref>;
+  }
   method bson {
     my BSON::Document $bson .= new: (
-           id               => $.id
+           identité         => $.id
          , nom              => $.nom
          , avion            => $.avion
          , perspicacité     => $.perspicacité
@@ -352,8 +362,24 @@ SONDER:
 }
 
 sub init-pilote(Str $id) {
-  my Pilote $pilote .= from-json(slurp "$id.json");
-  écrire-pilote($pilote.bson);  
+  my Pilote $pilote;
+
+  my MongoDB::Cursor $cursor = $pilotes.find(
+    criteria   => ( 'identité' => $id
+                   , ),
+    projection => ( _id => 0, )
+    );
+  while $cursor.fetch -> BSON::Document $d {
+    say $d.perl;
+    $pilote .= new(bson => $d);
+  }
+  $cursor.kill;
+
+say $pilote.perl;
+  unless $pilote.id {
+    $pilote .= from-json(slurp "$id.json");
+    écrire-pilote($pilote.bson);  
+  }
   return $pilote;
 }
 
