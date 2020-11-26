@@ -32,13 +32,14 @@ class Pilote does JSON::Class {
   has     @.ref;
 
   method BUILD(:$bson) {
+    my $ref = $bson<ref>;
     $!id              = $bson<identité>;
     $!nom             = $bson<nom>;
     $!avion           = $bson<avion>;
     $!perspicacité    = $bson<perspicacité>;
     $!psycho-rigidité = $bson<psycho-rigidité>;
     $!capacité        = $bson<capacité>;
-    @!ref             = $bson<ref>;
+    @!ref             = $ref[*];
   }
   method bson {
     my BSON::Document $bson .= new: (
@@ -372,6 +373,7 @@ sub init-pilote(Str $id) {
   while $cursor.fetch -> BSON::Document $d {
     say $d.perl;
     $pilote .= new(bson => $d);
+    last;
   }
   $cursor.kill;
 
