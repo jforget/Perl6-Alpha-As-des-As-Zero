@@ -1,38 +1,26 @@
 #!/home/jf/rakudo/bin/perl6
 # -*- encoding: utf-8; indent-tabs-mode: nil -*-
 #
-#
-#     Insertion d'un nouveau pilote dans la base MongoDB
-#     Creating a new pilot into the MongoDB database
-#     Copyright (C) 2018 Jean Forget
+#     Classe décrivant un pilote dans l'As des As
+#     Class to implement pilots in Ace of Aces
+#     Copyright (C) 2020 Jean Forget
 #
 #     Voir la licence dans la documentation incluse ci-dessous.
 #     See the license in the embedded documentation below.
 #
 
 use v6;
-use lib 'lib';
 use BSON::Document;
-#use MongoDB::Client;
-#use MongoDB::Database;
-#use MongoDB::Collection;
 use JSON::Class;
-use acces-mongodb;
-use Pilote;
 
-sub MAIN (Str :$identité) {
-  my Str    $json    = slurp "$identité.json";
-  my Pilote $pilote .= from-json($json);
-  my BSON::Document $doc .= new: (
-       identité        => $pilote.id,
-       nom             => $pilote.nom,
-       avion           => $pilote.avion,
-       perspicacité    => $pilote.perspicacité,
-       psycho-rigidité => $pilote.psycho-rigidité,
-       modèles         => $pilote.ref,
-       json            => $json,
-       );
-  acces-mongodb::écrire-pilote($doc);
+class Pilote does JSON::Class {
+  has Str $.id;
+  has Str $.nom;
+  has Str $.avion           is rw;
+  has Num $.perspicacité    is rw;
+  has Num $.psycho-rigidité is rw;
+  has     @.ref             is rw;
+  has Str $.json;
 }
 
 =begin POD
@@ -41,28 +29,22 @@ sub MAIN (Str :$identité) {
 
 =head1 NOM
 
-init-pilote.p6 -- chargement d'un pilote dans la base MongoDB
+Pilote.pm6 -- classe décrivant un pilote
 
 =head1 DESCRIPTION
 
-Ce programme recopie un fichier JSON  décrivant un pilote dans la base
-MongoDB, de  façon à simplifier  les programmes ultérieurs,  qui n'ont
-plus besoin de lire du JSON.
+Cette classe contient  les attributs permettant de jouer  à S<l'As des
+As :>  l'avion sur lequel vole  le pilote, sa perspicacité  (faculté à
+voir à travers les brumes  du temps), sa psycho-rigidité (propension à
+rester dans  les sentiers battus  ou à s'en  écarter) et la  liste des
+avions ou pilotes dont il s'inspire pour sa maîtrise du combat aérien.
 
-=head1 LANCEMENT
-
-  perl6 init-pilote.p6 --identité=Kevin
-
-=head2 Paramètres
-
-=item identité
-
-Nom  du  joueur  simulé,  associé   à  un  fichier  JSON  donnant  les
-caractéristiques de ce joueur.
+Il y a  également des attributs informatifs, comme le  nom en clair et
+l'identité (nom simplifié servant de clé d'accès).
 
 =head1 COPYRIGHT et LICENCE
 
-Copyright 2018, Jean Forget
+Copyright 2020, Jean Forget
 
 Ce programme est  diffusé avec les mêmes conditions que  Perl 5.16.3 :
 la licence  publique GPL version 1  ou ultérieure, ou bien  la licence
