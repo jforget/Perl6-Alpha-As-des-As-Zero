@@ -147,6 +147,16 @@ our sub écrire-pilote(BSON::Document $pilote) {
 
 }
 
+our sub écrire-avion(BSON::Document $avion) {
+  my BSON::Document $req .= new: (
+    insert    => 'Avions',
+    documents => [ $avion ],
+  );
+  my BSON::Document $result = $database.run-command($req);
+  #say "Création avion ok : ", $result<ok>, " nb : ", $result<n>;
+
+}
+
 sub écrire-partie(BSON::Document $partie) {
   my BSON::Document $req .= new: (
     insert => 'Parties',
