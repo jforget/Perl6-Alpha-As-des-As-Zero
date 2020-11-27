@@ -2,8 +2,8 @@
 # -*- encoding: utf-8; indent-tabs-mode: nil -*-
 #
 #
-#     Insertion d'un nouvel avion dans la base MongoDB
-#     Creating a new aircraft into the MongoDB database
+#     Classe décrivant un avion dans l'As des As
+#     Class to implement aircraft in Ace of Aces
 #     Copyright (C) 2020 Jean Forget
 #
 #     Voir la licence dans la documentation incluse ci-dessous.
@@ -11,26 +11,16 @@
 #
 
 use v6;
-use lib 'lib';
 use BSON::Document;
-#use MongoDB::Client;
-#use MongoDB::Database;
-#use MongoDB::Collection;
 use JSON::Class;
-use acces-mongodb;
-use Avion;
 
-sub MAIN (Str :$identité) {
-  my Str $json = slurp "$identité.json";
-  my Avion $avion .= from-json($json);
-  my BSON::Document $doc .= new: (
-       identité        => $avion.identité,
-       nom             => $avion.nom,
-       camp            => $avion.camp,
-       capacité        => $avion.capacité,
-       json            => $json,
-       );
-  acces-mongodb::écrire-avion($doc);
+class Avion does JSON::Class {
+  has     $.identité;
+  has     $.nom;
+  has     $.camp;
+  has     @.pages;
+  has     $.manoeuvres;
+  has Int $.capacité;
 }
 
 =begin POD
@@ -39,24 +29,19 @@ sub MAIN (Str :$identité) {
 
 =head1 NOM
 
-init-avion.p6 -- chargement d'un avion dans la base MongoDB
+Avion.pm6 -- classe décrivant un avion
 
 =head1 DESCRIPTION
 
-Ce programme recopie  un fichier JSON décrivant un avion  dans la base
-MongoDB, de  façon à simplifier  les programmes ultérieurs,  qui n'ont
-plus besoin de lire le fichier JSON.
+Cette classe contient  les attributs permettant de jouer  à S<l'As des
+As  :> la  liste  des manœuvres  et  leurs caractéristiques  (vitesse,
+direction, tir), la liste des  transitions (page de début, manœuvre) →
+page de fin et la capacité en points de dégâts.
 
-=head1 LANCEMENT
-
-  perl6 init-avion.p6 --identité=Drone
-
-=head2 Paramètre
-
-=item identité
-
-Nom  de  l'avion  simulé,  associé  à  un  fichier  JSON  donnant  les
-caractéristiques de cet avion.
+Il y  a également des  attributs informatifs,  comme le nom  en clair,
+l'identité  (nom simplifié  servant de  clé d'accès)  et le  camp dans
+lequel  se  trouve  l'avion  (C<G>   pour S<« gentil »>,   C<M>   pour
+S<« méchant »>).
 
 =head1 COPYRIGHT et LICENCE
 
@@ -66,8 +51,8 @@ Ce programme est  diffusé avec les mêmes conditions que  Perl 5.16.3 :
 la licence  publique GPL version 1  ou ultérieure, ou bien  la licence
 artistique Perl.
 
-Vous pouvez trouver le texte en anglais de ces licences dans le
-fichier <LICENSE> joint ou bien aux adresses S<suivantes :>
+Vous  pouvez trouver  le  texte en  anglais de  ces  licences dans  le
+fichier <LICENSE> joint ou bien aux adresses suivantes :
 
   L<http://www.perlfoundation.org/artistic_license_1_0>
   L<http://www.gnu.org/licenses/gpl-1.0.html>.
