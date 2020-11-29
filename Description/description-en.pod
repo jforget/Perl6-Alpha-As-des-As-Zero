@@ -538,6 +538,46 @@ which would be interesting for a game such as I<Ace of Aces>, which relies heavi
 on pictures. Actually, this was not a criterion for my choice, I had no intention
 to copy the plane pictures into the database.
 
+The characteristics  of the various  aircraft are stored in  JSON text
+files. At first,  it was the same for pilots,  which were described in
+JSON text files. But I discovered  it was more convenient to store the
+pilots in the database, the  gaming programs and the Bailador programs
+would be  simpler. I  wrote a program  C<init-pilote> which  reads the
+JSON  file describing  a pilot,  converts it  into a  Raku object  and
+inserts  it  into the  C<Pilotes>  collection.  Similarly, I  wrote  a
+program C<init-avion> (French for  "aircraft") which reads an aircraft
+JSON file, converts  it and inserts it into  the C<Avions> collection.
+For the training mode games, I need an anonymous pilot identified with
+the same key  as the aircraft. So the  C<init-avion> program generates
+this anonymous pilot and inserts it into the C<Pilotes> collection.
+
+There  is a  problem when  reading back  the C<Avions>  and C<Pilotes>
+documents into the  gaming programs and the Bailador  programs. On one
+hand, the  C<JSON::Class> module  generates objects from  the C<Avion>
+and  C<Pilote> classes  from  a JSON  string, on  the  other hand  the
+MongoDB  modules  generate  C<BSON::Document> objects,  which  can  be
+accessed  with the  same syntax  as hash  tables. There  is no  direct
+conversion to  a user class  such as  C<Avion> or C<Pilote>.  Should I
+write  an  object  constructor  which extracts  each  value  from  the
+C<BSON::Document>  hash table  and  stores it  into the  corresponding
+attribute of the C<Pilote> / C<Avion> object being created? Is there a
+cleaner and simpler solution to this dilemma?
+
+In computer programming, there is a 
+L<saying|https://stackoverflow.com/questions/288623/level-of-indirection-solves-every-problem>:
+"Every problem can be solved by adding a level of indirection". I have
+found  a similar  solution for  my current  problem. When  the program
+creates  a C<Avions>  or  C<Pilotes> document  in  the database,  this
+document contains  a C<json>  attribute to store  the raw  JSON string
+used to  create the C<Avion>  or C<Pilote>  object. Then, in  the next
+program,  when reading  the BSON  document,  I just  take the  C<json>
+attribute  and I  build  the  C<Avion> or  C<Pilote>  object with  the
+C<from-json>  method provided  by  C<JSON::Class>.  The only  required
+entries  in  the  database   documents  are  C<identité>  (French  for
+"identity")  and C<json>.  I have  still added  some other  entries to
+store  some object  attributes,  because  they may  be  used for  some
+database queries.
+
 =head3 Inter-Process Communication
 
 Like I said above, there are three processes which send data to each other. Did I

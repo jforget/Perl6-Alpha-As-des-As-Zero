@@ -605,11 +605,46 @@ images, ce qui est intéressant pour un jeu tel que l'As des As, basé sur des i
 représentant des avions. Le stockage des images n'a pas joué dans mon choix de MongoDB.
 Je n'ai jamais eu l'intention de recopier les images dans la base de données.
 
-Notons que certaines données sont stockées dans un fichier texte avec la syntaxe S<JSON :>
-les caractéristiques  des avions. Au début, c'était la même chose pour les pilotes, qui
-figuraient dans des fichiers JSON. Puis je me suis dit que c'était plus facile dans certains 
-cas si les pilotes étaient stockés dans une collection de la base MongoDB, en plus du fichier
-JSON.
+Notons que certaines données sont  stockées dans un fichier texte avec
+la  syntaxe  S<JSON :>  les  caractéristiques  des avions.  Au  début,
+c'était  la même  chose  pour  les pilotes,  qui  figuraient dans  des
+fichiers  JSON. Puis  je  me suis  dit que  c'était  plus facile  dans
+certains cas si les pilotes étaient  stockés dans une collection de la
+base MongoDB,  en plus du fichier  JSON. Donc j'ai écrit  un programme
+C<init-pilote> qui lit  le fichier JSON décrivant un pilote  et qui le
+convertit en objet Raku et le  stocke dans la collection C<Pilotes> de
+la base  de données. Et dans  mon élan, j'ai écrit  un autre programme
+C<init-avion> qui  lit le fichier  JSON décrivant  un avion et  qui le
+stocke dans  la collection C<Avions> de  la base de données.  De plus,
+pour les besoins  des parties d'entraînement, j'ai  besoin pour chaque
+avion d'un pilote anonyme identifié par  la même clé que l'avion. Dans
+le programme d'initialisation  de l'avion, j'en profite  pour créer ce
+pilote anonyme dans la collection C<Pilotes>.
+
+Il y  a un problème  à la  relecture des enregistrements  C<Avions> et
+C<Pilotes>. Alors que  le module C<JSON::Class> permet  de générer des
+objets des classes  C<Avion> et C<Pilote> à partir  d'une chaîne JSON,
+les  modules   pour  MongoDB  se   contentent  de  créer   des  objets
+C<BSON::Document> auxquels  on accède  avec la  syntaxe des  tables de
+hachage. Il n'y a pas de conversion directe vers la classe C<Avion> ou
+vers la classe C<Pilote>. Ou alors, il faut écrire un constructeur qui
+extrait  chacune  des  valeurs  du hachage  C<BSON::Document>  et  qui
+alimente l'attribut  correspondant de  l'objet C<Pilote>  ou C<Avion>.
+Quelle solution simple et propre apporter à ce S<problème ?>
+
+En  programmation, il  existe un  dicton  S<« Tout>  problème peut  se
+résoudre en ajoutant un niveau S<d'indirection »>. C'est un peu ce que
+j'ai  fait ici.  Lorsque le  programme crée  un document  C<Avions> ou
+C<Pilotes> dans  la base de  données, ce document contient  une entrée
+C<json> qui stocke la chaîne JSON brute ayant servi à créer l'objet de
+la classe C<Avion> ou C<Pilote>. Dans le programme suivant, lorsque je
+lis le document BSON, je m'intéresse uniquement à cette entrée C<json>
+et je  la transmets à  la méthode C<from-json> du  rôle C<JSON::Class>
+qui crée  ainsi de véritables  objets C<Avion> ou C<Pilote>.  Dans les
+documents de  la base  de données,  il y a  juste besoin  d'une entrée
+C<identité> et d'une  entrée C<json>. J'ai quand  même ajouté d'autres
+entrées reprenant les attributs des objets  (pas tous), pour le cas où
+j'en  aurais  besoin lors  des  recherches  en  base de  données.
 
 =head3 Communication inter-processus
 

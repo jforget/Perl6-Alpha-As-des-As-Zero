@@ -19,6 +19,7 @@ use BSON::Document;
 use JSON::Class;
 use acces-mongodb;
 use Avion;
+use Pilote;
 
 sub MAIN (Str :$identité) {
   my Str $json = slurp "$identité.json";
@@ -31,6 +32,29 @@ sub MAIN (Str :$identité) {
        json            => $json,
        );
   acces-mongodb::écrire-avion($doc);
+  $json = qq:to/EOF/;
+  \{
+      "id":              "{$avion.identité}",
+      "nom":             "{$avion.nom}",
+      "avion":           "{$avion.identité}",
+      "perspicacité":     {(-1).exp.round(0.001).Num},
+      "psycho-rigidité":  {   1.exp.round(0.001).Num},
+      "capacité":        {$avion.capacité},
+      "ref": [ "{$avion.identité}" ]
+  \}
+  EOF
+  #say $json;
+  my Pilote $pilote .= from-json($json);
+  $doc .= new: (
+       identité        => $pilote.id,
+       nom             => $pilote.nom,
+       avion           => $pilote.avion,
+       perspicacité    => $pilote.perspicacité,
+       psycho-rigidité => $pilote.psycho-rigidité,
+       modèles         => $pilote.ref,
+       json            => $json,
+       );
+  acces-mongodb::écrire-pilote($doc);
 }
 
 =begin POD
@@ -45,7 +69,10 @@ init-avion.p6 -- chargement d'un avion dans la base MongoDB
 
 Ce programme recopie  un fichier JSON décrivant un avion  dans la base
 MongoDB, de  façon à simplifier  les programmes ultérieurs,  qui n'ont
-plus besoin de lire le fichier JSON.
+plus  besoin  de  lire  le  fichier JSON.  Toujours  dans  le  but  de
+simplifier  les  programes ultérieurs,  le  programme  crée un  pilote
+anonyme  portant  la  même  identité que  l'avion  (pour  les  parties
+d'entraînement).
 
 =head1 LANCEMENT
 

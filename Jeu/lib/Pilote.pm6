@@ -20,7 +20,6 @@ class Pilote does JSON::Class {
   has Num $.perspicacité    is rw;
   has Num $.psycho-rigidité is rw;
   has     @.ref             is rw;
-  has Str $.json;
 }
 
 =begin POD

@@ -23,7 +23,7 @@ my MongoDB::Database   $database = $client.database('Ace_of_Aces');
 my MongoDB::Collection $coups    = $database.collection('Coups');
 my MongoDB::Collection $parties  = $database.collection('Parties');
 my MongoDB::Collection $pilotes  = $database.collection('Pilotes');
-
+my MongoDB::Collection $avions   = $database.collection('Avions');
 
 our sub partie($dh) {
   my $résultat;
@@ -41,6 +41,19 @@ our sub partie($dh) {
 our sub pilote(Str $id) {
   my $résultat;
   my MongoDB::Cursor $cursor = $pilotes.find(
+      criteria   => ( 'identité' => $id,
+                       ),
+      projection => ( _id => 0, )
+    );
+  while $cursor.fetch -> BSON::Document $d {
+    $résultat = $d;
+  }
+  return $résultat;
+}
+
+our sub avion(Str $id) {
+  my $résultat;
+  my MongoDB::Cursor $cursor = $avions.find(
       criteria   => ( 'identité' => $id,
                        ),
       projection => ( _id => 0, )

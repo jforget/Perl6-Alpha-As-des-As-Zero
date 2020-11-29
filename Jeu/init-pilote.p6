@@ -4,7 +4,7 @@
 #
 #     Insertion d'un nouveau pilote dans la base MongoDB
 #     Creating a new pilot into the MongoDB database
-#     Copyright (C) 2018 Jean Forget
+#     Copyright (C) 2018, 2020 Jean Forget
 #
 #     Voir la licence dans la documentation incluse ci-dessous.
 #     See the license in the embedded documentation below.
