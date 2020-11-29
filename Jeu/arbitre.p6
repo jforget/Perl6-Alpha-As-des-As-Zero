@@ -1,4 +1,4 @@
-#!/home/jf/rakudo-star-2018.01/bin/perl6
+#!/home/jf/rakudo/bin/perl6
 # -*- encoding: utf-8; indent-tabs-mode: nil -*-
 #
 #
@@ -11,100 +11,34 @@
 #
 
 use v6;
+use lib 'lib';
 use BSON::Document;
 use MongoDB::Client;
 use MongoDB::Database;
 use MongoDB::Collection;
 use JSON::Class;
+use Pilote;
+use Avion;
 
 my MongoDB::Client     $client  .= new(:uri('mongodb://'));
 my MongoDB::Database   $database = $client.database('Ace_of_Aces');
 my MongoDB::Collection $coups    = $database.collection('Coups');
 my MongoDB::Collection $pilotes  = $database.collection('Pilotes');
+my MongoDB::Collection $avions   = $database.collection('Avions');
 
-class Pilote does JSON::Class {
-  has Str $.id;
-  has Str $.nom             is rw;
-  has Str $.avion           is rw;
-  has Num $.perspicacité    is rw;
-  has Num $.psycho-rigidité is rw;
-  has Int $.capacité        is rw;
-  has     @.ref;
-
-  method BUILD(:$bson) {
-    my $ref = $bson<ref>;
-    $!id              = $bson<identité>;
-    $!nom             = $bson<nom>;
-    $!avion           = $bson<avion>;
-    $!perspicacité    = $bson<perspicacité>;
-    $!psycho-rigidité = $bson<psycho-rigidité>;
-    $!capacité        = $bson<capacité>;
-    @!ref             = $ref[*];
-  }
-  method bson {
-    my BSON::Document $bson .= new: (
-           identité         => $.id
-         , nom              => $.nom
-         , avion            => $.avion
-         , perspicacité     => $.perspicacité
-         , psycho-rigidité  => $.psycho-rigidité
-         , capacité         => $.capacité
-         , ref              => @.ref
-           );
-    return $bson;
-  }
-}
-
-class Avion does JSON::Class {
-  has     @.pages;
-  has     %.manoeuvres;
-  has Int $.capacité;
-}
 sub MAIN (Str :$date-heure, Str :$gentil, Str :$méchant, Bool :$à-outrance) {
   my Pilote $pilote_g = init-pilote($gentil);
   my Pilote $pilote_m = init-pilote($méchant);
+  my Avion  $avion_g  = init-avion($pilote_g.avion);
+  my Avion  $avion_m  = init-avion($pilote_m.avion);
   #say "Référence $date-heure";
-  my Avion $avion_g;
-  my Avion $avion_m;
-  if $pilote_g.avion {
-    # véritable pilote, il faut compléter en lisant les caractéristiques de l'avion
-    $avion_g .= from-json(slurp "{$pilote_g.avion}.json");
-    unless $pilote_g.capacité {
-      $pilote_g.capacité = $avion_g.capacité;
-    }
-  }
-  else {
-    # pilote anonyme, on ne connaît que l'avion
-    # également, c'est pour l'entraînement
-    $avion_g .= from-json(slurp "$gentil.json");
-    $pilote_g.perspicacité    = 0.Num;
-    $pilote_g.psycho-rigidité = 1.Num;
-    $pilote_g.avion           = $gentil;
-    $pilote_g.capacité        = $avion_g.capacité;
-  }
-  if $pilote_m.avion {
-    # véritable pilote
-    $avion_m .= from-json(slurp "{$pilote_m.avion}.json");
-    unless $pilote_m.capacité {
-      $pilote_m.capacité = $avion_m.capacité;
-    }
-  }
-  else {
-    # pilote anonyme, on ne connaît que l'avion
-    # également, c'est pour l'entraînement
-    $avion_m .= from-json(slurp "$méchant.json");
-    $pilote_m.perspicacité    = 0.Num;
-    $pilote_m.psycho-rigidité = 1.Num;
-    $pilote_m.avion           = $méchant;
-    $pilote_m.capacité        = $avion_m.capacité;
-  }
   say "Combat de $gentil contre $méchant, ", $pilote_g.avion, " contre ", $pilote_m.avion, $à-outrance ?? ' à outrance' !! '';
 
   my Int $num          =   0;
   my Int $on_joue      =   1;
   my Int $num_page     = 170;
-  my Int $pts_dégâts_g = $pilote_g.capacité;
-  my Int $pts_dégâts_m = $pilote_m.capacité;
+  my Num $pts_dégâts_g = $pilote_g.capacité;
+  my Num $pts_dégâts_m = $pilote_m.capacité;
   while $on_joue {
     my (@choix_g, @choix_m, $poursuite_g, $poursuite_m, $man_g, $man_m);
     my (Int $num_page_g , Int $num_page_m );  # pages intermédiaires
@@ -366,23 +300,36 @@ sub init-pilote(Str $id) {
   my Pilote $pilote;
 
   my MongoDB::Cursor $cursor = $pilotes.find(
-    criteria   => ( 'identité' => $id
-                   , ),
+    criteria   => ( 'identité' => $id, ),
     projection => ( _id => 0, )
     );
   while $cursor.fetch -> BSON::Document $d {
-    say $d.perl;
-    $pilote .= new(bson => $d);
+    #say $d.perl;
+    $pilote .= from-json($d<json>);
     last;
   }
   $cursor.kill;
 
-say $pilote.perl;
-  unless $pilote.id {
-    $pilote .= from-json(slurp "$id.json");
-    écrire-pilote($pilote.bson);  
-  }
+  #say $pilote.perl;
   return $pilote;
+}
+
+sub init-avion(Str $id) {
+  my Avion $avion;
+
+  my MongoDB::Cursor $cursor = $avions.find(
+    criteria   => ( 'identité' => $id, ),
+    projection => ( _id => 0, )
+    );
+  while $cursor.fetch -> BSON::Document $d {
+    #say $d.perl;
+    $avion .= from-json($d<json>);
+    last;
+  }
+  $cursor.kill;
+
+  #say $avion.perl;
+  return $avion;
 }
 
 sub écrire-coup(BSON::Document $coup) {
@@ -402,15 +349,6 @@ sub écrire-partie(BSON::Document $partie) {
   );
   my BSON::Document $result = $database.run-command($req);
   #say "Création partie ok : ", $result<ok>, " nb : ", $result<n>;
-}
-
-sub écrire-pilote(BSON::Document $pilote) {
-  my BSON::Document $req .= new: (
-    insert => 'Pilotes',
-    documents => [ $pilote ],
-  );
-  my BSON::Document $result = $database.run-command($req);
-  #say "Création pilote ok : ", $result<ok>, " nb : ", $result<n>;
 }
 
 

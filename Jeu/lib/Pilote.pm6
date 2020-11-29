@@ -19,6 +19,7 @@ class Pilote does JSON::Class {
   has Str $.avion           is rw;
   has Num $.perspicacité    is rw;
   has Num $.psycho-rigidité is rw;
+  has Num $.capacité        is rw;
   has     @.ref             is rw;
 }
 
