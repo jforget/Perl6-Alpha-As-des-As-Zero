@@ -1,10 +1,10 @@
-#!/home/jf/rakudo-star-2018.01/bin/perl6 -I.
+#!/home/jf/rakudo/bin/perl6 -I.
 # -*- encoding: utf-8; indent-tabs-mode: nil -*-
 #
 #
 #     Programme construisant le livret pour un engin volant ou une créature volante pour l'As des As
 #     Program building the booklet for a glying engine or a flying creature for Ace of Aces
-#     Copyright (C) 2018 Jean Forget
+#     Copyright (C) 2018, 2020 Jean Forget
 #
 #     Voir la licence dans la documentation incluse ci-dessous.
 #     See the license in the embedded documentation below.
@@ -115,11 +115,11 @@ my $fhj = open("$nom.json", :w);
 $fhj.say($livret.to-json());
 $fhj.close();
 
-my $ligne1 = "<tr align='center'><td>Page</td><td>Tailing</td><td>Tir</td>" ~ [~] map { "<td>{$_}</td>" }, @manv.sort;
+my Str $ligne1 = "<tr align='center'><td>Page</td><td>Poursuite</td><td>Tir</td><td>Man</td>" ~ [~] map { "<td>{$_}</td>" }, @manv.sort;
 $ligne1 ~= "</tr>";
-my $ligne2 = "<tr align='center'><td></td><td></td><td>Vit</td>" ~ [~] map { "<td>{$car.manoeuvres{$_}<vitesse>}</td>" }, @manv.sort;
+my Str $ligne2 = "<tr align='center'><td></td><td></td><td></td><td>Vit</td>" ~ [~] map { "<td>{$car.manoeuvres{$_}<vitesse>}</td>" }, @manv.sort;
 $ligne2 ~= "</tr>";
-my $ligne3 = "<tr align='center'><td></td><td></td><td>Dir</td>" ~ [~] map { "<td>{$car.manoeuvres{$_}<virage>}</td>" }, @manv.sort;
+my Str $ligne3 = "<tr align='center'><td></td><td></td><td></td><td>Dir</td>" ~ [~] map { "<td>{$car.manoeuvres{$_}<virage>}</td>" }, @manv.sort;
 $ligne3 ~= "</tr>";
 
 my $fhh = open("$nom.html", :w);
@@ -142,7 +142,7 @@ for $livret.pages -> $page {
     }
     $fhh.print("<tr align='right'><td>{$n}</td>");
     if $n ≠ 223 {
-      $fhh.print("<td align='center'>{$page<poursuite>}</td><td>{$page<tir>}</td>");
+      $fhh.print("<td align='center'>{$page<poursuite>}</td><td>{$page<tir>}</td><td></td>");
       my %ench = $page<enchainement>;
       for %ench.keys.sort -> $code {
         $fhh.print("<td>{%ench{$code}}</td>");
@@ -210,7 +210,7 @@ caractéristiques sous une forme plus agréable.
 
 =head1 COPYRIGHT et LICENCE
 
-Copyright 2018, Jean Forget
+Copyright (c) 2018, 2020, Jean Forget
 
 Ce programme est diffusé avec les mêmes conditions que Perl 5.16.3 :
 la licence publique GPL version 1 ou ultérieure, ou bien la
