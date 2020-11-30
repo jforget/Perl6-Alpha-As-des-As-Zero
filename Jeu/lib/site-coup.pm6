@@ -3,7 +3,7 @@
 #
 #     Module appelé par un programme Bailador pour afficher un coup dans une partie de l'As des As
 #     Module called by a Bailador program to display a turn in an "Ace of Aces" game
-#     Copyright (C) 2018 Jean Forget
+#     Copyright (C) 2018, 2020 Jean Forget
 #
 #     Voir la licence dans la documentation incluse ci-dessous.
 #     See the license in the embedded documentation below.
@@ -19,10 +19,10 @@ our sub affichage(Str $dh, Int $tour, Str $id, BSON::Document $partie, @coup, @s
   my BSON::Document $coup_e;   # coup de l'ennemi
   my BSON::Document $coup_f;   # coup suivant de l'ennemi
 
-  my Int $dégâts;   # points de dégâts encaissés
-  my Int $dégâts_e; # points de dégâts infligés à l'ennemi
-  my     $pot_2;    # potentiel au coup suivant
-  my     $pot_f;    # potentiel de l'ennemi au coup suivant
+  my $dégâts;   # points de dégâts encaissés
+  my $dégâts_e; # points de dégâts infligés à l'ennemi
+  my $pot_2;    # potentiel au coup suivant
+  my $pot_f;    # potentiel de l'ennemi au coup suivant
 
   for @coup -> BSON::Document $coup {
     if $coup<tour> == $tour && $coup<identité> eq $id {
@@ -186,7 +186,7 @@ Ce programme génère un fichier HTML détaillant un coup d'une partie de l'As d
 
 =head1 COPYRIGHT et LICENCE
 
-Copyright 2018, Jean Forget
+Copyright (c) 2018, 2020 Jean Forget
 
 Ce programme est diffusé avec les mêmes conditions que Perl 5.16.3 :
 la licence publique GPL version 1 ou ultérieure, ou bien la

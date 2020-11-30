@@ -12,8 +12,8 @@
 unit module site-partie;
 
 our sub affichage($dh, $partie, @coups) {
-  my $liste-coups = '';
-  my $format = q:to/EOF/;
+  my Str $liste-coups = '';
+  my Str $format = q:to/EOF/;
   <tr><td align='right'>%3d</td>
       <td align='center'>%s</td>
       <td align='center'>%d</td>
@@ -42,8 +42,8 @@ our sub affichage($dh, $partie, @coups) {
     my Str $page_d = $npage.Str;  # conversion en chaîne, car la ligne précédente peut produire un entier, par exemple, min(1, 1) au lieu de min("1G", 1)
     my Str $man_g  = $coup_g<manoeuvre> // ''; # vide pour le coup final
     my Str $man_m  = $coup_m<manoeuvre> // '';
-    my Int $pot_g  = $coup_g<potentiel> // $partie<capacité_g> // 0;
-    my Int $pot_m  = $coup_m<potentiel> // $partie<capacité_m> // 0;
+    my     $pot_g  = $coup_g<potentiel> // $partie<capacité_g> // 0;
+    my     $pot_m  = $coup_m<potentiel> // $partie<capacité_m> // 0;
     my Str $page_a = '';
     if $coup_g<page> ~~ /(<[ADG]>)$/ {
       $man_m = "($0) $man_m";
