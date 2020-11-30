@@ -1,10 +1,10 @@
-#!/home/jf/rakudo-star-2018.01/bin/perl6
+#!/home/jf/rakudo/bin/perl6
 # -*- encoding: utf-8; indent-tabs-mode: nil -*-
 #
 #
 #     Programme autodidacte pour jouer à l'As des As
 #     Self-learning program to play Ace of Aces
-#     Copyright (C) 2018 Jean Forget
+#     Copyright (C) 2018, 2020 Jean Forget
 #
 #     Voir la licence dans la documentation incluse ci-dessous.
 #     See the license in the embedded documentation below.
@@ -17,44 +17,22 @@ use MongoDB::Client;
 use MongoDB::Database;
 use MongoDB::Collection;
 use JSON::Class;
-
+use Pilote;
+use Avion;
 use acces-mongodb;
 
 my MongoDB::Client     $client  .= new(:uri('mongodb://'));
 my MongoDB::Database   $database = $client.database('Ace_of_Aces');
 my MongoDB::Collection $coups    = $database.collection('Coups');
+my MongoDB::Collection $pilotes  = $database.collection('Pilotes');
+my MongoDB::Collection $avions   = $database.collection('Avions');
 
-class Pilote does JSON::Class {
-  has Str $.id;
-  has Str $.nom;
-  has Str $.avion           is rw;
-  has Num $.perspicacité    is rw;
-  has Num $.psycho-rigidité is rw;
-  has     @.ref             is rw;
-}
-
-class Avion does JSON::Class {
-  has Str $.id;
-  has Str $.nom;
-}
 sub MAIN (Str :$date-heure, Str :$identité) {
   #say "Combat de $identité";
   #say "Référence $date-heure";
-  my Pilote $pilote .= from-json(slurp "$identité.json");
-  my Avion  $avion;
-  if $pilote.avion {
-    # véritable pilote
-    $avion .= from-json(slurp "{$pilote.avion}.json");
-  }
-  else {
-    # pilote anonyme, on ne connaît que l'avion
-    # également, c'est pour l'entraînement
-    $avion .= from-json(slurp "$identité.json");
-    $pilote.perspicacité    = 0E0;
-    $pilote.psycho-rigidité = 1E0;
-    $pilote.avion           = $identité;
-  }
-  #say "combat de ", $pilote.nom, " sur ", $pilote.avion, " perspicacité ", $pilote.perspicacité, ", psycho-rigidité ", $pilote.psycho-rigidité;
+  my Pilote $pilote = init-pilote($identité);
+  my Avion  $avion  = init-avion($pilote.avion);
+  say "combat de ", $pilote.nom, " sur ", $pilote.avion, " perspicacité ", $pilote.perspicacité, ", psycho-rigidité ", $pilote.psycho-rigidité;
   my Bool $on_joue = True;
   my Int  $numéro_coup = 1;
 
@@ -137,6 +115,42 @@ sub retour_d'expérience($dh, $id, $n_c, $res) {
 
 }
 
+sub init-pilote(Str $id) {
+  my Pilote $pilote;
+
+  my MongoDB::Cursor $cursor = $pilotes.find(
+    criteria   => ( 'identité' => $id, ),
+    projection => ( _id => 0, )
+    );
+  while $cursor.fetch -> BSON::Document $d {
+    #say $d.perl;
+    $pilote .= from-json($d<json>);
+    last;
+  }
+  $cursor.kill;
+
+  #say $pilote.perl;
+  return $pilote;
+}
+
+sub init-avion(Str $id) {
+  my Avion $avion;
+
+  my MongoDB::Cursor $cursor = $avions.find(
+    criteria   => ( 'identité' => $id, ),
+    projection => ( _id => 0, )
+    );
+  while $cursor.fetch -> BSON::Document $d {
+    #say $d.perl;
+    $avion .= from-json($d<json>);
+    last;
+  }
+  $cursor.kill;
+
+  #say $avion.perl;
+  return $avion;
+}
+
 sub lire_coup ($dh, $id, $n) {
   my BSON::Document $coup;
 
@@ -191,7 +205,7 @@ sub maj_coup(BSON::Document $coup) {
 
 =head1 NOM
 
-joueur.p6 -- programme auto-didacte pour jouer à l'As des As
+joueur.p6 -- programme autodidacte pour jouer à l'As des As
 
 =head1 DESCRIPTION
 
@@ -212,12 +226,11 @@ pour tous les coups de cette partie.
 
 =item identité
 
-Nom du joueur simulé, associé à un fichier JSON donnant les caractéristiques de ce joueur.
-
+Nom du joueur simulé, alimenté au préalable dans la base de données.
 
 =head1 COPYRIGHT et LICENCE
 
-Copyright 2018, Jean Forget
+Copyright (C) 2018, 2020, Jean Forget
 
 Ce programme est diffusé avec les mêmes conditions que Perl 5.16.3 :
 la licence publique GPL version 1 ou ultérieure, ou bien la

@@ -378,7 +378,7 @@ pour tous les coups de cette partie.
 
 =item gentil, méchant
 
-Nom des joueurs simulés, associés à un fichier JSON donnant les caractéristiques de ces joueurs.
+Nom des joueurs simulés, présents dans la collection C<Pilotes> de la base de données.
 
 =item à-outrance
 
