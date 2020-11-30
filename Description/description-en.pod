@@ -474,6 +474,14 @@ There are two parts in this project. First, preparation, to create booklets in e
 format, by generating the files rather than typing them entirely from the paper version. Second, the game
 itself, where cyber pilots fight against each other and learn from their mistakes.
 
+=head2 Warning
+
+When  I wrote  these programs,  I  used French  names for  everything:
+programs, database  entities, variables, class names,  attribute names
+and so  on. You may  have problems reading  the source files  and even
+reading the  explanations. The only  exception is the  database, named
+C<Ace_of_Aces>. Why? I do not remember.
+
 =head2 Preparation
 
 I have started with this part, of course. But I did not write the programs within the
@@ -549,19 +557,21 @@ program C<init-avion> (French for  "aircraft") which reads an aircraft
 JSON file, converts  it and inserts it into  the C<Avions> collection.
 For the training mode games, I need an anonymous pilot identified with
 the same key  as the aircraft. So the  C<init-avion> program generates
-this anonymous pilot and inserts it into the C<Pilotes> collection.
+this anonymous  pilot and inserts  it into the  C<Pilotes> collection.
+The  JSON files  still  exist, but  they are  used  only for  database
+initialization.
 
 There  is a  problem when  reading back  the C<Avions>  and C<Pilotes>
 documents into the  gaming programs and the Bailador  programs. On one
-hand, the  C<JSON::Class> module  generates objects from  the C<Avion>
-and  C<Pilote> classes  from  a JSON  string, on  the  other hand  the
-MongoDB  modules  generate  C<BSON::Document> objects,  which  can  be
-accessed  with the  same syntax  as hash  tables. There  is no  direct
-conversion to  a user class  such as  C<Avion> or C<Pilote>.  Should I
-write  an  object  constructor  which extracts  each  value  from  the
-C<BSON::Document>  hash table  and  stores it  into the  corresponding
-attribute of the C<Pilote> / C<Avion> object being created? Is there a
-cleaner and simpler solution to this dilemma?
+hand,  the  C<JSON::Class>  module generates  C<Avion>  and  C<Pilote>
+objects from  a JSON  string, on  the other  hand the  MongoDB modules
+generate C<BSON::Document>  objects, which are accessed  with the same
+syntax as hash  tables. There is no direct conversion  to a user class
+such as  C<Avion> or C<Pilote>.  Should I write an  object constructor
+which extracts  each value from  the C<BSON::Document> hash  table and
+stores it into the corresponding attribute of the C<Pilote> / C<Avion>
+object being created? Is there a  cleaner and simpler solution to this
+dilemma?
 
 In computer programming, there is a 
 L<saying|https://stackoverflow.com/questions/288623/level-of-indirection-solves-every-problem>:
@@ -574,9 +584,9 @@ program,  when reading  the BSON  document,  I just  take the  C<json>
 attribute  and I  build  the  C<Avion> or  C<Pilote>  object with  the
 C<from-json>  method provided  by  C<JSON::Class>.  The only  required
 entries  in  the  database   documents  are  C<identité>  (French  for
-"identity")  and C<json>.  I have  still added  some other  entries to
-store  some object  attributes,  because  they may  be  used for  some
-database queries.
+"identity") used as key and C<json> for the data payload. I have still
+added some other entries to store some object attributes, because they
+may be used for some database queries.
 
 =head3 Inter-Process Communication
 
@@ -608,14 +618,17 @@ discovering it, is  the answer to page 223 when  fighting. The purpose
 of the flight  (from the verb "to  flee", not "to fly") is  to allow a
 damaged plane to survive  and to grant no more than  one half point to
 the opponent, instead  of staying involved in a bad  fight and, in the
-end, grant a full victory point to the enemy.
+end, grant  a full victory point  to the enemy. Yet,the  pilots nearly
+always choose to stay and fight, even in desperate situations.
 
 What happens  in the programs,  is that  choosing the flight  gives an
 always negative result: -0.5 VP is the  enemy stays, 0 VP if the enemy
 also chooses to flee, average -0.25 VP. On the other hand, choosing to
 go on fighting gives more or  less similar probabilities for a victory
-and for  a defeat. On average,  the win is  0 VP. So the  cyber pilots
-prefer to stay.
+and for a defeat. On average, the win is 0 VP. There is no distinction
+between  desperate  cases where  the  aircraft  has  just one  or  two
+remaining hit points and the comfortable situations where there are 11
+hit points remaining. So the cyber pilots prefer to stay.
 
 What  should be  done is  to filter  the results  from previous  games
 according to the current level of damages. If a pilot is page 223 with

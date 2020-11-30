@@ -619,7 +619,9 @@ stocke dans  la collection C<Avions> de  la base de données.  De plus,
 pour les besoins  des parties d'entraînement, j'ai  besoin pour chaque
 avion d'un pilote anonyme identifié par  la même clé que l'avion. Dans
 le programme d'initialisation  de l'avion, j'en profite  pour créer ce
-pilote anonyme dans la collection C<Pilotes>.
+pilote  anonyme  dans  la  collection C<Pilotes>.  Les  fichiers  JSON
+continuent   à  exister,   mais   ils  sont   utiles  seulement   pour
+l'initialisation.
 
 Il y  a un problème  à la  relecture des enregistrements  C<Avions> et
 C<Pilotes>. Alors que  le module C<JSON::Class> permet  de générer des
@@ -642,9 +644,10 @@ lis le document BSON, je m'intéresse uniquement à cette entrée C<json>
 et je  la transmets à  la méthode C<from-json> du  rôle C<JSON::Class>
 qui crée  ainsi de véritables  objets C<Avion> ou C<Pilote>.  Dans les
 documents de  la base  de données,  il y a  juste besoin  d'une entrée
-C<identité> et d'une  entrée C<json>. J'ai quand  même ajouté d'autres
-entrées reprenant les attributs des objets  (pas tous), pour le cas où
-j'en  aurais  besoin lors  des  recherches  en  base de  données.
+C<identité>  servant  de   clé  et  d'une  entrée   C<json>  pour  les
+informations utiles. J'ai quand même ajouté d'autres entrées reprenant
+les attributs des objets (pas tous), pour le cas où j'en aurais besoin
+lors des recherches en base de données.
 
 =head3 Communication inter-processus
 
@@ -679,19 +682,24 @@ L<PECEC|https://fr.wiktionary.org/wiki/entre_la_chaise_et_le_clavier>.
 
 =head2 Retour d'expérience sur l'As des As
 
-Un point qui m'a surpris et auquel j'aurais pu penser, c'est la réaction
-des pilotes en page 223 en mode combat.  Le but était de permettre
-à un avion déjà bien amoché de fuir pour survivre et pour n'accorder
-qu'un demi-point de victoire, au lieu de continuer à combattre avec
-un net désavantage et d'accorder un point de victoire entier à l'ennemi.
+Un  point qui  m'a  surpris et  auquel j'aurais  pu  penser, c'est  la
+réaction  des pilotes  en page  223 en  mode combat.  Le but  était de
+permettre à  un avion déjà bien  amoché de fuir pour  survivre et pour
+n'accorder  qu'un  demi-point de  victoire,  au  lieu de  continuer  à
+combattre avec un  net désavantage et d'accorder un  point de victoire
+entier à l'ennemi. Pourtant, le pilote a quasiment toujours tendance à
+rester, même si la situation est désespérée.
 
-Ce qui se passe en réalité, c'est que le choix de la fuite donne en moyenne
-un résultat S<négatif :> -0.5 PV si l'adversaire préfère continuer le combat,
-0 PV si l'adversaire souhaite lui aussi fuir, soit -0,25 PV en moyenne. En revanche, la poursuite
-du combat donne autant de chances de gagner le combat que de le perdre.
-Donc en moyenne, un résultat nul, meilleur que la moyenne des résultats
-de la fuite. C'est ainsi que les pilotes sont amenés à choisir la poursuite
-du combat.
+Ce qui se  passe en réalité, c'est  que le choix de la  fuite donne en
+moyenne  un résultat  S<négatif  :> -0.5  PV  si l'adversaire  préfère
+continuer le  combat, 0  PV si l'adversaire  souhaite lui  aussi fuir,
+soit -0,25  PV en moyenne. En  revanche, la poursuite du  combat donne
+autant  de chances  de gagner  le  combat que  de le  perdre. Donc  en
+moyenne, un résultat nul, meilleur que  la moyenne des résultats de la
+fuite. Il n'y a pas de  distinction entre les cas désepérés où l'avion
+n'a plus qu'un point  de dégâts ou deux et les  cas confortables où il
+lui reste 11 points de dégâts. C'est ainsi que les pilotes sont amenés
+à choisir la poursuite du combat.
 
 Ce qu'il faudrait faire, c'est moduler la note des résultats antérieurs
 en comparant le potentiel restant de la situation actuelle et celui de ces
