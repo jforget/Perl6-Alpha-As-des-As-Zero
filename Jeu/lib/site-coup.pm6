@@ -62,8 +62,8 @@ our sub affichage(Str $dh, Int $tour, Str $id, BSON::Document $partie, @coup, @s
   my Num $psycho-rigidité;
   my Str $qualificatif;
   if defined $pilote {
-    $perspicacité    = $pilote<perspicacité>;
-    $psycho-rigidité = $pilote<psycho-rigidité>;
+    $perspicacité    = $pilote.perspicacité;
+    $psycho-rigidité = $pilote.psycho-rigidité;
     $qualificatif    = ''
   }
   else {

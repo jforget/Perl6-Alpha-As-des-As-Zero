@@ -1,10 +1,10 @@
-#!/home/jf/rakudo-star-2018.01/bin/perl6
+#!/home/jf/rakudo/bin/perl6
 # -*- encoding: utf-8; indent-tabs-mode: nil -*-
 #
 #
 #     Serveur web permettant de consulter la base MongoDB des parties de l'As des As
 #     Web server to display the MongoDB database where Ace of Aces games are stored
-#     Copyright (C) 2018 Jean Forget
+#     Copyright (C) 2018, 2020 Jean Forget
 #
 #     Voir la licence dans la documentation incluse ci-dessous.
 #     See the license in the embedded documentation below.
@@ -23,6 +23,7 @@ use acces-mongodb;
 use site-liste-parties;
 use site-partie;
 use site-coup;
+use Pilote;
 
 get '/' => sub {
   my @liste = acces-mongodb::liste-parties('');
@@ -41,8 +42,9 @@ get '/partie/:dh' => sub ($dh) {
 }
 
 get '/coup/:dh/:num/:id' => sub ($dh, $num, $id) {
-  my BSON::Document $partie = acces-mongodb::partie(~ $dh);
-  my                $pilote = acces-mongodb::pilote(~ $id);
+  my BSON::Document $partie  = acces-mongodb::partie(~ $dh);
+  my BSON::Document $doc-p   = acces-mongodb::pilote(~ $id);
+  my Pilote         $pilote .= from-json($doc-p<json>);
   my @coup4  = acces-mongodb::coup4(~ $dh, + $num, ~ $id);
   my $page;
   for @coup4 -> BSON::Document $coup {
@@ -94,7 +96,7 @@ Arrêter le serveur  en tapant Ctrl-C sur le xterm où il a été lancé.
 
 =head1 COPYRIGHT et LICENCE
 
-Copyright 2018, Jean Forget
+Copyright (c) 2018, 2020, Jean Forget
 
 Ce programme est diffusé avec les mêmes conditions que Perl 5.16.3 :
 la licence publique GPL version 1 ou ultérieure, ou bien la
