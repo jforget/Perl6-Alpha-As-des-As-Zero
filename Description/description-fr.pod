@@ -627,8 +627,9 @@ Il y  a un problème  à la  relecture des enregistrements  C<Avions> et
 C<Pilotes>. Alors que  le module C<JSON::Class> permet  de générer des
 objets des classes  C<Avion> et C<Pilote> à partir  d'une chaîne JSON,
 les  modules   pour  MongoDB  se   contentent  de  créer   des  objets
-C<BSON::Document> auxquels  on accède  avec la  syntaxe des  tables de
-hachage. Il n'y a pas de conversion directe vers la classe C<Avion> ou
+C<BSON::Document> et il faut utiliser la  syntaxe des  tables de
+hachage pour accéder aux informations des avions et des pilotes.
+Il n'y a pas de conversion directe vers la classe C<Avion> ou
 vers la classe C<Pilote>. Ou alors, il faut écrire un constructeur qui
 extrait  chacune  des  valeurs  du hachage  C<BSON::Document>  et  qui
 alimente l'attribut  correspondant de  l'objet C<Pilote>  ou C<Avion>.
@@ -636,8 +637,8 @@ Quelle solution simple et propre apporter à ce S<problème ?>
 
 En  programmation, il  existe un  dicton  S<« Tout>  problème peut  se
 résoudre en ajoutant un niveau S<d'indirection »>. C'est un peu ce que
-j'ai  fait ici.  Lorsque le  programme crée  un document  C<Avions> ou
-C<Pilotes> dans  la base de  données, ce document contient  une entrée
+j'ai  fait ici.  Lorsque le  programme crée  un document dans la collection  C<Avions> ou
+C<Pilotes> de  la base de  données, ce document contient  une entrée
 C<json> qui stocke la chaîne JSON brute ayant servi à créer l'objet de
 la classe C<Avion> ou C<Pilote>. Dans le programme suivant, lorsque je
 lis le document BSON, je m'intéresse uniquement à cette entrée C<json>
@@ -648,6 +649,10 @@ C<identité>  servant  de   clé  et  d'une  entrée   C<json>  pour  les
 informations utiles. J'ai quand même ajouté d'autres entrées reprenant
 les attributs des objets (pas tous), pour le cas où j'en aurais besoin
 lors des recherches en base de données.
+
+D'un autre  côté, pour  les parties  et les coups  (ou tours  de jeu),
+j'utilise des C<BSON::Document> bruts de fonderie dans les collections
+C<Parties> et C<Coups>. Ce n'est pas très cohérent, il est vrai.
 
 =head3 Communication inter-processus
 
@@ -679,6 +684,53 @@ S<« Quand> on a un marteau, tout ressemble à un S<clou. »> Certes, mais en pr
 la sorte, je n'avais qu'un seul module pour lequel je pouvais avoir des problèmes
 qu'il fallait contourner, soit des bugs, soit des 
 L<PECEC|https://fr.wiktionary.org/wiki/entre_la_chaise_et_le_clavier>.
+
+=head3 Programme C<arbitre.p6>
+
+Le programme commence, bien sûr, par une étape d'initialisation où les
+principales variables sont initialisées. Rien de spécial à noter.
+
+Ensuite, c'est la boucle événementielle, qui enchaîne les tours de jeu.
+Cette boucle contient les étapes S<suivantes :>
+
+=over 4
+
+=item 1 Détermination des choix accessibles aux deux joueurs et du potentiel restant (dégâts).
+
+=item 2 Écriture dans la collection C<Coups> des choix proposés aux deux joueurs.
+
+=item 3 Lecture dans la collection C<Coups> de la réponse de chaque joueur.
+
+=item 4 Application des transitions page initiale → page intermédiaire → page finale.
+
+=item 5 Résolution des tirs
+
+=item 6 Détection de la fuite d'un avion ou des deux.
+
+=item 7 Traitement de la fin de partie (fuite ou destruction).
+
+=back
+
+Évidemment, si lors de l'étape 1 on détecte la destruction d'un avion,
+les étapes 2 à 6 sont automatiquement sautées et on traite directement
+l'étape 7.
+
+Dans le cas d'une poursuite, les étapes 2 et 3 sont séparées entre les
+deux joueurs. Cela donne S<alors :>
+
+=over 4
+
+=item * 2A Écriture dans la collection C<Coups> des choix proposés au joueur poursuivi.
+
+=item * 3A Lecture dans la collection C<Coups> de la réponse du joueur poursuivi.
+
+=item * 2B Écriture dans la  collection C<Coups> des choix proposés au
+joueur poursuivant, avec  indication G/A/D de la  manœuvre choisie par
+le poursuivi.
+
+=item * 3B Lecture dans la collection C<Coups> de la réponse du joueur poursuivant.
+
+=back
 
 =head2 Retour d'expérience sur l'As des As
 

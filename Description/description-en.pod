@@ -565,7 +565,7 @@ There  is a  problem when  reading back  the C<Avions>  and C<Pilotes>
 documents into the  gaming programs and the Bailador  programs. On one
 hand,  the  C<JSON::Class>  module generates  C<Avion>  and  C<Pilote>
 objects from  a JSON  string, on  the other  hand the  MongoDB modules
-generate C<BSON::Document>  objects, which are accessed  with the same
+generate C<BSON::Document>  objects, the data of which are accessed  with the same
 syntax as hash  tables. There is no direct conversion  to a user class
 such as  C<Avion> or C<Pilote>.  Should I write an  object constructor
 which extracts  each value from  the C<BSON::Document> hash  table and
@@ -587,6 +587,11 @@ entries  in  the  database   documents  are  C<identité>  (French  for
 "identity") used as key and C<json> for the data payload. I have still
 added some other entries to store some object attributes, because they
 may be used for some database queries.
+
+On  the other  hand, I  have not  defined classes  for games  and game
+turns, I  use basic C<BSON::Document>  in the C<Parties>  and C<Coups>
+collections respectively and  I use the hash table syntax  to read and
+update data. Not very consistent, I agree.
 
 =head3 Inter-Process Communication
 
@@ -611,6 +616,53 @@ spy novels the spy is exfiltrated, while here the process executes a C<die>.
 "With a hammer, everything looks like a nail". Indeed, but by doing so, I have only
 one module to deal with, which reduces the number of standing issues (bugs and PEBCAK).
 
+=head3 Umpire program: C<arbitre.p6>
+
+The program begins,  as usual, with an initialization  step, where the
+main variables are initialized. Nothing special to discuss.
+
+Then you have  an event loop, which manages the  successive game turns
+with the following steps:
+
+=over 4
+
+=item 1 Computing the possible choices and the remaining hit points for each player.
+
+=item 2 Writing these choices into the C<Coups> (game turn) collection for each player.
+
+=item 3 Reading back the players' choices from the C<Coups> collection.
+
+=item 4 Applying the transitions: initial page → intermediate page → final page.
+
+=item 5 Fire and damage computing.
+
+=item 6 Checking whether a plane flees (or both).
+
+=item 7 Dealing with the end of game (fleeing or destruction).
+
+=back
+
+Of course,  if step  1 computes that  a plane has  zero hit  points or
+less, steps 2 to 6 are skipped  and we imediately deal with the end of
+the game in step 7.
+
+For game turns where an aircraft is  pursued by another, steps 2 and 3
+are split in the following way:
+
+=over 4
+
+=item * 2A Writing these choices into the C<Coups> (game turn) collection for the pursued player.
+
+=item * 3A Reading back the pursued player's choice from the C<Coups> collection.
+
+=item  *  2B Writing  these  choices  into  the C<Coups>  (game  turn)
+collection for  the pursuing player,  with a  G/A/D (left /  forward /
+right) indication relative to the pursued player's maneuver.
+
+=item * 3B Reading back the pursuing player's choice from the C<Coups> collection.
+
+=back
+
 =head2 Lessons Learned with Ace of Aces
 
 A point  which surprised me, although  I could have guessed  it before
@@ -618,7 +670,7 @@ discovering it, is  the answer to page 223 when  fighting. The purpose
 of the flight  (from the verb "to  flee", not "to fly") is  to allow a
 damaged plane to survive  and to grant no more than  one half point to
 the opponent, instead  of staying involved in a bad  fight and, in the
-end, grant  a full victory point  to the enemy. Yet,the  pilots nearly
+end, grant a  full victory point to the enemy.  Yet, the pilots nearly
 always choose to stay and fight, even in desperate situations.
 
 What happens  in the programs,  is that  choosing the flight  gives an
