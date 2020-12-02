@@ -11,3 +11,4 @@
 pod2*
 .precomp
 MongoDB.log
+MongoDB.mlog

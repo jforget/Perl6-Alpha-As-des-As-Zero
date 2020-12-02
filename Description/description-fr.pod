@@ -695,7 +695,8 @@ Cette boucle contient les étapes S<suivantes :>
 
 =over 4
 
-=item 1 Détermination des choix accessibles aux deux joueurs et du potentiel restant (dégâts).
+=item 1  Résolution des  tirs du coup  précédent et  détermination des
+choix accessibles aux deux joueurs pour le tour en cours.
 
 =item 2 Écriture dans la collection C<Coups> des choix proposés aux deux joueurs.
 
@@ -703,17 +704,28 @@ Cette boucle contient les étapes S<suivantes :>
 
 =item 4 Application des transitions page initiale → page intermédiaire → page finale.
 
-=item 5 Résolution des tirs
+=item 5 Détection de la fuite d'un avion ou des deux.
 
-=item 6 Détection de la fuite d'un avion ou des deux.
-
-=item 7 Traitement de la fin de partie (fuite ou destruction).
+=item 6 Traitement de la fin de partie (fuite ou destruction).
 
 =back
 
+=head4 Résolution des tirs
+
+La résolution du tir du tour I<n> se fait en réalité lors de l'étape 1
+du tour I<n>+1.  S<Pourquoi ?> Parce que les  tirs n'entraînent aucune
+décision de la part des joueurs.  Il est donc inutile de déclencher un
+mécanisme d'échange  par boîte  aux lettres pour  les tirs,  il suffit
+d'attendre le tour  suivant et la procédure de choix  de manœuvre pour
+que l'arbitre signale  au joueur combien de points de  dégâts il vient
+de  perdre.  C'est  peut-être   anti-intuitif,  mais  cela  permet  de
+simplifier les programmes.
+
 Évidemment, si lors de l'étape 1 on détecte la destruction d'un avion,
-les étapes 2 à 6 sont automatiquement sautées et on traite directement
-l'étape 7.
+les étapes 2 à 5 sont automatiquement sautées et on traite directement
+l'étape 6.
+
+=head4 Poursuite
 
 Dans le cas d'une poursuite, les étapes 2 et 3 sont séparées entre les
 deux joueurs. Cela donne S<alors :>
@@ -732,7 +744,45 @@ le poursuivi.
 
 =back
 
-=head2 Retour d'expérience sur l'As des As
+Lorsque le programme  arbitre demande sa prochaine  manœuvre à l'avion
+poursuivant, il lui communique un  numéro de page sous forme spéciale,
+le  véritable numéro  de page  concaténé avec  la direction  G/A/D. En
+reprenant l'exemple tiré du brevet, l'avion britannique est page B<1>,
+tandis que l'avion allemand est page  B<1G>, pour tenir compte du fait
+que le britannique a choisi une manœuvre vers la gauche. Les pages 1G,
+1A et 1D ont exactement les  mêmes transitions manœuvre → page finale,
+mais le joueur allemand a  trois différents groupes de S<« situations>
+S<antérieures »>  pour choisir  sa manœuvre  suivante selon  qu'il est
+page  B<1G>, page  B<1A> ou  page B<1D>.  Cela simplifie  le programme
+joueur, qui n'a  aucune procédure spéciale pour la  poursuite, au prix
+d'une  légère complexification  du programme  arbitre (qui  doit tenir
+compte de la lettre G/A/D à la suite du numéro de page, qui n'est plus
+tout-à-fait numérique).
+
+=head4 Liste des manœuvres disponibles
+
+Cette étape ne  devrait pas donner lieu à commentaires.  Si vous jetez
+un  coup d'œil  ci-dessous,  dans le  paragraphe  de conclusion,  vous
+verrez que  j'ai prévu un  mode I<à outrance>  où, dans le  cadre d'un
+entraînement,  les avions  cherchent  à continuer  le  combat le  plus
+longtemps  possible. Lorsque  cette  option est  active, le  programme
+arbitre filtre les manœuvres qu'il autorise aux programmes joueurs, il
+supprime toutes les manœuvres conduisant à une page intermédiaire 223.
+Cas particulier, si I<toutes> les  manœuvres conduisent à la page 223,
+alors le programme arbitre les laisse telles quelles.
+
+Il n'est pas possible en revanche d'éliminer les situations où la page
+finale est la page 223. Par  contre, dans ce cas, le programme arbitre
+propose aux programmes  joueurs un choix avec 4 fois  l'attaque et une
+seule fois la fuite. Cela permet de favoriser la reprise du combat.
+
+Il est possible que ce  filtrage induise un biais dans l'apprentissage
+des  programmes joueurs.  D'un autre  côté, cela  enrichit la  base de
+connaissances,  car   cela  donne  des  parties   d'entraînement  avec
+plusieurs  dizaines  de tours  de  jeu,  plutôt  que des  parties  qui
+s'interrompent après une demi-douzaine de coups.
+
+=head2 Conclusion : Retour d'expérience sur l'As des As
 
 Un  point qui  m'a  surpris et  auquel j'aurais  pu  penser, c'est  la
 réaction  des pilotes  en page  223 en  mode combat.  Le but  était de

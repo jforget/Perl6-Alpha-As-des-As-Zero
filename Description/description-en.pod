@@ -626,44 +626,71 @@ with the following steps:
 
 =over 4
 
-=item 1 Computing the possible choices and the remaining hit points for each player.
+=item  1  Resolving  the  shooting  for the  previous  game  turn  and
+computing the possible maneuver choices for the current turn.
 
 =item 2 Writing these choices into the C<Coups> (game turn) collection for each player.
 
-=item 3 Reading back the players' choices from the C<Coups> collection.
+=item 3 Reading back the players' answers from the C<Coups> collection.
 
 =item 4 Applying the transitions: initial page → intermediate page → final page.
 
-=item 5 Fire and damage computing.
+=item 5 Checking whether a plane flees or not (or both planes).
 
-=item 6 Checking whether a plane flees (or both).
-
-=item 7 Dealing with the end of game (fleeing or destruction).
+=item 6 Dealing with the end of game (fleeing or destruction).
 
 =back
 
-Of course,  if step  1 computes that  a plane has  zero hit  points or
-less, steps 2 to 6 are skipped  and we imediately deal with the end of
-the game in step 7.
+=head4 Shooting
 
-For game turns where an aircraft is  pursued by another, steps 2 and 3
-are split in the following way:
+Fire combat for game turn I<n> is  actually computed in step 1 of turn
+I<n>+1. Why? Because shooting involves  no choice from the players. It
+is not necessary to execute a mailbox exchange just for the resolution
+of any shooting.  We just wait for  the next turn and  the players are
+warned they have lost some hit points  at the same time they are given
+the  list of  maneuvers available  for the  new game  turn. It  may be
+counter-intuitive, but I think the resulting programs are simpler.
+
+Of course,  if step  1 computes that  a plane has  zero hit  points or
+less, steps 2 to 5 are skipped  and we imediately deal with the end of
+the game in step 6.
+
+=head4 Tailing
+
+For game turns where an aircraft is tailing another, steps 2 and 3 are
+split in the following way:
 
 =over 4
 
-=item * 2A Writing these choices into the C<Coups> (game turn) collection for the pursued player.
+=item * 2A Writing into the C<Coups> (game turn) collection the choices for the tailed player.
 
-=item * 3A Reading back the pursued player's choice from the C<Coups> collection.
+=item * 3A Reading back the tailed player's answer from the C<Coups> collection.
 
-=item  *  2B Writing  these  choices  into  the C<Coups>  (game  turn)
-collection for  the pursuing player,  with a  G/A/D (left /  forward /
-right) indication relative to the pursued player's maneuver.
+=item  * 2B  Writing  into  the C<Coups>  (game  turn) collection  the
+choices for  the tailing player, with  a G/A/D (left /  ahead / right)
+indication relative to the tailed player's maneuver.
 
-=item * 3B Reading back the pursuing player's choice from the C<Coups> collection.
+=item * 3B Reading back the tailing player's answer from the C<Coups> collection.
 
 =back
 
-=head2 Lessons Learned with Ace of Aces
+When the umpire  program asks to the tailing plane  which maneuvers it
+chooses,  it gives  a special  code to  the current  page number:  the
+actual  number concatenated  with the  G/A/D code.  Going back  to the
+example from  the patent,  the British  player is  page B<1>,  but the
+German player is  page B<1G>, because the British player  has chosen a
+leftward maneuver.  Pages 1G, 1A and  1D have exactly the  same set of
+transitions  maneuver  →  final  page,   but  the  German  player  has
+completely different sets of "previous situations" for page B<1G>, for
+page B<1A> and for page B<1D>  from which to choose the next maneuver.
+The player  program has no special  case for choosing a  maneuver when
+tailing the enemy. The  price to pay is a that  the umpire program has
+to  be careful  about  the page  number, which  is  no longer  trictly
+numeric and which might have a G/A/D letter or not.
+
+=head4 List of Available Maneuvers
+
+=head2 Conclusion: Lessons Learned with Ace of Aces
 
 A point  which surprised me, although  I could have guessed  it before
 discovering it, is  the answer to page 223 when  fighting. The purpose
