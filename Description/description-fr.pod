@@ -774,7 +774,8 @@ alors le programme arbitre les laisse telles quelles.
 Il n'est pas possible en revanche d'éliminer les situations où la page
 finale est la page 223. Par  contre, dans ce cas, le programme arbitre
 propose aux programmes  joueurs un choix avec 4 fois  l'attaque et une
-seule fois la fuite. Cela permet de favoriser la reprise du combat.
+seule fois la fuite. Cela permet de favoriser la reprise du combat. La
+probabilité est en effet 16/25 au lieu de 1/4.
 
 Il est possible que ce  filtrage induise un biais dans l'apprentissage
 des  programmes joueurs.  D'un autre  côté, cela  enrichit la  base de

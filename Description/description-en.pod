@@ -685,10 +685,30 @@ completely different sets of "previous situations" for page B<1G>, for
 page B<1A> and for page B<1D>  from which to choose the next maneuver.
 The player  program has no special  case for choosing a  maneuver when
 tailing the enemy. The  price to pay is a that  the umpire program has
-to  be careful  about  the page  number, which  is  no longer  trictly
+to  be careful  about  the page  number, which  is  no longer strictly
 numeric and which might have a G/A/D letter or not.
 
 =head4 List of Available Maneuvers
+
+This step should not  require comments. But if you take  a look at the
+conclusion paragraph  below, you will see  that the program has  a "no
+quarters" option (I<à outrance>) for the training games. In this case,
+the planes opt to  go on fighting, no matter how  many hit points they
+have lost already. When this option  is on, the umpire program removes
+all  maneuvers  which lead  to  an  intermediate  page 223.  The  only
+exception is when I<all> maneuvers lead  to page 223, which can happen
+with the  sparrowhawk. In these rare  cases, the list of  maneuvers is
+not filtered.
+
+On the other  hand, you cannot remove maneuvers which  would lead to a
+I<final> page 223. So  the planes can end the game  turn on this page.
+In this case, the umpire program gives  them a choice with 4 times the
+attack option and only one fleeing option. So the fight most certainly
+goes on. The probability is 16/25 instead of 1/4.
+
+This filtering may  induce a cognitive bias in  the self-learning. But
+this gives us richer training games  with many game turns, rather than
+training games ending after a handful of turns.
 
 =head2 Conclusion: Lessons Learned with Ace of Aces
 
