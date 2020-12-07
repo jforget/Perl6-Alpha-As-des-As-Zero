@@ -710,6 +710,84 @@ This filtering may  induce a cognitive bias in  the self-learning. But
 this gives us richer training games  with many game turns, rather than
 training games ending after a handful of turns.
 
+=head4 End of Game
+
+When the umpire  notices an end of game condition,  either a plane (or
+both) having received enough hit points, of a plane (or both) fleeing,
+the program  writes a last C<Coups>  record for each player,  with the
+C<fini> ("ended") attribute set to C<1> and the C<résultat> ("result")
+set to the  number of VP (+1,  -1, +1/2 or -1/2).  The pilot processes
+will know that they must leave their event loop.
+
+In  addition,  the umpire  program  writes  a  summary record  in  the
+C<Parties> ("Games") collection.
+
+=head3 Player program: C<joueur.p6>
+
+The C<joueur.p6> program  is based on a loop,  reading each successive
+game turn from the C<Coups> collection  and rewriting it to notify the
+selected maneuver to the umpire.
+
+Each player has two  attributes, I<psycho-rigidité> (mental stiffness)
+and I<perspicacité> (perspicacity), used  to choose the next maneuver.
+The I<psycho-rigidité>  is a  float greater  than or  equal to  1, the
+I<perspicacité> is a float between 0 and 1.
+
+Here are the successive steps for a game turn.
+
+=head4 Extracting Similar Situations
+
+The  program extracts  from  the C<Coups>  collection  all game  turns
+similar to the current game turn, using the following criteria:
+
+=over 4
+
+=item 1 Same page.
+
+=item 2 Previous game (according to the date-hour key).
+
+=item 3 Same pilot or just any similar pilot.
+
+=back
+
+Let us look again at the criteria.
+
+Same page: Remember that, for a tailing plane located on, say, page 1,
+there are three different pages, page B<1G>, page B<1A> and page B<1D>
+depending on the choice of the tailed plane for its next maneuver. The
+situations from these pseudo-pages are not mixed together.
+
+Previous game: We do not consider  the previous turns from the current
+game, because we do not know the  final result yet. We do not consider
+the next  games. It may seem  obvious, but the access  routine is also
+used by  the website in the  page describing how the  player chose the
+maneuver. This page may be accessed  several months after the game was
+played, so we  need this criterion to reenact the  decision process as
+it happened.
+
+Same pilot  or similar. A  pilot acts  according to his  own knowledge
+about  how his  plane  performs. But  he acts  also  according to  the
+lessons he  received from his  instructors and  his peers. Let  us use
+Guynemer on  a SPAD  XIII as  an example.  His instructors  were Jules
+Védrines  and Paul  Tarascon. So  Guynemer will  use the  knowledge he
+accumulated  himself, plus  the lessons  from the  training fights  by
+anonymous pilots flying SPAD XIII's  and the knowledge that was taught
+him by Védrines and Tarascon. In  other words, he will select C<Coups>
+documents for  which the  C<identité> field  belongs to  the following
+list (in Raku syntax):
+
+  < Guynemer SPAD_XIII Vedrines Tarascon >
+
+To be consistent, we must ensure that Védrines and Tarascon have flown
+SPAD XIII  too. On  the other  hand, we  can imagine  a pilot  who has
+learnt flying and fighting on a Fokker  E.III and who is assigned to a
+Jasta flying Fokker D.VII's.
+
+Another remark: the  C<ref> attribute exists in version V1,  but it is
+not used. In other words, in version V1, Guynemer will use only:
+
+  < Guynemer SPAD_XIII >
+
 =head2 Conclusion: Lessons Learned with Ace of Aces
 
 A point  which surprised me, although  I could have guessed  it before
