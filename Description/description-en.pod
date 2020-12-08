@@ -788,6 +788,85 @@ not used. In other words, in version V1, Guynemer will use only:
 
   < Guynemer SPAD_XIII >
 
+A last  remark: when extracting  the similar situations, a  pilot does
+not care about the opponent. For example, when playing a Sopwith Camel
+against a Fokker Dr1, the program will extract any "Camel vs Dr1" game
+turn, but also any "Camel vs Fokker  E.III" game turn or any "Camel vs
+Fokker D.VII" game turn.
+
+=head4 Evaluating The Extracted Similar Situations
+
+"Perspicacity"  means  "being  able  to see  through".  Through  what?
+Through the haze of  passing time in our case. If a  game ends at turn
+15, a perspicacious player will think  that the turn 10 maneuver could
+have an effect on the final  result, while a short-sighted player will
+attribute this  effect only to the  turn 14 maneuver, or  possibly the
+turn 13 maneuver, but in this case only a very remote possibility.
+
+How does  this translate in  program terms?  Here are a  few examples,
+from which you will deduce the rule:
+
+  Final result   final turn   current turn   perspicacity   score
+      1 VP            15           10             0.1       0.00001
+     -1 VP            15           10             0.1      -0.00001
+      1 VP            15           14             0.1       0.1
+      0.5 VP          15           14             0.1       0.05
+      1 VP            15           10             0.5       0.03125
+      1 VP            15           14             0.5       0.5
+      1 VP            15           10             0.9       0.59049
+     -1 VP            15           14             0.9      -0.9
+     -0.5 VP          15           14             0.9      -0.45
+
+=head4 Evaluating the Maneuvers
+
+For  each possible  maneuver, the  program selects  all the  "previous
+situations" that  were followed by  the maneuver being  examined. Then
+the program adds  the scores of the corresponding  situations. It does
+not compute the average value, it computes the total value. In theory,
+that would give any value in the minus infinity to plus infinity span.
+
+=head4 Choosing a Maneuver
+
+This  is when  I<psycho-rigidité> (or  mental stiffness)  comes in.  A
+stiff pilot  will nearly always  choose B<the> best maneuver  over any
+other, while a more versatile pilot  will choose, from time to time, a
+less  efficient maneuver  but which  will open  a new  set of  unusual
+situations.
+
+The   program  assigns   a   weight  to   each   maneuver,  by   using
+I<psycho-rigidité>  and  raising  it  to the  power  of  the  maneuver
+evaluation. Once all weights are  computed for all maneuvers, they are
+normalized to obtain a  probability distribution. This distribution is
+then  converted into  a cumulative  distribution. Lastly,  the program
+computes a pseudo-random number, compares it with the intervals of the
+cumulative distribution and determines the chosen maneuver.
+
+Here  is  an  example,  with  3   maneuvers  A,  B  and  C,  evaluated
+respectively with  -2, 1  and 2.  With a really  stiff pilot  (10), we
+have:
+
+  maneuver  evaluation  weight   probability    cumulative
+      A        -2         0.01      0.000091    0.000091
+      B         1        10         0.090901    0.090992
+      C         2       100         0.909008    1
+    total               110.01      1.000000
+
+If the random number is in  the 9.1e-5 to 0.090992 interval, we choose
+maneuver B. If  the random number is greater than  0.090992, we choose
+maneuver C.  And for  the very  unlikely case where  it is  lower than
+9.1e-5, we choose maneuver A.
+
+Same thing, with a more relaxed pilot (I<psycho-rigidité> 1.1):
+
+  maneuver  evaluation  weight      probability  cumulative
+      A        -2         0.826446   0.2634976   0.2634976
+      B         1         1.1        0.35071543  0.61421303
+      C         2         1.21       0.38578697  1
+    total                 3,136446   1.00000000
+
+As we  can see, the  probabilities are  around 1/3 for  each maneuver,
+with still an advantage for maneuver C.
+
 =head2 Conclusion: Lessons Learned with Ace of Aces
 
 A point  which surprised me, although  I could have guessed  it before

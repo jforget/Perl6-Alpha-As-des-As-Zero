@@ -840,15 +840,16 @@ partie  elle-même,  donc  ce   critère  nous  permet  de  reconstituer
 fidèlement le processus  décisionnel ayant conduit à  la résolution du
 tour de jeu.
 
-Même pilote  ou même  avion ou...  Un pilote  se base  sur sa
-propre expérience. Il  se base  également sur  les enseignements
-qu'il a reçus  de ses instructeurs. Prenons l'exemple  de Guynemer sur
-SPAD XIII.  Il s'appuiera sur  ses précédents combats, mais  aussi sur
-les  entraînements de  pilotes anonymes  sur  SPAD XIII.  Et même,  il
-pourra se baser sur l'expérience  accumulée par un de ses instructeurs
-comme Védrines  ou Tarascon.  C'est le but  de l'attribut  C<@ref> des
-enregistrements de la collection  C<Pilotes>. Guynemer extraiera les
-coups avec une C<identité> faisant partie de la S<liste :>
+Même pilote ou  pilote S<similaire :> un pilote se  base sur sa propre
+expérience. Il se  base également sur les enseignements  qu'il a reçus
+de  ses  instructeurs  et   de  ses  camarades  d'escadrille.  Prenons
+l'exemple de Guynemer sur SPAD  XIII. Il s'appuiera sur ses précédents
+combats, mais aussi sur les entraînements de pilotes anonymes sur SPAD
+XIII. Et même,  il pourra se baser sur l'expérience  accumulée par ses
+instructeurs comme  Jules Védrines ou  Paul Tarascon. C'est le  but de
+l'attribut C<@ref>  des enregistrements  de la  collection C<Pilotes>.
+Guynemer extraira les coups avec  une C<identité> faisant partie de la
+S<liste :>
 
   < Guynemer SPAD_XIII Vedrines Tarascon >
 
@@ -865,6 +866,94 @@ n'est pas  utilisé et Guynemer se  contente des coups provenant  de la
 S<liste :>
 
   < Guynemer SPAD_XIII >
+
+Dernière S<remarque :> lors de l'extraction des situations similaires,
+le programme pilote ne tient pas  compte de la nature de l'ennemi. Par
+exemple, si  la partie en  cours oppose un  Sopwith Camel à  un Fokker
+Dr1.  le  programme  incarnant  le Camel choisira aussi bien les coups
+S<« Camel>  contre S<Dr1 »>  que  les coups  S<« Camel>  contre Fokker
+S<E.III »> et les coups S<« Camel> contre Fokker S<D.VII »>.
+
+=head4 Évaluation des situations similaires extraites
+
+S<«  Perspicacité »>  signifie S<«  voir>  à S<travers  »>. À  travers
+S<quoi ?> À travers les brumes du  temps dans notre cas. Si une partie
+se termine au  tour 15, un joueur perspicace estimera  que la manœuvre
+choisie au  tour 10 a  pu avoir une  influence sur le  résultat final,
+tandis qu'un joueur  peu perspicace estimera que seule  la manœuvre du
+tour 14 aura pu avoir une influence, ou bien à la rigueur, à l'extrême
+rigueur, celle du tour 13.
+
+Comment  cela se  traduit-il  en termes  de  S<programmation ?>  Voici
+quelques exemples, qui vous permettront de deviner la règle S<générale :>
+
+     Résultat       dernier       tour
+      final          tour        actuel     perspicacité  évaluation
+      1 VP            15           10             0,1       0,00001
+     -1 VP            15           10             0,1      -0,00001
+      1 VP            15           14             0,1       0,1
+      0,5 VP          15           14             0,1       0,05
+      1 VP            15           10             0,5       0,03125
+      1 VP            15           14             0,5       0,5
+      1 VP            15           10             0,9       0,59049
+     -1 VP            15           14             0,9      -0,9
+     -0,5 VP          15           14             0.9      -0,45
+
+=head4 Évaluation des manœuvres
+
+Pour  une  manœuvre  donnée,   le  programme  sélectionne  toutes  les
+situations  antérieures ayant  été suivies  par la  manœuvre en  cours
+d'examen et il additionne les évaluations de ces manœuvres. Non, on ne
+fait pas la  moyenne, on fait la  somme, ce qui donne,  en théorie, un
+nombre dans la plage de moins l'infini à plus l'infini.
+
+=head4 Choix de la manœuvre
+
+C'est  à  ce  moment   qu'intervient  la  psycho-rigidité.  Un  pilote
+psycho-rigide préférera  de loin choisir B<la>  manœuvre la meilleure,
+de préférence à  n'importe quelle autre. Un pilote un  peu plus souple
+choisira, de temps en temps, une manœuvre qui n'est pas optimale, mais
+qui peut ouvrir des horizons inhabituels.
+
+Le programme affecte des S<« poids »> à chaque manœuvre, en prenant la
+psycho-rigidité du pilote et en l'élevant à la puissance correspondant
+à l'évaluation de la manœuvre. Une fois les poids calculés pour toutes
+les  manœuvres, le  programme  les  normalise pour  avoir  une loi  de
+probabilité. Pour faciliter le tirage  au sort, le programme convertit
+cette  loi  de  probabilité  en fonction  de  répartition.  Enfin,  le
+programme tire  un nombre pseudo-aléatoire dans  l'intervalle 0..1, le
+croise avec la fonction de répartition  et en déduit la manœuvre tirée
+au sort.
+
+C'est  plus clair  avec quelques  exemples. Supposons  que nous  ayons
+trois manœuvres, avec respectivement les  évaluations -2, 1 et 2. Pour
+un premier pilote, très psycho-rigide (10), nous avons
+
+  manœuvre  évaluation  poids    probabilité   répartition
+      A        -2         0,01      0,000091    0,000091
+      B         1        10         0,090901    0,090992
+      C         2       100         0,909008    1
+    total               110,01      1,000000
+
+Si  le  nombre  aléatoire  tiré  est dans  l'intervalle  de  9,1e-5  à
+0,090992,  on  prendra la  manœuvre  B.  Si  ce nombre  aléatoire  est
+supérieur à 0,090992,  alors c'est la manœuvre C. Enfin,  dans les cas
+rarissimes où le  nombre est inférieur à 9,1e-5, on  prend la manœuvre
+A.
+
+Avec  les  mêmes manœuvres,  prenons  maintenant  un pilote  très  peu
+psycho-rigide (1,1). Les différents calculs S<donnent :>
+
+  manœuvre  évaluation  poids       probabilité  répartition
+      A        -2         0,826446   0,2634976   0,2634976
+      B         1         1,1        0,35071543  0,61421303
+      C         2         1,21       0,38578697  1
+    total                 3,136446   1,00000000
+
+Ainsi qu'on  peut le  voir, les trois  manœuvres ont  des probabilités
+voisines  d'un  tiers,  avec  quand  même  une  légère  mais  sensible
+préférence pour la manœuvre C.
+
 
 =head2 Conclusion : Retour d'expérience sur l'As des As
 
