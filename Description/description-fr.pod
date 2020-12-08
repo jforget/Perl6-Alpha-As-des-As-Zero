@@ -954,6 +954,28 @@ Ainsi qu'on  peut le  voir, les trois  manœuvres ont  des probabilités
 voisines  d'un  tiers,  avec  quand  même  une  légère  mais  sensible
 préférence pour la manœuvre C.
 
+=head4  Parties d'entraînement
+
+Si vous  baissez la psycho-rigidité  jusqu'à 1, vous voyez  sans peine
+que  toutes les  manœuvres ont  la  même probabilité,  peu importe  le
+nombre de situations antérieures où  elles apparaissent et quel fut le
+résultat final  de la partie.  Donc, pour les  parties d'entraînement,
+j'utilise des pilotes anonymes avec une psycho-rigidité de 1. De plus,
+lorsque le programme C<pilote.p6>  constate que la psycho-rigidité est
+à 1, il ne se fatigue pas à extraire les situations antérieures, à les
+évaluer  et à  mouliner les  nombres obtenus.  Il prend  la liste  des
+manœuvres disponibles et  en tire une au sort  (instruction C<pick> de
+Raku).
+
+=head4 Fin de partie
+
+Lorsque  le  programme  C<pilote.p6>  lit un  document  C<Coups>  avec
+l'attribut C<fini>  à 1, il sait  que la partie est  terminée et qu'il
+faut s'arrêter. Toutefois,  juste avant d'arrêter, le  programme met à
+jour tous les coups de la partie pour y mémoriser le résultat final et
+le nombre de tours entre ce coup et  la fin de la partie. De la sorte,
+lors des prochaines parties, cela économisera le nombre de documents à
+lire en base de données.
 
 =head2 Conclusion : Retour d'expérience sur l'As des As
 

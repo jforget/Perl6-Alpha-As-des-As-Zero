@@ -867,6 +867,26 @@ Same thing, with a more relaxed pilot (I<psycho-rigidité> 1.1):
 As we  can see, the  probabilities are  around 1/3 for  each maneuver,
 with still an advantage for maneuver C.
 
+=head4 Training Games
+
+If you lower the I<psycho-rigidité> to  1, you find that all available
+maneuvers have the same probability,  no matter how many previous game
+turns they  were used in and  which end result occurred  then. So, for
+training games, I use an anonymous pilot with a mental stiffness of 1.
+And when the program sees a mental  stiffness of 1, it does not bother
+to extract  previous similar  situations, it does  not bother  to rate
+them and to crunch numbers. The program just randomly picks a maneuver
+among the available maneuvers.
+
+=head4 End of game
+
+When  the C<pilote.p6>  program  reads a  C<Coups>  document with  the
+C<fini> attribute  set to 1, it  knows the game has  ended. It updates
+all the  C<Coups> documents for the  current game to store  in each of
+them the final result and the delay  between the game turn and the end
+of game. This  will reduce the number of documents  to retrieve in the
+next games.
+
 =head2 Conclusion: Lessons Learned with Ace of Aces
 
 A point  which surprised me, although  I could have guessed  it before
