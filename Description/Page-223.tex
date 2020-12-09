@@ -33,14 +33,55 @@
 \begin{mplibcode}
 beginfig(1);
 
+% for a more scalable figure
 radius   = 10;
 factor   = 1.0;
-% cosine of 30 degrees, sinus of 60 degrees
-cos      = 0.866;
+
+cos      = 0.866;           % cosine of 30 degrees, sinus of 60 degrees
 radius1  = radius * factor; % radius from the hex center to an hexside
 radius2  = radius1 / cos;   % radius from the hex center to an hex angle
 
 def hex(expr x, y) = draw (x + radius2, y) -- (x + radius2 / 2, y - radius1) -- (x - radius2 / 2, y - radius1) -- (x - radius2, y) -- (x - radius2 / 2, y + radius1) -- (x + radius2 / 2, y + radius1) -- cycle; enddef;
+
+def grid(expr x, y) =
+hex(x - 6 * cos * radius, y - 3 * radius);
+hex(x - 6 * cos * radius, y -     radius);
+hex(x - 6 * cos * radius, y +     radius);
+hex(x - 6 * cos * radius, y + 3 * radius);
+hex(x - 4 * cos * radius, y - 4 * radius);
+hex(x - 4 * cos * radius, y - 2 * radius);
+hex(x - 4 * cos * radius, y);
+hex(x - 4 * cos * radius, y + 2 * radius);
+hex(x - 4 * cos * radius, y + 4 * radius);
+hex(x - 2 * cos * radius, y - 5 * radius);
+hex(x - 2 * cos * radius, y - 3 * radius);
+hex(x - 2 * cos * radius, y -     radius);
+hex(x - 2 * cos * radius, y +     radius);
+hex(x - 2 * cos * radius, y + 3 * radius);
+hex(x - 2 * cos * radius, y + 5 * radius);
+hex(x                   , y - 6 * radius);
+hex(x                   , y - 4 * radius);
+hex(x                   , y - 2 * radius);
+hex(x                   , y);
+hex(x                   , y + 2 * radius);
+hex(x                   , y + 4 * radius);
+hex(x                   , y + 6 * radius);
+hex(x + 2 * cos * radius, y - 5 * radius);
+hex(x + 2 * cos * radius, y - 3 * radius);
+hex(x + 2 * cos * radius, y -     radius);
+hex(x + 2 * cos * radius, y +     radius);
+hex(x + 2 * cos * radius, y + 3 * radius);
+hex(x + 2 * cos * radius, y + 5 * radius);
+hex(x + 4 * cos * radius, y - 4 * radius);
+hex(x + 4 * cos * radius, y - 2 * radius);
+hex(x + 4 * cos * radius, y);
+hex(x + 4 * cos * radius, y + 2 * radius);
+hex(x + 4 * cos * radius, y + 4 * radius);
+hex(x + 6 * cos * radius, y - 3 * radius);
+hex(x + 6 * cos * radius, y -     radius);
+hex(x + 6 * cos * radius, y +     radius);
+hex(x + 6 * cos * radius, y + 3 * radius);
+enddef;
 
 path aircraft;
 aircraft = (-1, 4) -- (-1, 6) -- (-4, 6) -- (4, 6) -- (1, 6) -- (1, 4)
@@ -48,8 +89,8 @@ aircraft = (-1, 4) -- (-1, 6) -- (-4, 6) -- (4, 6) -- (1, 6) -- (1, 4)
 -- (1, -5) -- (3, -7) -- (-3, -7) -- (-1, -5) -- (-1, 1)
 -- (-8, 1) -- (-8, 4) -- cycle;
 
-hex(0, 0);
-draw aircraft scaled (radius / 10) shifted(20, 20);
+grid(0, 0);
+draw aircraft scaled (radius / 10) shifted(120, 20);
 
 endfig;
 \end{mplibcode}
