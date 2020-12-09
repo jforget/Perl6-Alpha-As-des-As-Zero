@@ -1003,6 +1003,16 @@ le nombre de tours entre ce coup et  la fin de la partie. De la sorte,
 lors des prochaines parties, cela économisera le nombre de documents à
 lire en base de données.
 
+=head3 Programme C<site.p6> et programmes annexes
+
+Le     programme    C<site.p6>     et    ses     programmes    annexes
+C<lib/site->I<xxx>C<.p6>  sont  de  simples programmes  Bailador,  qui
+décodent un URL,  en extraient une clé, lisent en  base de données des
+informations en fonction de cette clé et affichent ces informations en
+HTML. Dans  le cas du programme  C<lib/site-coup.p6>, les informations
+affichées  sont  un  peu   compliquées,  mais  elles  reproduisent  le
+processus décisionnel déjà présenté dans le programme C<joueur.p6>.
+
 =head2 Conclusion : Retour d'expérience sur l'As des As
 
 Un  point qui  m'a  surpris et  auquel j'aurais  pu  penser, c'est  la

@@ -913,6 +913,16 @@ them the final result and the delay  between the game turn and the end
 of game. This  will reduce the number of documents  to retrieve in the
 next games.
 
+=head3 C<site.p6> Program and its Associate Programs
+
+C<site.p6>  and its  associate  programs C<lib/site->I<xxx>C<.p6>  are
+basic Bailador  programs, which read  a URL,  extract a key  from this
+URL, access the database with this key, and display the extracted data
+in  HTML.  Nothing  out  of   the  ordinary.  The  data  displayed  by
+C<lib/site-coup.p6> may  be complicated, but they  mirror the decision
+process  exposed  in  the   documentation  for  C<pilote.p6>,  so  the
+documentation for C<pilote.p6> applies to C<lib/site-coup.p6> also.
+
 =head2 Conclusion: Lessons Learned with Ace of Aces
 
 A point  which surprised me, although  I could have guessed  it before
