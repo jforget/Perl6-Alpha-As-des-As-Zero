@@ -1,0 +1,57 @@
+% -*- encoding: utf-8; indent-tabs-mode: nil -*-
+%
+%     Document to illustrate the special case of page 223 in Ace of Aces
+%     Document pour illustrer le cas particulier de la page 223 dans l'As des As
+%     Copyright (C) 2020 Jean Forget
+%
+%     This program is distributed under the same terms as Perl 5.16.3:
+%     GNU Public License version 1 or later and Perl Artistic License.
+%
+%     Here is the summary of GPL:
+%
+%     This program is free software; you can redistribute it and/or modify
+%     it under the terms of the GNU General Public License as published by
+%     the Free Software Foundation; either version 1, or (at your option)
+%     any later version.
+%
+%     This program is distributed in the hope that it will be useful,
+%     but WITHOUT ANY WARRANTY; without even the implied warranty of
+%     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+%     GNU General Public License for more details.
+%
+%     You should have received a copy of the GNU General Public License
+%     along with this program; if not, write to the Free Software Foundation,
+%     Inc., https://www.fsf.org/.
+%
+
+\documentclass[a4paper]{article}
+\usepackage{luamplib}
+%\usepackage{luatexko-mplib}
+
+\begin{document}
+
+\begin{mplibcode}
+beginfig(1);
+
+radius   = 10;
+factor   = 1.0;
+% cosine of 30 degrees, sinus of 60 degrees
+cos      = 0.866;
+radius1  = radius * factor; % radius from the hex center to an hexside
+radius2  = radius1 / cos;   % radius from the hex center to an hex angle
+
+def hex(expr x, y) = draw (x + radius2, y) -- (x + radius2 / 2, y - radius1) -- (x - radius2 / 2, y - radius1) -- (x - radius2, y) -- (x - radius2 / 2, y + radius1) -- (x + radius2 / 2, y + radius1) -- cycle; enddef;
+
+path aircraft;
+aircraft = (-1, 4) -- (-1, 6) -- (-4, 6) -- (4, 6) -- (1, 6) -- (1, 4)
+--  (8, 4) -- (8, 1) -- (1, 1)
+-- (1, -5) -- (3, -7) -- (-3, -7) -- (-1, -5) -- (-1, 1)
+-- (-8, 1) -- (-8, 4) -- cycle;
+
+hex(0, 0);
+draw aircraft scaled (radius / 10) shifted(20, 20);
+
+endfig;
+\end{mplibcode}
+
+\end{document}
