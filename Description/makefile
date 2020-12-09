@@ -18,3 +18,6 @@ voitures-0.png: voitures.pdf
 
 voitures.pdf: voitures.lua voitures.tex
 	lualatex voitures.tex
+
+Page-223.pdf: Page-223.tex
+	lualatex Page-223.tex

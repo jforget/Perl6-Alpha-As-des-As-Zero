@@ -89,8 +89,21 @@ aircraft = (-1, 4) -- (-1, 6) -- (-4, 6) -- (4, 6) -- (1, 6) -- (1, 4)
 -- (1, -5) -- (3, -7) -- (-3, -7) -- (-1, -5) -- (-1, 1)
 -- (-8, 1) -- (-8, 4) -- cycle;
 
-grid(0, 0);
+
+grid(  0,    0)
+grid(200,    0)
+grid(  0, -150)
+grid(200, -150)
+grid(  0, -300)
+grid(200, -300)
 draw aircraft scaled (radius / 10) shifted(120, 20);
+
+label(btex Page 180 etex, (      5 * radius,      - 6 * radius));
+label(btex Page 223 etex, (200 - 5 * radius,      - 6 * radius));
+label(btex Page 180 etex, (      5 * radius, -150 - 6 * radius));
+label(btex Page  60 etex, (200 - 5 * radius, -150 - 6 * radius));
+label(btex Page  60 etex, (      5 * radius, -300 - 6 * radius));
+label(btex Page 180 etex, (200 - 5 * radius, -300 - 6 * radius));
 
 endfig;
 \end{mplibcode}
