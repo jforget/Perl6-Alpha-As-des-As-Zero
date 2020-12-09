@@ -135,9 +135,10 @@ License L<Creative Commons Attribution 3.0 Unported, CC BY 3.0|https://creativec
 
 =head2 Rules Summary
 
-The patent gives an example of a game turn. The players begin this turn on page 1.
-In both booklets, the picture shows that both planes have the same heading and that
-the DR1 is located at the Camel's 4 o'clock, or conversely, the Camel is at the DR1's 10 o'clock.
+The patent  gives an example  of a game  turn. The players  begin this
+turn on page  1. In both booklets, the picture  shows that both planes
+have the same  heading and that the  Dr.I is located at  the Camel's 4
+o'clock, or conversely, the Camel is at the Dr.I's 10 o'clock.
 
 =for HTML
 <img src='Page-1-GB-All.png' alt="Page 1 in both booklets" width='100%' />
@@ -336,7 +337,7 @@ hovering. This is OK if you are  playing a hummingbird, a lark, a bee,
 a drone or a gazelle (not
 L<this kind of gazelle|https://simple.wikipedia.org/wiki/Gazelle>
 but rather 
-L<that kind of Gazelle|https://en.wikipedia.org/wiki/A%C3%A9rospatiale_Gazelle>
+L<that kind of Gazelle|https://en.wikipedia.org/wiki/A%C3%A9rospatiale_Gazelle>)
 but when you are  playing a Fokker Dr.I or a  Sopwith Camel, you cannot
 hover. There is  an optional but very recommended  rule which prevents
 planes from doing a slow speed  maneuver during turn I<n> if they have
@@ -420,8 +421,8 @@ much different. You will need a big dose of
 L<willing suspension of disbelief|http://tvtropes.org/pmwiki/pmwiki.php/Main/WillingSuspensionOfDisbelief>
 to play such a game!
 
-And you cannot set up a dogfight between two "good guys" (e.g. F-15 vs P-51) or between two "bad guys"
-(e.g. Fokker Dr1 vs FW190).
+And you cannot set up a dogfight between two "good guys" (e.g. F-15 vs
+P-51) or between two "bad guys" (e.g. Fokker Dr.I vs FW190).
 
 A bit of caution about I<Wingleader>. There is 
 L<another game|https://boardgamegeek.com/boardgame/160418/wing-leader-victories-1940-1942>
@@ -915,10 +916,10 @@ next games.
 
 =head3 C<site.p6> Program and its Associate Programs
 
-C<site.p6>  and its  associate  programs C<lib/site->I<xxx>C<.p6>  are
-basic Bailador  programs, which read  a URL,  extract a key  from this
-URL, access the database with this key, and display the extracted data
-in  HTML.  Nothing  out  of   the  ordinary.  The  data  displayed  by
+C<site.p6>  and its  associate programs  C<lib/site-xxx.p6> are  basic
+Bailador programs,  which read  a URL,  extract a  key from  this URL,
+access the database  with this key, and display the  extracted data in
+HTML.   Nothing  out   of  the   ordinary.  The   data  displayed   by
 C<lib/site-coup.p6> may  be complicated, but they  mirror the decision
 process  exposed  in  the   documentation  for  C<pilote.p6>,  so  the
 documentation for C<pilote.p6> applies to C<lib/site-coup.p6> also.

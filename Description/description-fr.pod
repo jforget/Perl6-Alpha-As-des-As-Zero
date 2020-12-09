@@ -158,10 +158,10 @@ Licence L<Creative Commons Attribution 3.0 Unported, CC BY 3.0|https://creativec
 
 =head2 Aperçu des règles
 
-Le brevet donne un exemple de tour de jeu. Les deux joueurs commencent le tour page 1. Dans
-les deux livrets, cette page montre que les deux avions ont le même cap et
-que le DR1 est dans les 4 heures du Camel, c'est-à-dire que le Camel est dans
-les 10 heures du DR1.
+Le brevet donne un exemple de tour de jeu. Les deux joueurs commencent
+le tour page 1. Dans les deux  livrets, cette page montre que les deux
+avions ont le même cap et que le  Dr.I est dans les 4 heures du Camel,
+c'est-à-dire que le Camel est dans les 10 heures du Dr.I.
 
 =for HTML
 <img src='Page-1-GB-All.png' alt="Page 1 dans les deux livrets" width='100%' />
@@ -1005,13 +1005,13 @@ lire en base de données.
 
 =head3 Programme C<site.p6> et programmes annexes
 
-Le     programme    C<site.p6>     et    ses     programmes    annexes
-C<lib/site->I<xxx>C<.p6>  sont  de  simples programmes  Bailador,  qui
-décodent un URL,  en extraient une clé, lisent en  base de données des
-informations en fonction de cette clé et affichent ces informations en
-HTML. Dans  le cas du programme  C<lib/site-coup.p6>, les informations
-affichées  sont  un  peu   compliquées,  mais  elles  reproduisent  le
-processus décisionnel déjà présenté dans le programme C<joueur.p6>.
+Le programme  C<site.p6> et ses programmes  annexes C<lib/site-xxx.p6>
+sont de simples programmes Bailador, qui décodent un URL, en extraient
+une clé,  lisent en base  de données  des informations en  fonction de
+cette  clé et  affichent  ces informations  en HTML.  Dans  le cas  du
+programme C<lib/site-coup.p6>, les informations  affichées sont un peu
+compliquées,  mais elles  reproduisent le  processus décisionnel  déjà
+présenté dans le programme C<joueur.p6>.
 
 =head2 Conclusion : Retour d'expérience sur l'As des As
 
