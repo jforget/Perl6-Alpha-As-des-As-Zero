@@ -324,6 +324,28 @@ give the intermediate page number.
 
 =back
 
+=head3 Successive Maneuvers
+
+If you have read some help files provided by
+L<Boardgamegeek|https://www.boardgamegeek.com/boardgame/798/ace-aces-handy-rotary-series/files>,
+you may have noticed that in  the example above, when the German plane
+goes from page 1 to page 8, its  move is a very low-speed move and the
+plane stays  in its starting hex.  Doing this once is  fine, but doing
+this  several times  in  a row,  this  is no  longer  flying, this  is
+hovering. This is OK if you are  playing a hummingbird, a lark, a bee,
+a drone or a gazelle (not
+L<this kind of gazelle|https://simple.wikipedia.org/wiki/Gazelle>
+but rather 
+L<that kind of Gazelle|https://en.wikipedia.org/wiki/A%C3%A9rospatiale_Gazelle>
+but when you are  playing a Fokker Dr.I or a  Sopwith Camel, you cannot
+hover. There is  an optional but very recommended  rule which prevents
+planes from doing a slow speed  maneuver during turn I<n> if they have
+already done a similar maneuver during turn I<n>-1.
+
+In  the same  manner, the  rule deals  with acrobatics,  which can  be
+executed during  turn I<n> only if  the aircraft did a  straight ahead
+maneuver during turn I<n>-1.
+
 =head3 Altitude
 
 This is a game about planes, so we must deal with altitude, of course!
@@ -334,8 +356,10 @@ aircraft are in the same hex. It is convenient to suppose that there are separat
 in altitude by a few meters. This is the players' opinion, the rules say nothing about
 that.
 
-There are advanced rules which require the players to log the altitude at each game turn.
-The additional burden is not worth it. 
+There are advanced rules which require the players to log the altitude
+at each  game turn. The  additional burden is  not worth it.  The only
+optional  rule  which  is  worth  it  is  the  rule  about  successive
+maneuvers.
 
 =head3 A Few Remarks
 
@@ -355,7 +379,9 @@ During a game turn, you must keep in mind:
 
 =item 6 the number of remaining hit points,
 
-=item 7 optionaly the number of remaining hit points for your opponent.
+=item 7 the type of maneuver (normal, straight ahead, acrobatic, slow speed) if using the rule on successive maneuvers.
+
+=item 8 optionaly the number of remaining hit points for your opponent.
 
 =back
 
@@ -790,9 +816,9 @@ not used. In other words, in version V1, Guynemer will use only:
 
 A last  remark: when extracting  the similar situations, a  pilot does
 not care about the opponent. For example, when playing a Sopwith Camel
-against a Fokker Dr1, the program will extract any "Camel vs Dr1" game
-turn, but also any "Camel vs Fokker  E.III" game turn or any "Camel vs
-Fokker D.VII" game turn.
+against a  Fokker Dr.I, the program  will extract any "Camel  vs Dr.I"
+game  turn, but  also any  "Camel vs  Fokker E.III"  game turn  or any
+"Camel vs Fokker D.VII" game turn.
 
 =head4 Evaluating The Extracted Similar Situations
 

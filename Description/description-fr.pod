@@ -352,6 +352,28 @@ vers l'avant. Il ne donne pas le numéro de la page intermédiaire.
 
 =back
 
+=head3 Enchaînement des manœuvres
+
+Si vous avez jeté un coup d'œil sur les aides de jeu fournies dans
+L<Boardgamegeek|https://www.boardgamegeek.com/boardgame/798/ace-aces-handy-rotary-series/files>,
+vous avez pu voir que lorsque le pilote  allemand va de la page 1 à la
+page 8, sa vitesse est très faible et son mouvement reste en réalité à
+l'intérieur de l'hexagone de départ. Une  fois, ça va, mais si l'avion
+effectue une telle  manœuvre plusieurs fois d'affilée,  cela revient à
+faire du  surplace. Pas  de problème s'il  s'agit d'un  colibri, d'une
+alouette, d'un frelon, d'un drone ou d'une gazelle (non pas
+L<ce genre de gazelle|https://fr.wikipedia.org/wiki/Gazelle>,
+mais plutôt
+L<ce genre de gazelle|https://fr.wikipedia.org/wiki/Sud-Aviation_SA340/341/342_Gazelle>)
+mais  lorsqu'il s'agit  d'un Fokker  Dr.I  ou d'un  Sopwith Camel,  le
+surplace est hors de question. Il  y a donc une règle optionnelle mais
+fortement recommandée, empêchant de faire ce genre de manœuvre au tour
+I<n> si l'avion en a déjà fait une au tour I<n>-1.
+
+Également,  il y  a les  manœuvres acrobatiques,  qui ne  peuvent être
+effectuées au  tour I<n> que  si l'avion  a effectué une  manœuvre
+S<« tout> S<droit »> au tour I<n>-1.
+
 =head3 Altitude
 
 Le jeu met en scène des avions, donc on tient compte de l'altitude, n'est-ce S<pas ?>
@@ -362,8 +384,10 @@ au cas où les deux avions sont dans le même hexagone. Dans ce cas, on convient
 sont séparés par quelques mètres d'altitude. C'est ce que disent les joueurs, la règle
 est muette à ce sujet.
 
-Il y a des règles avancées, dont une qui demande de noter l'altitude à chaque tour
-de jeu. C'est beaucoup d'effort pour un gain mineur, le jeu n'en vaut pas la chandelle.
+Il y a des règles avancées, dont une qui demande de noter l'altitude à
+chaque tour  de jeu. C'est beaucoup  d'effort pour un gain  mineur, le
+jeu n'en vaut pas la chandelle.  La seule règle optionnelle qui vaille
+le coup, c'est la règle sur l'enchaînement des manœuvres.
 
 =head3 Considérations diverses
 
@@ -383,7 +407,9 @@ Lors d'un tour de jeu, vous devez garder à l'esprit :
 
 =item 6 le nombre de points de dégâts encaissés,
 
-=item 7 optionnellement le nombre de points de dégâts infligés à votre adversaire.
+=item 7 le type de manœuvre (normale, tout droit, acrobatique, basse vitesse) si vous utilisez la règle sur les enchaînements de manœuvres,
+
+=item 8 optionnellement le nombre de points de dégâts infligés à votre adversaire.
 
 =back
 
@@ -870,8 +896,8 @@ S<liste :>
 Dernière S<remarque :> lors de l'extraction des situations similaires,
 le programme pilote ne tient pas  compte de la nature de l'ennemi. Par
 exemple, si  la partie en  cours oppose un  Sopwith Camel à  un Fokker
-Dr1.  le  programme  incarnant  le Camel choisira aussi bien les coups
-S<« Camel>  contre S<Dr1 »>  que  les coups  S<« Camel>  contre Fokker
+Dr.I. le  programme incarnant le  Camel choisira aussi bien  les coups
+S<« Camel>  contre S<Dr.I »>  que les  coups S<« Camel>  contre Fokker
 S<E.III »> et les coups S<« Camel> contre Fokker S<D.VII »>.
 
 =head4 Évaluation des situations similaires extraites
