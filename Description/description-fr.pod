@@ -312,13 +312,32 @@ Si un seul joueur a une page intermédiaire à 223, on utilise la page interméd
 pour obtenir la page finale. Impossible dans ce cas de faire la vérification présentée, expliquée et démythifiée
 au paragraphe précédent. Un tel cas de figure se produit par exemple lorsque les deux avions se poursuivent
 à grande distance. Supposons que nous soyons page 180, où le Camel est à longue distance
-dans les onze heures du DR.1 et supposons que les deux avions avancent tout droit à vitesse
-moyenne. Si l'on applique d'abord le mouvement du Camel, le DR.1 le perd de vue temporairement et la page
-intermédiaire est la page 223, sur laquelle aucune manœuvre n'est indiquée. En revanche, si
-l'on applique d'abord la manœuvre du DR.1, la page intermédiaire est la page 60 où 
-le Camel est à distance moyenne dans les 10 heures du DR.1. Puis on applique le mouvement
-du Camel, ce qui donne la page 180. Il n'est plus possible de vérifier que la page
-finale est la même selon les deux déterminations, mais tant pis.
+dans les onze heures du Dr.I et supposons que les deux avions avancent tout droit à vitesse
+moyenne. Si l'on applique d'abord le mouvement du Camel, le Dr.I le perd de vue temporairement et la page
+intermédiaire est la page 223, sur laquelle aucune manœuvre n'est indiquée.
+
+=for html
+<img src='Page-223-a.png' alt="Mouvement britannique aboutissant à la page 223" />
+
+I<Image personnelle. Les conditions de licence sont les mêmes que pour le texte.>
+
+En revanche,  si l'on applique  d'abord la  manœuvre du Dr.I,  la page
+intermédiaire est la  page 60 où le Camel est  à distance moyenne dans
+les 10 heures du Dr.I.
+
+=for html
+<img src='Page-223-b.png' alt="Mouvement allemand de la page 180 à la page 60" />
+
+I<Image personnelle. Les conditions de licence sont les mêmes que pour le texte.>
+
+Puis on applique le  mouvement du Camel, ce qui donne  la page 180. Il
+n'est plus possible  de vérifier que la page finale  est la même selon
+les deux déterminations, mais tant pis.
+
+=for html
+<img src='Page-223-c.png' alt="Mouvement britannique de la page 60 à la page 180" />
+
+I<Image personnelle. Les conditions de licence sont les mêmes que pour le texte.>
 
 D'un autre côté, si les deux pages intermédiaires sont 223, ou bien si la page finale est
 223, alors les avions se sont perdus de vue. Chaque joueur décide alors de continuer le

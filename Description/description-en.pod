@@ -287,11 +287,31 @@ If only one player has an intermediate page 223, we use the intermediate page of
 other player to obtain the final page of the game turn. You can no longer check the consistency
 of the final page as shown above. This situation arises, for example, when the planes are 
 pursuing each other at a big distance. Let us suppose we are on page 180, where the Camel
-is in the DR.1's 11 o'clock and let us suppose the plane move forward at medium speed.
+is in the Dr.I's 11 o'clock and let us suppose the plane move forward at medium speed.
 If we apply first the Camel's move, the contact is lost and the intermediate page is page 223,
-where no maneuver is shown. On the other hand, if we apply first the DR.1's move, the intermediate
-page is page 60, where the Camel is in the DR.1's 10 o'clock at medium distance. Then we apply the
-Camel's move and we arrive on page 180. This number cannot be cross-checked.
+where no maneuver is shown.
+
+=for html
+<img src='Page-223-a.png' alt='British movement ending at page 223' />
+
+I<Personal picture. License is the same as for the text.>
+
+On the other hand, if we apply first the Dr.I's move, the intermediate
+page is page 60, where the Camel is in the Dr.I's 10 o'clock at medium
+distance.
+
+=for html
+<img src='Page-223-b.png' alt='German movement from page 180 to page 60' />
+
+I<Personal picture. License is the same as for the text.>
+
+Then we apply the Camel's move and  we arrive on page 180. This number
+cannot be cross-checked.
+
+=for html
+<img src='Page-223-c.png' alt='British movement from page 60 to page 180' />
+
+I<Personal picture. License is the same as for the text.>
 
 On the other hand, if both players' intermediate pages are page 223, or if the final page is page 223,
 the planes have really broken contact. Each player chooses to stay and fight or to flee.
