@@ -85,10 +85,27 @@ enddef;
 
 path aircraft;
 aircraft = (-1, 4) -- (-1, 6) -- (-4, 6) -- (4, 6) -- (1, 6) -- (1, 4)
---  (8, 4) -- (8, 1) -- (1, 1)
+--  (7, 4) -- (8, 1) -- (1, 1)
 -- (1, -5) -- (3, -7) -- (-3, -7) -- (-1, -5) -- (-1, 1)
--- (-8, 1) -- (-8, 4) -- cycle;
+-- (-8, 1) -- (-7, 4) -- cycle;
 
+path cross;
+cross = (1, 1) -- (3, 2) -- (3, -2) -- (1, -1) -- (2, -3) -- (-2, -3) -- (-1, -1) -- (-3, -2) -- (-3, 2) -- (-1, 1) -- (-2, 3) -- (2, 3) -- (1, 1);
+
+def DrI(expr x, y) =
+draw aircraft scaled (radius / 10) shifted(x, y);
+draw cross scaled (radius / 10) shifted(x + 0.6 * radius, y - 0.3 * radius);
+enddef;
+
+def Camel(expr x, y) =
+draw aircraft scaled (radius / 10) shifted(x, y);
+xc := x + 0.5 * radius;
+yc := y - 0.3 * radius;
+rc := 0.3 * radius;
+draw (xc + rc, yc) .. (xc, yc + rc) .. (xc - rc, yc) .. (xc, yc - rc) .. cycle;
+rc := 0.1 * radius;
+draw (xc + rc, yc) .. (xc, yc + rc) .. (xc - rc, yc) .. (xc, yc - rc) .. cycle;
+enddef;
 
 grid(  0,    0)
 grid(200,    0)
@@ -97,19 +114,12 @@ grid(200, -150)
 grid(  0, -300)
 grid(200, -300)
 
-draw aircraft scaled (radius / 10) shifted(  0,    0);
-draw aircraft scaled (radius / 10) shifted(200,    0);
-draw aircraft scaled (radius / 10) shifted(  0, -150);
-draw aircraft scaled (radius / 10) shifted(200, -150);
-draw aircraft scaled (radius / 10) shifted(  0, -300);
-draw aircraft scaled (radius / 10) shifted(200, -300);
-
-draw aircraft scaled (radius / 10) shifted(  0 - 2 * cos * radius,    0 + 5 * radius);
-draw aircraft scaled (radius / 10) shifted(200 - 2 * cos * radius,    0 + 7 * radius);
-draw aircraft scaled (radius / 10) shifted(  0 + 2 * cos * radius, -150 - 5 * radius);
-draw aircraft scaled (radius / 10) shifted(200 + 2 * cos * radius, -150 - 3 * radius);
-draw aircraft scaled (radius / 10) shifted(  0 - 2 * cos * radius, -300 + 3 * radius);
-draw aircraft scaled (radius / 10) shifted(200 - 2 * cos * radius, -300 + 5 * radius);
+DrI  (  0,    0); Camel(  0 - 2 * cos * radius,    0 + 5 * radius);
+DrI  (200,    0); Camel(200 - 2 * cos * radius,    0 + 7 * radius);
+Camel(  0, -150); DrI  (  0 + 2 * cos * radius, -150 - 5 * radius);
+Camel(200, -150); DrI  (200 + 2 * cos * radius, -150 - 3 * radius);
+DrI  (  0, -300); Camel(  0 - 2 * cos * radius, -300 + 3 * radius);
+DrI  (200, -300); Camel(200 - 2 * cos * radius, -300 + 5 * radius);
 
 drawarrow (200 - 2 * cos * radius,        4.5 * radius) -- (200 - 2 * cos * radius,        5.8 * radius);
 drawarrow (200 + 2 * cos * radius, -150 - 5.5 * radius) -- (200 + 2 * cos * radius, -150 - 4.2 * radius);
