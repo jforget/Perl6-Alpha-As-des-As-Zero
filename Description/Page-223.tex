@@ -96,7 +96,24 @@ grid(  0, -150)
 grid(200, -150)
 grid(  0, -300)
 grid(200, -300)
-draw aircraft scaled (radius / 10) shifted(120, 20);
+
+draw aircraft scaled (radius / 10) shifted(  0,    0);
+draw aircraft scaled (radius / 10) shifted(200,    0);
+draw aircraft scaled (radius / 10) shifted(  0, -150);
+draw aircraft scaled (radius / 10) shifted(200, -150);
+draw aircraft scaled (radius / 10) shifted(  0, -300);
+draw aircraft scaled (radius / 10) shifted(200, -300);
+
+draw aircraft scaled (radius / 10) shifted(  0 - 2 * cos * radius,    0 + 5 * radius);
+draw aircraft scaled (radius / 10) shifted(200 - 2 * cos * radius,    0 + 7 * radius);
+draw aircraft scaled (radius / 10) shifted(  0 + 2 * cos * radius, -150 - 5 * radius);
+draw aircraft scaled (radius / 10) shifted(200 + 2 * cos * radius, -150 - 3 * radius);
+draw aircraft scaled (radius / 10) shifted(  0 - 2 * cos * radius, -300 + 3 * radius);
+draw aircraft scaled (radius / 10) shifted(200 - 2 * cos * radius, -300 + 5 * radius);
+
+drawarrow (200 - 2 * cos * radius,        4.5 * radius) -- (200 - 2 * cos * radius,        5.8 * radius);
+drawarrow (200 + 2 * cos * radius, -150 - 5.5 * radius) -- (200 + 2 * cos * radius, -150 - 4.2 * radius);
+drawarrow (200 - 2 * cos * radius, -300 + 2.5 * radius) -- (200 - 2 * cos * radius, -300 + 3.8 * radius);
 
 label(btex Page 180 etex, (      5 * radius,      - 6 * radius));
 label(btex Page 223 etex, (200 - 5 * radius,      - 6 * radius));
