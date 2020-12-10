@@ -19,5 +19,17 @@ voitures-0.png: voitures.pdf
 voitures.pdf: voitures.lua voitures.tex
 	lualatex voitures.tex
 
+page-223: Page-223-a.png Page-223-b.png Page-223-c.png
+	display Page-223-c.png
+
+Page-223-a.png: Page-223.pdf
+	convert -crop '1400x650+500+500' -density 300 -background white -alpha deactivate Page-223.pdf Page-223-a.png
+
+Page-223-b.png: Page-223.pdf
+	convert -crop '1400x650+500+1150' -density 300 -background white -alpha deactivate Page-223.pdf Page-223-b.png
+
+Page-223-c.png: Page-223.pdf
+	convert -crop '1400x650+500+1770' -density 300 -background white -alpha deactivate Page-223.pdf Page-223-c.png
+
 Page-223.pdf: Page-223.tex
 	lualatex Page-223.tex
