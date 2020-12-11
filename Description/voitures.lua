@@ -46,7 +46,18 @@ function voiture1(x, y, angle, motif, legende, echelle)
   end;
   tex.print("cycle;");
   tex.print("draw voiture rotated " .. angle .. " shifted (" .. x .. "," .. y .. ")" .. " scaled " .. echelle .. motif .. " ;")
-  tex.print("label.rt(" .. legende .. ", (" .. echelle * (x + 10) .. "," .. echelle * (y + 10) .. "));");
+  -- tex.print("label.rt(" .. legende .. ", (" .. echelle * (x + 10) .. "," .. echelle * (y + 10) .. "));");
+  if legende == dq .. 'VW' .. dq then
+    tex.print("path croix;");
+    tex.print("croix =  (1, 1) -- (3, 2) -- (3, -2) -- (1, -1) -- (2, -3) -- (-2, -3) -- (-1, -1) -- (-3, -2) -- (-3, 2) -- (-1, 1) -- (-2, 3) -- (2, 3) -- (1, 1);");
+    tex.print("draw croix " .. " shifted (" .. x - 5 .. "," .. y - 5 .. ")" .. " scaled " .. echelle .. " ;")
+  end
+  if legende == dq .. 'Mini' .. dq then
+    tex.print("rb = " .. 3.5 * echelle .. ";")
+    tex.print("rr = " .. 1.5 * echelle .. ";")
+    tex.print("draw (rb, 0) .. (0, rb) .. (-rb, 0) .. (0, -rb) .. cycle " .. " shifted (" .. x - 5 .. "," .. y - 5 .. ")" .. " scaled " .. echelle .. " ;")
+    tex.print("draw (rr, 0) .. (0, rr) .. (-rr, 0) .. (0, -rr) .. cycle " .. " shifted (" .. x - 5 .. "," .. y - 5 .. ")" .. " scaled " .. echelle .. " ;")
+  end
 end
 
 function dessin(pos1, pos2, mvt1, mvt2)
