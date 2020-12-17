@@ -129,19 +129,10 @@ voisin à 10 heures, la manœuvre B qui fait avancer dans l'hexagone
 juste devant la position initiale et la manœuvre C qui permet un
 déplacement en crabe vers l'hexagone voisin à 2 heures.
 
-Désolé pour les hexagones en I<ASCII art>, un jour je referai les
-schémas en METAPOST. Peut-être.
+=for html
+<img src='hexagons-a-fr.png' alt='Représentation des mouvements possible sur la grille hexagonale' />
 
-
-  .                       --------
-  .                      /        \
-  .              --------    B     --------
-  .             /        \        /        \
-  .            (    A     --------     C    )
-  .             \        /        \        /
-  .              --------  départ  -------- 
-  .                      \        /
-  .                       -------- 
+I<Copie d'écran personnelle. Les conditions de licence sont les mêmes que pour le texte.>
 
 Suite à F<init.p6>, la seule page connue est la page 187 (outre la
 page 223 dont le statut est spécial). Le premier appel de F<maj.p6>
@@ -157,15 +148,10 @@ Le programme met à jour les enchaînements avec :
 
 Et la carte est complétée avec :
 
-  .                       --------
-  .                      /        \
-  .              --------    16    --------
-  .             /        \        /        \
-  .            (    15    --------    17    )
-  .             \        /        \        /
-  .              --------   187    -------- 
-  .                      \        /
-  .                       --------
+=for html
+<img src='hexagons-b.png' alt='Représentation sur la grille hexagonale des pages accessibles depuis la page 187' />
+
+I<Copie d'écran personnelle. Les conditions de licence sont les mêmes que pour le texte.>
 
 En examinant les pages nouvellement créées 15, 16 et 17 et en leur appliquant
 les manœuvres A, B et C, le programme constate que sur les 9 tentatives, deux
@@ -186,19 +172,10 @@ Le programme met à jour les enchaînements avec :
 
 Et la carte est complétée avec :
 
-  .                       -------- 
-  .                      /        \
-  .              --------    91    --------
-  .             /        \        /        \
-  .            (    46    --------   107    )
-  .             \        /        \        /
-  .              --------    16    --------
-  .             /        \        /        \
-  .            (    15    --------    17    )
-  .             \        /        \        /
-  .              --------   187    -------- 
-  .                      \        /
-  .                       --------
+=for html
+<img src='hexagons-c.png' alt='Remplissage de la grille hexagonale après la deuxième mise à jour' />
+
+I<Copie d'écran personnelle. Les conditions de licence sont les mêmes que pour le texte.>
 
 En examinant les pages nouvellement créées 46, 91 et 107 et en leur appliquant
 les manœuvres A, B et C, le programme

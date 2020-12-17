@@ -128,15 +128,10 @@ three maneuvers are:
 
 =back
 
-  .                       --------
-  .                      /        \
-  .              --------    B     --------
-  .             /        \        /        \
-  .            (    A     --------     C    )
-  .             \        /        \        /
-  .              --------   start  -------- 
-  .                      \        /
-  .                       -------- 
+=for HTML
+<img src='hexagons-a-en.png' alt="Graphical representation on the hexgrid of the allowed moves" />
+
+I<Personal picture. License is the same as for the text.>
 
 After F<init.p6>, the only known page is 187 (except for page 223, a special one).
 So the first run of F<maj.p6> is:
@@ -151,15 +146,10 @@ The program updates the transitions with:
 
 And the map is filled with:
 
-  .                       --------
-  .                      /        \
-  .              --------    16    --------
-  .             /        \        /        \
-  .            (    15    --------    17    )
-  .             \        /        \        /
-  .              --------   187    -------- 
-  .                      \        /
-  .                       --------
+=for HTML
+<img src='hexagons-b.png' alt="Graphical representation on the hexgrid of the pages accessibles from the start page" />
+
+I<Personal picture. License is the same as for the text.>
 
 The program processes the newly created pages, 15, 16 and 17 and applies the
 maneuvers A, B and C to them. With three hexes and three maneuvers, it makes
@@ -180,19 +170,8 @@ The program updates the transitions with:
 
 And the map expands with:
 
-  .                       -------- 
-  .                      /        \
-  .              --------    91    --------
-  .             /        \        /        \
-  .            (    46    --------   107    )
-  .             \        /        \        /
-  .              --------    16    --------
-  .             /        \        /        \
-  .            (    15    --------    17    )
-  .             \        /        \        /
-  .              --------   187    -------- 
-  .                      \        /
-  .                       --------
+=for HTML
+<img src='hexagons-c.png' alt="State of the hexgrid after the second round of updates" />
 
 Like the first time, the program applies the maneuvers to the newly
 created pages, with 9 attempts, 7 of which fail and 2 of which succeed.
