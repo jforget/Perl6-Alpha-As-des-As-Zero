@@ -1,0 +1,209 @@
+% -*- encoding: utf-8; indent-tabs-mode: nil -*-
+%
+%     Document to explain how the hexagons are used in the preparation programs
+%     Document pour expliquer l'utilisation des hexagones dans les programmes de préparation pour l'As des As
+%     Copyright (C) 2020 Jean Forget
+%
+%     This program is distributed under the same terms as Perl 5.16.3:
+%     GNU Public License version 1 or later and Perl Artistic License.
+%
+%     Here is the summary of GPL:
+%
+%     This program is free software; you can redistribute it and/or modify
+%     it under the terms of the GNU General Public License as published by
+%     the Free Software Foundation; either version 1, or (at your option)
+%     any later version.
+%
+%     This program is distributed in the hope that it will be useful,
+%     but WITHOUT ANY WARRANTY; without even the implied warranty of
+%     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+%     GNU General Public License for more details.
+%
+%     You should have received a copy of the GNU General Public License
+%     along with this program; if not, write to the Free Software Foundation,
+%     Inc., https://www.fsf.org/.
+%
+
+\documentclass[a4paper]{article}
+\usepackage{luamplib}
+%\usepackage{luatexko-mplib}
+
+\begin{document}
+
+\begin{mplibcode}
+beginfig(1);
+
+% for a more scalable figure
+radius   = 30;
+factor   = 1.0;
+
+cos      = 0.866;           % cosine of 30 degrees, sinus of 60 degrees
+radius1  = radius * factor; % radius from the hex center to an hexside
+radius2  = radius1 / cos;   % radius from the hex center to an hex angle
+
+def hex(expr x, y) = draw (x + radius2, y) -- (x + radius2 / 2, y - radius1) -- (x - radius2 / 2, y - radius1) -- (x - radius2, y) -- (x - radius2 / 2, y + radius1) -- (x + radius2 / 2, y + radius1) -- cycle; enddef;
+
+def grid(expr x, y) =
+hex(x - 6 * cos * radius, y - 3 * radius);
+hex(x - 6 * cos * radius, y -     radius);
+hex(x - 6 * cos * radius, y +     radius);
+hex(x - 6 * cos * radius, y + 3 * radius);
+hex(x - 4 * cos * radius, y - 4 * radius);
+hex(x - 4 * cos * radius, y - 2 * radius);
+hex(x - 4 * cos * radius, y);
+hex(x - 4 * cos * radius, y + 2 * radius);
+hex(x - 4 * cos * radius, y + 4 * radius);
+hex(x - 2 * cos * radius, y - 5 * radius);
+hex(x - 2 * cos * radius, y - 3 * radius);
+hex(x - 2 * cos * radius, y -     radius);
+hex(x - 2 * cos * radius, y +     radius);
+hex(x - 2 * cos * radius, y + 3 * radius);
+hex(x - 2 * cos * radius, y + 5 * radius);
+hex(x                   , y - 6 * radius);
+hex(x                   , y - 4 * radius);
+hex(x                   , y - 2 * radius);
+hex(x                   , y);
+hex(x                   , y + 2 * radius);
+hex(x                   , y + 4 * radius);
+hex(x                   , y + 6 * radius);
+hex(x + 2 * cos * radius, y - 5 * radius);
+hex(x + 2 * cos * radius, y - 3 * radius);
+hex(x + 2 * cos * radius, y -     radius);
+hex(x + 2 * cos * radius, y +     radius);
+hex(x + 2 * cos * radius, y + 3 * radius);
+hex(x + 2 * cos * radius, y + 5 * radius);
+hex(x + 4 * cos * radius, y - 4 * radius);
+hex(x + 4 * cos * radius, y - 2 * radius);
+hex(x + 4 * cos * radius, y);
+hex(x + 4 * cos * radius, y + 2 * radius);
+hex(x + 4 * cos * radius, y + 4 * radius);
+hex(x + 6 * cos * radius, y - 3 * radius);
+hex(x + 6 * cos * radius, y -     radius);
+hex(x + 6 * cos * radius, y +     radius);
+hex(x + 6 * cos * radius, y + 3 * radius);
+enddef;
+
+% grid with vii hexes
+def gridvii(expr x, y) =
+hex(x - 2 * cos * radius, y -     radius);
+hex(x - 2 * cos * radius, y +     radius);
+hex(x                   , y - 2 * radius);
+hex(x                   , y);
+hex(x                   , y + 2 * radius);
+hex(x + 2 * cos * radius, y -     radius);
+hex(x + 2 * cos * radius, y +     radius);
+enddef;
+
+% grid with iv hexes
+def gridiv(expr x, y) =
+hex(x - 2 * cos * radius, y +     radius);
+hex(x                   , y);
+hex(x                   , y + 2 * radius);
+hex(x + 2 * cos * radius, y +     radius);
+enddef;
+
+gridiv(0, 0);
+label(btex D\'epart etex, (  0               , 0));
+label(btex A        etex, (- 2 * cos * radius,     radius));
+label(btex B        etex, (  0               , 2 * radius));
+label(btex C        etex, (  2 * cos * radius,     radius));
+
+gridiv(200, 0);
+label(btex Start etex, (200                   , 0));
+label(btex A     etex, (200 - 2 * cos * radius,     radius));
+label(btex B     etex, (200                   , 2 * radius));
+label(btex C     etex, (200 + 2 * cos * radius,     radius));
+
+gridiv(0, -150);
+label(btex 187 etex, (  0               , -150 + 0));
+label(btex  15 etex, (- 2 * cos * radius, -150 +     radius));
+label(btex  16 etex, (  0               , -150 + 2 * radius));
+label(btex  17 etex, (  2 * cos * radius, -150 +     radius));
+
+gridvii(0, -300);
+label(btex 187 etex, (  0               , -300 - 2 * radius));
+label(btex  15 etex, (- 2 * cos * radius, -300 -     radius));
+label(btex  17 etex, (  2 * cos * radius, -300 -     radius));
+label(btex  16 etex, (  0               , -300             ));
+label(btex  46 etex, (- 2 * cos * radius, -300 +     radius));
+label(btex 107 etex, (  2 * cos * radius, -300 +     radius));
+label(btex  91 etex, (  0               , -300 + 2 * radius));
+
+endfig;
+\end{mplibcode}
+
+
+\begin{mplibcode}
+beginfig(1);
+
+% for a more scalable figure
+radius   = 20;
+factor   = 1.0;
+
+cos      = 0.866;           % cosine of 30 degrees, sinus of 60 degrees
+radius1  = radius * factor; % radius from the hex center to an hexside
+radius2  = radius1 / cos;   % radius from the hex center to an hex angle
+slope    = 0.577;           % slope of a 30 degree line
+
+def hex(expr x, y) = draw (x + radius2, y) -- (x + radius2 / 2, y - radius1) -- (x - radius2 / 2, y - radius1) -- (x - radius2, y) -- (x - radius2 / 2, y + radius1) -- (x + radius2 / 2, y + radius1) -- cycle; enddef;
+
+% grid with 7 hexes and labels
+def gridlabel(expr x, y) =
+hex(x - 2 * cos * radius, y -     radius);
+hex(x - 2 * cos * radius, y +     radius);
+hex(x                   , y - 2 * radius);
+hex(x                   , y);
+hex(x                   , y + 2 * radius);
+hex(x + 2 * cos * radius, y -     radius);
+hex(x + 2 * cos * radius, y +     radius);
+label(btex   2 etex, ( x                   , y - 2 * radius));
+label(btex   3 etex, ( x - 2 * cos * radius, y -     radius));
+label(btex   1 etex, ( x + 2 * cos * radius, y -     radius));
+label(btex 187 etex, ( x                   , y             ));
+label(btex  15 etex, ( x - 2 * cos * radius, y +     radius));
+label(btex  17 etex, ( x + 2 * cos * radius, y +     radius));
+label(btex  16 etex, ( x                   , y + 2 * radius));
+enddef;
+
+hshift := 0;
+vshift := 0;
+drawarrow (hshift             , vshift - 5 * radius) -- (hshift             , vshift + 5 * radius) withcolor green;
+drawarrow (hshift - 5 * radius, vshift             ) -- (hshift + 5 * radius, vshift             ) withcolor green;
+for i = -4 step 2 until 4 :
+  draw (hshift - 4 * radius, vshift + i * radius) -- (hshift + 4 * radius, vshift + i * radius) withcolor green;
+  draw (hshift + i * radius, vshift - 4 * radius) -- (hshift + i * radius, vshift + 4 * radius) withcolor green;
+endfor
+label.lrt(btex X etex, (hshift + 5 * radius, vshift             ));
+label.lrt(btex Y etex, (hshift             , vshift + 5 * radius));
+gridlabel(hshift, vshift);
+
+hshift :=  200;
+vshift := -200;
+drawarrow (hshift,              vshift - 5 * radius) -- (hshift,              vshift + 5 * radius) withcolor green;
+drawarrow (hshift - 5 * radius, vshift             ) -- (hshift + 5 * radius, vshift             ) withcolor green;
+for i = -4 step 2 until 4 :
+  draw (hshift - 4 * cos * radius, vshift + i * radius) -- (hshift + 4 * cos * radius, vshift + i * radius) withcolor green;
+  draw (hshift + i * cos * radius, vshift - 4 * radius) -- (hshift + i * cos * radius, vshift + 4 * radius) withcolor green;
+endfor
+label.lrt(btex X etex, (hshift + 5 * radius, vshift));
+label.lrt(btex Y etex, (hshift, vshift + 5 * radius));
+gridlabel(hshift, vshift);
+
+hshift :=    0;
+vshift := -400;
+drawarrow (hshift,              vshift - 5 * radius) -- (hshift,              vshift + 6 * radius) withcolor green;
+drawarrow (hshift - 5 * radius, vshift - 5 * slope * radius) -- (hshift + 5 * radius, vshift + 5 * slope * radius) withcolor green;
+for i = -4 step 2 until 4 :
+  draw (hshift - 4 * cos * radius, vshift + (i     - 4 * slope * cos) * radius)
+    -- (hshift + 4 * cos * radius, vshift + (i     + 4 * slope * cos) * radius) withcolor green;
+  draw (hshift + i * cos * radius, vshift + (i / 2 - 4              ) * radius)
+    -- (hshift + i * cos * radius, vshift + (i / 2 + 4              ) * radius) withcolor green;
+endfor
+label.lrt(btex X etex, (hshift + 5 * radius, vshift + 5 * cos * slope * radius));
+label.lrt(btex Y etex, (hshift, vshift + 6 * radius));
+gridlabel(hshift, vshift);
+
+endfig;
+\end{mplibcode}
+
+\end{document}
