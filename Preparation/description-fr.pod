@@ -130,7 +130,7 @@ juste devant la position initiale et la manœuvre C qui permet un
 déplacement en crabe vers l'hexagone voisin à 2 heures.
 
 =for html
-<img src='hexagons-a-fr.png' alt='Représentation des mouvements possible sur la grille hexagonale' />
+<img src='hexagons-a-fr.png' alt='Représentation des mouvements possible sur la grille hexagonale' width='30%' />
 
 I<Copie d'écran personnelle. Les conditions de licence sont les mêmes que pour le texte.>
 
@@ -149,7 +149,7 @@ Le programme met à jour les enchaînements avec :
 Et la carte est complétée avec :
 
 =for html
-<img src='hexagons-b.png' alt='Représentation sur la grille hexagonale des pages accessibles depuis la page 187' />
+<img src='hexagons-b.png' alt='Représentation sur la grille hexagonale des pages accessibles depuis la page 187' width='30%' />
 
 I<Copie d'écran personnelle. Les conditions de licence sont les mêmes que pour le texte.>
 
@@ -173,7 +173,7 @@ Le programme met à jour les enchaînements avec :
 Et la carte est complétée avec :
 
 =for html
-<img src='hexagons-c.png' alt='Remplissage de la grille hexagonale après la deuxième mise à jour' />
+<img src='hexagons-c.png' alt='Remplissage de la grille hexagonale après la deuxième mise à jour' width='30%' />
 
 I<Copie d'écran personnelle. Les conditions de licence sont les mêmes que pour le texte.>
 

@@ -129,7 +129,7 @@ three maneuvers are:
 =back
 
 =for HTML
-<img src='hexagons-a-en.png' alt="Graphical representation on the hexgrid of the allowed moves" />
+<img src='hexagons-a-en.png' alt="Graphical representation on the hexgrid of the allowed moves" width='30%' />
 
 I<Personal picture. License is the same as for the text.>
 
@@ -147,7 +147,7 @@ The program updates the transitions with:
 And the map is filled with:
 
 =for HTML
-<img src='hexagons-b.png' alt="Graphical representation on the hexgrid of the pages accessibles from the start page" />
+<img src='hexagons-b.png' alt="Graphical representation on the hexgrid of the pages accessibles from the start page" width='30%' />
 
 I<Personal picture. License is the same as for the text.>
 
@@ -171,7 +171,7 @@ The program updates the transitions with:
 And the map expands with:
 
 =for HTML
-<img src='hexagons-c.png' alt="State of the hexgrid after the second round of updates" />
+<img src='hexagons-c.png' alt="State of the hexgrid after the second round of updates" width='30%' />
 
 Like the first time, the program applies the maneuvers to the newly
 created pages, with 9 attempts, 7 of which fail and 2 of which succeed.
