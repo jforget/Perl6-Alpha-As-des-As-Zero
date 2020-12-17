@@ -267,6 +267,11 @@ thing.
 
 My first idea was to use orthonormal cartesian coordinates:
 
+=for HTML
+<img src='hexagons-on.png' alt="Graphical representation on the hexgrid with orthonormal coordinates" width='30%' />
+
+I<Personal picture. License is the same as for the text.>
+
   .                       -------- 
   .                      /        \               Number     X         Y
   .              --------    16    --------            2     0        -1
@@ -282,6 +287,11 @@ My first idea was to use orthonormal cartesian coordinates:
   .                       --------
 
 Then orthogonal cartesian coordinates, while not orthonormal:
+
+=for HTML
+<img src='hexagons-o.png' alt="Graphical representation on the hexgrid with orthogonal coordinates" width='30%' />
+
+I<Personal picture. License is the same as for the text.>
 
   .                       -------- 
   .                      /        \               Number     X         Y
@@ -302,6 +312,11 @@ but they are not perpendicular to each other, they are 60° (or 120°) apart.
 Do not laugh, some 
 L<vintage Avalon Hill wargames|https://boardgamegeek.com/boardgame/1711/richthofens-war>.
 use this kind of coordinates.
+
+=for HTML
+<img src='hexagons-n.png' alt="Graphical representation on the hexgrid with equidistant coordinate, but slanted" width='30%' />
+
+I<Personal picture. License is the same as for the text.>
 
   .                       -------- 
   .                      /        \               Number     X         Y

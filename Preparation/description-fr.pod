@@ -277,6 +277,11 @@ la notion d'hexagone.
 Au début, j'ai envisagé d'utiliser un système de coordonnées cartésiennes avec
 un repère orthonormé.
 
+=for html
+<img src='hexagons-on.png' alt='Représentation de la grille hexagonale dans un repère orthonormé' width='30%' />
+
+I<Copie d'écran personnelle. Les conditions de licence sont les mêmes que pour le texte.>
+
   .                       -------- 
   .                      /        \               Numéro     X         Y
   .              --------    16    --------            2     0        -1
@@ -292,6 +297,11 @@ un repère orthonormé.
   .                       --------
 
 Puis un repère orthogonal sans être normé
+
+=for html
+<img src='hexagons-o.png' alt='Représentation de la grille hexagonale dans un repère orthogonal' width='30%' />
+
+I<Copie d'écran personnelle. Les conditions de licence sont les mêmes que pour le texte.>
 
   .                       -------- 
   .                      /        \               Numéro     X         Y
@@ -311,6 +321,11 @@ Ou un repère normé sans être orthogonal (l'axe des X est incliné, tandis que
 l'axe des Y est, comme à l'accoutumée, vertical). Ne rigolez pas, certains
 jeux d'Avalon Hill utilisent un tel système de coordonnées.
 L<Suivez mon regard|https://boardgamegeek.com/boardgame/1711/richthofens-war>.
+
+=for html
+<img src='hexagons-n.png' alt='Représentation de la grille hexagonale dans un repère normé' width='30%' />
+
+I<Copie d'écran personnelle. Les conditions de licence sont les mêmes que pour le texte.>
 
   .                       -------- 
   .                      /        \               Numéro     X         Y
