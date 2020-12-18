@@ -287,7 +287,7 @@ If only one player has an intermediate page 223, we use the intermediate page of
 other player to obtain the final page of the game turn. You can no longer check the consistency
 of the final page as shown above. This situation arises, for example, when the planes are 
 pursuing each other at a big distance. Let us suppose we are on page 180, where the Camel
-is in the Dr.I's 11 o'clock and let us suppose the plane move forward at medium speed.
+is in the Dr.I's 11 1/2 o'clock and let us suppose the plane move forward at medium speed.
 If we apply first the Camel's move, the contact is lost and the intermediate page is page 223,
 where no maneuver is shown.
 
@@ -297,7 +297,7 @@ where no maneuver is shown.
 I<Personal picture. License is the same as for the text.>
 
 On the other hand, if we apply first the Dr.I's move, the intermediate
-page is page 60, where the Camel is in the Dr.I's 10 o'clock at medium
+page is page 60, where the Camel is in the Dr.I's 11 o'clock at medium
 distance.
 
 =for html
@@ -325,7 +325,8 @@ fight and lose and give a full victory to one's opponent.
 
 when a plane is in the other plane's rear quadrant (4 o'clock to 8 o'clock) with a similar
 heading, we consider that this plane is I<tailing> the other. It was the case on page 1
-above. I did not mention it for pedagogical reasons. When a plane is tailing another,
+above (and also on pages 48 and 96, please notice the "T" under the page numbers in the
+German booklet). I did not mention it for pedagogical reasons. When a plane is tailing another,
 the simultaneous moves are no longer quite simultaneous. The sequence of play is now
 the following:
 

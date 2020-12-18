@@ -312,7 +312,7 @@ Si un seul joueur a une page intermédiaire à 223, on utilise la page interméd
 pour obtenir la page finale. Impossible dans ce cas de faire la vérification présentée, expliquée et démythifiée
 au paragraphe précédent. Un tel cas de figure se produit par exemple lorsque les deux avions se poursuivent
 à grande distance. Supposons que nous soyons page 180, où le Camel est à longue distance
-dans les onze heures du Dr.I et supposons que les deux avions avancent tout droit à vitesse
+dans les onze heures  et demie du Dr.I et supposons que les deux avions avancent tout droit à vitesse
 moyenne. Si l'on applique d'abord le mouvement du Camel, le Dr.I le perd de vue temporairement et la page
 intermédiaire est la page 223, sur laquelle aucune manœuvre n'est indiquée.
 
@@ -323,7 +323,7 @@ I<Image personnelle. Les conditions de licence sont les mêmes que pour le texte
 
 En revanche,  si l'on applique  d'abord la  manœuvre du Dr.I,  la page
 intermédiaire est la  page 60 où le Camel est  à distance moyenne dans
-les 10 heures du Dr.I.
+les 11 heures du Dr.I.
 
 =for html
 <img src='Page-223-b.png' alt="Mouvement allemand de la page 180 à la page 60" />
@@ -351,7 +351,8 @@ faire descendre et d'accorder ainsi une victoire complète à son adversaire.
 
 Lorsqu'un avion est dans le quadrant arrière d'un autre (4 à 8 heures) et que
 son cap est identique ou presque, alors on dit qu'il poursuit l'autre avion.
-C'était le cas sur la page 1 présentée ci-dessus. Pour des raisons pédagogiques,
+C'était le cas sur la page 1 présentée ci-dessus (et aussi des pages 48 et 96, remarquez
+le S<« T »> sous le numéro de page dans le livret allemand). Pour des raisons pédagogiques,
 j'ai préféré faire le silence sur cette particularité.
 La simultanéité du choix des manœuvres est partiellement annulée. La séquence est la suivante
 
