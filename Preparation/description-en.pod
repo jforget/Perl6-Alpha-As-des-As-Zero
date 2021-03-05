@@ -15,7 +15,7 @@ page, that amounts to 2886 entries for each booklet.
 Fortunately, the different pages represent the location and heading of a 
 plane on a 37-hexagon grid, with 6 possible headings. By using this
 underlying geometry, we can just copy a significant subset of transitions
-(start page, maneuver) → end page and generate the other by geometrical
+(start page, maneuver) → end page and generate the other transitions by geometrical
 computation and by inference.
 
 Additionally, all the games of the series use the same 37-hexagon grid with
@@ -28,7 +28,7 @@ So I built the electronic version of the hex-grid using the FW190 booklet
 from I<Wingleader>, then I checked it by generating the booklets for
 the Sopwith Camel and the Fokker DR1 from I<Handy Rotary> and for the 
 P-51 and the FW190 from I<Wingleader>. I also generated booklets for
-a new game involving a sparrohawk and a hobbyist's drone.
+a new game involving a sparrowhawk and a hobbyist's drone.
 
 =head2 Warning
 
@@ -44,15 +44,14 @@ The patent has expired, but not the copyright on I<Handy Rotary> and
 I<Wingleader>. So I created a game "sparrowhawk vs. hobbyist drone",
 after recent incident reports describing brutal encounters between
 birds of prey and drones. In the game, the drone tries to film the bird, while the
-brid tries to destroy the drone.
+bird tries to destroy the drone.
 
 While most animals and most vehicules on Earth have a front / back
 orientation, the drone, a quadcopter, has no real orientation for its
-movements, a bit like jellyfish and sea anemones. It can easily move
+movements, a bit like jellyfish and sea anemones. It can move
 backward or sideways as easily as forward. It still has a front / back
 orientation, because I consider that the camera is rigidly fixed on
-the drone frame, so the front of the drone is the view field of the
-camera.
+the drone frame, so the front of the drone is the camera field of view.
 
 I do not pretend that the game is interesting, especially since I do not
 provide the pictures which are an important element for human players.

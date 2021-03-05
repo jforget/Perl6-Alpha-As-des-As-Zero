@@ -945,6 +945,86 @@ C<lib/site-coup.p6> may  be complicated, but they  mirror the decision
 process  exposed  in  the   documentation  for  C<pilote.p6>,  so  the
 documentation for C<pilote.p6> applies to C<lib/site-coup.p6> also.
 
+=head2 A Few Questions
+
+I have presented  this project during the French Perl  Workshop in May
+2018 and  during a  meeting of  DC.pm in  March 2021.  Here are  a few
+questions  I have  been  asked  and my  answers  (not necessarily  the
+answers I gave directly).
+
+Q. MongoDB is useful to store big  blobs of data, such as pictures. Do
+you intend to store the pictures from the booklet?
+
+A. No, for various reasons. First,  the copyright on the booklet still
+holds,  even if  the  patent  is in  the  public  domain. Second,  the
+experiment is about writing a program which knows nothing about flying
+and about air  combat, but which does  statistics and number-crunching
+to determine  the best move.  Using a picture would  sort-of discredit
+the idea  of a program  knowing nothing  about flying. Third,  I would
+need to  scan each one  of the 223 pages  for each booklet.  A lengthy
+endeavour, for a  (in my opinion) small benefit. And  for new craft or
+creatures, such as a drone or a sparrowhawk, I would need to draw from
+scratch the opponents.
+
+On the  other hand,  I think  that it  would be  nice if  the Bailador
+webpages would draw  the arrows for each maneuver, in  addition to the
+alphabetic code.
+
+Q. When an  AI learns to play  a game, such as  chess, the programmers
+uses some reference books describing  the game openings or some common
+techniques and tactics. Is there such a thing for I<Ace of Aces>?
+
+A. No.  Initializing an  AI with  game openings  was how  Google Alpha
+Chess was  written. But  its younger sibling  Google Alpha  Chess Zero
+started from  a clean  slate. I have  done the same  with I<As  des As
+Zéro>.
+
+Let us  leave aside my programs  and let us speak  about human newbies
+learning the game. Are there any reference books for them to learn the
+tricks  of  the  trade?  If  your consider  Chess  and  Go,  they  are
+I<classic> games with a huge number of players, so there is room for a
+big amount  of litterature on them.  You find very easily  hundreds of
+books  and  magazines devoted  to  these  games.  On the  other  hand,
+Mastermind and  Othello are  less famous, but  still classic.  You may
+find  I<some>  litterature,  but  not   much  (I  have  a  book  about
+Mastermind, my brother  has a book about Othello, but  that's all). On
+the third hand, for Ace of Aces, there are not enough players to write
+books and there are  not enough players to buy and  read books. On the
+other  hand, newbies  interested in  Ace of  Aces can  still read  the
+biographies of  von Richthofen,  Rickenbacker and Guynemer  and others
+and study the Dicta Boelke and the rules from Sailor Malan.
+
+Q. The mechanism of Ace of Aces  looks like a Markov chain. Can we use
+Markov chain methods to play the game?
+
+A. I know the concept of Markov chains, but I have never used them. So
+I cannot  give a  substantiated opinion.  Yes, the  game looks  like a
+Markov chain. But  there is a combinatory problem in  the game. In the
+basic "Handy Rotary" version, both planes have more than 20 maneuvers.
+In the  WWII version  "Wingleader", the planes  have 13  maneuvers. So
+there  are  169  possible  outcomes from  a  starting  situation  with
+Wingleader, there are more than 400 with Handy Rotary.
+
+Q. Is it possible to play a game between a human and an AI?
+
+A. Yes,  it would  be rather  simple to write  a player  program which
+interacts with a  human instead of gathering  statistics and crunching
+numbers. One problem is the time scale. I have included failsafe tests
+in the programs. It the umpire process does not receive an answer from
+either  player  process  for  about 50  seconds,  the  umpire  process
+considers that  the player  process has crashed,  aborted or  ended in
+some fashion  and it decides to  stop. Same thing if  a player process
+does not  receive an answer from  the umpire process. In  theory, this
+50-second time-out  should be  enough for  a human  player. This  is a
+simulation of  a fast-paced  aerial combat, so  the player  should not
+ponder for  5 minutes what would  be the best maneuver.  But actually,
+there are  several reasons why  a human  player would give  his answer
+after more  that 50  seconds: the  phone rings,  or the  doorbell, the
+microwave oven has finished warming the pizza, the baby starts to cry,
+etc.  A human  opponent easily  understands what  happens, a  computer
+opponent  would still  enforce  the 50-second  timeout without  second
+thoughts.
+
 =head2 Conclusion: Lessons Learned with Ace of Aces
 
 A point  which surprised me, although  I could have guessed  it before
@@ -957,7 +1037,7 @@ always choose to stay and fight, even in desperate situations.
 
 What happens  in the programs,  is that  choosing the flight  gives an
 always negative result: -0.5 VP is the  enemy stays, 0 VP if the enemy
-also chooses to flee, average -0.25 VP. On the other hand, choosing to
+also chooses to flee, on average -0.25 VP. On the other hand, choosing to
 go on fighting gives more or  less similar probabilities for a victory
 and for a defeat. On average, the win is 0 VP. There is no distinction
 between  desperate  cases where  the  aircraft  has  just one  or  two
