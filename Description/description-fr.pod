@@ -1227,11 +1227,46 @@ raisonnable.
 
 =head2 Utilisation
 
+=head3 La fonctionnalité de Raku la plus intéressante
+
+Cela  m'a   pris  très  longtemps   pour  me  rendre  compte   que  la
+particularité la  plus intéressante  de Raku est  qu'il a  beaucoup de
+points communs avec Perl, tant du point  de vue de la syntaxe et de la
+sémantique que du  point de vue de  la culture et de  la communauté de
+programmeurs.
+
+Voici un exemple de programme illustrant les points communs en syntaxe.
+
+  sub fact {
+    my ($n) = @_;
+    if ($n <= 1) {
+      return 1;
+    }
+    else {
+      return $n * fact($n - 1);
+    }
+  }
+
+  print join ' ', 5, fact(5), "\n";
+  print join ' ', 8, fact(8), "\n";
+  print join ' ', 12, fact(12), "\n";
+
+Ce programme est  valide aussi bien en  Perl qu'en Raku et  il fait la
+même  chose.  Bien  sûr,  certains  puristes  diront  qu'en  tant  que
+programme  Raku,  l'exemple  ci-dessus  n'a pas  un  très  bon  style.
+Reconnaissons toutefois que le fait d'avoir beaucoup de points communs
+entre ces  deux langages  fait qu'un  programmeur expérimenté  en Perl
+pourra assez facilement écrire des programmes Raku de base.
+
+Évidemment,  dans la  suite,  je m'intéresse  quasi exclusivement  aux
+différences entre Raku  et Perl, car si j'énumère  les points communs,
+cela ne vous apprendra pas grand-chose.
+
 =head3 Identifiants
 
 Il paraît qu'avec  Perl 5, on pouvait utiliser  des lettres accentuées
 dans les identifiants  de variable ou de fonction. Je  n'ai jamais osé
-le faire avec Perl  5, mais je ne m'en suis pas privé  avec Perl 6. De
+le faire  avec Perl 5, mais  je ne m'en  suis pas privé avec  Raku. De
 plus,  il  est  possible  d'utiliser   le  tiret  à  l'intérieur  d'un
 identifiant à la place du souligné. Avec quelques limites, par exemple
 le tiret ne peut pas être suivi  d'un chiffre, il faut que ce soit une

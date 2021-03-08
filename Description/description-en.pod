@@ -1076,7 +1076,7 @@ learned long ago  in APL, especially the operations  on lists (vectors
 in  APL  parlance) as  a  whole  instead  of processing  each  element
 separately in a loop.
 
-The most helpful  feature is actually the commonality  with Perl. Much
+The most helpful feature is actually the commonalities with Perl. Much
 of what  you write  in Raku  is very  similar to  what you  would have
 written  in   Perl:  curly  braces,  semi-colons,   C<my>  and  C<sub>
 operators, etc.
@@ -1186,6 +1186,122 @@ quarters") mode, where  choosing the attack has  a greater probability
 than choosing to flee.
 
 =head1 Annex: In Retrospect, My First Steps In Raku
+
+=head2 Installation
+
+=head2 Usage
+
+=head3 The Most Useful Feature Of Raku
+
+It took me much time to be  aware of this simple fact: the most useful
+feature of  Raku is that  it shares  many features with  Perl: syntax,
+semantics, even the programmers' community.
+
+An example about the common syntax: take this program.
+
+  sub fact {
+    my ($n) = @_;
+    if ($n <= 1) {
+      return 1;
+    }
+    else {
+      return $n * fact($n - 1);
+    }
+  }
+
+  print join ' ', 5, fact(5), "\n";
+  print join ' ', 8, fact(8), "\n";
+  print join ' ', 12, fact(12), "\n";
+
+It is valid both for Perl and Raku  and it does the same thing in both
+languages. Or course,  some purists will say that, as  a Raku program,
+this is programmed with bad style. But for a seasoned Perl programmer,
+writing basic Raku code is easy.
+
+Of course, in the following, I  will give the differences between Raku
+and Perl, because  if I limit myself to the  common features, you will
+not learn much.
+
+=head3 Identifiers
+
+It  seems that  with some  recent versions  of Perl,  you can  include
+accents in the variable names and  the function names. I never dare do
+this in Perl,  but in Raku is  has become customary. In  the same way,
+you can use  the dash or hyphen inside an  identifiers where you would
+use underscore in  Perl. There are a few conditions,  though. The char
+following the hyphen  must be a letter. You can  write C<$coef-a>, but
+not C<$coef-1>,  which would be  interpreted as a  subtraction between
+C<$coef> and C<1>.
+
+The downside  of this is  that sometimes, I declare  a C<$return-code>
+variable and  then I use  C<$return_code> (or the opposite).  I should
+use Emacs' auto-completion  more often. Another downside  is that with
+vowels properly accented, I feel  more inclined to use French variable
+names than in Perl and for you, reading my code is more difficult.
+
+=head3 Negative Indices in Arrays
+
+At one time, I had to add together the elements of two arrays, in this
+fashion (Perl syntax):
+
+  $t[0] = $a[0] + $b[4];
+  $t[1] = $a[1] + $b[5];
+  $t[2] = $a[2] + $b[0];
+  $t[3] = $a[3] + $b[1];
+  $t[4] = $a[4] + $b[2];
+  $t[5] = $a[5] + $b[3];
+
+With negative indices, these lines can be rewritten this way in Perl:
+
+  $t[0] = $a[0] + $b[-2];
+  $t[1] = $a[1] + $b[-1];
+  $t[2] = $a[2] + $b[ 0];
+  $t[3] = $a[3] + $b[ 1];
+  $t[4] = $a[4] + $b[ 2];
+  $t[5] = $a[5] + $b[ 3];
+
+You can compact this with an explicit loop:
+
+  for (0..5) {
+    $t[$_] = $a[$_] + $b[$_ - 2];
+  }
+
+or an implicit one:
+
+  @t = map { $a[$_] + $b[$_ - 2] } 0..5;
+
+But in Raku,  you cannot use negative indices. The proper Raku syntax is:
+
+  @t[0] = @a[0] + @b[* - 2];
+  @t[1] = @a[1] + @b[* - 1];
+  @t[2] = @a[2] + @b[ 0];
+  @t[3] = @a[3] + @b[ 1];
+  @t[4] = @a[4] + @b[ 2];
+  @t[5] = @a[5] + @b[ 3];
+
+So it is impossible to do this in a single loop in Raku. Raku sucks...
+
+...Then  I remembered  APL. How  would I  have done  this in  APL? APL
+allows  you  to  do  this  kind of  computation  without  a  loop,  by
+processing vectors (APL-parlance  for "arrays") as a  whole. First you
+rotate vector  B to bring  the element with index  4 (*) in  the first
+position.  Then you  add this  vector to  vector A  and you  store the
+result in vector T.
+
+(*) Actually, in  APL, it is customary  to begin with index  1. So, in
+this case, you bring the element with index 5 in the first position.
+
+So you write:
+
+  T ← A + ¯2 ⌽ B
+
+You can do the same in Raku:
+
+  @t = @a «+» @b.rotate(-2);
+
+The syntax is a bit less elegant, but the semantics are the same.
+
+APL rules! Raku rules!
 
 
 =head1 License
