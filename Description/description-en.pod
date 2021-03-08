@@ -1061,13 +1061,14 @@ microwave oven  beeps because the  pizza is  warm, the baby  starts to
 cry, his two older siblings start  a row, the dog looks imploringly at
 you with the leash in its mouth,
 L<etc|https://www.imdb.com/title/tt0080455/quotes?item=qt0320024>.
-A  human  opponent easily  understands  that  real life  interfers,  a
+A human opponent  would easily understand that real  life interfers, a
 computer opponent  would still  enforce the 50-second  timeout without
 second thoughts.
 
 Lastly, a question more about Raku than about Ace of Aces.
 
-Q. What was the most helpful feature of Raku when developing AoA?
+Q. What  was the most helpful  feature of Raku when  developing Ace of
+Aces?
 
 A. On  3rd March,  I answered  the wrong  question. The  most pleasing
 feature (not the most helpful) is  that Raku uses some features I have
@@ -1079,6 +1080,77 @@ The most helpful  feature is actually the commonality  with Perl. Much
 of what  you write  in Raku  is very  similar to  what you  would have
 written  in   Perl:  curly  braces,  semi-colons,   C<my>  and  C<sub>
 operators, etc.
+
+=head2 Todo List And Vaporware
+
+Here is  a list of  possible improvements for  this project. I  do not
+necessarily  intend to  achieve all  of them.  That is  why the  title
+mentions  "vaporware". If  you  are interested  in implementing  these
+points, you can still get in touch with me.
+
+=head3 Coding Standards
+
+The biggest mistake I did in this project was thinking that I would be
+the only one to read and write code. So I used French names for nearly
+everything:  database  keys,  variable  names,  function  names,  code
+comments, user documentation and contents  of the webpages. The result
+is  that  except  for  French-speaking programmers,  my  programs  are
+completely obscure.
+
+So I will rewrite at least  the game part using English names, English
+comments,  English  whatever.  And  the  webpage  generation  will  be
+multilingual,  generating  English-speaking pages  or  French-speaking
+pages depending  on the user's  choice. The preparation step  might be
+translated in English, but not soon.
+
+=head3 Graphics, Part 1
+
+Until now,  I was perfectly OK  with displaying the maneuvers  as mere
+alphabetic codes. Now, I think it would be better if the arrow symbols
+could be displayed together with the alpha maneuver code.
+
+=head3 Graphics, Part 2
+
+As already  mentioned above,  some people  think it  would be  nice to
+display the full images from the booklets.  I do not plan to do it for
+myself, but if you are interested in this, you can fork my Github repo
+and add this functionality.
+
+=head3 Website
+
+In  addition  to  multi-linguism,   the  website  should  be  somewhat
+improved: more queries, more options...
+
+=head3 Training Mode
+
+When starting a game and when resuming a game after visiting page 223,
+it is customary to use a neutral page, that is, page 170. So this page
+is over-represented in  the database. While the use of  a neutral page
+is justified  in competitive games,  it is not important  for training
+games.  So  the  umpire   program  should  accept  a  C<starting-page>
+parameter to expand the coverage of the database.
+
+=head3 Human-vs-AI Mode
+
+There should be a human player  program, which would prompt for a play
+and read the user's answer  from the command-line. As explained above,
+the  programs should  be adapted  to switch  to a  mode with  a longer
+timeout duration.
+
+Or instead of the command line, the human-player program could display
+a simple web-form and read the player's answer with this web-form.
+
+=head3 Compatibility of Maneuvers
+
+Enforce the rule about  the compatibility between successive maneuvers
+to prevent, for example, helicopter-like hovering. The problem is that
+this would obsolete all previous games in the database.
+
+=head3 Other AI Technologies
+
+Instead of  a pure number-crunching  AI, program a  neural-network AI.
+The problem is that I do  not know anything about neural networks. But
+if someone else is interested, fine by me.
 
 =head2 Conclusion: Lessons Learned with Ace of Aces
 
@@ -1112,6 +1184,8 @@ shortens the  training session and it  reduces the amount of  data for
 future fights.  For this reason, I  have created a I<à  outrance> ("no
 quarters") mode, where  choosing the attack has  a greater probability
 than choosing to flee.
+
+=head1 Annex: In Retrospect, My First Steps In Raku
 
 
 =head1 License
