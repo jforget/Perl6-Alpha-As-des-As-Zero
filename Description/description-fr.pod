@@ -965,11 +965,11 @@ Le programme affecte des S<« poids »> à chaque manœuvre, en prenant la
 psycho-rigidité du pilote et en l'élevant à la puissance correspondant
 à l'évaluation de la manœuvre. Une fois les poids calculés pour toutes
 les  manœuvres, le  programme  les  normalise pour  avoir  une loi  de
-probabilité. Pour faciliter le tirage  au sort, le programme convertit
-cette  loi  de  probabilité  en fonction  de  répartition.  Enfin,  le
-programme tire  un nombre pseudo-aléatoire dans  l'intervalle 0..1, le
-croise avec la fonction de répartition  et en déduit la manœuvre tirée
-au sort.
+probabilité (P(A), P(B),  P(C)...). Pour faciliter le  tirage au sort,
+le  programme  convertit  cette  loi de  probabilité  en  fonction  de
+répartition (P(A),  P(A+B), P(A+B+C)...). Enfin, le  programme tire un
+nombre  pseudo-aléatoire dans  l'intervalle  0..1, le  croise avec  la
+fonction de répartition et en déduit la manœuvre tirée au sort.
 
 C'est  plus clair  avec quelques  exemples. Supposons  que nous  ayons
 trois manœuvres, avec respectivement les  évaluations -2, 1 et 2. Pour
@@ -1334,14 +1334,14 @@ Remarque S<préliminaire :> j'aurais pu écrire ce paragraphe au moment de
 la présentation en 2018 et je n'y ai pas pensé. Je me rattrape en
 2020.
 
-Dans les scripts utilisés pour jouer l'As des As, à un moment j'ai besoin
-de calculer la fonction de répartition d'une loi de probabilité discrète
-connaissant sa loi de répartition. Je ne vais pas vous faire un cours de 
-probabilité, alors je vais utiliser un exemple similaire. En prenant une
-année normale, sans 29 février, il s'agit de prendre un tableau contenant
-le nombre de jours par mois et de calculer le tableau contenant pour chaque
-mois le nombre de jours entre le 1er janvier et la fin du mois.
-Le vecteur de départ est 
+Dans les  scripts utilisés pour  jouer l'As des  As, à un  moment j'ai
+besoin de calculer la fonction de répartition d'une loi de probabilité
+discrète. Je ne vais pas vous  faire un cours de probabilité, alors je
+vais utiliser un exemple similaire. En prenant une année normale, sans
+29 février,  il s'agit de  prendre un  tableau contenant le  nombre de
+jours par mois et de calculer le tableau contenant pour chaque mois le
+nombre de jours entre le 1er janvier  et la fin du mois. Le vecteur de
+départ est
 
   31 28 31 30 31 30 31 31 30 31 30 31
 
