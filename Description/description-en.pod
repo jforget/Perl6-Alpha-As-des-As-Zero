@@ -1076,9 +1076,9 @@ learned long ago  in APL, especially the operations  on lists (vectors
 in  APL  parlance) as  a  whole  instead  of processing  each  element
 separately in a loop.
 
-The most helpful feature is actually the commonalities with Perl. Much
-of what  you write  in Raku  is very  similar to  what you  would have
-written  in   Perl:  curly  braces,  semi-colons,   C<my>  and  C<sub>
+L<The Most Useful Feature Of  Raku> is actually the commonalities with
+Perl. Much of what you write in Raku is very similar to what you would
+have  written in  Perl: curly  braces, semi-colons,  C<my> and  C<sub>
 operators, etc.
 
 =head2 Todo List And Vaporware
@@ -1216,7 +1216,29 @@ An example about the common syntax: take this program.
 It is valid both for Perl and Raku  and it does the same thing in both
 languages. Or course,  some purists will say that, as  a Raku program,
 this is programmed with bad style. But for a seasoned Perl programmer,
-writing basic Raku code is easy.
+writing  basic  Raku code  is  easy.  The seasoned  Perl  programmer's
+"baby-Raku" is much richer than the total newbie's "baby-Raku".
+
+If you  want to know  what a  more idiomatic factorial  function would
+look like, here is a simple example:
+
+  sub fact(Int $n --> Int) {
+    if $n ≤ 1 {
+      return 1;
+    }
+    else {
+      return $n × fact($n - 1);
+    }
+  }
+
+Another more elaborated and yet shorter example:
+
+  multi sub fact(Int $n where $n ≤ 1 --> Int) {
+    return 1;
+  }
+  multi sub fact(Int $n where $n > 1 --> Int) {
+    return $n × fact($n - 1);
+  }
 
 Of course, in the following, I  will give the differences between Raku
 and Perl, because  if I limit myself to the  common features, you will
@@ -1238,6 +1260,13 @@ variable and  then I use  C<$return_code> (or the opposite).  I should
 use Emacs' auto-completion  more often. Another downside  is that with
 vowels properly accented, I feel  more inclined to use French variable
 names than in Perl and for you, reading my code is more difficult.
+
+Actually, even English speakers can benefit of the new syntax for variable
+names. Take for example my first Raku module, the
+L<French Revolutionary calendar module|https://modules.raku.org/dist/Date::Calendar::FrenchRevolutionary:cpan:JFORGET>
+first released in 2019. In the English speaking examples, I have used
+variable names such as C<$Bonaparte's-coup> and
+C<$Robespierre's-downfall>.
 
 =head3 Negative Indices in Arrays
 
@@ -1303,6 +1332,21 @@ The syntax is a bit less elegant, but the semantics are the same.
 
 APL rules! Raku rules!
 
+=head2 MongoDB
+
+=head2 Bailador
+
+=head1 Conclusion
+
+I like Raku very much. I had some projects for which I intended to
+use APL. Maybe I will use Raku instead.
+
+About choosing  Ace of Aces for  a Google Alpha Go  Zero-like project,
+you must remember it is a game simpler than Chess and Go. More complex
+than Tic-Tac-Toe, but  way much simpler that both  classic games. This
+is  why I  have been  able to  create a  "Alpha Ace  of Aces  Zero" by
+myself,  on a  datacenter consisting  of  a single  PC with  mid-range
+performance.
 
 =head1 License
 

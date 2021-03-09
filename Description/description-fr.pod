@@ -1256,7 +1256,30 @@ même  chose.  Bien  sûr,  certains  puristes  diront  qu'en  tant  que
 programme  Raku,  l'exemple  ci-dessus  n'a pas  un  très  bon  style.
 Reconnaissons toutefois que le fait d'avoir beaucoup de points communs
 entre ces  deux langages  fait qu'un  programmeur expérimenté  en Perl
-pourra assez facilement écrire des programmes Raku de base.
+pourra  assez  facilement  écrire  des  programmes  Raku  de base.  Le
+S<« baby-Raku »>  d'un programmeur expérimenté en  Perl sera nettement
+plus riche que celui d'un débutant complet.
+
+Si vous voulez savoir à quoi ressemblerait une fonction factorielle en
+Raku plus idiomatique, la S<voici :>
+
+  sub fact(Int $n --> Int) {
+    if $n ≤ 1 {
+      return 1;
+    }
+    else {
+      return $n × fact($n - 1);
+    }
+  }
+
+Une autre version S<idiomatique :>
+
+  multi sub fact(Int $n where $n ≤ 1 --> Int) {
+    return 1;
+  }
+  multi sub fact(Int $n where $n > 1 --> Int) {
+    return $n × fact($n - 1);
+  }
 
 Évidemment,  dans la  suite,  je m'intéresse  quasi exclusivement  aux
 différences entre Raku  et Perl, car si j'énumère  les points communs,
@@ -1273,6 +1296,12 @@ le tiret ne peut pas être suivi  d'un chiffre, il faut que ce soit une
 lettre.  On peut  écrire  C<$coef-a>,  mais on  ne  peut pas  utiliser
 C<$coef-1>, il faut utiliser  C<$coef_1>, car C<$coef-1> représente la
 valeur de C<$coef> diminuée de 1.
+
+On  peut  également utiliser  des  simples  quotes  dans les  noms  de
+variable et créer, par exemple, une variable C<$aujourd'hui>. Voir les
+exemples (en anglais) de mon
+L<module de calendrier républicain|https://modules.raku.org/dist/Date::Calendar::FrenchRevolutionary:cpan:JFORGET>,
+avec les variables C<$Bonaparte's-coup> et C<$Robespierre's-downfall>.
 
 L'inconvénient, c'est que j'ai tendance à déclarer une variable C<$code-retour>
 et à l'appeler ensuite C<$code_retour> (ou l'inverse). Je devrais utiliser
