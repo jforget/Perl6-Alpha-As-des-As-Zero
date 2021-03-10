@@ -1033,6 +1033,62 @@ programme C<lib/site-coup.p6>, les informations  affichées sont un peu
 compliquées,  mais elles  reproduisent le  processus décisionnel  déjà
 présenté dans le programme C<joueur.p6>.
 
+=head2 Quelques questions
+
+J'ai présenté  ce projet  aux Journées  Perl en mai  2018, puis  à une
+réunion de  Washington DC.pm  (en téléprésence,  ne rêvez  pas). Voici
+celles que  j'ai retenues, ainsi  que mes réponses (pas  forcément les
+mêmes que celles que j'ai fournies lors de ma présentation).
+
+Q. MongoDB  est très utile pour  stocker des gros paquets  de données,
+comme  des  fichiers graphiques.  As-tu  l'intention  d'y stocker  les
+images provenant des livrets ?
+
+R. Non.  Et pour plusieurs raisons.  Tout d'abord, il y  a toujours un
+copyright sur les livrets, même si le brevet est tombé dans le domaine
+public.  Ensuite,  mon  projet  est une  expérience  pour  écrire  des
+programmes qui pratiquent le combat  aérien sans rien savoir du combat
+aérien, simplement en moulinant  des statistiques. Afficher des images
+pourrait jeter le doute sur le  fait que les programmes ne connaissent
+rien  au  combat  aérien  (un   argument  assez  faible,  je  dois  le
+reconnaître). Finalement, je  serais obligé de scanner  223 pages pour
+chaque livret.  Une tâche  longue pour, selon  moi, un  gain ridicule.
+Pis, dans le cas d'engins et de créatures nouveaux, il faudrait que je
+les dessine, ce qui serait encore plus chronophage.
+
+D'un autre  côté, cela serait bien  si les pages servies  par Bailador
+pouvaient  contenir les  flèches de  manœuvres, et  pas seulement  les
+codes alphabétiques.
+
+Q. Mais on peut voir sur le web  des pages ou des vidéos avec des gens
+qui  reproduisent les  images de  l'As des  As. Tu  ne peux  pas faire
+pareil ?
+
+R. Comme je l'ai dit, scanner 223 pages pour chaque livret est long et
+je  n'y  trouve  pas  suffisamment  d'intérêt.  Si  vous  avez  envie,
+faites-le et  scannez les livrets pour  votre utilisation personnelle.
+Mais évitez de  diffuser le résultat. Montrer 5 ou  6 images provenant
+de l'As des  As, c'est une utilisation raisonnable du  contenu de l'As
+des As.  Publier la totalité  des 223  images, c'est une  violation du
+copyright.
+
+Q. Combien de tours dure une partie de l'As des As ?
+
+R. Entre  deux humains, ce  n'est pas  facile de savoir.  Lorsque nous
+jouons, le décompte  des tours de jeu  est le cadet de  nos soucis. En
+terme de  temps réel,  le site  I<Board Game Geek>  donne un  ordre de
+grandeur de  20 minutes. Cela  doit correspondre  plus ou moins  à une
+centaine de tours de jeu.
+
+Si  je regarde  dans ma  base de  données, je  constate qu'une  partie
+d'entraînement entre deux programmes dure entre  4 et 83 tours de jeu.
+Et une  partie S<« pour> de  S<vrai »> dure  entre 13 et 131  tours de
+jeu. Mais c'est le jeu entre l'épervier  et le drone, qui n'est pas du
+tout équilibré.
+
+=head2 Reste à Faire
+
+
 =head2 Conclusion : Retour d'expérience sur l'As des As
 
 Un  point qui  m'a  surpris et  auquel j'aurais  pu  penser, c'est  la

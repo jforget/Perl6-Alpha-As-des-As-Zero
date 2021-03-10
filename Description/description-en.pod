@@ -962,11 +962,11 @@ holds,  even if  the  patent  is in  the  public  domain. Second,  the
 experiment is about writing a program which knows nothing about flying
 and about air  combat, but which does  statistics and number-crunching
 to determine  the best move.  Using a picture would  sort-of discredit
-the idea  of a program  knowing nothing  about flying. Third,  I would
-need to  scan each one  of the 223 pages  for each booklet.  A lengthy
-endeavour, for a  (in my opinion) small benefit. And  for new craft or
-creatures, such as a drone or a sparrowhawk, I would need to draw from
-scratch the opponents.
+the idea  of a  program knowing  nothing about  flying (a  rather weak
+argument, I admit).  Third, I would need  to scan each one  of the 223
+pages for  each booklet. A  lengthy endeavour,  for a (in  my opinion)
+small benefit. And  for new craft or  creatures, such as a  drone or a
+sparrowhawk, I would need to draw from scratch the opponents.
 
 On the  other hand,  I think  that it  would be  nice if  the Bailador
 webpages would draw  the arrows for each maneuver, in  addition to the
@@ -1220,7 +1220,7 @@ writing  basic  Raku code  is  easy.  The seasoned  Perl  programmer's
 "baby-Raku" is much richer than the total newbie's "baby-Raku".
 
 If you  want to know  what a  more idiomatic factorial  function would
-look like, here is a simple example:
+look like, here is what it would look like:
 
   sub fact(Int $n --> Int) {
     if $n ≤ 1 {
@@ -1331,6 +1331,76 @@ You can do the same in Raku:
 The syntax is a bit less elegant, but the semantics are the same.
 
 APL rules! Raku rules!
+
+=head3 Unicode Operators
+
+Another point I  like in APL is  the fact that you  can compare values
+with ≤ and  ≥ (U+2264 and U+2265)  instead of <= and  >=. Even better,
+you can multiply number with ×  (U+00D7) instead of this horrible star
+that all other programming languages use.  We can do the same in Raku,
+using ≤ ≥ and ×. When I worked  on an APL project in 2014--2015, I had
+written an  Emacs-Lisp function  C<apl-insert> which would  insert APL
+special chars into the source code. When  I discovered I could use ≤ ≥
+and × in Raku,  I copied the Emacs-Lisp file into  the directory of my
+Raku project, without  even renaming the function or  removing the APL
+characters useless in Raku.
+
+On the  other hand,  Perl already  knew multiplication  with something
+other than  a star. With  x (U+0078, letter  "x"), you can  multiply a
+string by a  number or a list by a  number. Unfortunately, the numeric
+multiplication was still the horrible star.
+
+By the  way, string  repetition and  list repetition  in Raku  are two
+different  operations, respectively  C<x>  and C<xx>.  Do not  confuse
+them. You have been warned.
+
+=head3 Another Legacy From APL
+
+In  the  Ace  of  Aces  programs, I  need  to  convert  a  probability
+distribution into a  cumulative distribution. If you do  not know what
+that means,  I will take another  example. Let us take  a normal year,
+without 29th February.  We are given an array with  the number of days
+per month.  And we  need to compute  the number of  days from  the 1st
+January until the end of each month. The input vector is
+
+  31 28 31 30 31 30 31 31 30 31 30 31
+
+in APL and
+
+  0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31
+
+in Raku. Remember that in APL the  indices usually start at 1 and that
+in Raku  they start at 0.  Let us call  this vector C<NBD> in  APL and
+C<@nbd> in Raku.
+
+If we just want to know how many days are in a year, we just type
+
+  +/NBD
+  [+] @nbd
+
+and we get 365. But what about for the number of days from 1st January
+until the end of  each month? It is easy in APL,  you just replace the
+slash by a backslash.
+
+  +\NBD
+
+which gives
+
+  31 59 90 120 151 181 212 243 273 304 334 365
+
+In  my French-speaking  books on  APL, this  is called  a I<balayage>,
+which translates as "sweep". I do not know the English term. Can we do
+the  same in  Raku?  Enboldened by  the success  in  the previous  two
+paragraphs, I thought  that if a sweep  can be done in APL,  it can be
+done also in Raku. And if you use  a backslash in APL, you would use a
+backslash also in Raku. So I tried
+
+  [\+] @nbd
+
+and O frabjous day! Callooh! Callay! it works!
+
+  0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334,  365
+
 
 =head2 MongoDB
 
