@@ -1254,9 +1254,9 @@ not learn much.
 =head3 Identifiers
 
 It  seems that  with some  recent versions  of Perl,  you can  include
-accents in the variable names and  the function names. I never dare do
-this in Perl,  but in Raku is  has become customary. In  the same way,
-you can use  the dash or hyphen inside an  identifiers where you would
+accents in the variable names and the function names. I never dared do
+this in Perl, but in Raku it is has become customary. In the same way,
+you can  use the dash or  hyphen inside an identifier  where you would
 use underscore in  Perl. There are a few conditions,  though. The char
 following the hyphen  must be a letter. You can  write C<$coef-a>, but
 not C<$coef-1>,  which would be  interpreted as a  subtraction between
@@ -1408,6 +1408,62 @@ and O frabjous day! Callooh! Callay! it works!
 
   0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334,  365
 
+Later, in March 2020, I needed another APL operator for my
+L<Maya calendar module|https://modules.raku.org/dist/Date::Calendar::MayaAztec:cpan:JFORGET>,
+to convert a long count into a number of days or the opposite.
+Since you may not be familiar with the Maya calendar, here is
+a similar example:
+
+A million of seconds is equal  to how many weeks, days, hours, minutes
+and seconds?
+
+      52 7 24 60 60 ⊤ 1000000
+  1 4 13 46 40
+
+A million  seconds is one  week, 4 days, 13  hours, 46 minutes  and 40
+seconds. Check:
+
+      52 7 24 60 60 ⊥ 1 4 13 46 40
+  1000000 
+
+I did not find alone the Raku equivalent. I asked on a
+mailing-list and I was redirected to
+L<the polymod function|https://docs.raku.org/routine/polymod>
+(thank you Laurent). Just one point, the order of parameter is
+different from APL:
+
+  say 1000000.polymod(60, 60, 24, 7, 52)
+  # --> (40 46 13 4 1 0)
+
+=head3 L-value Substring
+
+when I  learned Perl,  at the  end of  the last  century, there  was a
+functionality which thrilled me and made me understand that Perl 5 was
+not "just one  more programming language". This  functionality was the
+possibility of  using the C<substr>  function in  the left part  of an
+assignment:
+
+  substr($_,  0, 0) = "Larry";
+  substr($_,  0, 1) = "Moe";
+  substr($_, -1, 1) = "Curly";
+
+in I<Programming Perl> 2nd edition, pages 227 and 228.
+
+When I began using Raku, I had no doubt that it would still work. This
+shiny idea would obviously be present in Raku.
+
+Well, no. The first time I tried this kind of assignment, I got an error:
+
+  Cannot modify an immutable Str
+
+I did not find anything about modifying a substring in the books where I learned Raku.
+I tried the L<online documentation for substr|https://docs.perl6.org/routine/substr>,
+nothing either. I had to ask for the
+L<list of standard types|https://docs.perl6.org/type.html>.
+and then go to the
+L<online documentation of type Str|https://docs.perl6.org/type/Str>
+to at last find what I needed: the
+L<function C<substr-rw>|https://docs.perl6.org/type/Str#method_substr-rw>.
 
 =head2 MongoDB
 

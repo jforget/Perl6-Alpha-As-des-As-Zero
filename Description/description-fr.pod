@@ -1086,6 +1086,33 @@ Et une  partie S<« pour> de  S<vrai »> dure  entre 13 et 131  tours de
 jeu. Mais c'est le jeu entre l'épervier  et le drone, qui n'est pas du
 tout équilibré.
 
+Q. Quand un programme d'intelligence artificielle apprend à jouer à un
+jeu, les programmeurs ont recours  à des livres de référence décrivant
+les techniques usuelles et les ouvertures de parties. Peut-on faire de
+même avec S<l'I<As des As> ?>
+
+R. Non. Il y a eu une phase d'initialisation de l'IA pour Google Alpha
+Go. Mais pour  son cadet Google Alpha Go Zéro,  le programme est parti
+de rien. J'ai fait de même avec l'I<As des As Zéro>.
+
+Laissons de côté les programmes et prenons le cas de débutants humains
+apprenant un jeu. Y a-t-il des  livres de référence pour apprendre les
+trucs et  astuces du jeu ?  So vous examinez  les Échecs ou le  Go, il
+s'agit de jeux I<classiques> avec un  nombre énorme de joueurs. Il y a
+donc  un marché  pour  une  masse importante  de  littérature et  vous
+trouvez facilement des tonnes de livres  et de magazines sur le sujet.
+D'un autre côté, des jeux comme Othello et le Mastermind sont des jeux
+classiques, mais moins  connus. On peut trouver un  peu de littérature
+(j'ai un  livre sur le Mastermind,  mon frère a un  livre sur Othello,
+mais c'est à peu près tout). D'un troisième côté, pour l'As des As, il
+y a trop peu de joueurs expérimentés  pour écrire des livres et il y a
+trop peu de joueurs débutants pour  les acheter et les lire. Cela dit,
+les joueurs de l'As des As peuvent lire avec profit les biographies de
+von Richthofen,  de Guynemer,  de Rickenbacker  et autres,  il peuvent
+étudier  les I<Dikta  Boelke> et  les règles  de Sailor  Malan. Et  ce
+qu'ils apprendront  pourra leur  servir pour  d'autres jeux  de combat
+aérien que l'As des As.
+
 =head2 Reste à Faire
 
 
@@ -1508,13 +1535,40 @@ et S<hourra !> j'ai obtenu le résultat attendu
 
   0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334,  365
 
+J'ai eu besoin d'un autre opérateur APL pour mon 
+L<module de calendrier maya|https://modules.raku.org/dist/Date::Calendar::MayaAztec:cpan:JFORGET>,
+pour convertir  un nombre de  jours en compte long  ou réciproquement.
+Comme vous n'êtes pas familiers  du calendrier maya, je vais illustrer
+ce sujet par un autre exemple.
+
+Combien font 1 million de secondes en semaines, jours, heures, minutes
+et secondes ?
+
+      52 7 24 60 60 ⊤ 1000000
+  1 4 13 46 40
+
+Réponse, cela  fait 1 semaine,  4 jours, 13  heures, 46 minutes  et 40
+secondes. Vérification :
+
+      52 7 24 60 60 ⊥ 1 4 13 46 40
+  1000000 
+
+Je n'ai pas trouvé tout seul l'équivalent en Raku. J'ai demandé sur la
+liste de messagerie et on m'a indiqué la
+L<fonction  polymod|https://docs.raku.org/routine/polymod>
+(merci Laurent). Attention, l'ordre des paramètres est différent d'APL :
+
+  say 1000000.polymod(60, 60, 24, 7, 52)
+  # --> (40 46 13 4 1 0)
+
 =head3 Modification d'une sous-chaîne de caractères
 
-Lorsque j'ai appris Perl 5 il y a un vingtaine d'années, une fonctionnalité
-m'a fait comprendre que Perl 5 n'était pas simplement S<« un> langage de programmation
-de S<plus »> mais bien un domaine dont l'exploration promettait d'être passionnante.
-Cette fonctionnalité, c'est la possibilité d'utiliser C<substr> en partie gauche
-d'une S<affectation :>
+Lorsque  j'ai  appris  Perl  5  à   la  fin  du  siècle  dernier,  une
+fonctionnalité m'a fait  comprendre que Perl 5  n'était pas simplement
+S<« un>  langage de programmation  de S<plus  »> mais bien  un domaine
+dont    l'exploration    promettait   d'être    passionnante.    Cette
+fonctionnalité, c'est  la possibilité  d'utiliser C<substr>  en partie
+gauche d'une S<affectation :>
 
   substr($_,  0, 0) = "Larry";
   substr($_,  0, 1) = "Moe";
