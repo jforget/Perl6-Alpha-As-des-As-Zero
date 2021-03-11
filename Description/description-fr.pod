@@ -1330,12 +1330,21 @@ Raku plus idiomatique, la S<voici :>
 
 Une autre version S<idiomatique :>
 
-  multi sub fact(Int $n where $n ≤ 1 --> Int) {
+  multi sub fact(Int $n where 0 ≤ $n ≤ 1 --> Int) {
     return 1;
   }
   multi sub fact(Int $n where $n > 1 --> Int) {
     return $n × fact($n - 1);
   }
+
+Fonctionnellement,  les   trois  versions   ne  sont   pas  exactement
+identiques. Elles  fournissent un  résultat correct  lorsqu'elles sont
+appelées  avec un  paramètre  valide. En  revanche,  lorsque vous  les
+appelez  avec un  nombre  à virgule,  les  deux versions  idiomatiques
+déclenchent  une erreur,  tandis que  la  version Perl  vous donne  un
+résultat sans signification. Et si  vous appelez ces fonctions avec un
+entier négatif, la dernière fonction vous renvoie une erreur, les deux
+autres renvoient la valeur 1.
 
 Évidemment,  dans la  suite,  je m'intéresse  quasi exclusivement  aux
 différences entre Raku  et Perl, car si j'énumère  les points communs,

@@ -1233,12 +1233,19 @@ look like, here is what it would look like:
 
 Another more elaborated and yet shorter example:
 
-  multi sub fact(Int $n where $n ≤ 1 --> Int) {
+  multi sub fact(Int $n where 0 ≤ $n ≤ 1 --> Int) {
     return 1;
   }
   multi sub fact(Int $n where $n > 1 --> Int) {
     return $n × fact($n - 1);
   }
+
+The three variants are not functionally equivalent. All three give the
+proper result  when called with  a valid input.  But if you  call them
+with a number  with a fractional part, the  idiomatic versions trigger
+an error, while the Perl version gives  you a dummy result. And if you
+call  these  functions  with  a negative  integer,  the  last  variant
+triggers an error, the two others give a 1.
 
 Of course, in the following, I  will give the differences between Raku
 and Perl, because  if I limit myself to the  common features, you will
