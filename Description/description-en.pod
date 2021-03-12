@@ -1469,6 +1469,67 @@ L<online documentation of type Str|https://docs.perl6.org/type/Str>
 to at last find what I needed: the
 L<function C<substr-rw>|https://docs.perl6.org/type/Str#method_substr-rw>.
 
+=head3 Functional Notation
+
+Disclaimer: my mother language is  French and I learned mathematics in
+French schools.  I know  that there are  some differences  between the
+mathematical notations in different countries. I will use the (French)
+notation I learned, even if this document is in English.
+
+=for html
+<img src='gof.png' width='45%' alt='Graphical representation of the composition of two functions' />
+
+I<Personal pictures. License is the same as for the text.>
+
+When I learned  relations and functions as a  11-year schoolboy, there
+was one point  which I did not  like and which was  fooling many other
+pupils, the  notation for  composing functions. "f  followed by  g" is
+written "g circle  f", not "f circle g". The  alleged justification is
+the functional notation suggested by Euler:
+
+     y = f(x)
+     z = g(y)
+
+which results in
+
+     z = g(f(x)) = gof (x)
+
+Even  if I  am accustomed  to this  notation where  the functions  are
+embedded  within   each  other  and   where  you  have  to   read  the
+chronological order right-to-left,  I still do not  like it. Moreover,
+nearly  all programming  languages have  followed the  example set  by
+Backus'  "formula  translator"  (FORTRAN)   and  use  this  syntaxical
+monstruosity. For example, you have a  number C<x>, you apply in order
+the  logarithm  function,  the  cosine  function,  the  absolute  part
+function and the square root. A graphical representation would be:
+
+=for html
+<img src='hogof.png' width='45%' alt='Graphical representation of the composition of four fouctions' />
+
+I<Personal pictures. License is the same as for the text.>
+
+Which would translate in Perl (for example) as:
+
+  $y = sqrt(abs(cos(log($x))))
+
+The only  light of hope  is HP  calculators, and also  TI calculators,
+which use the natural order:
+
+  RCL 0
+  LN
+  COS
+  ABS
+  SQRT
+  RTN
+
+There may  be other languages  such as  Forth and Postscript,  which I
+never used, and Smalltalk, which I used very briefly.
+
+And now, there is also Raku:
+
+  $y = $x.log.cos.abs.sqrt;
+
+
 =head2 MongoDB
 
 =head2 Bailador
