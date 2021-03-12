@@ -272,15 +272,18 @@ in the Picardy or Flanders sky.
 
 =head3 Special Case, Page 223
 
+=for html
+<img src='page-223.jpeg' alt='Picture of page 223: no enemy plane, only clouds' />
+
+I<Personal picture. License is the same as for the text.>
+
 If you read some help files provided by
 L<Boardgame Geek|https://www.boardgamegeek.com/boardgame/798/ace-aces-handy-rotary-series/files>,
 you will understand that the game is based on a 37-hexagon grid and on a 6-heading orientation,
 which produce 222 pages, for all relative positions of the planes, provided they are
 with 3 hexagons of each other. But what happens if the distance is greater?
 If, because of their maneuvers, the planes are separated by a distance greater than this
-threshold, the booklets display a special page, 
-L<Page 223|https://www.boardgamegeek.com/image/157327/ace-aces-handy-rotary-series>,
-which show clouds behind which
+threshold, the booklets display a special page, Page 223 which show clouds behind which
 the enemy plane has vanished. Even if the page shows clouds in front of the plane, the
 enemy can have disappeared behind.
 
@@ -1045,8 +1048,9 @@ introduced a bias for both the player and its opponent.
 Q. Is it possible to play a game between a human and an AI?
 
 A. Yes,  it would  be rather  simple to write  a player  program which
-interacts with a  human instead of gathering  statistics and crunching
-numbers. One problem is the time scale. I have included failsafe tests
+interacts with  a human and relays  his choice to the  umpire process,
+instead of a  program gathering statistics and  crunching numbers. One
+problem  is the  time scale.  I have  included failsafe  tests
 in the programs. It the umpire process does not receive an answer from
 either  player  process  for  about 50  seconds,  the  umpire  process
 considers that  the player  process has crashed,  aborted or  ended in

@@ -295,6 +295,11 @@ l'espace aérien de la Picardie ou des Flandres.
 
 =head3 Cas particulier, la page 223.
 
+=for html
+<img src='page-223.jpeg' alt='Image de la page 223 : aucun avion ennemi, seulement des nuages' />
+
+I<Image personnelle. Les conditions de licence sont les mêmes que pour le texte.>
+
 Si vous consultez certains fichiers d'aide fournis par 
 L<Boardgame Geek|https://www.boardgamegeek.com/boardgame/798/ace-aces-handy-rotary-series/files>,
 vous verrez que le jeu de base sur une grille de 37 hexagones, permettant de 
@@ -302,9 +307,7 @@ générer 222 pages, représentant toutes les positions relatives des deux avion
 du moment qu'ils sont à une distance inférieure ou égale à trois hexagones.
 Et que se passe-t-il si la distance est S<supérieure ?>
 Si, du fait de leurs manœuvres, les avions se retrouvent plus loin que cette
-distance limite, le livret affiche une page spéciale, la
-L<page 223|https://www.boardgamegeek.com/image/157327/ace-aces-handy-rotary-series>
-qui représente des
+distance limite, le livret affiche une page spéciale, la page 223 qui représente des
 nuages derrière lesquels l'ennemi a disparu. Même si cette page montre le ciel en avant de l'avion,
 il est possible que l'ennemi ait disparu sur un côté ou derrière.
 
@@ -1112,6 +1115,76 @@ von Richthofen,  de Guynemer,  de Rickenbacker  et autres,  il peuvent
 étudier  les I<Dikta  Boelke> et  les règles  de Sailor  Malan. Et  ce
 qu'ils apprendront  pourra leur  servir pour  d'autres jeux  de combat
 aérien que l'As des As.
+
+Q. Le  mécanisme de  l'As des  As ressemble beaucoup  à une  chaîne de
+Markov. Peut-on utiliser les méthodes des chaînes de Markov pour jouer
+à l'As des As ?
+
+R. Je connais le  concept de chaîne de Markov, mais  je ne l'ai jamais
+utilisé. Je ne peux dont pas  donner un avis fiable. Je peux toutefois
+dire qu'il  y a un problème  combinatoire. À part Wingleader  (2GM) et
+Early Craft  (début de la  1GM), les livrets  ont toujours plus  de 20
+manœuvres par page. Donc, pour une situation donnée, vous avez plus de
+400 possibilités. Et  même avec Wingleader, le  nombre de possibilités
+pour chaque page est de 169.
+
+Q.  Est-ce qu'un  programme peut  tenir  compte des  habitudes et  des
+préférences de son adversaire pour orienter le choix de sa manœuvre ?
+
+R. Non, le  programme joueur ne cherche pas à  identifier un schéma de
+pensée dans les manœuvres de son adversaire. Il se contente d'extraire
+les coups  des parties passées,  de mouliner des statistiques  et d'en
+déduire  des probabilités.  Cela dit,  comme je  l'ai signalé  dans le
+paragraphe L<Liste des manœuvres disponibles>, il se peut que l'option
+I<à outrance> pour  les parties d'entraînement ait  introduit un biais
+dans la base de données.
+
+Q. Est-il possible de mettre face à face un joueur humain et un joueur
+IA ?
+
+R. Oui,  il serait assez simple  d'écrire un programme de  joueur, qui
+assure  la liaison  entre un  joueur humain  et le  processus arbitre,
+prenant la place du programme joueur qui mouline les statistiques pour
+choisir sa  manœuvre. Il y  a toutefois un  problème de temps  de jeu.
+J'ai introduit des garde-fous pour éviter  les boucles sans fin. Si le
+processus  arbitre ne  reçoit pas  de  réponse de  l'un des  processus
+joueurs au  bout d'une cinquantaine  de secondes, il considère  que le
+programme  a planté  d'une façon  ou d'une  autre et  l'arbitre décide
+d'interrompre la partie. De même, si un processus joueur ne reçoit pas
+de  réponse du  processus  arbitre.  En théorie,  cette  limite de  50
+secondes devrait convenir pour un jeu  avec un ou deux humains. Le jeu
+simule un  combat aérien, donc  une action  avec un cycle  de décision
+rapide et si un joueur passe cinq minutes à décider d'une manœuvre, il
+a tout  faux. Mais  dans la  vraie vie,  il peut  se produire  que des
+circonstances empêchent  un joueur  de répondre dans  les délais  : le
+téléphone sonne, ou  bien la sonnette de la porte  d'entrée, le four à
+micro-ondes bippe  pour signaler que la  pizza est chaude, le  bébé se
+met à pleurer, ses deux ainés sont en train de se chamailler, le chien
+vous regarde d'un air implorant avec la laisse dans la gueule,
+L<etc|https://www.imdb.com/title/tt0080455/quotes?item=qt0320024>.
+Un  adversaire  humain  conviendrait  sans peine  que  la  vie  réelle
+interfère  dans  la  partie  et  il accepterait  de  donner  un  délai
+supplémentaire au joueur. En revanche, un adversaire AI continuerait à
+appliquer sans faille le délai maximum de 50 secondes.
+
+Finalement, une question sur Raku et plus sur l'As des As.
+
+Q. Quelle a été la fonctionnalité la plus utile dans Raku dans le cadre
+du développement des programmes de l'As des As ?
+
+R. Le 3  mars, j'ai répondu à la mauvaise  question. La fonctionnalité
+qui m'a le plus plu (et non pas la plus utile) est le fait que j'ai pu
+appliquer des principes de programmation  APL en Raku. En APL, lorsque
+vous manipulez  des vecteurs  (le terme local  pour S<«  tableaux »>),
+vous n'êtes pas  obligés de boucler sur chaque  composant, vous pouvez
+effectuer votre opération en une  seule fois. C'est possible également
+en Raku.
+
+Et en fait,  L<la fonctionnalité de Raku la  plus intéressante>, c'est
+les points communs entre Perl et Raku. Une grande partie des lignes de
+code dans un  programme Raku ressemblent à ce que  l'on écrit en Perl.
+Dans les deux langages, on  utilise les accolades les points-vigrules,
+les opérateur C<my> et C<sub>, etc.
 
 =head2 Reste à Faire
 
