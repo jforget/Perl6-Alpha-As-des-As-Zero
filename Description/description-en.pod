@@ -1266,7 +1266,7 @@ Compiling the sources.
 
 In my case, the second method did  not apply, there was no package for
 xubuntu 16.10.  And the  first method was  giving obsolete  (for 2018)
-versions. My various hardware and virtual computers are:
+versions. My various hardware and virtual computers at this time were:
 
   hardware    xubuntu-12.04   32 bits  rakudo 2011.07
   virtual     xubuntu-14.10   32 bits  rakudo 2013.12
@@ -1280,9 +1280,85 @@ installed on my xubuntu-16.10  machine, the xubuntu-16.10 repositories
 are no  longer available,  I do not  know to use  Docker and  for what
 little I know about Docker, I guess I will not be comfortable with it.
 
-So I compiled Rakudo Star 2018.01 from the sources.
+So I compiled Rakudo Star 2018.01 from the sources. The first time, it
+took a long time, several hours. The  second time, I wrote a script so
+I would not need to type the successive commands and the compile would
+run unattended. The script would also  display the date and time after
+each step. Here it is:
 
-*** to be continued ***
+  #!/bin/sh
+  # -*- encoding: utf-8; indent-tabs-mode: nil -*-
+
+  interlude() {
+    echo
+    echo
+    date +'%Y-%m-%d %H:%M:%S'
+    echo
+    echo
+  }
+
+  mkdir ~/rakudo && cd $_
+  wget https://rakudo.perl6.org/downloads/star/rakudo-star-2018.01.tar.gz
+  interlude
+  tar -xvzf rakudo-star-2018.01.tar.gz
+  interlude
+  cd rakudo-star-2018.01/
+  interlude
+  perl Configure.pl --backend=moar --gen-moar
+  interlude
+  make
+  interlude
+  # If you wish, you can run the tests
+  # Depending on your machine, they could take over half an hour to run
+  make rakudo-test
+  interlude
+  make rakudo-spectest
+  interlude
+  make install
+  interlude
+  echo "export PATH=$(pwd)/install/bin/:$(pwd)/install/share/perl6/site/bin:\$PATH" >> ~/.bashrc
+  source ~/.bashrc
+
+Since the  script has run on  a virtual machine, which  is necessarily
+less powerful  than the  host computer,  the time  was longer  than it
+would have  been on  my physical  machine. Yet,  this would  give some
+insights.
+
+  make                   1h 40mn
+  make rakudo-test          20mn
+  make rakudo-spectest   3h 10mn
+  make install           1h
+
+In addition, there were some errors  in the "spectest" step, but I did
+not mind, because Rakudo Star is  a work in progress, which means that
+not  every  feature  is  implemented.  Yet,  even  if  we  remove  the
+"spectest"  part, which  is optional,  the compile  still takes  about
+three hours!
+
+In 2020, I renewed the experiment, by compiling Rakudo-Star 2019.03 on
+a virtual machine.  The VM was running two apps:  the task manager and
+the xterm CLI windows where I  launched the compilation script. At one
+time, I noticed that the  task manager was displaying (translated from
+French):
+
+  Memory: 90 %     Swap file: 100 %
+
+So I  understood why the compilation  was taking so long  and why even
+the mouse  was unresponsive: the  VM's VM  was thrashing! I  mean, the
+virtual machine's virtual memory was thrashing.
+
+The  VM was  configured with  a 1024  MB  RAM. I  shut it  down and  I
+discarded it, then I created a new  VM with a 2048 MB RAM, I installed
+xubuntu-19.10 (Eoan Ermine) and xfce,  and I ran again the compilation
+script. The duration  was still a long one, but  this time measured in
+minutes instead of hours. And there  were two test scripts which would
+not stop,  F<16-io/eof.t> and F<32-io/out-buffering>. For  the reasons
+mentioned above, I killed both test processes. The compilation process
+ended a few minutes later with no other incident.
+
+So, if you want to compile Raku  (or Rakudo Star) from the sources, be
+sure your  computer has  at least 2  GB's worth of  RAM. And  skip the
+"spectest" step.
 
 =head2 Usage
 
