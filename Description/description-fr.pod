@@ -1225,6 +1225,58 @@ choix de l'attaque est privilégié par rapport à la fuite.
 
 =head1 Perl 6
 
+=head2 Documentation
+
+Pour apprendre une nouvelle compétence, comme la programmation dans un
+nouveau langage, je  préfère de loin la lecture d'un  livre sur papier
+que  la lecture  de  divers  tutoriels sur  Internet.  Les livres  (en
+anglais) utilisés pour ce projet sont :
+
+=over 4
+
+=item * 
+
+L<Think Perl 6|https://perl.developpez.com/actu/116451/Think-Perl-6-moins-How-to-Think-Like-a-Computer-Scientist-un-livre-de-Laurent-Rosenfeld-et-Allen-B-Downey/>
+par Laurent Rosenfeld, (rebaptisé
+L<Think Raku|https://github.com/LaurentRosenfeld/think_raku>),
+
+=item *
+
+L<Perl 6 Deep Dive|https://www.packtpub.com/product/perl-6-deep-dive/9781787282049>,
+que  je venais  juste de  recevoir  et que  j'étais en  train de  lire
+lorsque j'ai décidé d'écrire mes premières lignes de code.
+
+=item *
+
+L<MongoDB, the Definitive Guide|https://www.eyrolles.com/Informatique/Livre/mongodb-the-definitive-guide-9781449381561/>
+qui ne contient aucune ligne de Raku (ni même de Perl), mais qui a été
+très utile pour ce projet.
+
+=back
+
+Ultérieurement, j'ai également lu avec intérêt :
+
+=over 4
+
+=item *
+
+L<Learning Perl 6|https://www.oreilly.com/library/view/learning-perl-6/9781491977675/>
+également rebaptisé L<Learning Raku|https://www.learningraku.com/>,
+par C<brian d foy>,
+
+=item *
+
+L<Parsing with Perl 6 Regexes and Grammars|https://www.apress.com/gp/book/9781484232279>
+par Moritz Lenz, pour le sujet des 
+L<regex, anciennement expressions régulières>.
+
+=back
+
+Pour des requêtes ponctuelles (pas pour l'apprentissage complet),
+j'utilise quand même des sites web, essentiellement la
+L<documentation des types standards|https://docs.raku.org/type.html>
+et la L<liste des modules|https://modules.raku.org/>.
+
 =head2 Installation
 
 Je connais quatre méthodes pour installer Rakudo Star sur une machine Linux.

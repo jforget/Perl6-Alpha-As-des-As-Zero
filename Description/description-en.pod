@@ -1191,6 +1191,54 @@ than choosing to flee.
 
 =head1 Annex: In Retrospect, My First Steps In Raku
 
+=head2 Documentation
+
+To learn a  new skill, I prefer  reading a book printed  on paper than
+browsing tutorials on the web. The books I used for this project are:
+
+=over 4
+
+=item * 
+
+L<Think Perl 6|https://greenteapress.com/wp/think-perl-6/>
+by Laurent Rosenfeld, (renamed
+L<Think Raku|https://github.com/LaurentRosenfeld/think_raku>),
+
+=item *
+
+L<Perl 6 Deep Dive|https://www.packtpub.com/product/perl-6-deep-dive/9781787282049>, 
+which I had  received and which I  began to read just a  few days before
+writing my first lines of code for this project,
+
+=item *
+
+L<MongoDB, the Definitive Guide|https://www.eyrolles.com/Informatique/Livre/mongodb-the-definitive-guide-9781449381561/>
+with no line of Raku (even of Perl), but very useful for this project.
+
+=back
+
+After the first version of this project, I have also read and appreciated:
+
+=over 4
+
+=item *
+
+L<Learning Perl 6|https://www.oreilly.com/library/view/learning-perl-6/9781491977675/>
+similarly renamed L<Learning Raku|https://www.learningraku.com/>,
+by C<brian d foy>,
+
+=item *
+
+L<Parsing with Perl 6 Regexes and Grammars|https://www.apress.com/gp/book/9781484232279>
+by Moritz Lenz, about L<Regexes, formerly Regular Expressions>.
+
+=back
+
+For specific requests (not for a wide-range learning), I still
+use websites, mainly the
+L<documentation of standard types|https://docs.raku.org/type.html>
+and the L<list of modules|https://modules.raku.org/>.
+
 =head2 Installation
 
 =head2 Usage
@@ -1529,6 +1577,7 @@ And now, there is also Raku:
 
   $y = $x.log.cos.abs.sqrt;
 
+=head3 Regexes, formerly Regular Expressions
 
 =head2 MongoDB
 
