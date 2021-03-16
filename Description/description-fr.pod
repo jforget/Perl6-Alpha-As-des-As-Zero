@@ -1267,8 +1267,8 @@ par C<brian d foy>,
 =item *
 
 L<Parsing with Perl 6 Regexes and Grammars|https://www.apress.com/gp/book/9781484232279>
-par Moritz Lenz, pour le sujet des 
-L<regex, anciennement expressions régulières>.
+par Moritz Lenz, pour comprendre
+L<les regex, anciennement expressions régulières>.
 
 =back
 
@@ -1294,7 +1294,7 @@ dans un L<dépôt Github|https://github.com/nxadm/rakudo-pkg/releases>
 
 =item 3
 
-Récupérer une image Docker, comme le propose Moritz Lentz dans son livre I<Perl 6 Fundamentals>.
+Récupérer une image Docker, comme le propose Moritz Lenz dans son livre I<Perl 6 Fundamentals>.
 
 =item 4
 
@@ -2035,7 +2035,7 @@ la définition de S<« complet> au sens de S<Turing »>, donc ce que je viens de
 au sujet des expressions régulières est peut-être faux).
 
 Éh bien en Raku, les expressions régulières ne sont plus des données (chaînes ou objets),
-ce sont des blocs de code. C'est écrit en bas de la page 5 du livre de Moritz Lentz.
+ce sont des blocs de code. C'est écrit en bas de la page 5 du livre de Moritz Lenz.
 D'ailleurs, il ne faut plus dire S<« expression> S<régulière »> ou I<regular expression>
 mais tout simplement S<« regex »>. Une regex contient du code Raku avec une syntaxe
 assez différente de la syntaxe impérative et procédurale habituelle, mais c'est du code
@@ -2058,7 +2058,7 @@ avec 12 chaînes littérales C<"janvier">, C<"février"> etc. En toute rigueur, 
 dû ajouter des C<quotemeta>, mais comme les noms de mois sont purement alphabétiques,
 ce n'était pas nécessaire dans cet exemple.
 
-Ma première tentative en Raku, avant de lire le livre de Moritz Lentz et 
+Ma première tentative en Raku, avant de lire le livre de Moritz Lenz et 
 de comprendre quelle était la nature profonde des regex en Raku fut :
 
   my %mois = qw/janvier  1    février   2   mars      3

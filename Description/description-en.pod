@@ -1241,6 +1241,49 @@ and the L<list of modules|https://modules.raku.org/>.
 
 =head2 Installation
 
+There are four methods to install Raku on a Linux computer:
+
+=over 4
+
+=item 1
+
+Installing the F<.rpm> or F<.deb> package provided by your distribution.
+
+=item 2
+
+Installing the F<.rpm> or F<.deb> package provided by a L<contributor|https://github.com/nxadm>
+in a L<Github repository|https://github.com/nxadm/rakudo-pkg/releases>
+
+=item 3
+
+Downloading a Docker image, as suggested by Moritz Lenz in his book I<Perl 6 Fundamentals>.
+
+=item 4
+
+Compiling the sources.
+
+=back
+
+In my case, the second method did  not apply, there was no package for
+xubuntu 16.10.  And the  first method was  giving obsolete  (for 2018)
+versions. My various hardware and virtual computers are:
+
+  hardware    xubuntu-12.04   32 bits  rakudo 2011.07
+  virtual     xubuntu-14.10   32 bits  rakudo 2013.12
+  virtual     lubuntu-15.10   32 bits  rakudo 2014.07
+  hardware    xubuntu-16.10   64 bits  rakudo 2016.06
+  virtual     Mageia-5        32 bits  not found
+
+About Docker: first Docker would need  to be installed on my computer,
+second I should know Docker and  be comfortable with it. Docker is not
+installed on my xubuntu-16.10  machine, the xubuntu-16.10 repositories
+are no  longer available,  I do not  know to use  Docker and  for what
+little I know about Docker, I guess I will not be comfortable with it.
+
+So I compiled Rakudo Star 2018.01 from the sources.
+
+*** to be continued ***
+
 =head2 Usage
 
 =head3 The Most Useful Feature Of Raku
