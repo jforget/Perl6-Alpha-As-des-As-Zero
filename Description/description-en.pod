@@ -1319,6 +1319,10 @@ each step. Here it is:
   echo "export PATH=$(pwd)/install/bin/:$(pwd)/install/share/perl6/site/bin:\$PATH" >> ~/.bashrc
   source ~/.bashrc
 
+Of  course, the  script has  changed a  little, with  the renaming  to
+"Raku"   and    the   obvious   change   of    version   number.   See
+L<https://rakudo.org/downloads/rakudo/source>, the "Build" paragraph.
+
 Since the  script has run on  a virtual machine, which  is necessarily
 less powerful  than the  host computer,  the time  was longer  than it
 would have  been on  my physical  machine. Yet,  this would  give some
@@ -1699,6 +1703,69 @@ And now, there is also Raku:
 =head3 Regexes, formerly Regular Expressions
 
 =head2 MongoDB
+
+I have installed MongoDB on my  computer with the packages provided by
+the distribution. Nothing more to say.
+
+The  installation of  the  MongoDB  module for  Raku  was  a bit  more
+eventful.  Please note  that I  describe here  the situation  in March
+2018. Things  has moved on since  this time. Some advices  given below
+are still relevant, others are obsolete.
+
+First try:
+
+  zef install MongoDB
+
+Some tests  fails. The F<README> file  tells me that this  is expected
+and that I should not bother about these few failed tests. Second try:
+
+  zef install --/test MongoDB
+
+It  is  installed.  I  copy-paste  an  example  script  from  the  POD
+documentation. It fails!  I quickly finds it is caused  by a debugging
+statement:
+
+     debug-message("command done {$command.find-key(0)}");
+
+I  find the  source file  in the  install directory  and I  remove the
+debugging  statement.  The example  script  still  fails, because  the
+bytecode file has not changed.
+
+I clone the
+L<Git Hub repo|https://github.com/MARTIMM/mongo-perl6-driver/>, 
+I remove the debugging message, and I reinstall the module with:
+
+  zef install --/test .
+
+That is, installing  what is in the current  directory. C<zef> refuses
+to install the module, because the  module is up-to-date, or so C<zef>
+says. After reading the on-line help, I type
+
+  zef install --force --/test .
+
+Is  this the  right thing  to do?  I do  not know,  but I  suppose so,
+because  at  least the  module  is  installed. And  the  copied-pasted
+example now works, prrovided I remove the C<findAndUpdate> line, which
+does not exist in version 2.6 of MongoDB.
+
+When I try to  write and run my own programs,  I have another problem,
+something about unkept promises. After many tries, I conclude that for
+each C<find> statement the parameters should include
+
+      projection => ( _id => 0, )
+
+That  is, extract  all attributes  of the  document, except  attribute
+C<_id>. Why?  I do not know.  All I know  is that it always  fail when
+C<_id> is included, it usually succeed when C<_id> is excluded. Now, I
+always type the  exclusion in all my C<find> statements.  Maybe that a
+few  years later,  I should  once more  try a  C<find> statement  with
+C<_id>?
+
+I  have mentioned  "after  many tries".  The problem  is  that I  have
+zigzagged a  lot and I have  done the same attempts  several times. To
+prevent this waste  of time, I have decided to  write a cookbook, with
+all the  C<find> variants I  have tried  and with the  resulting error
+messages.
 
 =head2 Bailador
 
