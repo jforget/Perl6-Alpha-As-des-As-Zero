@@ -2247,13 +2247,17 @@ reçoit un C<(Int)>. Pour votre gouverne, il s'agit de trois lignes :
 
      debug-message("command done {$command.find-key(0)}");
 
-Je vais donc dans le fichier désigné par le message d'erreur
-(un fichier avec un nom horrible tiré d'un SHA1 ou d'un MD5) et je corrige en
-supprimant les trois lignes en cause. Les messages de débug que je ne sais pas
-interpréter, je me sens autorisé à les supprimer. Je reteste,
-cela ne change rien. Je pense que le module figure en deux exemplaires : le fichier
-source que j'ai modifié et un fichier de I<bytecode> que je n'ai pas vu.
-Le I<bytecode> n'ayant pas changé, le bug est toujours là.
+Je  vais donc  dans le  fichier désigné  par le  message d'erreur  (un
+fichier avec un  nom horrible tiré d'un SHA1 ou  d'un MD5, stocké dans
+le répertoire  F<.zef/store>) et  je corrige  en supprimant  les trois
+lignes en cause. Les messages de débug que je ne sais pas interpréter,
+je me  sens autorisé à les  supprimer. C'est goret, certes,  mais avec
+Perl  cela permet  de faire  quelques vérifications  rapides avant  de
+changer  les sources  du module  et de  procéder à  une réinstallation
+propre. Je reteste, cela ne change rien. Je pense que le module figure
+en deux exemplaires : le fichier source que j'ai modifié et un fichier
+de I<bytecode> que je n'ai pas  vu. Le I<bytecode> n'ayant pas changé,
+le bug est toujours là.
 
 Je clone donc le
 L<dépôt Git Hub|https://github.com/MARTIMM/mongo-perl6-driver/>, 
@@ -2291,7 +2295,7 @@ mémorise chaque variante testée des accès à la base de données, avec les me
 obtenus.
 
 Par exemple, bien noter que l'instruction C<find> dans un programme Perl 6 ne reconnaîtra
-pas les options C<sort>, C<limit> et C<find>. Et ce n'est pas un problème de version 2.6
+pas les options C<sort>, C<limit> et C<skip>. Et ce n'est pas un problème de version 2.6
 contre 3.x, ces trois options sont mentionnées dans le livre O'Reilly de 2013 (page 68 si vous
 voulez vérifier).
 
@@ -2351,11 +2355,8 @@ Remarquez que je n'ai pas cherché à voir si le problème de
 
       projection => ( _id => 0, )
 
-ou le problème des C<(Rat)> conduisant au message
-
-  2018-05-25 05:31:06.093687 [E]  1: localhost:27017: encode() on 0.5, error: Not yet implemented
-
-existent encore.
+existe encore.  En revanche, j'ai  testé le problème des  C<(Rat)>, il
+est toujours là.
 
 =head2 Bailador
 

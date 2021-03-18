@@ -1702,6 +1702,8 @@ And now, there is also Raku:
 
 =head3 Regexes, formerly Regular Expressions
 
+=head3 Value and Variable Types
+
 =head2 MongoDB
 
 I have installed MongoDB on my  computer with the packages provided by
@@ -1727,9 +1729,14 @@ statement:
 
      debug-message("command done {$command.find-key(0)}");
 
-I  find the  source file  in the  install directory  and I  remove the
-debugging  statement.  The example  script  still  fails, because  the
-bytecode file has not changed.
+I find  the source file  in the F<.zef/store> directory  for installed
+modules and I remove the debugging statement. This is not recommanded,
+but from time to time I do  this in Perl, for a quick-and-dirty check,
+followed  soon after  by a  clean  reinstallation of  the module.  The
+problem is  that when a Raku  module is installed, the  code files are
+stored in  two formats, a  bytecode format used  by the runtime  and a
+text format which is ignored by  the runtime. The example script still
+fails, because the bytecode file has not changed.
 
 I clone the
 L<Git Hub repo|https://github.com/MARTIMM/mongo-perl6-driver/>, 
@@ -1767,7 +1774,102 @@ prevent this waste  of time, I have decided to  write a cookbook, with
 all the  C<find> variants I  have tried  and with the  resulting error
 messages.
 
+For example, note that a C<find>  statement in a Raky program will not
+accept  the options  C<sort>,  C<limit>  and C<skip>.  This  is not  a
+problem  of  old MongoDB  version  2.6  vs up-to-date  MongoDB,  these
+options are described in the 2013 O'Reilly book, on page 68.
+
+With MongoDB,  there is a variant  of the problem I  have described in
+L<Value and Variable Types>. MongoDB knows about integers C<(Int)> and
+floats C<(Num)>, but not rational  numbers C<(Rat)>. The error message
+with the 2018 is rather cryptic:
+
+  2018-05-25 05:31:06.093687 [E]  1: localhost:27017: encode() on 1.5, error: Not yet implemented
+  . At site#sources/9F1921D0AA42F2C1C0229F51082ED0A3E384968C (MongoDB::Wire):112
+  2018-05-25 05:31:06.097117 [E]  1: No server reply on query. At site#sources/C727D6F914B4AE4082E938B9310DC8D2F4CD7B53 (MongoDB::Collection):101 in find()
+  2018-05-25 05:31:06.098900 [E]  1: No cursor returned. At site#sources/BC4819BBBB818C799983157518CA75F0C1A6DFC7 (MongoDB::Database):73 in run-command()
+
+The error message  with the 2021 version is not  only cryptic but also
+very long, displaying the complete stack of program calls.
+
+The minimum work example would be:
+
+  use v6;
+  use BSON::Document;
+  use MongoDB::Client;
+  use MongoDB::Database;
+  use MongoDB::Collection;
+
+  my MongoDB::Client     $client  .= new(:uri('mongodb://'));
+  my MongoDB::Database   $database = $client.database('example2');
+  my MongoDB::Collection $coll     = $database.collection('example2');
+
+  my BSON::Document $doc .= new: (
+       number => 1.5,
+       );
+  my BSON::Document $req .= new: (
+    insert => 'example2',
+    documents => [ $doc ],
+    );
+
+  my BSON::Document $result = $database.run-command($req);
+  say "Création example2 ok : ", $result<ok>, " nb : ", $result<n>;
+
+After the French  Perl Workshop 2018 was over, I  upgraded my computer
+to xubuntu-18.04 64-bits and MongoDB 3.6.3 and I installed Rakudo Star
+from the sources. Then I tried to install the MongoDB module with:
+
+  zef install MongoDB
+
+This failed  because there was  no F<libssl.so> on my  computer. There
+were   a   F<libssl3.so>   lib,   a   F<libssl.so.1.1>   lib   and   a
+F<libssl.so.1.0.0>  lib, but  it seems  that MongoDB  does not  accept
+them. So I typed the no-test variant:
+
+  zef install --/test MongoDB
+
+And the  installation succeeded. I  tried a few  Raku+MongoDB programs
+and they worked at first try. The situation has improved between March
+2018 and June 2018.
+
+Remark: I did not check whether the problem with C<_id> is still there
+and whether I still need to add
+
+      projection => ( _id => 0, )
+
+On the  other hand, I have  checked the C<(Rat)> problem,  it is still
+here.
+
 =head2 Bailador
+
+At first, I had no intention  of producing dynamic webpages within the
+scope  of this  project. Then  I found  that reading  the database  in
+proper webpages with convenient hyperlinks was easier than reading the
+raw JSON output of a request written in JavaScript.
+
+So I  installed Bailador, the  Raku equivalent of Perl's  Dancer. What
+can I  add? I installed  the module,  it worked without  fuss. Nothing
+cheesy to add.
+
+I must admit that  the way I use Bailador in this  project is as basic
+as the  way I used Dancer2  in my 2017 character  recognition project.
+Even more basic, because I do not  even use HTML forms. By the way, do
+not expect to have as many
+L<modules for Bailador|https://modules.perl6.org/t/WEB>
+as what you can find
+L<for Dancer2|https://metacpan.org/search?q=Dancer2>.
+You will have to wait a little. Or you may volunteer to fill the gaps.
+
+One more  point. I do  not know the  MVC architecture (except  for the
+expanded  name, I<Model,  View, Controller>).  Yet I  have decided  to
+split my Bailador program into  several source files. The first, named
+F<site.p6>,  corresponds in  my  mind to  the  Controller. The  second
+source  file, in  a subdirectory  and named  F<lib/acces-mongodb.pm6>,
+would be the  model. And a few  others, fichiers F<lib/site-coup.pm6>,
+F<lib/site-liste-parties.pm6> and F<lib/site-partie.pm6>  would be the
+Views. I can call the  functions of F<lib/acces-mongodb.pm6>, from the
+Controller F<site.p6>,  but not from the  Views F<lib/site-xxx.pm6>. I
+still have some things to learn about C<use> and C<require> in Raku.
 
 =head1 Conclusion
 
