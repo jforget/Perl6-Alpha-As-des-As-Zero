@@ -298,7 +298,7 @@ l'espace aérien de la Picardie ou des Flandres.
 =for html
 <img src='page-223.jpeg' alt='Image de la page 223 : aucun avion ennemi, seulement des nuages' />
 
-I<Image personnelle. Les conditions de licence sont les mêmes que pour le texte.>
+I<Photo personnelle reprenant une page de Handy Rotary, copyright © 1986 Nova Game Designs, Inc., image copyright © 1986 Emithill limited>
 
 Si vous consultez certains fichiers d'aide fournis par 
 L<Boardgame Geek|https://www.boardgamegeek.com/boardgame/798/ace-aces-handy-rotary-series/files>,
@@ -1237,14 +1237,14 @@ anglais) utilisés pour ce projet sont :
 =item * 
 
 L<Think Perl 6|https://perl.developpez.com/actu/116451/Think-Perl-6-moins-How-to-Think-Like-a-Computer-Scientist-un-livre-de-Laurent-Rosenfeld-et-Allen-B-Downey/>
-par Laurent Rosenfeld, (rebaptisé
+par Laurent Rosenfeld (rebaptisé
 L<Think Raku|https://github.com/LaurentRosenfeld/think_raku>),
 
 =item *
 
 L<Perl 6 Deep Dive|https://www.packtpub.com/product/perl-6-deep-dive/9781787282049>,
 que  je venais  juste de  recevoir  et que  j'étais en  train de  lire
-lorsque j'ai décidé d'écrire mes premières lignes de code.
+lorsque j'ai décidé d'écrire mes premières lignes de code,
 
 =item *
 

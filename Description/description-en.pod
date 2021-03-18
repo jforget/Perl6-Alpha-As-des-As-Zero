@@ -275,7 +275,7 @@ in the Picardy or Flanders sky.
 =for html
 <img src='page-223.jpeg' alt='Picture of page 223: no enemy plane, only clouds' />
 
-I<Personal picture. License is the same as for the text.>
+I<Personal picture using a page from Handy Rotary, copyright © 1986 Nova Game Designs, Inc., artwork copyright © 1986 Emithill limited>
 
 If you read some help files provided by
 L<Boardgame Geek|https://www.boardgamegeek.com/boardgame/798/ace-aces-handy-rotary-series/files>,
@@ -1201,7 +1201,7 @@ browsing tutorials on the web. The books I used for this project are:
 =item * 
 
 L<Think Perl 6|https://greenteapress.com/wp/think-perl-6/>
-by Laurent Rosenfeld, (renamed
+by Laurent Rosenfeld (renamed
 L<Think Raku|https://github.com/LaurentRosenfeld/think_raku>),
 
 =item *
@@ -1213,7 +1213,7 @@ writing my first lines of code for this project,
 =item *
 
 L<MongoDB, the Definitive Guide|https://www.eyrolles.com/Informatique/Livre/mongodb-the-definitive-guide-9781449381561/>
-with no line of Raku (even of Perl), but very useful for this project.
+with no line of Raku code (even of Perl code), but very useful for this project.
 
 =back
 
