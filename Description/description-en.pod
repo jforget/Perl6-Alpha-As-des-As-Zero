@@ -1700,6 +1700,168 @@ And now, there is also Raku:
 
   $y = $x.log.cos.abs.sqrt;
 
+=head3 Schwartzian Transform
+
+The problem with a Perl Schwartzian Transform:
+
+  my @t2 = map  { $_->[0] }
+           sort { $a->[1] <=> $b->[1] }
+           map  { [ $_, extr($_) ] } @t;
+
+is that you have to read it from  bottom to top or from right to left,
+in the  opposite direction of normal  reading (for people used  to the
+Latin  script). This  is similar  to composing  functions while  using
+Euler's notation.
+
+With Raku, we have the I<feed> operator  C<< ==> >> which allows us to
+imitate the  Unix pipes and  write statements that  read left-to-right
+and top-to-bottom. A program would look like:
+
+  use v6;
+
+  my @t = split "---\n", q:to/EOF/;
+  Georges Guynemer vanished on 11 September 1917 in the neighborhood of Poelcappelle.
+  ---
+  On 21 April 1918, Manfred von Richthofen was shot down at Vaux-sur-Somme. Was he downed by the
+  canadian pilot Albert Roy Brown or by the artillerymen from the 53rd Australian Battery?
+  ---
+  First aerial victory in the East: Pyotr Nikolayevich Nesterov deliberately rammed
+  an Austrian Albatros on 8 September 1914.
+  ---
+  5 October 1914, first Western Front aerial victory by Frantz and Quenault.
+  ---
+  Charles Nungesser, for some time nicknamed "le Hussard de la Mors", is better known for his failed attempt
+  to cross the Atlantic on 8 May 1927 than for his 45 victories.
+  ---
+  RAF was created on 1st April 1918. April Fool's Day!
+  ---
+  Sarajevo, 28 June 1914: a mass murder with more than 18 millions deaths and how many wounded...
+  ---
+  11 November 1918, the nightmare is held off for a score of years.
+  EOF
+
+  my %month = qw/January  1    February  2   March     3
+                 April    4    May       5   June      6
+                 July     7    August    8   September 9
+                 October 10    November 11   December 12/;
+
+  my @month = %month.keys;
+
+  sub extr(Str $ch) {
+    if $ch ~~ /(\d+)'st'? \s+ (@month) \s+ (\d+)/ {
+      return $2 × 10000 + %month{$1} × 100 + $0;
+    }
+    else {
+      return 1e8;
+    }
+  }
+
+  @t ==> map  { [ $_, extr($_) ] } \
+     ==> sort { $^a[1] <=> $^b[1] } \
+     ==> map  { $_[0] } \
+     ==> my @t1;
+
+  say join "\n", @t1;
+
+A point which bothers me is  the requirement to add backslashes at the
+end  of the  lines to  show  that the  statement is  continued on  the
+following  line. Like  someone  said during  my 2018  talk,  "It is  a
+40-year backward leap". See L<the next point|"Vertical Alignment">.
+
+=head4 Beyond the Schwartzian Transform
+
+After my  2018 talk, someone  told me that there  is a simpler  way to
+sort  the texts,  which makes  the  Schwartzian Transform  a bit  less
+useful. For the frequent case where  there is only one sort criterion,
+you can replace the comparison function with a function extracting the
+sort criterion. So the feed statement would be reduced to:
+
+  @t ==> sort { extr($_) } \
+     ==> my @t1;
+
+With this syntax, Raku ensures the extraction and storing of criterion
+values and  then the removing of  these values. You no  longer need to
+code the  two C<map> steps. By  including a C<print> statement  in the
+C<extr> function,  you can check  that the C<extr> function  is called
+only once per record.
+
+The Schwartzian  Transform is  still useful for  multi-criteria sorts.
+With the same example as above, let us suppose we have three different
+functions  for extracting  the  year,  the month  number  and the  day
+number. The statement would become:
+
+  @t ==> map  { [ $_, year($_), month($_), day($_) ] } \
+     ==> sort { $^a[1] <=> $^b[1] || $^a[2] <=> $^b[2] || $^a[3] <=> $^b[3] } \
+     ==> map  { $_[0] } \
+     ==> my @t1;
+
+More verbose and less stylish.
+
+=head3 Vertical Alignment
+
+In my  opinion, vertical alignment  is an important factor  to improve
+the readability of  code and to help  a human understand it.  I do not
+speak only  of code indentation  for the first non-space  character. I
+speak  about  aligning  similar  elements  on  successive  lines.  For
+example, in Perl I can write:
+
+  $length[$n] = $length[$n - 1] + $dx;
+  $width [$n] = $width [$n - 1] + $dy;
+
+On the other hand, in Raku, the following is syntactically incorrect:
+
+  @length[$n] = @length[$n - 1] + $dx;
+  @width [$n] = @width [$n - 1] + $dy;
+
+Because no  space can exist between  the array's name and  the opening
+square bracket. The right syntax is horrible:
+
+  @length[$n] = @length[$n - 1] + $dx;
+  @width[$n] = @width[$n - 1] + $dy;
+
+I ended with this compromise:
+
+  @length[$n] = @length[$n - 1] + $dx;
+  @width[ $n] = @width[ $n - 1] + $dy;
+
+All similar elements are aligned, except the opening square brackets.
+
+There  is  an  interesting  syntax functionality,  which  has  already
+appeared  in  the  paragraph  about  the  Schwartzian  Transform,  the
+I<unspace>. If there is a backslash followed by any whitespace (space,
+tab, line feed,  etc), the Raku parser ignores this  backslash and all
+consecutive whitespace chars. These two lines are equivalent:
+
+  @length[$n]
+  @length\         [$n]
+
+In the  paragraph about the  Schwartzian Transform, the  backslash was
+used to virtually  remove the linefeed (and all  following spaces), so
+the Raku  parser would  see a  complete statement  on one  single line
+while the human reader would see a statement on four successive lines,
+each one with a medium length.
+
+Could  the  I<unspace> be  useful  for  my length/width  example?  No,
+because adding  a backslash to inhibit  the space on the  "width" line
+would shift  the line alignment with  one additional char. So  I would
+have to insert a space in the "length" line also. And this space would
+need  to be  inhibited  with another  backslash.  Which would  require
+adding yet  another space in the  "width" line. The result  would have
+been:
+
+  @length\ [$n] = @length\ [$n - 1] + $dx;
+  @width\  [$n] = @width\  [$n - 1] + $dy;
+
+There are  other ways to ensure  a vertical alignment. One  is to make
+deliberate spelling mistakes:
+
+  @length[$n] = @length[$n - 1] + $dx;
+  @widthh[$n] = @widthh[$n - 1] + $dy;
+
+Another way  is to use a  module which changes Raku's  syntax to allow
+whitespace where the  standard syntax rejects them. I  do not remember
+the name of the module or of its author. What a pity!
+
 =head3 Regexes, formerly Regular Expressions
 
 =head3 Value and Variable Types
@@ -1709,7 +1871,7 @@ And now, there is also Raku:
 I have installed MongoDB on my  computer with the packages provided by
 the distribution. Nothing more to say.
 
-The  installation of  the  MongoDB  module for  Raku  was  a bit  more
+The  installation of  the  Raku  module for  MongoDB  was  a bit  more
 eventful.  Please note  that I  describe here  the situation  in March
 2018. Things  has moved on since  this time. Some advices  given below
 are still relevant, others are obsolete.
