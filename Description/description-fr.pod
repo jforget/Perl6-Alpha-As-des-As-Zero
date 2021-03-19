@@ -2358,6 +2358,9 @@ Remarquez que je n'ai pas cherché à voir si le problème de
 existe encore.  En revanche, j'ai  testé le problème des  C<(Rat)>, il
 est toujours là.
 
+En 2021, j'ai  testé le problème de C<_id>, il  a disparu. Le problème
+des C<(Rat)> est toujours présent.
+
 =head2 Bailador
 
 Au début, je n'avais pas l'intention de faire du web dynamique. Puis j'ai trouvé que

@@ -3,8 +3,8 @@
 #
 #
 #     Programme construisant le livret pour un engin volant ou une créature volante pour l'As des As
-#     Program building the booklet for a glying engine or a flying creature for Ace of Aces
-#     Copyright (C) 2018, 2020 Jean Forget
+#     Program building the booklet for a flying machine or a flying creature for Ace of Aces
+#     Copyright (C) 2018, 2020, 2021 Jean Forget
 #
 #     Voir la licence dans la documentation incluse ci-dessous.
 #     See the license in the embedded documentation below.
@@ -46,9 +46,20 @@ class Livret does JSON::Class {
   has     @.pages;
   has     %.manoeuvres;
 }
+class Booklet does JSON::Class {
+  has Str $.booklet;
+  has Str $.side;
+  has Str $.identity;
+  has Str $.name;
+  has Int $.hits;
+  has     @.pages;
+  has     %.maneuvers;
+}
 
-my Livret $livret;
+my Livret  $livret;
+my Booklet $booklet;
 my @pages_du_livret;
+my @booklet-pages;
 
 my Caracteristiques $car .= from-json(slurp "{$nom}-init.json");
 #say $car.perl;
@@ -57,18 +68,20 @@ say DateTime.now.hh-mm-ss, ' début du traitement';
 my @manv = $car.manoeuvres.keys;
 my %tirs = $car.tirs;
 my %manoeuvres;
+my %maneuvers;
+my %trans-turn = ( G => 'L', A => 'C', D => 'R' );
 for @manv -> $manv {
-  %manoeuvres{$manv} = { "vitesse" => $car.manoeuvres{$manv}<vitesse>,
-                         "virage"  => $car.manoeuvres{$manv}<virage> };
+  %manoeuvres{$manv} = { "vitesse" =>             $car.manoeuvres{$manv}<vitesse>,
+                         "virage"  =>             $car.manoeuvres{$manv}<virage>   };
+  %maneuvers{ $manv} = { "speed"   =>             $car.manoeuvres{$manv}<vitesse>,
+                         "turn"    => %trans-turn{$car.manoeuvres{$manv}<virage> } };
 }
 say DateTime.now.hh-mm-ss, ' début du calcul des pages';
 
 my $cle   = $car.camp eq 'G' ?? 'chemin_MG' !! 'chemin_GM' ;
 my $cle-r = $car.camp eq 'G' ?? 'chemin_GM' !! 'chemin_MG' ;
 
-my MongoDB::Cursor $cursor = $pages.find: :projection(
-  ( _id => 0, )
-);
+my MongoDB::Cursor $cursor = $pages.find();
 while $cursor.fetch -> BSON::Document $d {
   my $numéro = $d<numero>;
   next
@@ -97,12 +110,14 @@ while $cursor.fetch -> BSON::Document $d {
     my $pg_arr =  recherche_chemin_GM($arrivée.chemin, $cle);
     %enchaînement{$manv} = $pg_arr;
   }
-  @pages_du_livret[$numéro] =  { numero => $numéro, tir => $tir, poursuite => $poursuite, enchainement => %enchaînement };
+  @pages_du_livret[$numéro] =  { numero => $numéro, tir   => $tir, poursuite => $poursuite, enchainement => %enchaînement };
+  @booklet-pages[  $numéro] =  { number => $numéro, shoot => $tir, pursuit   => $poursuite, transition   => %enchaînement };
 }
 $cursor.kill;
 
 say DateTime.now.hh-mm-ss, ' fin du calcul des pages';
 @pages_du_livret[223] = { numero => 223, };
+@booklet-pages[  223] = { number => 223, };
 
 $livret .= new(livret     => $car.livret
              , camp       => $car.camp
@@ -111,8 +126,20 @@ $livret .= new(livret     => $car.livret
              , capacité   => $car.capacité
              , manoeuvres => %manoeuvres
              , pages      => @pages_du_livret);
-my $fhj = open("$nom.json", :w);
+my $fhj = open("{$nom}-fr.json", :w);
 $fhj.say($livret.to-json());
+$fhj.close();
+
+my %translate = ( G => 'G', M => 'B' ); # Gentil → Good guy, Méchant → Bad Guy
+$booklet .= new(booklet   => $car.livret
+             , side       => %translate{$car.camp}
+             , identity   => $car.identité
+             , name       => $car.nom
+             , hits       => $car.capacité
+             , maneuvers  => %maneuvers
+             , pages      => @booklet-pages);
+$fhj = open("{$nom}-en.json", :w);
+$fhj.say($booklet.to-json());
 $fhj.close();
 
 my Str $ligne1 = "<tr align='center'><td>Page</td><td>Poursuite</td><td>Tir</td><td>Man</td>" ~ [~] map { "<td>{$_}</td>" }, @manv.sort;
@@ -168,7 +195,6 @@ sub recherche_chemin_GM(Str $chemin, Str $clé) {
   unless $numero {
     my MongoDB::Cursor $cursor = $pages.find(
       criteria   => ( $clé => $chemin, ),
-      projection => ( _id => 0, )
     );
     while $cursor.fetch -> BSON::Document $d {
       if $d{$clé} eq $chemin {
