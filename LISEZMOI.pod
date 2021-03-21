@@ -16,10 +16,18 @@ de Google Alpha Go Zero, c'est-à-dire un apprentissage autonome
 du jeu en accumulant les parties et en différenciant les coups
 favorables des coups défavorables.
 
-Une description détaillée se trouve dans le répetoire F<description>.
+Le  dossier  F<Game> contient  des  programmes  similaires à  ceux  du
+dossier F<Jeu>, mais avec une codification en anglais.
+
+Une description détaillée se trouve dans le répertoire F<description>.
 
 =head2 LICENCE
 
-Les programmes de ce dépôt sont sous la même licence que S<Perl :>
-GPL et licence artistique. Voir le texte (en anglais) dans le
-fichier F<LICENSE>.
+Les programmes du sous-répertoire F<Game> sont sous licence artistique
+2.0. Voir le texte (en anglais) dans le fichier
+F<LICENSE-ARTISTIC-2.0>.
+
+Les autres programmes de ce dépôt sont sous la même licence que
+S<Perl :> GPL et licence artistique. Voir le texte (en anglais) dans
+le fichier F<LICENSE>.
+

@@ -16,10 +16,16 @@ In the F<Jeu> (= "game") folder, the programs apply to the "Ace of Aces"
 game the same principles that "Google Alpha Go Zero" applied to Go:
 self-learning the tricks of the trade.
 
+The  folder F<Game>  contains programs  similar to  what is  in folder
+F<Jeu>, but the coding standards use English instead of French.
+
 =head2 LICENSE
 
-The programs in this repository are licensed under the same terms
-as Perl 5: GPL and Artistic License. For more details, please
+The programs in the F<Game> folder are under the Artistic License 2.0.
+See the text in F<LICENSE-ARTISTIC-2.0>.
+
+The programs elsewhere in this  repository are licensed under the same
+terms as  Perl 5: GPL and  Artistic License. For more  details, please
 read the F<LICENSE> file in this repository.
 
 The various texts of this repository are licensed under the terms of
