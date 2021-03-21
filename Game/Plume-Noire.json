@@ -1,0 +1,9 @@
+{
+    "identity":         "Plume-Noire",
+    "name":             "Plume-Noire",
+    "aircraft":         "Epervier",
+    "perspicacity":     0.5,
+    "stiffness":        2,
+    "hits":            12,
+    "ref": [ "Epervier" ]
+}

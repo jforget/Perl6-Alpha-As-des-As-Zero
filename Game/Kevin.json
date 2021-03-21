@@ -1,0 +1,9 @@
+{
+    "identity":        "Kevin",
+    "name":            "Kevin",
+    "aircraft":        "Drone",
+    "perspicacity":     0.5,
+    "stiffness":        2,
+    "hits":            12,
+    "ref": [ "Drone" ]
+}
