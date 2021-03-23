@@ -78,7 +78,7 @@ our sub list-games($dh) {
 }
 
 # List of all turns from a game
-our sub turns-games($dh) {
+our sub turns-of-game($dh) {
   my @liste;
   my MongoDB::Cursor $cursor = $turns.find(
       criteria   => ( 'date-heure' => $dh,
@@ -92,7 +92,7 @@ our sub turns-games($dh) {
 }
 
 # List of all turns from a start page
-our sub turns-page(Str $page, @id, Str $dh) {
+our sub turns-of-page(Str $page, @id, Str $dh) {
   my @liste;
 
   my MongoDB::Cursor $cursor = $turns.find(
@@ -142,7 +142,7 @@ our sub turn4($dh, Int $num, $id) {
   return @liste;
 }
 
-sub write-turn(BSON::Document $turn) {
+our sub write-turn(BSON::Document $turn) {
   my BSON::Document $req .= new: (
     insert    => 'Turns',
     documents => [ $turn ],
@@ -171,7 +171,7 @@ our sub write-aircraft(BSON::Document $aircraft) {
 
 }
 
-sub write-game(BSON::Document $game) {
+our sub write-game(BSON::Document $game) {
   my BSON::Document $req .= new: (
     insert    => 'Games',
     documents => [ $game ],
