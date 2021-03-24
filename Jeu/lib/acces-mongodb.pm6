@@ -140,7 +140,7 @@ our sub coup4($dh, Int $num, $id) {
   return @liste;
 }
 
-sub écrire-coup(BSON::Document $coup) {
+our sub écrire-coup(BSON::Document $coup) {
   my BSON::Document $req .= new: (
     insert => 'Coups',
     documents => [ $coup ],
@@ -170,13 +170,28 @@ our sub écrire-avion(BSON::Document $avion) {
 
 }
 
-sub écrire-partie(BSON::Document $partie) {
+our sub écrire-partie(BSON::Document $partie) {
   my BSON::Document $req .= new: (
     insert => 'Parties',
     documents => [ $partie ],
   );
   my BSON::Document $result = $database.run-command($req);
   #say "Création partie ok : ", $result<ok>, " nb : ", $result<n>;
+}
+
+our sub maj-partie(BSON::Document $partie) {
+   my BSON::Document $req .= new: (
+    update => 'Parties',
+    updates => [ (
+          q =>  ( 'date-heure' =>  $partie<date-heure>, )
+        , u => $partie,
+      ),
+    ],
+  );
+  my BSON::Document $doc = $database.run-command($req);
+  if $doc<ok> == 0 {
+    say "update ok : ", $doc<ok>, " nb : ", $doc<n>;
+  }
 }
 
 

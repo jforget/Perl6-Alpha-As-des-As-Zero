@@ -68,6 +68,7 @@ while $cursor.fetch -> BSON::Document $partie {
   $game<dh-end>     = $partie<dh_fin>;
   $fhg.say($game);
   $fhp.say($partie);
+  access-mongodb::write-game($game);
 }
 
 $fhg.close();
