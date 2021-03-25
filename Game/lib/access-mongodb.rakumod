@@ -67,9 +67,8 @@ our sub aircraft(Str $id) {
 our sub list-games($dh) {
   my @liste;
   my MongoDB::Cursor $cursor = $games.find(
-      criteria   => ( 'date-heure' => ( '$gte' => $dh, ),
+      criteria   => ( 'dh-begin' => ( '$gte' => $dh, ),
                        ),
-      projection => ( _id => 0, )
     );
   while $cursor.fetch -> BSON::Document $d {
     @liste.push($d);
