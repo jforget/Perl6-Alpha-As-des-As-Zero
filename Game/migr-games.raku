@@ -51,9 +51,9 @@ while $cursor.fetch -> BSON::Document $partie {
     }
   }
 
-  substr-rw($key,  7, 1) = 'T';
-  substr-rw($key, 10, 1) = ':';
+  substr-rw($key, 10, 1) = 'T';
   substr-rw($key, 13, 1) = ':';
+  substr-rw($key, 16, 1) = ':';
   my BSON::Document $game .= new(); 
   $game<dh-begin>   = $key;
   $game<good>       = $partie<gentil>;

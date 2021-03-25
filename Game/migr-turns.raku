@@ -38,9 +38,9 @@ while $cursor.fetch -> BSON::Document $coup {
   my     $choix    = $coup<choix>;
   my @choice =  map { translate $_ }, $choix[*];
 
-  substr-rw($key,  7, 1) = 'T';
-  substr-rw($key, 10, 1) = ':';
+  substr-rw($key, 10, 1) = 'T';
   substr-rw($key, 13, 1) = ':';
+  substr-rw($key, 16, 1) = ':';
   $page ~~ s/G/L/;
   $page ~~ s/A/C/;
   $page ~~ s/D/R/;
