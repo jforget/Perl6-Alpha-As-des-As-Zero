@@ -21,18 +21,21 @@ use Bailador;
 
 use access-mongodb;
 use game-list-page;
-#use game-page;
+use game-page;
 #use turn-page;
 use Pilot;
 
 my @languages = ( 'en', 'fr' );
 
 get '/' => sub {
-  my @list = access-mongodb::list-games('');
-  return game-list-page::render('en', '', @list);
+  redirect "/en/list/";
 }
 
 get '/:ln/list' => sub ($lng) {
+  redirect "/$lng/list/";
+}
+
+get '/:ln/list/' => sub ($lng) {
   if $lng !~~ /^ @languages $/ {
     return slurp('html/unknown-lang.html');
   }
@@ -48,12 +51,15 @@ get '/:ln/list/:dh' => sub ($lng, $dh) {
   return game-list-page::render(~ $lng, ~ $dh, @list);
 }
 
-#get '/:lng/game/:dh' => sub ($lng, $dh) {
-#  my $game  = access-mongodb::game(~ $dh);
-#  my @turns = access-mongodb::turns-of-game(~ $dh);
-#  return game-page::render($lng, $dh, $game, @turns);
-#}
-#
+get '/:lng/game/:dh' => sub ($lng, $dh) {
+  if $lng !~~ /@languages/ {
+    return slurp('html/unknown-lang.html');
+  }
+  my $game  = access-mongodb::game(~ $dh);
+  my @turns = access-mongodb::turns-of-game(~ $dh);
+  return game-page::render(~ $lng, ~ $dh, $game, @turns);
+}
+
 #get '/:lng/turn/:dh/:num/:id' => sub ($lng, $dh, $num, $id) {
 #  my BSON::Document $game  = access-mongodb::game(~ $dh);
 #  my BSON::Document $doc-p = access-mongodb::pilot(~ $id);

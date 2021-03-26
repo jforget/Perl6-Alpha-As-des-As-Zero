@@ -41,7 +41,7 @@ sub fill($at, :$lang, :$dh, :@list) {
 
     my $a = $line.at('a');
     $a.content($game<dh-begin>);
-    $a.attr(href => "http://localhost:3000/$lang/list/$game<dh-begin>");
+    $a.attr(href => "http://localhost:3000/$lang/game/$game<dh-begin>");
 
     $line.(  'span.good'    )».content($game<good>);
     $line.(  'span.bad'     )».content($game<bad>);
