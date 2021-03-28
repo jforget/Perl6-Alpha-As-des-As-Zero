@@ -28,9 +28,8 @@ my MongoDB::Collection $aircraft = $database.collection('Aircraft');
 our sub game($dh) {
   my $result;
   my MongoDB::Cursor $cursor = $games.find(
-      criteria   => ( 'date-heure' => $dh,
+      criteria   => ( 'dh-begin' => $dh,
                        ),
-      projection => ( _id => 0, )
     );
   while $cursor.fetch -> BSON::Document $d {
     $result = $d;
@@ -78,16 +77,15 @@ our sub list-games($dh) {
 
 # List of all turns from a game
 our sub turns-of-game($dh) {
-  my @liste;
+  my @list;
   my MongoDB::Cursor $cursor = $turns.find(
-      criteria   => ( 'date-heure' => $dh,
+      criteria   => ( 'dh-begin' => $dh,
                        ),
-      projection => ( _id => 0, )
     );
   while $cursor.fetch -> BSON::Document $d {
-    @liste.push($d);
+    @list.push($d);
   }
-  return @liste;
+  return @list;
 }
 
 # List of all turns from a start page
@@ -97,7 +95,7 @@ our sub turns-of-page(Str $page, @id, Str $dh) {
   my MongoDB::Cursor $cursor = $turns.find(
       criteria   => ( 'page'       => $page,
                       'identity'   => ( '$in' => [ @id ] ),
-                      'date-heure' => ( '$lt' =>  $dh ),
+                      'dh-begin'   => ( '$lt' =>  $dh ),
                       'fini'       => ( '$ne' => 1 ),
                        ),
       projection => ( _id => 0, )
@@ -113,7 +111,7 @@ our sub turn-game($dh, Int $num, $id) {
   my @liste;
   my $result;
   my MongoDB::Cursor $cursor = $turns.find(
-      criteria   => ( 'date-heure' => $dh,
+      criteria   => ( 'dh-begin'   => $dh,
                       'tour'       => $num,
                       'identity'   => $id,
                        ),
@@ -130,7 +128,7 @@ our sub turn4($dh, Int $num, $id) {
   my @liste;
   my $result;
   my MongoDB::Cursor $cursor = $turns.find(
-      criteria   => ( 'date-heure' => $dh,
+      criteria   => ( 'dh-begin'   => $dh,
                       'tour'       => ( '$in' => [ $num, $num + 1 ] ),
                        ),
       projection => ( _id => 0, )
