@@ -13,46 +13,81 @@ unit package game-page;
 use Template::Anti :one-off;
 
 sub fill($at, :$lang, :$dh, :$game, :@list) {
-  #if $dh ne '' {
-  #  my $criterion = $at.at('span.criterion');
-  #  $criterion.content($dh);
-  #}
-  #else {
-  #  $at('p.with-criterion')».remove;
-  #}
-  #my $li-draw = $at.at('ul.games li.draw');
-  #my $li-flee = $at.at('ul.games li.flee');
-  #my $li-shot = $at.at('ul.games li.shot');
-  #
-  #$at('ul.games li')».remove;
-  #for @list -> $game {
-  #  my $line;
-  #  if $game<vp-g>.abs == 1 {
-  #    $line = $li-shot;
-  #  }
-  #  elsif $game<vp-g>.abs == 0.5 {
-  #    $line = $li-flee;
-  #  }
-  #  else {
-  #    $line = $li-draw;
-  #  }
-  #  my $loser  = $game<vp-g> < $game<vp-b> ?? $game<good> !! $game<bad>;
-  #  my $winner = $game<vp-g> > $game<vp-b> ?? $game<good> !! $game<bad>;
-  #
-  #  my $a = $line.at('a');
-  #  $a.content($game<dh-begin>);
-  #  $a.attr(href => "http://localhost:3000/$lang/list/$game<dh-begin>");
-  #
-  #  $line.(  'span.good'    )».content($game<good>);
-  #  $line.(  'span.bad'     )».content($game<bad>);
-  #  $line.at('span.nb-turns' ).content($game<nb-turns>);
-  #  $line.at('span.winner'   ).content($winner);
-  #  $line.at('span.loser'    ).content($loser);
-  #  $line.at('span.hits-g'   ).content($game<hits-g>);
-  #  $line.at('span.hits-b'   ).content($game<hits-b>);
-  #
-  #  $at.at('ul.games').append-content("$line\n");
-  #}
+  $at.('span.date-hour')».content($dh);
+
+  my $tr-turn       = $at.at('tr.turn');
+  my $label-attack  = $at.at('span.attack');
+  my $label-flee    = $at.at('span.flee');
+  my $label-end     = $at.at('span.end');
+  my $label-left    = $at.at('span.left');
+  my $label-center  = $at.at('span.center');
+  my $label-right   = $at.at('span.right');
+  my $label-tailing = $at.at('span.tailing');
+
+  # The collection Turns contains *player* turns, not *game* turns and
+  # the "game" webpage displays *game* turns, not *player* turns.
+  # So we must merge data from corresponding player turns to rebuild
+  # the game turns. In addition, MongoDB does not sort the documents it retrieves.
+  # (Or actually, I did not ask MongoDB to sort them). And the "Game" webpage
+  # needs to display a sorted list of game turns. So, in addition to merging
+  # two player turns into a game turn, the following loops executes a pigeonhole
+  # sort. Pigeonhole sorting is very efficient, O(n), because it does not rely on
+  # comparing two records. Each record is directly stored into its pigeonhole.
+  my @game-turn = %( 'page2' => '', 'tail-g' => '', 'tail-b' => '' ) xx ($game<nb-turns> + 1);
+  for @list -> $player-turn {
+    my $turn-nb  = $player-turn<turn>;
+    my $page     = $player-turn<page>;
+    my $maneuver = $player-turn<maneuver>;
+
+    given $maneuver {
+      when 'Attack' { $maneuver = $label-attack; }
+      when 'Flee'   { $maneuver = $label-flee;   }
+      when 'End'    { $maneuver = $label-end;    }
+    }
+    if $page ~~ /<[LCR]>$/ {
+      my $tail-friendly = $label-tailing;
+      my $tail-enemy;
+      given $page.substr(*-1, 1) {
+        when 'L' { $tail-enemy = $label-left;   }
+        when 'C' { $tail-enemy = $label-center; }
+        when 'R' { $tail-enemy = $label-right;  }
+      }
+      if $player-turn<identity> eq $game<good> {
+        @game-turn[$turn-nb]<tail-g> = $tail-friendly;
+        @game-turn[$turn-nb]<tail-b> = $tail-enemy;
+      }
+      else {
+        @game-turn[$turn-nb]<tail-b> = $tail-friendly;
+        @game-turn[$turn-nb]<tail-g> = $tail-enemy;
+      }
+      $page = substr($page, 0, * -1);
+    }
+    @game-turn[$turn-nb    ]<page1> = $page;
+    @game-turn[$turn-nb - 1]<page2> = $page;
+    if $player-turn<identity> eq $game<good> {
+      @game-turn[$turn-nb]<hits-g> = $player-turn<hits>;
+      @game-turn[$turn-nb]<man-g>  = $maneuver;
+    }
+    else {
+      @game-turn[$turn-nb]<hits-b> = $player-turn<hits>;
+      @game-turn[$turn-nb]<man-b>  = $maneuver;
+    }
+  }
+
+  for 1 .. $game<nb-turns> -> $n {
+    my $game-turn = @game-turn[$n];
+    my $line = $tr-turn;
+    $line.at('td.turn-number').content($n);
+    $line.at('td.begin-page' ).content($game-turn<page1>);
+    $line.at('td.hits-g'     ).content($game-turn<hits-g>);
+    $line.at('td.hits-b'     ).content($game-turn<hits-b>);
+    $line.at('a.man-g'       ).content($game-turn<tail-g> ~ ' ' ~ $game-turn<man-g>);
+    $line.at('a.man-b'       ).content($game-turn<tail-b> ~ ' ' ~ $game-turn<man-b>);
+    $line.at('td.end-page'   ).content($game-turn<page2>);
+    $line.at('a.man-g').attr(href => "http://localhost:3000/$lang/turn/$dh/$n/$game<good>");
+    $line.at('a.man-b').attr(href => "http://localhost:3000/$lang/turn/$dh/$n/$game<bad>");
+    $at.at('tbody').append-content("$line\n");
+  }
 }
 
 our sub render(Str $lang, Str $dh, $game, @list --> Str) {
