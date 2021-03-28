@@ -24,6 +24,11 @@ sub fill($at, :$lang, :$dh, :$game, :@list) {
   my $label-right   = $at.at('span.right');
   my $label-tailing = $at.at('span.tailing');
 
+  $at('tbody tr')».remove;
+  $at('span.good')».content($game<good>);
+  $at('span.bad' )».content($game<bad> );
+  $at.at('a.redisplay').attr(href => "http://localhost:3000/$lang/list/$dh");
+
   # The collection Turns contains *player* turns, not *game* turns and
   # the "game" webpage displays *game* turns, not *player* turns.
   # So we must merge data from corresponding player turns to rebuild

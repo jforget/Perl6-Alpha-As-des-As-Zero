@@ -25,7 +25,7 @@ sub fill($at, :$lang, :$dh, :@list) {
   my $li-shot = $at.at('ul.games li.shot');
 
   $at('ul.games li')».remove;
-  for @list -> $game {
+  for @list ==> sort -> $game { $game<dh-begin>; } -> $game {
     my $line;
     if $game<vp-g>.abs == 1 {
       $line = $li-shot;
