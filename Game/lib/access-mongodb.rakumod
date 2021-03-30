@@ -112,7 +112,7 @@ our sub turn-game($dh, Int $num, $id) {
   my $result;
   my MongoDB::Cursor $cursor = $turns.find(
       criteria   => ( 'dh-begin'   => $dh,
-                      'tour'       => $num,
+                      'turn'       => $num,
                       'identity'   => $id,
                        ),
       projection => ( _id => 0, )
@@ -129,9 +129,8 @@ our sub turn4($dh, Int $num, $id) {
   my $result;
   my MongoDB::Cursor $cursor = $turns.find(
       criteria   => ( 'dh-begin'   => $dh,
-                      'tour'       => ( '$in' => [ $num, $num + 1 ] ),
+                      'turn'       => ( '$in' => [ $num, $num + 1 ] ),
                        ),
-      projection => ( _id => 0, )
     );
   while $cursor.fetch -> BSON::Document $d {
     @liste.push($d);

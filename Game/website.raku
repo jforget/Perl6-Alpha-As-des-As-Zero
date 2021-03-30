@@ -22,7 +22,7 @@ use Bailador;
 use access-mongodb;
 use game-list-page;
 use game-page;
-#use turn-page;
+use player-turn-page;
 use Pilot;
 
 my @languages = ( 'en', 'fr' );
@@ -60,31 +60,33 @@ get '/:lng/game/:dh' => sub ($lng, $dh) {
   return game-page::render(~ $lng, ~ $dh, $game, @turns);
 }
 
-#get '/:lng/turn/:dh/:num/:id' => sub ($lng, $dh, $num, $id) {
-#  my BSON::Document $game  = access-mongodb::game(~ $dh);
-#  my BSON::Document $doc-p = access-mongodb::pilot(~ $id);
-#  my Pilot         $pilot .= from-json($doc-p<json>);
-#  my @turn4  = access-mongodb::turn4(~ $dh, + $num, ~ $id);
-#  my $page;
-#  for @turn4 -> BSON::Document $turn {
-#    if $turn<turn> == $num &&$turn<identity> eq $id {
-#      $page = $turn<page>;
-#      last;
-#    }
-#  }
-#  my @similar; # similar turns, from the same start page
-#  my @id = ~ $id;
-#  if $id ne $game<aircraft_g> && $id ne $game<aircraft_m> {
-#    if $id eq $game<good> {
-#      @id.push($game<aircraft_g>);
-#    }
-#    if $id eq $game<bad> {
-#      @id.push($game<aircraft_b>);
-#    }
-#  }
-#  @similar = access-mongodb::turns-of-page(~ $page, @id, ~ $dh);
-#  return turn-page::render($lng, ~ $dh, + $num, ~ $id, $game, @turn4, @similaires, $pilot);
-#}
+get '/:lng/turn/:dh/:num/:id' => sub ($lng, $dh, $num, $id) {
+  my BSON::Document $game  = access-mongodb::game(~ $dh);
+  my BSON::Document $doc-p = access-mongodb::pilot(~ $id);
+  my Pilot         $pilot .= from-json($doc-p<json>);
+  my @turn4  = access-mongodb::turn4(~ $dh, + $num, ~ $id);
+  my $page;
+  for @turn4 -> BSON::Document $turn {
+    if $turn<turn> == $num &&$turn<identity> eq $id {
+      $page = $turn<page>;
+      last;
+    }
+  }
+  my @similar; # similar turns, from the same start page
+  my $id1 = ~ $id;
+  my @id  =   $id1;
+
+  if $id1 ne $game<aircraft-g> && $id1 ne $game<aircraft-b> {
+    if $id1 eq $game<good> {
+      @id.push($game<aircraft-g>);
+    }
+    if $id1 eq $game<bad> {
+      @id.push($game<aircraft-b>);
+    }
+  }
+  @similar = access-mongodb::turns-of-page(~ $page, @id, ~ $dh);
+  return player-turn-page::render(~ $lng, ~ $dh, + $num, $game, @turn4, @similar, $pilot);
+}
 
 baile();
 
