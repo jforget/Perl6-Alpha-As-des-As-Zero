@@ -23,6 +23,7 @@ sub fill($at, :$lang, :$dh, :$game, :$turn-nb, :@turn4, :@similar, :$pilot) {
   my $enemy-turn;
   my $next-turn;
   my $next-enemy-turn;
+  my Str $identity = $pilot.identity;
   for @turn4 -> $p-turn {
     if $p-turn<turn> == $turn-nb && $p-turn<identity> eq $pilot.identity {
       $player-turn = $p-turn;
@@ -48,9 +49,9 @@ sub fill($at, :$lang, :$dh, :$game, :$turn-nb, :@turn4, :@similar, :$pilot) {
   %label-tailed<R>  = ~ $at.at('span.right');
   $label-tailing    = ~ $at.at('span.tailing');
 
-  $at('tbody.choice-table'  )».remove;
-  $at('tbody.criteria-table')».remove;
-  $at('p.dummy'             )».remove;
+  $at('tbody.choice-table tr'  )».remove;
+  $at('tbody.criteria-table tr')».remove;
+  $at('p.dummy'                )».remove;
 
   my $start-page = $player-turn<page>;
   my $end-page   = $next-turn<page>;
@@ -81,6 +82,31 @@ sub fill($at, :$lang, :$dh, :$game, :$turn-nb, :@turn4, :@similar, :$pilot) {
   $at.('span.hits0-enemy')».content($h0);
   $at.('span.hits1-enemy')».content($h0 - $h2);
   $at.('span.hits2-enemy')».content($h2);
+
+  my Num $cumulative;
+  my Str $prev-man   = '';
+  for @similar ==> sort { $_<maneuver> ~ ' ' ~ $_<dh-begin> } -> $similar-turn {
+
+    my Num $value = $similar-turn<result> × $pilot.perspicacity ** $similar-turn<delay>;
+    if $similar-turn<maneuver> ne $prev-man {
+      $cumulative = 0e0;
+      $prev-man   = $similar-turn<maneuver>;
+    }
+    $cumulative += $value;
+    my Str $value-dsp       = sprintf('%.4g', $value);
+    my Str $cumulative-dsp  = sprintf('%.4g', $cumulative);
+
+    $tr-criteria.at('td.game a').attr(href => "http://localhost:3000/$lang/game/$similar-turn<dh-begin>");
+    $tr-criteria.at('td.turn a').attr(href => "http://localhost:3000/$lang/turn/$similar-turn<dh-begin>/$similar-turn<turn>/$identity");
+    $tr-criteria.at('td.game a'	   ).content($similar-turn<dh-begin>);
+    $tr-criteria.at('td.turn a'	   ).content($similar-turn<turn>);
+    $tr-criteria.at('td.maneuver'  ).content($similar-turn<maneuver>);
+    $tr-criteria.at('td.result'    ).content($similar-turn<result>);
+    $tr-criteria.at('td.delay'     ).content($similar-turn<delay>);
+    $tr-criteria.at('td.value'     ).content($value-dsp);
+    $tr-criteria.at('td.cumulative').content($cumulative-dsp);
+    $at.at('tbody.criteria-table').append-content("$tr-criteria\n");
+  }
 }
 
 sub translate-man(Str $maneuver --> Str) {
