@@ -12,6 +12,12 @@ unit package player-turn-page;
 
 use Template::Anti :one-off;
 
+my $label-attack ;
+my $label-flee   ;
+my $label-end    ;
+my %label-tailed ;
+my $label-tailing;
+
 sub fill($at, :$lang, :$dh, :$game, :$turn-nb, :@turn4, :@similar, :$pilot) {
   my $player-turn;
   my $enemy-turn;
@@ -34,32 +40,56 @@ sub fill($at, :$lang, :$dh, :$game, :$turn-nb, :@turn4, :@similar, :$pilot) {
 
   my $tr-choice     = $at.at('tr.choice-line');
   my $tr-criteria   = $at.at('tr.criteria-line');
+  $label-attack     = ~ $at.at('span.attack');
+  $label-flee       = ~ $at.at('span.flee');
+  $label-end        = ~ $at.at('span.end');
+  %label-tailed<L>  = ~ $at.at('span.left');
+  %label-tailed<C>  = ~ $at.at('span.center');
+  %label-tailed<R>  = ~ $at.at('span.right');
+  $label-tailing    = ~ $at.at('span.tailing');
 
   $at('tbody.choice-table'  )».remove;
   $at('tbody.criteria-table')».remove;
+  $at('p.dummy'             )».remove;
+
+  my $start-page = $player-turn<page>;
+  my $end-page   = $next-turn<page>;
+  $start-page ~~ s/(<[LCR]>)/%label-tailed{$0}/;
+  $end-page   ~~ s/<[LCR]>//;
 
   $at.at('a.redisplay'   ).attr(href => "http://localhost:3000/$lang/list/$dh");
   $at.at('a.current-game').attr(href => "http://localhost:3000/$lang/game/$dh");
-  $at.('span.game'	)».content($dh);
-  $at.('span.turn'	)».content($turn-nb);
-  $at.('span.identity'	)».content($pilot.identity);
-  $at.('span.enemy'   	)».content($enemy-turn<identity>);
-  $at.('span.start-page')».content($player-turn<page>);
-  $at.('span.maneuver'  )».content($player-turn<maneuver>);
-  $at.('span.man-enemy' )».content($enemy-turn<maneuver>);
-  $at.('span.end-page'  )».content($next-turn<page>);
+  $at.('span.game'        )».content($dh);
+  $at.('span.turn'        )».content($turn-nb);
+  $at.('span.identity'    )».content($pilot.identity);
+  $at.('span.enemy'       )».content($enemy-turn<identity>);
+  $at.('span.maneuver'    )».content(translate-man(~ $player-turn<maneuver>));
+  $at.('span.man-enemy'   )».content(translate-man(~  $enemy-turn<maneuver>));
+  $at.('span.start-page'  )».content($start-page);
+  $at.('span.end-page'    )».content($end-page);
+  $at.('span.stiffness'   )».content($pilot.stiffness);
+  $at.('span.perspicacity')».content($pilot.perspicacity);
 
   my $h0 = $player-turn<hits>;
-  my $h2 = $next-turn<hits>;
-  $at.('span.hits0'     )».content($h0);
-  $at.('span.hits1'     )».content($h0 - $h2);
-  $at.('span.hits2'     )».content($h2);
+  my $h2 =   $next-turn<hits>;
+  $at.('span.hits0')».content($h0);
+  $at.('span.hits1')».content($h0 - $h2);
+  $at.('span.hits2')».content($h2);
 
-  $h0 = $enemy-turn<hits>;
+  $h0 =      $enemy-turn<hits>;
   $h2 = $next-enemy-turn<hits>;
   $at.('span.hits0-enemy')».content($h0);
   $at.('span.hits1-enemy')».content($h0 - $h2);
   $at.('span.hits2-enemy')».content($h2);
+}
+
+sub translate-man(Str $maneuver --> Str) {
+  given $maneuver {
+    when 'Attack' { return $label-attack; }
+    when 'Flee'   { return $label-flee;   }
+    when 'End'    { return $label-end;    }
+    default       { return $maneuver;     }
+  }
 }
 
 our sub render(Str $lang, Str $dh, Int $turn-nb, $game, @turn4, @similar, $pilot --> Str) {
