@@ -19,11 +19,12 @@ my %label-tailed ;
 my $label-tailing;
 
 sub fill($at, :$lang, :$dh, :$game, :$turn-nb, :@turn4, :@similar, :$pilot) {
+  my Str $identity = $pilot.identity;
+
   my $player-turn;
   my $enemy-turn;
   my $next-turn;
   my $next-enemy-turn;
-  my Str $identity = $pilot.identity;
   for @turn4 -> $p-turn {
     if $p-turn<turn> == $turn-nb && $p-turn<identity> eq $pilot.identity {
       $player-turn = $p-turn;
@@ -71,8 +72,8 @@ sub fill($at, :$lang, :$dh, :$game, :$turn-nb, :@turn4, :@similar, :$pilot) {
   $at.('span.stiffness'   )».content($pilot.stiffness);
   $at.('span.perspicacity')».content($pilot.perspicacity);
 
-  my $h0 = $player-turn<hits>;
-  my $h2 =   $next-turn<hits>;
+  my Int $h0 = $player-turn<hits>;
+  my Int $h2 =   $next-turn<hits>;
   $at.('span.hits0')».content($h0);
   $at.('span.hits1')».content($h0 - $h2);
   $at.('span.hits2')».content($h2);
@@ -84,6 +85,10 @@ sub fill($at, :$lang, :$dh, :$game, :$turn-nb, :@turn4, :@similar, :$pilot) {
   $at.('span.hits2-enemy')».content($h2);
 
   my Num $cumulative;
+  my Num %man-value;
+  for $player-turn<choice>[*] -> $choice {
+    %man-value{$choice} = 0e0;
+  }
   my Str $prev-man   = '';
   for @similar ==> sort { $_<maneuver> ~ ' ' ~ $_<dh-begin> } -> $similar-turn {
 
@@ -93,6 +98,7 @@ sub fill($at, :$lang, :$dh, :$game, :$turn-nb, :@turn4, :@similar, :$pilot) {
       $prev-man   = $similar-turn<maneuver>;
     }
     $cumulative += $value;
+    %man-value{$similar-turn<maneuver>} += $value;
     my Str $value-dsp       = sprintf('%.4g', $value);
     my Str $cumulative-dsp  = sprintf('%.4g', $cumulative);
 
@@ -106,6 +112,28 @@ sub fill($at, :$lang, :$dh, :$game, :$turn-nb, :@turn4, :@similar, :$pilot) {
     $tr-criteria.at('td.value'     ).content($value-dsp);
     $tr-criteria.at('td.cumulative').content($cumulative-dsp);
     $at.at('tbody.criteria-table').append-content("$tr-criteria\n");
+  }
+
+  my @maneuvers = %man-value.keys.sort;
+  my @values    = %man-value{ @maneuvers };
+  my @coef      = $pilot.stiffness «**» @values;
+  my @prob      = @coef «/» [+] @coef;
+  my @cumul     = [\+] @prob;
+
+  for @maneuvers.kv -> $i, $choice {
+
+    my Str $value-dsp = sprintf('%.4g', @values[$i]);
+    my Str $coef-dsp  = sprintf('%.4g', @coef[  $i]);
+    my Str $prob-dsp  = sprintf('%.4g', @prob[  $i]);
+    my Str $cumul-dsp = sprintf('%.4g', @cumul[ $i]);
+
+    $tr-choice.at('td.maneuver'   ).content($choice);
+    $tr-choice.at('td.value'      ).content($value-dsp);
+    $tr-choice.at('td.coefficient').content($coef-dsp);
+    $tr-choice.at('td.probability').content($prob-dsp);
+    $tr-choice.at('td.cumulative' ).content($cumul-dsp);
+
+    $at.at('tbody.choice-table').append-content("$tr-choice\n");
   }
 }
 
