@@ -7,6 +7,8 @@
 #     Voir la licence dans la documentation incluse ci-dessous.
 #     See the license in the embedded documentation below.
 #
+#     Guess which song I was listening to while writing this code?
+#     Hint: The Byrds, 1965
 
 unit package player-turn-page;
 
@@ -54,6 +56,16 @@ sub fill($at, :$lang, :$dh, :$game, :$turn-nb, :@turn4, :@similar, :$pilot) {
   $at('tbody.criteria-table tr')».remove;
   $at('p.dummy'                )».remove;
 
+  my Str $random-dsp = '';
+  if $player-turn<random>:exists {
+    $random-dsp = sprintf('%.4g', $player-turn<random>);
+    $at('span.random')».content($random-dsp);
+  }
+  else {
+    $at(        'p.with-random')».remove;
+    $at(       'th.with-random')».remove;
+    $tr-choice('td.with-random')».remove;
+  }
   my $start-page = $player-turn<page>;
   my $end-page   = $next-turn<page>;
   $start-page ~~ s/(<[LCR]>)/%label-tailed{$0}/;
@@ -119,6 +131,7 @@ sub fill($at, :$lang, :$dh, :$game, :$turn-nb, :@turn4, :@similar, :$pilot) {
   my @coef      = $pilot.stiffness «**» @values;
   my @prob      = @coef «/» [+] @coef;
   my @cumul     = [\+] @prob;
+  my $prev-cumul = 0;
 
   for @maneuvers.kv -> $i, $choice {
 
@@ -132,6 +145,15 @@ sub fill($at, :$lang, :$dh, :$game, :$turn-nb, :@turn4, :@similar, :$pilot) {
     $tr-choice.at('td.coefficient').content($coef-dsp);
     $tr-choice.at('td.probability').content($prob-dsp);
     $tr-choice.at('td.cumulative' ).content($cumul-dsp);
+
+    if $random-dsp ne '' && $player-turn<random> < @cumul[$i] {
+      $tr-choice.at('td.with-random').content($random-dsp);
+      $random-dsp = '';
+    }
+    else {
+      $tr-choice.at('td.with-random').content('');
+    }
+    $prev-cumul = @cumul[$i];
 
     $at.at('tbody.choice-table').append-content("$tr-choice\n");
   }
