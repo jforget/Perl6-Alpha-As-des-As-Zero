@@ -73,3 +73,52 @@ while $cursor.fetch -> BSON::Document $partie {
 
 $fhg.close();
 $fhp.close();
+
+
+=begin POD
+
+=encoding utf8
+
+=head1 NAME
+
+migr-games.raku -- converting the 2018-vintage collection C<Parties> to up-to-date collection C<Games>
+
+=head1 DESCRIPTION
+
+This program  reads the  C<Parties> collection, with  French keywords,
+and creates  corresponding documents  with English keyworrds  into the
+C<Games> collection. Some additional attributes are initialised.
+
+The  list  of  input  C<Parties>  documents  and  of  output  C<Games>
+documents are printed in text files, respectively F<list-parties.json>
+and F<list-games.json>.
+
+=head1 USAGE
+
+You  should  first delete  all  current  documents from  the  C<Games>
+collection, this is not done by the program. Under the Mongo shell:
+
+  use Ace_of_Aces
+  db.Games.remove({'dh-begin':{'$gt':'2'}})
+
+Then run the program with:
+
+  raku migr-games.raku
+
+=head2 Parameters
+
+None
+
+=head1 COPYRIGHT and LICENSE
+
+Copyright 2020, 2021, Jean Forget, all rights reserved
+
+This  program is  published under  the  same conditions  as Raku:  the
+Artistic License version 2.0.
+
+The text of  the licenses is available  in the F<LICENSE-ARTISTIC-2.0>
+file in this repository, or you can read it at:
+
+  L<https://raw.githubusercontent.com/Raku/doc/master/LICENSE>
+
+=end POD
