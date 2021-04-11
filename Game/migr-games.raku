@@ -37,9 +37,11 @@ while $cursor.fetch -> BSON::Document $partie {
   my Num $nb-turns = $partie<nb_coups>.Num;
   my Str $key      = $partie<date-heure>;
 
-  unless $hits-g.defined && $hits-b.defined {
+  my Num $target-turn = $nb-turns;
+  while $target-turn > 1 && ! $hits-g.defined && ! $hits-b.defined {
+    -- $target-turn;
     my MongoDB::Cursor $last = $coups.find(
-      criteria   => ( 'date-heure' => $key, 'tour' => $nb-turns - 1 ),
+      criteria   => ( 'date-heure' => $key, 'tour' => $target-turn ),
     );
     while $last.fetch -> BSON::Document $coup {
       if $coup<identité> eq $partie<gentil> {
@@ -49,6 +51,7 @@ while $cursor.fetch -> BSON::Document $partie {
         $hits-b //= $coup<potentiel>;
       }
     }
+    $last.kill;
   }
 
   substr-rw($key, 10, 1) = 'T';
