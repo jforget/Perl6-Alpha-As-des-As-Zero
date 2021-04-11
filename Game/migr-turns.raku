@@ -26,13 +26,22 @@ my MongoDB::Collection $parties  = $database.collection('Parties');
 
 my @list;
 
+my Int $step = 500;
+my Int $nb   =   0;
+say DateTime.now.Str, ' ', $nb;
+
 my $fht = open("list-turns.json", :w);
 my $fhc = open("list-coups.json", :w);
 my MongoDB::Cursor $cursor = $coups.find(
     criteria   => ( ),
   );
 while $cursor.fetch -> BSON::Document $coup {
+  ++ $nb;
+  if $nb %% $step {
+    say DateTime.now.Str, ' ', $nb;
+  }
   $fhc.say($coup);
+
   my Str $key      = $coup<date-heure>;
   my Int $turn-nb  = $coup<tour>;
   my Str $page     = $coup<page>;
@@ -78,6 +87,7 @@ while $cursor.fetch -> BSON::Document $coup {
 
 $fht.close();
 $fhc.close();
+say DateTime.now.Str, ' ', $nb;
 
 # translate "attaque" and "fuite", in "manoeuvre" and in "choix"
 sub translate(Str $manoeuvre --> Str) {
