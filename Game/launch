@@ -1,0 +1,25 @@
+#!/bin/sh
+# -*- encoding: utf-8; indent-tabs-mode: nil -*-
+#
+#     Programme pour lancer une partie de l'As des As
+#     Program to launch an Ace of Aces game
+#     Copyright (C) 2018, 2020, 2021 Jean Forget
+#
+#     This program  is published under  the same conditions as  Raku: the
+#     Artistic License version 2.0.
+#
+#     The text of  the licenses is available  in the F<LICENSE-ARTISTIC-2.0>
+#     file in this repository, or you can read it at:
+#
+#      L<https://raw.githubusercontent.com/Raku/doc/master/LICENSE>
+
+export dh=$(date -u +'%Y-%m-%dT%H:%M:%S')
+echo $dh
+
+raku umpire.raku --date-hour=$dh --good=Epervier --bad=Drone --no-fleeing &
+raku player.raku --date-hour=$dh --identity=Drone    &
+raku player.raku --date-hour=$dh --identity=Epervier &
+
+#raku umpire.raku --date-hour=$dh --good=Plume-Noire --bad=Kevin &
+#raku player.raku  --date-hour=$dh --identity=Kevin        &
+#raku player.raku  --date-hour=$dh --identity=Plume-Noire  &

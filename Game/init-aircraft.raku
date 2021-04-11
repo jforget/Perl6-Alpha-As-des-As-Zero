@@ -41,7 +41,7 @@ sub MAIN (Str $identity) {
   "name": "{$aircraft.name}",
   "aircraft": "{$aircraft.identity}",
   "perspicacity": {(-1).exp.round(0.001).Num},
-  "stiffness": {1.exp.round(0.001).Num},
+  "stiffness": {1.Num},
   "hits": {$aircraft.hits},
   "ref": [ "{$aircraft.identity}" ]
   \}

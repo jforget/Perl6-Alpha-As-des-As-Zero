@@ -96,9 +96,8 @@ our sub turns-of-page(Str $page, @id, Str $dh) {
       criteria   => ( 'page'       => $page,
                       'identity'   => ( '$in' => [ @id ] ),
                       'dh-begin'   => ( '$lt' =>  $dh ),
-                      'fini'       => ( '$ne' => 1 ),
+                      'end'        => ( '$ne' => 1 ),
                        ),
-      projection => ( _id => 0, )
     );
   while $cursor.fetch -> BSON::Document $d {
     @liste.push($d);
