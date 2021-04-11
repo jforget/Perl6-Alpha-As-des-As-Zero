@@ -84,8 +84,8 @@ sub fill($at, :$lang, :$dh, :$game, :$turn-nb, :@turn4, :@similar, :$pilot) {
   $at.('span.stiffness'   )».content($pilot.stiffness);
   $at.('span.perspicacity')».content($pilot.perspicacity);
 
-  my Int $h0 = $player-turn<hits>;
-  my Int $h2 =   $next-turn<hits>;
+  my $h0 = $player-turn<hits>;
+  my $h2 =   $next-turn<hits>;
   $at.('span.hits0')».content($h0);
   $at.('span.hits1')».content($h0 - $h2);
   $at.('span.hits2')».content($h2);
