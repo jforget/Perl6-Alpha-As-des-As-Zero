@@ -26,7 +26,10 @@ sub MAIN(Str $coll) {
 
   my %count;
 
-  my $fh-cr = open("incomplete-turns", :w);
+  my $fh-cr;
+  if $coll eq 'Turns' {
+    $fh-cr = open("incomplete-turns", :w);
+  }
 
   my MongoDB::Cursor $cursor = $collection.find(
       criteria   => ( ),
@@ -45,7 +48,9 @@ sub MAIN(Str $coll) {
   %count.keys ==> sort { - %count{$_} } \
               ==> my @keys;
 
-  $fh-cr.close();
+  if $fh-cr {
+    $fh-cr.close();
+  }
 
   for @keys -> $key {
     say "$key %count{$key}";
