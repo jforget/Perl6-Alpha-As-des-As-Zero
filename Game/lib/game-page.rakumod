@@ -77,10 +77,15 @@ sub fill($at, :$lang, :$dh, :$game, :@list) {
       @game-turn[$turn-nb]<hits-b> = $player-turn<hits>;
       @game-turn[$turn-nb]<man-b>  = $maneuver;
     }
+    @game-turn[$turn-nb]<end> = $player-turn<end>;
   }
 
   for 1 .. $game<nb-turns> -> $n {
     my $game-turn = @game-turn[$n];
+    my $target-turn = $n;
+    if $game-turn<end> {
+      -- $target-turn;
+    }
     my $line = $tr-turn;
     $line.at('td.turn-number').content($n);
     $line.at('td.begin-page' ).content($game-turn<page1>);
@@ -89,8 +94,8 @@ sub fill($at, :$lang, :$dh, :$game, :@list) {
     $line.at('a.man-g'       ).content($game-turn<tail-g> ~ ' ' ~ $game-turn<man-g>);
     $line.at('a.man-b'       ).content($game-turn<tail-b> ~ ' ' ~ $game-turn<man-b>);
     $line.at('td.end-page'   ).content($game-turn<page2>);
-    $line.at('a.man-g').attr(href => "http://localhost:3000/$lang/turn/$dh/$n/$game<good>");
-    $line.at('a.man-b').attr(href => "http://localhost:3000/$lang/turn/$dh/$n/$game<bad>");
+    $line.at('a.man-g').attr(href => "http://localhost:3000/$lang/turn/$dh/$target-turn/$game<good>");
+    $line.at('a.man-b').attr(href => "http://localhost:3000/$lang/turn/$dh/$target-turn/$game<bad>");
     $at.at('tbody').append-content("$line\n");
   }
 }
