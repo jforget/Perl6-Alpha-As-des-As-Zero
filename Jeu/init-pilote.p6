@@ -1,4 +1,4 @@
-#!/home/jf/rakudo/bin/perl6
+#!/usr/bin/env perl6
 # -*- encoding: utf-8; indent-tabs-mode: nil -*-
 #
 #
