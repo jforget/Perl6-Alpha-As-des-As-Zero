@@ -540,7 +540,7 @@ instructions to install the project on your computer.
 =head2 Installation
 
 I describe here how I installed  the project on a virtual machine with
-L<xubuntu|https://xubuntu.fr/> 21.04  "Hirsute Hippo".  I do  not give
+L<xubuntu|https://xubuntu.org/> 21.04  "Hirsute Hippo". I do  not give
 you a  precise procedure which  must be strictly followed,  but rather
 some guidelines  which you might  find useful  for your case.  If your
 computer already has Raku or MongoDB,  or if you computer runs another
@@ -616,12 +616,13 @@ really necessary.
 =head3 Installing Rakudo
 
 Unlike   the   2018   installation,   described   at   the   paragraph
-L</"Installation"> below, the xubuntu version  I used is a very recent
-one and the Perl6 / Rakudo  packages are rather up-to-date: Perl 6.d.3
-and Rakudo  2020.12. So I  installed the packages with  I<Synaptic>, I
-did not try to compile the sources.
+L</"Installation of  Rakudo"> below, the  xubuntu version I used  is a
+very recent one and the Perl6 / Rakudo packages are rather up-to-date:
+Perl  6.d.3 and  Rakudo  2020.12.  So I  installed  the packages  with
+I<Synaptic>, I did not try to compile the sources.
 
-If you want to compile the sources, see the L</"Installation"> paragraph.
+If  you want  to compile  the  sources, see  the L</"Installationn  of
+Rakudo"> paragraph.
 
 Among the  pre-requisite packages automatically installed,  there is a
 I<perl6-zef> package. So  you do not have to  install C<zef> yourself.
@@ -1491,7 +1492,7 @@ use websites, mainly the
 L<documentation of standard types|https://docs.raku.org/type.html>
 and the L<list of modules|https://modules.raku.org/>.
 
-=head2 Installation
+=head2 Installation of Rakudo
 
 There are four methods to install Raku on a Linux computer:
 
