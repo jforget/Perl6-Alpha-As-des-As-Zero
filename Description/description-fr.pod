@@ -564,11 +564,271 @@ conserver que le mécanisme abstrait reposant sur un automate à états finis é
 d'une dose de fonction I<random>. D'où l'idée d'un programme jouant à ce jeu sans rien connaître
 du contexte réel, mais se basant uniquement sur une analyse statistique des parties passées.
 
-Il y a deux grandes parties dans le projet. Tout d'abord, la préparation,
-consistant à produire les livrets sous forme électronique, en générant les fichiers
-plutôt qu'en tapant la totalité des enchaînements entre pages
-et manœuvres. Puis il y a le jeu proprement dit où des programmes combattent
-l'un contre l'autre et tirent la leçon de leurs combats passés.
+Il  y  a  deux  grandes  parties dans  le  projet.  Tout  d'abord,  la
+L<préparation>,  consistant   à  produire   les  livrets   sous  forme
+électronique, en générant les fichiers plutôt qu'en tapant la totalité
+des enchaînements  entre pages  et manœuvres.  Puis il  y a  le L<jeu>
+proprement dit  où des  programmes combattent  l'un contre  l'autre et
+tirent la leçon de leurs combats passés. Mais avant de décrire dans le
+détail les programmes, voici les instructions pour installer le projet
+sur votre machine.
+
+=head2 Installation
+
+Je  décris ici  l'installation  du projet  sur  une machine  virtuelle
+L<xubuntu|https://xubuntu.fr/> 21.04 "Hirsute Hippo". Je ne vous donne
+pas des instructions à suivre à  la lettre, juste un canevas dont vous
+pourrez  vous inspirer  pour  votre installation.  Si  vous avez  déjà
+installé  Raku ou  MongoDB  sur  votre machine,  ou  si votre  machine
+utilise  une autre  distribution Linux,  voire un  autre système  Unix
+comme FreeBSD, il  y aura des différences, mais  l'idée générale reste
+la même.  Évidemment, si  vous souhaitez installer  le projet  sur une
+machine Windows, les différences seront beaucoup plus importantes.
+
+Mais tout d'abord, un avertissement.
+
+=head3 Considérations sur la sécurité
+
+Ce projet est  un projet récréatif et ludique. Il  n'est pas destiné à
+traiter des  données cruciales. Si  le contenu  de la base  de données
+fuite vers  l'extérieur, cela  n'a aucune importance  pour moi.  Si le
+contenu de la base de données  est altéré par l'intrusion d'un pirate,
+c'est un désagrément mineur.
+
+J'adopte donc un  modèle de sécurité assez léger :  la base de données
+est accessible  uniquement sur la machine  qui l'héberge (C<localhost>
+ou C<127.0.0.1>). Si quelqu'un est connecté sur cette machine, il peut
+accéder sans  aucun problème  à la  base de données.  Il n'y  a aucune
+mesure supplémentaire d'authentification.
+
+Si vous souhaitez utiliser MongoDB  pour stocker vos relevés bancaires
+et vos examens médicaux, il est évident que vous devrez revoir de fond
+en comble le paramétrage de la base de données. Mais c'est hors de mon
+propos.
+
+Autre  sujet, voisin  de la  sécurité, les  performances. Le  site web
+permettant  de présenter  les parties  passées de  façon agréable  est
+d'une lenteur désespérante. Tant que je suis le seul utilisateur de ce
+site web, cela ne  pose pas de problème. Et c'est le  cas parce que je
+n'ai pas  défini de  serveur web  sur ma machine  qui soit  visible de
+l'extérieur.  Si votre  machine  comporte  un serveur  web  et que  ce
+serveur permet  d'afficher les parties  de l'As des  As de la  base de
+données pour des requêtes extérieures, votre machine se mettra à ramer
+et vous pourriez même avoir  l'équivalent d'un déni de service (I<DOS>
+ou I<DDOS>).
+
+Finalement, je  n'ai pas cherché  à faire quelque chose  de "packagé",
+avec un  fichier configuration global  dans le répertoire  F</etc>, un
+fichier de  configuration personnalisé  dans F<$HOME>  et dont  le nom
+commence par un point. Tout se fait dans le répertoire du dépôt Git et
+ses sous-répertoires : programmes exécutables, fichiers de paramètres,
+fichiers  résultats, etc.  Vous  pouvez même  être  amenés à  modifier
+certains  programmes  pour  vos   besoins.  Par  exemple,  le  fichier
+F<launch> lance  une partie  entre un épervier  générique et  un drone
+générique. Si vous voulez une  partie entre Plume-Noire et Kévin, vous
+devrez éditer le fichier F<launch> pour inhiber certaines lignes et en
+réactiver d'autres.
+
+=head3 Définition de la machine
+
+Si  vous utilisez  une machine  virtuelle, pensez  à lui  attribuer au
+moins   2048    Mo   de   mémoire   vive.    La   L<documentation   de
+Rakudo|https://rakudo.org/downloads/rakudo/source>  demande   1,5  Go,
+j'arrondis à 2  Go. La machine virtuelle doit également  avoir accès à
+Internet.
+
+=head3 Installation de logiciels extérieurs
+
+Avec  le gestionnaire  de paquets  de la  distribution (C<apt-get>  ou
+I<Synaptic> dans le cas de xubuntu), installez
+L<Emacs|https://www.gnu.org/software/emacs/>,
+L<Git|https://git-scm.com/>,
+L<curl|https://curl.se/>
+et la bibliothèque C<libssl-dev>.
+
+Et vérifiez que vous avez bien L<GnuPG|https://gnupg.org/>.
+
+Pour  Emacs,  c'est  une  préférence  personnelle.  Si  vous  préférez
+L<vim|https://www.vim.org/>  ou  L<nano|https://www.nano-editor.org/>,
+libre à vous de les installer.  En revanche, les autres logiciels sont
+absolument nécessaires.
+
+=head3 Installation de Rakudo
+
+À la  différence de  mon installation de  2018, décrite  au paragraphe
+L<Installation de Raku>, la version de xubuntu est toute récente, avec
+par  conséquent un  paquet Perl6  et un  paquet Rakudo  assez récents,
+puisqu'il  s'agit  de Perl  6.d.3  et  de  Rakudo 2020.12.  J'ai  donc
+installé les paquets par Synaptic, je  n'ai pas cherché à compiler les
+sources.
+
+Si vous voulez compiler à partir  des sources, veuillez vous référer à
+ce paragraphe L<Installation de Raku>.
+
+Parmi  les paquets  automatiquement chargés  avec Perl  6, il  y a  le
+paquet perl6-zef. Donc  vous n'avez pas à  vous préoccuper d'installer
+C<zef>.   Sur  d'autres   systèmes,  vous   pouvez  avoir   un  script
+F<install-zef>.  Il faut  bien entendu  le lancer.  Sinon, suivez  les
+instructions dans le
+L<dépôt Github de zef|https://github.com/ugexe/zef>.
+
+=head3 Installation de modules Rakudo
+
+Dans le but de pouvoir prendre  un instantané (snapshot) de la machine
+virtuelle  au bon  moment, j'ai  installé  tout de  suite les  modules
+nécessaires  pour  MongoDB et  pour  le  site web,  avant  d'installer
+MongoDB. L'installation  se fait par  C<zef>. Les modules  à installer
+sont :
+
+=over 4
+
+=item * OpenSSL
+
+=item * Semaphore::ReadersWriters
+
+=item * HTTP::UserAgent
+
+=item * Auth::SCRAM
+
+=item * Config::DataLang::Refine
+
+=item * BSON
+
+=item * Log::Async
+
+=item * Terminal::ANSIColor
+
+=item * Digest::MD5
+
+=item * Bailador
+
+=item * Template::Anti
+
+=back
+
+Notons  que   lors  de   l'installation  de   Bailador,  le   test  de
+C<HTTP::Supply>  produit  un  avertissement.  Mais  c'est  normal  (cf
+L<https://github.com/zostay/HTTP-Supply/issues/5>)
+
+=head3 Installation de MongoDB
+
+Si  la  récente version  "Hirsute  Hippo"  de xubuntu  m'a  énormément
+simplifié l'installation de Rakudo, en  revanche elle m'a compliqué la
+tâche pour l'installation de MongoDB.  En effet, le dépôt xubuntu pour
+"Hirsute Hippo"  ne contient aucun  paquet pour les  serveurs MongoDB,
+uniquement pour des clients.
+
+Si  vous avez  la  chance de  disposer de  paquets  pour installer  un
+serveur MongoDB  sur votre  distribution, tant mieux,  installez-le et
+passez  directement  au  L<paragraphe suivant|Installation  du  module
+MongoDB>.
+
+Le  L<site   de  MongoDB|https://www.mongodb.com/fr>  ne   décrit  pas
+l'installation  de MongoDB  pour la  version 2021.04  "Hirsute Hippo",
+mais seulement pour les versions LTS (16.04, 18.04 et 20.04). De plus,
+c'est  la  distribution  de  base  I<Ubuntu>,  pas  les  distributions
+dérivées I<Kubuntu>  ou I<xubuntu>.  Néanmoins, j'ai  fait l'hypothèse
+que  "xubuntu-21.04" était  assez semblable  à "Ubuntu-20.04"  et j'ai
+suivi les instructions correspondantes.
+
+Prière de vous référer à la
+L<page d'installation|https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/>
+fournie par  MongoDB, pour  avoir les instructions  à jour.  Pour vous
+donner une idée, voici ce que j'ai dû faire :
+
+Importer la clé PGP de MongoDB :
+
+  wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add -
+
+Ajouter le dépôt  20.04 "Focal Fossa" de MongoDB en  espérant que cela
+conviendra à 21.04 "Hirsute Hippo" :
+
+  echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/4.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.4.list
+
+Rafraîchir la liste des paquets :
+
+  sudo apt-get update
+
+Installer MongoDB :
+
+  sudo apt-get install -y mongodb-org
+
+(ce qui me change du clickodrome Synaptic).
+
+Déclarer que le serveur MongoDB devra être lancé à chaque démarrage de la machine :
+
+  sudo systemctl enable mongod
+
+Et soit redémarrer la machine immédiatement, soit lancer MongoDB avec :
+
+  sudo systemctl start mongod
+
+Également, pour la sécurité, vérifier que la base de données n'est pas
+accessible de  l'extérieur. Pour ceci,  consulter F</etc/mongodb.conf>
+et vérifier que le fichier contient bien :
+
+  bind_ip = 127.0.0.1
+  #port = 27017
+
+=head3 Installation du module MongoDB
+
+Première idée, taper :
+
+  zef install MongoDB
+
+Mauvaise  idée,  le  test  F<t/099-start-servers> plante  et  le  test
+F<t/200-Database.t>  boucle. Il  faut donc  interrompre l'installation
+avec C<Ctrl-C> et recommencer.
+
+J'ai donc effectué :
+
+  git clone https://github.com/MARTIMM/mongo-perl6-driver.git
+  cd mongo-perl6-driver
+  zef --/test install .
+
+J'aurais pu faire directement
+
+  zef --/test install MongoDB
+
+Reconnaissons  que  même s'il  reste  quelques  bugs, la  situation  a
+beaucoup progressé depuis mars 2018, lorsque j'ai tenté d'installer le
+module pour la première fois.
+
+=head3 Installation du projet pour l'As des As
+
+Récupérez mes œuvres avec :
+
+  git clone https://github.com/jforget/Perl6-Alpha-As-des-As-Zero.git
+
+Puis effectuez quelques initialisation :
+
+  cd Perl6-Alpha-As-des-As-Zero/Game
+  ./init-aircraft.raku Epervier
+  ./init-aircraft.raku Drone
+  ./init-pilot.raku    Kevin
+  ./init-pilot.raku    Plume-Noire
+
+Et alors vous  êtes prêts à lancer des parties  entre l'épervier et le
+drone avec :
+
+  ./launch
+
+Ensuite, vous lancez le serveur Bailador :
+
+  raku website.raku
+
+et vous  consultez les parties déjà  jouées dans un navigateur  web en
+demandant au choix :
+
+  http://localhost:3000
+  http://localhost:3000/fr/list
+
+Pour arrêter  le serveur web, faire  C<Ctrl-C> sur la fenêtre  où vous
+l'avez lancé.
+
+=head3 Extension aux véritables jeux de l'As des As
+
+À faire
 
 =head2 Préparation
 
@@ -1003,7 +1263,7 @@ Ainsi qu'on  peut le  voir, les trois  manœuvres ont  des probabilités
 voisines  d'un  tiers,  avec  quand  même  une  légère  mais  sensible
 préférence pour la manœuvre C.
 
-=head4  Parties d'entraînement
+=head4 Parties d'entraînement
 
 Si vous  baissez la psycho-rigidité  jusqu'à 1, vous voyez  sans peine
 que  toutes les  manœuvres ont  la  même probabilité,  peu importe  le
@@ -1223,7 +1483,7 @@ cela écourte la séance d'entraînement et cela réduit les informations dispon
 pour les combats ultérieurs. J'ai donc créé une option S<« à outrance »> où le
 choix de l'attaque est privilégié par rapport à la fuite.
 
-=head1 Perl 6
+=head1 Annexe : à la découverte de Perl 6
 
 =head2 Documentation
 
@@ -1277,7 +1537,7 @@ j'utilise quand même des sites web, essentiellement la
 L<documentation des types standards|https://docs.raku.org/type.html>
 et la L<liste des modules|https://modules.raku.org/>.
 
-=head2 Installation
+=head2 Installation de Raku
 
 Je connais quatre méthodes pour installer Rakudo Star sur une machine Linux.
 

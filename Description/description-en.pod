@@ -534,6 +534,258 @@ and so  on. You may  have problems reading  the source files  and even
 reading the  explanations. The only  exception is the  database, named
 C<Ace_of_Aces>. Why? I do not remember.
 
+Before  describing the  guts of  the  various programs,  here are  the
+instructions to install the project on your computer.
+
+=head2 Installation
+
+I describe here how I installed  the project on a virtual machine with
+L<xubuntu|https://xubuntu.fr/> 21.04  "Hirsute Hippo".  I do  not give
+you a  precise procedure which  must be strictly followed,  but rather
+some guidelines  which you might  find useful  for your case.  If your
+computer already has Raku or MongoDB,  or if you computer runs another
+Linux distribution, or even another Unix variant such as FreeBSD, your
+mileage  will vary,  but the  main  idea will  still be  the same.  Of
+course, if  you want  to install  the project  on a  Windows computer,
+there will be important differences with what I describe here.
+
+First, a warning.
+
+=head3 About security
+
+This project is for fun and nothing  else. It does not deal with vital
+confidential data. If the contents of the database leaks outside, I do
+not care.  If the  database is altered  by an intruder,  it is  just a
+minor inconvenience.
+
+So I  have adopted a  very light security  setup. The database  can be
+accessed from  the host computer only  (C<localhost> or C<127.0.0.1>).
+But anybody logged in this computer can freely access the database. No
+additional authentification feature.
+
+On the  other hand,  if you  want to  use MongoDB  to store  your bank
+statements and your medical examinations, you should check and upgrade
+the parameters of  the database to obtain adequate  security. But this
+is outside the scope of this description.
+
+Another point,  similar to security, performances.  The programs which
+control the  website to display the  games in a readable  way are very
+slow.  As long  as I  am the  only  user of  the website,  this is  no
+problem. And since my computer is  not visible to outside, this is the
+case, I  am the  only one  accessing the website.  But if  the website
+hosted on  your computer is visible  from outside and allows  users to
+display your Ace  of Aces games, several  strangers can simultaneously
+request webpages  and your  computer will choke.  You could  even have
+something which looks like a denial of service (I<DOS> or I<DDOS>).
+
+Lastly, I did not attempt to write a cleanly packaged software, with a
+global configuration  file stored  in F</etc> and  local configuration
+files stored in F<$HOME> and whose  name begins with a dot. Everything
+is stored  in the  repository's directory,  everything runs  from this
+directory or from a sub-directory: executable scripts, input parameter
+files, output  data files,  etc. You  will even need  to update  a few
+programs by editing them. For example, the published F<launch> program
+starts a  game between a generic  sparrowhawk and a generic  drone. If
+you want  a game between Plume-Noire  and Kevin, you have  to edit the
+F<launch> file,  deactivate a  few lines  by adding  a sharp  char and
+reactivate some others by removing other sharp characters.
+
+=head3 Configuration of the Computer
+
+If you use  a virtual machine, you  should allocate at least 2048  MB to it.
+The L<Rakudo  documentation|https://rakudo.org/downloads/rakudo/source> asks
+for 1.5 GB, which I rounded up to  2 GB. Also, the virtual machine should be
+able to access Internet.
+
+=head3 Installing Outside Software
+
+With the distribution package  manager (command-line C<apt-get> or the
+graphical program I<synaptic>), install
+L<Emacs|https://www.gnu.org/software/emacs/>,
+L<Git|https://git-scm.com/>,
+L<curl|https://curl.se/>
+and the C<libssl-dev> library.
+
+And check that L<GnuPG|https://gnupg.org/> is already installed.
+
+Installing   Emacs   is  a   personal   preference.   If  you   prefer
+L<vim|https://www.vim.org/>  or  L<nano|https://www.nano-editor.org/>,
+go ahead,  install them. On  the other  hand, the other  softwares are
+really necessary.
+
+=head3 Installing Rakudo
+
+Unlike   the   2018   installation,   described   at   the   paragraph
+L<Installation> below, the xubuntu version I used is a very recent one
+and the Perl6 / Rakudo packages  are rather up-to-date: Perl 6.d.3 and
+Rakudo 2020.12.  So I installed  the packages with I<Synaptic>,  I did
+not try to compile the sources.
+
+If you want to compile the sources, see the L<Installation> paragraph.
+
+Among the  pre-requisite packages automatically installed,  there is a
+I<perl6-zef> package. So  you do not have to  install C<zef> yourself.
+On some  other distributions,  C<zef> is not  automatically installed,
+but  the package  provides a  C<install-zef> script.  Just run  it and
+you're done. Else, access the L<zef repo|https://github.com/ugexe/zef>
+and follow the instructions.
+
+=head3 Installing Rakudo Modules
+
+In order to take a snapshot of the virtual machine when appropriate, I
+have  installed at  this  time the  modules for  the  website and  the
+prerequisites for the MongoDB module. These are:
+
+=over 4
+
+=item * OpenSSL
+
+=item * Semaphore::ReadersWriters
+
+=item * HTTP::UserAgent
+
+=item * Auth::SCRAM
+
+=item * Config::DataLang::Refine
+
+=item * BSON
+
+=item * Log::Async
+
+=item * Terminal::ANSIColor
+
+=item * Digest::MD5
+
+=item * Bailador
+
+=item * Template::Anti
+
+=back
+
+Please  note  that installing  Bailador  will  produce an  error  when
+installing its  prerequisite C<HTTP::Supply>. But this  is normal. See
+L<https://github.com/zostay/HTTP-Supply/issues/5>.
+
+=head3 Installing MongoDB
+
+The fact that "Hirsute Hippo" is a very recent distribution has helped
+me a  lot when  installing Rakudo.  On the other  hand, it  produced a
+certain amount of complications  when installing MongoDB. The "Hirsute
+Hippo" package  repository contains  no packages for  MongoDB servers,
+only a few packages for MongoDB clients.
+
+If your distribution  provides packages for MongoDB  servers, good for
+you, install them and skip to the L<next paragraph|Installation of the
+MongoDB Module>.
+
+The L<MongoDB website|https://www.mongodb.com/> does not describe how
+to install  MongoDB on the  21.04 "Hirsute Hippo" release  of xubuntu.
+The  installation procedure  applies only  to LTS  releases, that  is,
+16.04, 18.04 and 20.04 "Focal Fossa".  Moreover, it does not deal with
+the I<Kubuntu>  or I<xubuntu>  variants, only  with the  basic variant
+I<Ubuntu>.  Anyhow, I  made  the hypothesis  that "xubuntu-21.04"  was
+rather  similar to  "Ubuntu-20.04"  and I  followed the  corresponding
+procedure.
+
+When you install MongoDB, you  should read the up-to-date instructions
+from the MongoDB website. But to give  you an overview, here is what I
+did.
+
+Import MongoDB's GPG key
+
+  wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add -
+
+Add the MongoDB 20.04 "Focal Fossa" repository to the C<apt> config, hoping
+that it will be fine with 21.04 "Hirsute Hippo":
+
+  echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/4.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.4.list
+
+Refresh the list of packages
+
+  sudo apt-get update
+
+Install MongoDB
+
+  sudo apt-get install -y mongodb-org
+
+(what a difference with the clickable application Synaptic!).
+
+Specify that the MongoDB server will be launched each time the computer starts:
+
+  sudo systemctl enable mongod
+
+And either restart the computer now, or start the server with
+
+  sudo systemctl start mongod
+
+In  addition,  check  security  by  reading  F</etc/mongodb.conf>  and
+checking the presence of the following lines:
+
+  bind_ip = 127.0.0.1
+  #port = 27017
+
+=head3 Installation of the MongoDB Module
+
+The first idea is to type
+
+  zef install MongoDB
+
+Bad move. The  F<t/099-start-servers> test fails with  a message about
+some spawned command and the F<t/200-Database.t> test enters a runaway
+loop.
+
+So I ran:
+
+  git clone https://github.com/MARTIMM/mongo-perl6-driver.git
+  cd mongo-perl6-driver
+  zef --/test install .
+
+I could have run a simpler command:
+
+  zef --/test install MongoDB
+
+I  must acknowledge  that even  if there  are still  some errors,  the
+situation has greatly improved when compared to March 2018.
+
+=head3 Installing the Ace of Aces Project
+
+Clone my repository with:
+
+  git clone https://github.com/jforget/Perl6-Alpha-As-des-As-Zero.git
+
+Then, run some initialisations with:
+
+  cd Perl6-Alpha-As-des-As-Zero/Game
+  ./init-aircraft.raku Epervier
+  ./init-aircraft.raku Drone
+  ./init-pilot.raku    Kevin
+  ./init-pilot.raku    Plume-Noire
+
+Now you are ready to launch some games between the Sparrowhawk and the
+drone with:
+
+  ./launch
+
+Then, you can launch the Bailador webserver with:
+
+  raku website.raku
+
+To access the webpages showing the past games, open you web 
+browser and type the address:
+
+  http://localhost:3000
+
+If you prefer the French language, you can type:
+
+  http://localhost:3000/fr/list
+
+To stop the  Bailador webserver, go back to the  terminal window where
+it runs and hit C<Ctrl-C>.
+
+=head3 Extending to Real Ace of Aces Games
+
+TODO
+
 =head2 Preparation
 
 I have started with this part, of course. But I did not write the programs within the
