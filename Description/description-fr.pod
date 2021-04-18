@@ -565,9 +565,9 @@ d'une dose de fonction I<random>. D'où l'idée d'un programme jouant à ce jeu 
 du contexte réel, mais se basant uniquement sur une analyse statistique des parties passées.
 
 Il  y  a  deux  grandes  parties dans  le  projet.  Tout  d'abord,  la
-L<préparation>,  consistant   à  produire   les  livrets   sous  forme
+L</"préparation">,  consistant  à  produire  les  livrets  sous  forme
 électronique, en générant les fichiers plutôt qu'en tapant la totalité
-des enchaînements  entre pages  et manœuvres.  Puis il  y a  le L<jeu>
+des enchaînements entre  pages et manœuvres. Puis il y  a le L</"jeu">
 proprement dit  où des  programmes combattent  l'un contre  l'autre et
 tirent la leçon de leurs combats passés. Mais avant de décrire dans le
 détail les programmes, voici les instructions pour installer le projet
@@ -720,8 +720,8 @@ uniquement pour des clients.
 
 Si  vous avez  la  chance de  disposer de  paquets  pour installer  un
 serveur MongoDB  sur votre  distribution, tant mieux,  installez-le et
-passez  directement  au  L<paragraphe suivant|Installation  du  module
-MongoDB>.
+passez  directement  au 
+L<paragraphe suivant|"Installation du module MongoDB">.
 
 Le  L<site   de  MongoDB|https://www.mongodb.com/fr>  ne   décrit  pas
 l'installation  de MongoDB  pour la  version 2021.04  "Hirsute Hippo",

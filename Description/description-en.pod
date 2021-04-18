@@ -616,12 +616,12 @@ really necessary.
 =head3 Installing Rakudo
 
 Unlike   the   2018   installation,   described   at   the   paragraph
-L<Installation> below, the xubuntu version I used is a very recent one
-and the Perl6 / Rakudo packages  are rather up-to-date: Perl 6.d.3 and
-Rakudo 2020.12.  So I installed  the packages with I<Synaptic>,  I did
-not try to compile the sources.
+L</"Installation"> below, the xubuntu version  I used is a very recent
+one and the Perl6 / Rakudo  packages are rather up-to-date: Perl 6.d.3
+and Rakudo  2020.12. So I  installed the packages with  I<Synaptic>, I
+did not try to compile the sources.
 
-If you want to compile the sources, see the L<Installation> paragraph.
+If you want to compile the sources, see the L</"Installation"> paragraph.
 
 Among the  pre-requisite packages automatically installed,  there is a
 I<perl6-zef> package. So  you do not have to  install C<zef> yourself.
@@ -675,8 +675,8 @@ Hippo" package  repository contains  no packages for  MongoDB servers,
 only a few packages for MongoDB clients.
 
 If your distribution  provides packages for MongoDB  servers, good for
-you, install them and skip to the L<next paragraph|Installation of the
-MongoDB Module>.
+you, install them  and skip to the  L<next paragraph|/"Installation of
+the MongoDB Module">.
 
 The L<MongoDB website|https://www.mongodb.com/> does not describe how
 to install  MongoDB on the  21.04 "Hirsute Hippo" release  of xubuntu.
