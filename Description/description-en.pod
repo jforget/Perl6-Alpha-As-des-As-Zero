@@ -898,7 +898,7 @@ added some other entries to store some object attributes, because they
 may be used for some database queries.
 
 On  the other  hand, I  have not  defined classes  for games  and game
-turns, I  use basic C<BSON::Document>  in the C<Parties>  and C<Coups>
+turns,  I use  basic C<BSON::Document>  in the  C<Games> and  C<Turns>
 collections respectively and  I use the hash table syntax  to read and
 update data. Not very consistent, I agree.
 
@@ -925,7 +925,7 @@ spy novels the spy is exfiltrated, while here the process executes a C<die>.
 "With a hammer, everything looks like a nail". Indeed, but by doing so, I have only
 one module to deal with, which reduces the number of standing issues (bugs and PEBCAK).
 
-=head3 Umpire program: C<arbitre.p6>
+=head3 Umpire program: C<umpire.raku>, formerly C<arbitre.p6>
 
 The program begins,  as usual, with an initialization  step, where the
 main variables are initialized. Nothing special to discuss.
@@ -938,9 +938,9 @@ with the following steps:
 =item  1  Resolving  the  shooting  for the  previous  game  turn  and
 computing the possible maneuver choices for the current turn.
 
-=item 2 Writing these choices into the C<Coups> (game turn) collection for each player.
+=item 2 Writing these choices into the C<Turns> (player turn) collection for each player.
 
-=item 3 Reading back the players' answers from the C<Coups> collection.
+=item 3 Reading back the players' answers from the C<Turns> collection.
 
 =item 4 Applying the transitions: initial page → intermediate page → final page.
 
@@ -971,31 +971,31 @@ split in the following way:
 
 =over 4
 
-=item * 2A Writing into the C<Coups> (game turn) collection the choices for the tailed player.
+=item * 2A Writing into the C<Turns> (player turn) collection the choices for the tailed player.
 
-=item * 3A Reading back the tailed player's answer from the C<Coups> collection.
+=item * 3A Reading back the tailed player's answer from the C<Turns> collection.
 
-=item  * 2B  Writing  into  the C<Coups>  (game  turn) collection  the
-choices for  the tailing player, with  a G/A/D (left /  ahead / right)
+=item  * 2B  Writing into  the C<Turns>  (player turn)  collection the
+choices for the  tailing player, with a L/C/R (left  / center / right)
 indication relative to the tailed player's maneuver.
 
-=item * 3B Reading back the tailing player's answer from the C<Coups> collection.
+=item * 3B Reading back the tailing player's answer from the C<Turns> collection.
 
 =back
 
 When the umpire  program asks to the tailing plane  which maneuvers it
 chooses,  it gives  a special  code to  the current  page number:  the
-actual  number concatenated  with the  G/A/D code.  Going back  to the
+actual  number concatenated  with the  L/C/R code.  Going back  to the
 example from  the patent,  the British  player is  page B<1>,  but the
-German player is  page B<1G>, because the British player  has chosen a
-leftward maneuver.  Pages 1G, 1A and  1D have exactly the  same set of
+German player is  page B<1L>, because the British player  has chosen a
+leftward maneuver.  Pages 1L, 1C and  1R have exactly the  same set of
 transitions  maneuver  →  final  page,   but  the  German  player  has
-completely different sets of "previous situations" for page B<1G>, for
-page B<1A> and for page B<1D>  from which to choose the next maneuver.
+completely different sets of "previous situations" for page B<1L>, for
+page B<1C> and for page B<1R>  from which to choose the next maneuver.
 The player  program has no special  case for choosing a  maneuver when
 tailing the enemy. The  price to pay is a that  the umpire program has
 to  be careful  about  the page  number, which  is  no longer strictly
-numeric and which might have a G/A/D letter or not.
+numeric and which might have a L/C/R letter or not.
 
 =head4 List of Available Maneuvers
 
@@ -1023,31 +1023,31 @@ training games ending after a handful of turns.
 
 When the umpire  notices an end of game condition,  either a plane (or
 both) having received enough hit points, or a plane (or both) fleeing,
-the program  writes a last C<Coups>  record for each player,  with the
-C<fini> ("ended") attribute set to C<1> and the C<résultat> ("result")
-set to the  number of VP (+1,  -1, +1/2 or -1/2).  The pilot processes
-will know that they must leave their event loop.
+the program  writes a last C<Turns>  record for each player,  with the
+C<end> attribute set to C<1> and the C<result> set to the number of VP
+(+1, -1, +1/2  or -1/2). The pilot processes will  know that they must
+leave their event loop.
 
 In  addition,  the umpire  program  writes  a  summary record  in  the
-C<Parties> ("Games") collection.
+C<Games> collection.
 
-=head3 Player program: C<joueur.p6>
+=head3 Player program: C<player.raku>, formerly C<joueur.p6>
 
-The C<joueur.p6> program  is based on a loop,  reading each successive
-game turn from the C<Coups> collection  and rewriting it to notify the
-selected maneuver to the umpire.
+The C<player.raku> program is based on a loop, reading each successive
+player turn  from the C<Turns>  collection and rewriting it  to notify
+the selected maneuver to the umpire.
 
-Each player has two  attributes, I<psycho-rigidité> (mental stiffness)
-and I<perspicacité> (perspicacity), used  to choose the next maneuver.
-The I<psycho-rigidité>  is a  float greater  than or  equal to  1, the
-I<perspicacité> is a float between 0 and 1.
+Each player  has two  attributes, I<stiffness> (mental  stiffness) and
+I<perspicacity>, used to choose the next maneuver. The I<stiffness> is
+a float  greater than or  equal to 1,  the I<perspicacity> is  a float
+between 0 and 1.
 
 Here are the successive steps for a game turn.
 
 =head4 Extracting Similar Situations
 
-The  program extracts  from  the C<Coups>  collection  all game  turns
-similar to the current game turn, using the following criteria:
+The program  extracts from  the C<Turns>  collection all  player turns
+similar to the current player turn, using the following criteria:
 
 =over 4
 
@@ -1062,7 +1062,7 @@ similar to the current game turn, using the following criteria:
 Let us look again at the criteria.
 
 Same page: Remember that, for a tailing plane located on, say, page 1,
-there are three different pages, page B<1G>, page B<1A> and page B<1D>
+there are three different pages, page B<1L>, page B<1C> and page B<1R>
 depending on the choice of the tailed plane for its next maneuver. The
 situations from these pseudo-pages are not mixed together.
 
@@ -1081,8 +1081,8 @@ Guynemer on  a SPAD  XIII as  an example.  His instructors  were Jules
 Védrines  and Paul  Tarascon. So  Guynemer will  use the  knowledge he
 accumulated  himself, plus  the lessons  from the  training fights  by
 anonymous pilots flying SPAD XIII's  and the knowledge that was taught
-him by Védrines and Tarascon. In  other words, he will select C<Coups>
-documents for  which the  C<identité> field  belongs to  the following
+him by Védrines and Tarascon. In  other words, he will select C<Turns>
+documents for  which the  C<identity> field  belongs to  the following
 list (in Raku syntax):
 
   < Guynemer SPAD_XIII Vedrines Tarascon >
@@ -1136,7 +1136,7 @@ that would give any value in the minus infinity to plus infinity span.
 
 =head4 Choosing a Maneuver
 
-This  is when  I<psycho-rigidité> (or  mental stiffness)  comes in.  A
+This is when  I<mental stiffness> (or I<psycho-rigidité>)  comes in. A
 stiff pilot  will nearly always  choose B<the> best maneuver  over any
 other, while a more versatile pilot  will choose, from time to time, a
 less  efficient maneuver  but which  will open  a new  set of  unusual
@@ -1166,7 +1166,7 @@ maneuver B. If  the random number is greater than  0.090992, we choose
 maneuver C.  And for  the very  unlikely case where  it is  lower than
 9.1e-5, we choose maneuver A.
 
-Same thing, with a more relaxed pilot (I<psycho-rigidité> 1.1):
+Same thing, with a more relaxed pilot (I<stiffness> 1.1):
 
   maneuver  evaluation  weight      probability  cumulative
       A        -2         0.826446   0.2634976   0.2634976
@@ -1179,7 +1179,7 @@ with still an advantage for maneuver C.
 
 =head4 Training Games
 
-If you lower the I<psycho-rigidité> to  1, you find that all available
+If  you lower  the  I<stiffness> to  1, you  find  that all  available
 maneuvers have the same probability,  no matter how many previous game
 turns they  were used in and  which end result occurred  then. So, for
 training games, I use an anonymous pilot with a mental stiffness of 1.
@@ -1190,22 +1190,23 @@ among the available maneuvers.
 
 =head4 End of game
 
-When  the C<pilote.p6>  program  reads a  C<Coups>  document with  the
-C<fini> attribute  set to 1, it  knows the game has  ended. It updates
-all the  C<Coups> documents for the  current game to store  in each of
-them the final result and the delay  between the game turn and the end
-of game. This  will reduce the number of documents  to retrieve in the
-next games.
+When the  C<player.raku> program  reads a  C<Turns> document  with the
+C<end> attribute set to 1, it knows the game has ended. It updates all
+the C<Turns> documents  for the current game to store  in each of them
+the final result  and the delay between  the game turn and  the end of
+game. This will reduce the number of documents to retrieve in the next
+games.
 
-=head3 C<site.p6> Program and its Associate Programs
+=head3 C<website.raku> Program (formerly C<site.p6>) and its Associate Programs
 
-C<site.p6>  and its  associate programs  C<lib/site-xxx.p6> are  basic
-Bailador programs,  which read  a URL,  extract a  key from  this URL,
-access the database  with this key, and display the  extracted data in
-HTML.   Nothing  out   of  the   ordinary.  The   data  displayed   by
-C<lib/site-coup.p6> may  be complicated, but they  mirror the decision
-process  exposed  in  the   documentation  for  C<pilote.p6>,  so  the
-documentation for C<pilote.p6> applies to C<lib/site-coup.p6> also.
+C<website.raku> and its associate programs C<lib/xxx-page.rakumod> are
+basic Bailador  programs, which read  a URL,  extract a key  from this
+URL, access the database with this key, and display the extracted data
+in  HTML.  Nothing  out  of   the  ordinary.  The  data  displayed  by
+C<lib/player-turn-page.rakumod>  may be  complicated, but  they mirror
+the decision process exposed  in the documentation for C<player.raku>,
+so    the     documentation    for    C<player.raku>     applies    to
+C<lib/player-turn-page.rakumod> also.
 
 =head2 A Few Questions
 

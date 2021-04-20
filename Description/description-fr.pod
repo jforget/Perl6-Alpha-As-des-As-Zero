@@ -924,48 +924,48 @@ c'était  la même  chose  pour  les pilotes,  qui  figuraient dans  des
 fichiers  JSON. Puis  je  me suis  dit que  c'était  plus facile  dans
 certains cas si les pilotes étaient  stockés dans une collection de la
 base MongoDB,  en plus du fichier  JSON. Donc j'ai écrit  un programme
-C<init-pilote> qui lit  le fichier JSON décrivant un pilote  et qui le
-convertit en objet Raku et le  stocke dans la collection C<Pilotes> de
+C<init-pilot.raku> qui lit  le fichier JSON décrivant un pilote  et qui le
+convertit en objet Raku et le  stocke dans la collection C<Pilots> de
 la base  de données. Et dans  mon élan, j'ai écrit  un autre programme
-C<init-avion> qui  lit le fichier  JSON décrivant  un avion et  qui le
-stocke dans  la collection C<Avions> de  la base de données.  De plus,
+C<init-aircraft.raku> qui  lit le fichier  JSON décrivant  un avion et  qui le
+stocke dans  la collection C<Aircraft> de  la base de données.  De plus,
 pour les besoins  des parties d'entraînement, j'ai  besoin pour chaque
 avion d'un pilote anonyme identifié par  la même clé que l'avion. Dans
 le programme d'initialisation  de l'avion, j'en profite  pour créer ce
-pilote  anonyme  dans  la  collection C<Pilotes>.  Les  fichiers  JSON
+pilote  anonyme  dans  la  collection C<Pilots>.  Les  fichiers  JSON
 continuent   à  exister,   mais   ils  sont   utiles  seulement   pour
 l'initialisation.
 
-Il y  a un problème  à la  relecture des enregistrements  C<Avions> et
-C<Pilotes>. Alors que  le module C<JSON::Class> permet  de générer des
-objets des classes  C<Avion> et C<Pilote> à partir  d'une chaîne JSON,
+Il y  a un problème  à la  relecture des enregistrements  C<Aircraft> et
+C<Pilots>. Alors que  le module C<JSON::Class> permet  de générer des
+objets des classes  C<Aircraft> et C<Pilot> à partir  d'une chaîne JSON,
 les  modules   pour  MongoDB  se   contentent  de  créer   des  objets
 C<BSON::Document> et il faut utiliser la  syntaxe des  tables de
 hachage pour accéder aux informations des avions et des pilotes.
-Il n'y a pas de conversion directe vers la classe C<Avion> ou
-vers la classe C<Pilote>. Ou alors, il faut écrire un constructeur qui
+Il n'y a pas de conversion directe vers la classe C<Aircraf(> ou
+vers la classe C<Pilot>. Ou alors, il faut écrire un constructeur qui
 extrait  chacune  des  valeurs  du hachage  C<BSON::Document>  et  qui
-alimente l'attribut  correspondant de  l'objet C<Pilote>  ou C<Avion>.
+alimente l'attribut  correspondant de  l'objet C<Pilot>  ou C<Aircraft>.
 Quelle solution simple et propre apporter à ce S<problème ?>
 
 En  programmation, il  existe un  dicton  S<« Tout>  problème peut  se
 résoudre en ajoutant un niveau S<d'indirection »>. C'est un peu ce que
-j'ai  fait ici.  Lorsque le  programme crée  un document dans la collection  C<Avions> ou
-C<Pilotes> de  la base de  données, ce document contient  une entrée
+j'ai  fait ici.  Lorsque le  programme crée  un document dans la collection  C<Aircraft> ou
+C<Pilots> de  la base de  données, ce document contient  une entrée
 C<json> qui stocke la chaîne JSON brute ayant servi à créer l'objet de
-la classe C<Avion> ou C<Pilote>. Dans le programme suivant, lorsque je
+la classe C<Aircraft> ou C<Pilot>. Dans le programme suivant, lorsque je
 lis le document BSON, je m'intéresse uniquement à cette entrée C<json>
 et je  la transmets à  la méthode C<from-json> du  rôle C<JSON::Class>
-qui crée  ainsi de véritables  objets C<Avion> ou C<Pilote>.  Dans les
+qui crée  ainsi de véritables  objets C<Aircraft> ou C<Pilot>.  Dans les
 documents de  la base  de données,  il y a  juste besoin  d'une entrée
 C<identité>  servant  de   clé  et  d'une  entrée   C<json>  pour  les
 informations utiles. J'ai quand même ajouté d'autres entrées reprenant
 les attributs des objets (pas tous), pour le cas où j'en aurais besoin
 lors des recherches en base de données.
 
-D'un autre  côté, pour  les parties  et les coups  (ou tours  de jeu),
+D'un autre côté,  pour les parties et les coups  (ou tours de joueur),
 j'utilise des C<BSON::Document> bruts de fonderie dans les collections
-C<Parties> et C<Coups>. Ce n'est pas très cohérent, il est vrai.
+C<Games> et C<Turns>. Ce n'est pas très cohérent, il est vrai.
 
 =head3 Communication inter-processus
 
@@ -998,7 +998,7 @@ la sorte, je n'avais qu'un seul module pour lequel je pouvais avoir des problèm
 qu'il fallait contourner, soit des bugs, soit des 
 L<PECEC|https://fr.wiktionary.org/wiki/entre_la_chaise_et_le_clavier>.
 
-=head3 Programme C<arbitre.p6>
+=head3 Programme C<umpire.raku>, anciennement C<arbitre.p6>
 
 Le programme commence, bien sûr, par une étape d'initialisation où les
 principales variables sont initialisées. Rien de spécial à noter.
@@ -1011,9 +1011,9 @@ Cette boucle contient les étapes S<suivantes :>
 =item 1  Résolution des  tirs du coup  précédent et  détermination des
 choix accessibles aux deux joueurs pour le tour en cours.
 
-=item 2 Écriture dans la collection C<Coups> des choix proposés aux deux joueurs.
+=item 2 Écriture dans la collection C<Turns> des choix proposés aux deux joueurs.
 
-=item 3 Lecture dans la collection C<Coups> de la réponse de chaque joueur.
+=item 3 Lecture dans la collection C<Turns> de la réponse de chaque joueur.
 
 =item 4 Application des transitions page initiale → page intermédiaire → page finale.
 
@@ -1045,38 +1045,38 @@ deux joueurs. Cela donne S<alors :>
 
 =over 4
 
-=item * 2A Écriture dans la collection C<Coups> des choix proposés au joueur poursuivi.
+=item * 2A Écriture dans la collection C<Turns> des choix proposés au joueur poursuivi.
 
-=item * 3A Lecture dans la collection C<Coups> de la réponse du joueur poursuivi.
+=item * 3A Lecture dans la collection C<Turns> de la réponse du joueur poursuivi.
 
-=item * 2B Écriture dans la  collection C<Coups> des choix proposés au
-joueur poursuivant, avec  indication G/A/D de la  manœuvre choisie par
-le poursuivi.
+=item * 2B Écriture dans la  collection C<Turns> des choix proposés au
+joueur poursuivant, avec  indication L/C/R de la  manœuvre choisie par
+le poursuivi (L/C/R étant la codification anglaise pour G/A/D).
 
-=item * 3B Lecture dans la collection C<Coups> de la réponse du joueur poursuivant.
+=item * 3B Lecture dans la collection C<Turns> de la réponse du joueur poursuivant.
 
 =back
 
 Lorsque le programme  arbitre demande sa prochaine  manœuvre à l'avion
 poursuivant, il lui communique un  numéro de page sous forme spéciale,
-le  véritable numéro  de page  concaténé avec  la direction  G/A/D. En
+le  véritable numéro  de page  concaténé avec  la direction  L/C/R. En
 reprenant l'exemple tiré du brevet, l'avion britannique est page B<1>,
-tandis que l'avion allemand est page  B<1G>, pour tenir compte du fait
-que le britannique a choisi une manœuvre vers la gauche. Les pages 1G,
-1A et 1D ont exactement les  mêmes transitions manœuvre → page finale,
+tandis que l'avion allemand est page B<1L> ou  B<1G>, pour tenir compte du fait
+que le britannique a choisi une manœuvre vers la gauche. Les pages 1L / 1G,
+1C / 1A et 1R / 1D ont exactement les  mêmes transitions manœuvre → page finale,
 mais le joueur allemand a  trois différents groupes de S<« situations>
 S<antérieures »>  pour choisir  sa manœuvre  suivante selon  qu'il est
-page  B<1G>, page  B<1A> ou  page B<1D>.  Cela simplifie  le programme
+page  B<1L>, page  B<1C> ou  page B<1R>.  Cela simplifie  le programme
 joueur, qui n'a  aucune procédure spéciale pour la  poursuite, au prix
 d'une  légère complexification  du programme  arbitre (qui  doit tenir
-compte de la lettre G/A/D à la suite du numéro de page, qui n'est plus
+compte de la lettre L/C/R à la suite du numéro de page, qui n'est plus
 tout-à-fait numérique).
 
 =head4 Liste des manœuvres disponibles
 
 Cette étape ne  devrait pas donner lieu à commentaires.  Si vous jetez
 un  coup d'œil  ci-dessous,  dans le  paragraphe  de conclusion,  vous
-verrez que  j'ai prévu un  mode I<à outrance>  où, dans le  cadre d'un
+verrez que  j'ai prévu un  mode I<no fleeing> (pas de fuite)  où, dans le  cadre d'un
 entraînement,  les avions  cherchent  à continuer  le  combat le  plus
 longtemps  possible. Lorsque  cette  option est  active, le  programme
 arbitre filtre les manœuvres qu'il autorise aux programmes joueurs, il
@@ -1101,18 +1101,18 @@ s'interrompent après une demi-douzaine de coups.
 Lorsque l'arbitre détecte la fin de  la partie, soit parce qu'au moins
 un avion a encaissé autant ou plus  de points de dégâts que son niveau
 initial, soit parce qu'au moins un  avion décide de fuir, le programme
-écrit un enregistrement C<Coups> ultime  pour chacun des joueurs, avec
-l'attribut C<fini> à 1 et le résultat en PV (+1, -1, +1/2 ou -1/2). De
+écrit un enregistrement C<Turns> ultime  pour chacun des joueurs, avec
+l'attribut C<end> (fini) à 1 et le résultat en PV (+1, -1, +1/2 ou -1/2). De
 sorte, les processus  joueurs savent que la partie est  finie et qu'il
 faut quitter la boucle d'événements.
 
 En outre,  le programme arbitre écrit  un enregistrement récapitulatif
-dans la collection C<Parties>.
+dans la collection C<Games>.
 
-=head3 Programme C<joueur.p6>
+=head3 Programme C<player.raku>, anciennement C<joueur.p6>
 
-Le  programme  C<joueur.p6> est  basé  sur  une  boucle où,  à  chaque
-itération, il  lit un coup dans  la collection C<Coups> et  le réécrit
+Le  programme C<player.raku>  est basé  sur  une boucle  où, à  chaque
+itération, il  lit un coup dans  la collection C<Turns> et  le réécrit
 pour indiquer à l'arbitre la manœuvre sélectionnée.
 
 Chaque joueur a  deux attributs numériques, utilisés pour  le choix de
@@ -1124,12 +1124,12 @@ Voici les différentes étapes pour un tour de jeu.
 
 =head4 Recherche des situations similaires
 
-Le  programme  extrait  de  la collections  C<Coups>  tous  les  coups
+Le  programme  extrait  de  la collections  C<Turns>  tous  les  coups
 vérifiant les conditions S<suivantes :>
 
 =over 4
 
-=item  1 Même  page.
+=item 1 Même page.
 
 =item 2 Partie antérieure (en se  basant sur la clé date-heure).
 
@@ -1160,7 +1160,7 @@ l'exemple de Guynemer sur SPAD  XIII. Il s'appuiera sur ses précédents
 combats, mais aussi sur les entraînements de pilotes anonymes sur SPAD
 XIII. Et même,  il pourra se baser sur l'expérience  accumulée par ses
 instructeurs comme  Jules Védrines ou  Paul Tarascon. C'est le  but de
-l'attribut C<@ref>  des enregistrements  de la  collection C<Pilotes>.
+l'attribut  C<@ref> des  enregistrements de  la collection  C<Pilots>.
 Guynemer extraira les coups avec  une C<identité> faisant partie de la
 S<liste :>
 
@@ -1249,10 +1249,9 @@ un premier pilote, très psycho-rigide (10), nous avons
     total               110,01      1,000000
 
 Si  le  nombre  aléatoire  tiré  est dans  l'intervalle  de  9,1e-5  à
-0,090992,  on  prendra la  manœuvre  B.  Si  ce nombre  aléatoire  est
-supérieur à 0,090992,  alors c'est la manœuvre C. Enfin,  dans les cas
-rarissimes où le  nombre est inférieur à 9,1e-5, on  prend la manœuvre
-A.
+0,090992, on prend la manœuvre B. Si ce nombre aléatoire est supérieur
+à 0,090992, alors c'est la manœuvre  C. Enfin, dans les cas rarissimes
+où le nombre est inférieur à 9,1e-5, on prend la manœuvre A.
 
 Avec  les  mêmes manœuvres,  prenons  maintenant  un pilote  très  peu
 psycho-rigide (1,1). Les différents calculs S<donnent :>
@@ -1274,7 +1273,7 @@ que  toutes les  manœuvres ont  la  même probabilité,  peu importe  le
 nombre de situations antérieures où  elles apparaissent et quel fut le
 résultat final  de la partie.  Donc, pour les  parties d'entraînement,
 j'utilise des pilotes anonymes avec une psycho-rigidité de 1. De plus,
-lorsque le programme C<pilote.p6>  constate que la psycho-rigidité est
+lorsque le programme C<player.raku>  constate que la psycho-rigidité est
 à 1, il ne se fatigue pas à extraire les situations antérieures, à les
 évaluer  et à  mouliner les  nombres obtenus.  Il prend  la liste  des
 manœuvres disponibles et  en tire une au sort  (instruction C<pick> de
@@ -1282,23 +1281,23 @@ Raku).
 
 =head4 Fin de partie
 
-Lorsque  le  programme  C<pilote.p6>  lit un  document  C<Coups>  avec
-l'attribut C<fini>  à 1, il sait  que la partie est  terminée et qu'il
+Lorsque  le  programme  C<player.raku>  lit un  document  C<Turns>  avec
+l'attribut C<end> (fini)  à 1, il sait  que la partie est  terminée et qu'il
 faut s'arrêter. Toutefois,  juste avant d'arrêter, le  programme met à
 jour tous les coups de la partie pour y mémoriser le résultat final et
 le nombre de tours entre ce coup et  la fin de la partie. De la sorte,
 lors des prochaines parties, cela économisera le nombre de documents à
 lire en base de données.
 
-=head3 Programme C<site.p6> et programmes annexes
+=head3 Programme C<website.raku) (anciennement C<site.p6>) et programmes annexes
 
-Le programme  C<site.p6> et ses programmes  annexes C<lib/site-xxx.p6>
+Le programme  C<website.raku> et ses programmes  annexes C<lib/xxx-page.rakumod>
 sont de simples programmes Bailador, qui décodent un URL, en extraient
 une clé,  lisent en base  de données  des informations en  fonction de
 cette  clé et  affichent  ces informations  en HTML.  Dans  le cas  du
-programme C<lib/site-coup.p6>, les informations  affichées sont un peu
+programme C<lib/player-turn-page.rakumod>, les informations  affichées sont un peu
 compliquées,  mais elles  reproduisent le  processus décisionnel  déjà
-présenté dans le programme C<joueur.p6>.
+présenté dans le programme C<player.raku>.
 
 =head2 Quelques questions
 
