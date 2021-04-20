@@ -656,14 +656,14 @@ absolument nécessaires.
 =head3 Installation de Rakudo
 
 À la  différence de  mon installation de  2018, décrite  au paragraphe
-L<Installation de Raku>, la version de xubuntu est toute récente, avec
-par  conséquent un  paquet Perl6  et un  paquet Rakudo  assez récents,
-puisqu'il  s'agit  de Perl  6.d.3  et  de  Rakudo 2020.12.  J'ai  donc
-installé les paquets par Synaptic, je  n'ai pas cherché à compiler les
-sources.
+L</"Compilation et installation  de Raku">, la version  de xubuntu est
+toute récente, avec par conséquent un paquet Perl6 et un paquet Rakudo
+assez récents,  puisqu'il s'agit de  Perl 6.d.3 et de  Rakudo 2020.12.
+J'ai donc  installé les paquets  par Synaptic,  je n'ai pas  cherché à
+compiler les sources.
 
 Si vous voulez compiler à partir  des sources, veuillez vous référer à
-ce paragraphe L<Installation de Raku>.
+ce paragraphe L</"Compilation et installation de Raku">.
 
 Parmi  les paquets  automatiquement chargés  avec Perl  6, il  y a  le
 paquet perl6-zef. Donc  vous n'avez pas à  vous préoccuper d'installer
@@ -708,7 +708,9 @@ sont :
 
 Notons  que   lors  de   l'installation  de   Bailador,  le   test  de
 C<HTTP::Supply>  produit  un  avertissement.  Mais  c'est  normal  (cf
-L<https://github.com/zostay/HTTP-Supply/issues/5>)
+L<https://github.com/zostay/HTTP-Supply/issues/5>).  Pour  les  autres
+modules, il  y a eu d'autres  erreurs que je  n'ai pas eu le  temps de
+noter. De toute façon, ces erreurs ne sont pas bloquantes.
 
 =head3 Installation de MongoDB
 
@@ -786,6 +788,8 @@ J'ai donc effectué :
   cd mongo-perl6-driver
   zef --/test install .
 
+(N'oubliez pas le point à la fin de la ligne de commande.)
+
 J'aurais pu faire directement
 
   zef --/test install MongoDB
@@ -800,7 +804,7 @@ Récupérez mes œuvres avec :
 
   git clone https://github.com/jforget/Perl6-Alpha-As-des-As-Zero.git
 
-Puis effectuez quelques initialisation :
+Puis effectuez quelques initialisations :
 
   cd Perl6-Alpha-As-des-As-Zero/Game
   ./init-aircraft.raku Epervier
@@ -1537,7 +1541,7 @@ j'utilise quand même des sites web, essentiellement la
 L<documentation des types standards|https://docs.raku.org/type.html>
 et la L<liste des modules|https://modules.raku.org/>.
 
-=head2 Installation de Raku
+=head2 Compilation et installation de Raku
 
 Je connais quatre méthodes pour installer Rakudo Star sur une machine Linux.
 
@@ -1572,6 +1576,11 @@ paquets correspondants sont :
   virtuelle   lubuntu-15.10   32 bits  rakudo 2014.07
   physique    xubuntu-16.10   64 bits  rakudo 2016.06
   virtuelle   Mageia-5        32 bits  pas trouvé
+
+Reconnaissons que la version de Rakudo  est quasiment en phase avec la
+diffusion  initiale  des versions  Ubuntu.  Toutefois,  même pour  les
+versions  LTS, le  paquet Rakudo  publié par  Ubuntu ne  suit pas  les
+versions publiées par les développeurs de Rakudo.
 
 Pour Docker, il faudrait d'une part que Docker soit installé sur ma machine, d'autre
 part que je sois à l'aise avec Docker. Or Docker n'est pas installé et les dépôts xubuntu 16.10

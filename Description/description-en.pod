@@ -616,13 +616,13 @@ really necessary.
 =head3 Installing Rakudo
 
 Unlike   the   2018   installation,   described   at   the   paragraph
-L</"Installation of  Rakudo"> below, the  xubuntu version I used  is a
-very recent one and the Perl6 / Rakudo packages are rather up-to-date:
-Perl  6.d.3 and  Rakudo  2020.12.  So I  installed  the packages  with
-I<Synaptic>, I did not try to compile the sources.
+L</"Compilation  and  Installation  of  Rakudo">  below,  the  xubuntu
+version I used  is a very recent  one and the Perl6  / Rakudo packages
+are rather up-to-date:  Perl 6.d.3 and Rakudo 2020.12.  So I installed
+the packages with I<Synaptic>, I did not try to compile the sources.
 
-If  you want  to compile  the  sources, see  the L</"Installationn  of
-Rakudo"> paragraph.
+If  you want  to  compile  the sources,  see  the L</"Compilation  and
+Installation of Rakudo"> paragraph.
 
 Among the  pre-requisite packages automatically installed,  there is a
 I<perl6-zef> package. So  you do not have to  install C<zef> yourself.
@@ -665,7 +665,9 @@ prerequisites for the MongoDB module. These are:
 
 Please  note  that installing  Bailador  will  produce an  error  when
 installing its  prerequisite C<HTTP::Supply>. But this  is normal. See
-L<https://github.com/zostay/HTTP-Supply/issues/5>.
+L<https://github.com/zostay/HTTP-Supply/issues/5>. Some  other modules
+also produce  errors which  I did  not write down,  but they  are mere
+warnings too and the modules are installed anyhow.
 
 =head3 Installing MongoDB
 
@@ -740,6 +742,8 @@ So I ran:
   git clone https://github.com/MARTIMM/mongo-perl6-driver.git
   cd mongo-perl6-driver
   zef --/test install .
+
+(Do not forget the dot at the end of the command line.)
 
 I could have run a simpler command:
 
@@ -1492,7 +1496,7 @@ use websites, mainly the
 L<documentation of standard types|https://docs.raku.org/type.html>
 and the L<list of modules|https://modules.raku.org/>.
 
-=head2 Installation of Rakudo
+=head2 Compilation and Installation of Rakudo
 
 There are four methods to install Raku on a Linux computer:
 
@@ -1526,6 +1530,10 @@ versions. My various hardware and virtual computers at this time were:
   virtual     lubuntu-15.10   32 bits  rakudo 2014.07
   hardware    xubuntu-16.10   64 bits  rakudo 2016.06
   virtual     Mageia-5        32 bits  not found
+
+I must acknowledge that, at the time a version of Ubuntu was released,
+the version of  the Rakudo package was  a recent one. Yet,  it was not
+upgraded, even for LTS Ubuntu versions.
 
 About Docker: first Docker would need  to be installed on my computer,
 second I should know Docker and  be comfortable with it. Docker is not

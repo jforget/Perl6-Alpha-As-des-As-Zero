@@ -11,13 +11,14 @@ Dans le dossier Preparation, les programmes permettent de
 composer un livret de jeu en spécifiant les mouvements disponibles
 pour l'aéronef.
 
-Dans le dossier Jeu, les programmes reprennent le principe
+Dans le dossier F<Game>, les programmes reprennent le principe
 de Google Alpha Go Zero, c'est-à-dire un apprentissage autonome
 du jeu en accumulant les parties et en différenciant les coups
 favorables des coups défavorables.
 
-Le  dossier  F<Game> contient  des  programmes  similaires à  ceux  du
-dossier F<Jeu>, mais avec une codification en anglais.
+Le dossier F<Jeu> contient des programmes similaires à ceux du dossier
+F<Game>, mais  avec une  codification en  français. Les  programmes ne
+sont plus mis à jour, le développement se fait dans F<Game>.
 
 Une description détaillée se trouve dans le répertoire F<description>.
 

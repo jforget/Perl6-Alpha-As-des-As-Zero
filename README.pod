@@ -12,12 +12,13 @@ The programs in this repository are based on the game series
 In the F<Preparation> folder, the programs allow the user to compose
 a game booklet, after listing the movements allowed to the flying object.
 
-In the F<Jeu> (= "game") folder, the programs apply to the "Ace of Aces"
-game the same principles that "Google Alpha Go Zero" applied to Go:
+In the  F<Game> folder, the programs  apply to the "Ace  of Aces" game
+the  same  principles that  "Google  Alpha  Go  Zero" applied  to  Go:
 self-learning the tricks of the trade.
 
-The  folder F<Game>  contains programs  similar to  what is  in folder
-F<Jeu>, but the coding standards use English instead of French.
+The  older F<Jeu>  contains  programs  similar to  what  is in  folder
+F<Game>, but  the coding standards  use French instead of  English and
+the programs are not longer updated.
 
 =head2 LICENSE
 
