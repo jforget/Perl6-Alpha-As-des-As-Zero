@@ -61,7 +61,7 @@ my Booklet $booklet;
 my @pages_du_livret;
 my @booklet-pages;
 
-my Caracteristiques $car .= from-json(slurp "{$nom}-init.json");
+my Caracteristiques $car .= from-json(slurp "fr/{$nom}-init.json");
 #say $car.perl;
 say DateTime.now.hh-mm-ss, ' début du traitement';
 
@@ -126,7 +126,7 @@ $livret .= new(livret     => $car.livret
              , capacité   => $car.capacité
              , manoeuvres => %manoeuvres
              , pages      => @pages_du_livret);
-my $fhj = open("{$nom}-fr.json", :w);
+my $fhj = open("fr/$nom.json", :w);
 $fhj.say($livret.to-json());
 $fhj.close();
 
@@ -138,7 +138,7 @@ $booklet .= new(booklet   => $car.livret
              , hits       => $car.capacité
              , maneuvers  => %maneuvers
              , pages      => @booklet-pages);
-$fhj = open("{$nom}-en.json", :w);
+$fhj = open("en/$nom.json", :w);
 $fhj.say($booklet.to-json());
 $fhj.close();
 
@@ -149,42 +149,55 @@ $ligne2 ~= "</tr>";
 my Str $ligne3 = "<tr align='center'><td></td><td></td><td></td><td>Dir</td>" ~ [~] map { "<td>{$car.manoeuvres{$_}<virage>}</td>" }, @manv.sort;
 $ligne3 ~= "</tr>";
 
-my $fhh = open("$nom.html", :w);
-$fhh.print(qq:to/EOF/);
-<html>
-<head>
-<title>{$nom}</title>
-</head>
-<body>
-<table border='1'>
-EOF
+prt-html('fr', $ligne1, $ligne2, $ligne3);
 
-for $livret.pages -> $page {
-  my $n = $page<numero> // 0;
-  if $n {
-    if $n % 10 == 1 {
-      $fhh.say($ligne1);
-      $fhh.say($ligne2);
-      $fhh.say($ligne3);
-    }
-    $fhh.print("<tr align='right'><td>{$n}</td>");
-    if $n ≠ 223 {
-      $fhh.print("<td align='center'>{$page<poursuite>}</td><td>{$page<tir>}</td><td></td>");
-      my %ench = $page<enchainement>;
-      for %ench.keys.sort -> $code {
-        $fhh.print("<td>{%ench{$code}}</td>");
+$ligne1 = "<tr align='center'><td>Page</td><td>Tailing</td><td>Shoot</td><td>Man</td>" ~ [~] map { "<td>{$_}</td>" }, @manv.sort;
+$ligne1 ~= "</tr>";
+$ligne2 = "<tr align='center'><td></td><td></td><td></td><td>Spd</td>" ~ [~] map { "<td>{$car.manoeuvres{$_}<vitesse>}</td>" }, @manv.sort;
+$ligne2 ~= "</tr>";
+$ligne3 = "<tr align='center'><td></td><td></td><td></td><td>Dir</td>" ~ [~] map { "<td>{$car.manoeuvres{$_}<virage>}</td>" }, @manv.sort;
+$ligne3 ~= "</tr>";
+
+prt-html('en', $ligne1, $ligne2, $ligne3);
+
+sub prt-html(Str $dir, Str $line1, Str $line2, Str $line3) {
+  my $fhh = open("$dir/$nom.html", :w);
+  $fhh.print(qq:to/EOF/);
+  <html>
+  <head>
+  <title>{$nom}</title>
+  </head>
+  <body>
+  <table border='1'>
+  EOF
+
+  for $livret.pages -> $page {
+    my $n = $page<numero> // 0;
+    if $n {
+      if $n % 10 == 1 {
+	$fhh.say($line1);
+	$fhh.say($line2);
+	$fhh.say($line3);
       }
+      $fhh.print("<tr align='right'><td>{$n}</td>");
+      if $n ≠ 223 {
+	$fhh.print("<td align='center'>{$page<poursuite>}</td><td>{$page<tir>}</td><td></td>");
+	my %ench = $page<enchainement>;
+	for %ench.keys.sort -> $code {
+	  $fhh.print("<td>{%ench{$code}}</td>");
+	}
+      }
+      $fhh.say("</tr>");
     }
-    $fhh.say("</tr>");
   }
-}
 
-$fhh.print(q:to/EOF/);
-</table>
-</body>
-</html>
-EOF
-$fhh.close();
+  $fhh.print(q:to/EOF/);
+  </table>
+  </body>
+  </html>
+  EOF
+  $fhh.close();
+}
 
 sub recherche_chemin_GM(Str $chemin, Str $clé) {
   if $chemin.chars ≥ 6 {
