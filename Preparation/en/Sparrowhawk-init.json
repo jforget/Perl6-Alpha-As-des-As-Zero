@@ -1,0 +1,23 @@
+{
+    "booklet":  "Test",
+    "side":     "G",
+    "identity": "Sparrohawk",
+    "name":     "Sparrohawk",
+    "capacity": 12,
+    "maneuvers": {
+        "A": { "path": "0;5" , "turn": "L", "speed": "1" }
+      , "B": { "path": "0;0" , "turn": "C", "speed": "1" }
+      , "C": { "path": "0;1" , "turn": "R", "speed": "1" }
+      , "D": { "path": "00;5", "turn": "L", "speed": "2" }
+      , "E": { "path": "00;0", "turn": "C", "speed": "2" }
+      , "F": { "path": "00;1", "turn": "R", "speed": "2" }
+    },
+    "shoots": {
+        "187": "4"
+      , "188": "4"
+      , "198": "4"
+      , "205": "4"
+      , "209": "4"
+      , "213": "4"
+    }
+}

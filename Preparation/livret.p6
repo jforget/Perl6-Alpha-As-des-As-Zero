@@ -37,6 +37,15 @@ class Caracteristiques does JSON::Class {
   has     %.manoeuvres;
   has     %.tirs;
 }
+class Characteristics does JSON::Class {
+  has Str $.booklet;
+  has Str $.side;
+  has Str $.identity;
+  has Str $.name;
+  has Int $.hits;
+  has     %.maneuvers;
+  has     %.shoots;
+}
 class Livret does JSON::Class {
   has Str $.livret;
   has Str $.camp;
@@ -61,7 +70,28 @@ my Booklet $booklet;
 my @pages_du_livret;
 my @booklet-pages;
 
-my Caracteristiques $car .= from-json(slurp "fr/{$nom}-init.json");
+my Caracteristiques $car;
+if "fr/{$nom}-init.json".IO.e {
+  $car .= from-json(slurp "fr/{$nom}-init.json");
+}
+else {
+  my Characteristics $car1 .= from-json(slurp "en/{$nom}-init.json");
+  my %e2f-side = ( G => 'G', B => 'M' );
+  my %e2f-turn = ( L => 'G', C => 'A', R => 'D' );
+  $car .= new(livret     =>           $car1.booklet
+            , camp       => %e2f-side{$car1.side}
+            , identité   =>           $car1.identity
+            , nom        =>           $car1.name
+            , capacité   =>           $car1.hits
+            , tirs       =>           $car1.shoots);
+  for $car1.maneuvers.keys -> $man {
+    $car.manoeuvres{$man}<chemin>  =           $car1.maneuvers{$man}<path>;
+    $car.manoeuvres{$man}<virage>  = %e2f-turn{$car1.maneuvers{$man}<turn>};
+    $car.manoeuvres{$man}<vitesse> =           $car1.maneuvers{$man}<speed>;
+  }
+}
+
+
 #say $car.perl;
 say DateTime.now.hh-mm-ss, ' début du traitement';
 
@@ -151,11 +181,12 @@ $ligne3 ~= "</tr>";
 
 prt-html('fr', $ligne1, $ligne2, $ligne3);
 
+my %f2e-turn = ( G => 'L', A => 'C', D => 'R' );
 $ligne1 = "<tr align='center'><td>Page</td><td>Tailing</td><td>Shoot</td><td>Man</td>" ~ [~] map { "<td>{$_}</td>" }, @manv.sort;
 $ligne1 ~= "</tr>";
 $ligne2 = "<tr align='center'><td></td><td></td><td></td><td>Spd</td>" ~ [~] map { "<td>{$car.manoeuvres{$_}<vitesse>}</td>" }, @manv.sort;
 $ligne2 ~= "</tr>";
-$ligne3 = "<tr align='center'><td></td><td></td><td></td><td>Dir</td>" ~ [~] map { "<td>{$car.manoeuvres{$_}<virage>}</td>" }, @manv.sort;
+$ligne3 = "<tr align='center'><td></td><td></td><td></td><td>Dir</td>" ~ [~] map { "<td>{%f2e-turn{$car.manoeuvres{$_}<virage>}}</td>" }, @manv.sort;
 $ligne3 ~= "</tr>";
 
 prt-html('en', $ligne1, $ligne2, $ligne3);
@@ -175,17 +206,17 @@ sub prt-html(Str $dir, Str $line1, Str $line2, Str $line3) {
     my $n = $page<numero> // 0;
     if $n {
       if $n % 10 == 1 {
-	$fhh.say($line1);
-	$fhh.say($line2);
-	$fhh.say($line3);
+        $fhh.say($line1);
+        $fhh.say($line2);
+        $fhh.say($line3);
       }
       $fhh.print("<tr align='right'><td>{$n}</td>");
       if $n ≠ 223 {
-	$fhh.print("<td align='center'>{$page<poursuite>}</td><td>{$page<tir>}</td><td></td>");
-	my %ench = $page<enchainement>;
-	for %ench.keys.sort -> $code {
-	  $fhh.print("<td>{%ench{$code}}</td>");
-	}
+        $fhh.print("<td align='center'>{$page<poursuite>}</td><td>{$page<tir>}</td><td></td>");
+        my %ench = $page<enchainement>;
+        for %ench.keys.sort -> $code {
+          $fhh.print("<td>{%ench{$code}}</td>");
+        }
       }
       $fhh.say("</tr>");
     }
