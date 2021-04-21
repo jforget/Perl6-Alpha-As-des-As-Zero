@@ -832,7 +832,250 @@ l'avez lancé.
 
 =head3 Extension aux véritables jeux de l'As des As
 
-À faire
+Pour jouer  avec les véritables  protagonistes des jeux de  l'I<As des
+As>,  il faut  utiliser les  programmes du  répertoire F<Preparation>.
+Initialisez la base de données C<aoa_prep> avec :
+
+  raku init.p6
+  sh maj1
+
+Ensuite, pour chaque avion, tapez  un fichier d'initialisation dans le
+répertoire F<Preparation/fr> ou F<Preparation/en>. La différence entre
+ces  deux répertoires  est que  les mots-clés  sont respectivement  en
+français et  en anglais.  À part cela,  les fichiers  sont identiques.
+Voici  l'exemple  pour  un  épervier,  avec  des  mots-clés  français,
+c'est-à-dire le fichier F<Preparation/fr/Epervier-init.json>.
+
+  {
+    "livret":   "Test",
+    "camp":     "G",
+    "identité": "Epervier",
+    "nom":      "Epervier",
+    "capacité": 12,
+    "manoeuvres": {
+        "A": { "chemin": "0;5" , "virage": "G", "vitesse": "1" }
+      , "B": { "chemin": "0;0" , "virage": "A", "vitesse": "1" }
+      , "C": { "chemin": "0;1" , "virage": "D", "vitesse": "1" }
+      , "D": { "chemin": "00;5", "virage": "G", "vitesse": "2" }
+      , "E": { "chemin": "00;0", "virage": "A", "vitesse": "2" }
+      , "F": { "chemin": "00;1", "virage": "D", "vitesse": "2" }
+    },
+    "tirs": {
+        "187": "4"
+      , "188": "4"
+      , "198": "4"
+      , "205": "4"
+      , "209": "4"
+      , "213": "4"
+    }
+  }
+
+Prenons  comme  exemple  le  fichier  F<Preparation/fr/DR1-init.json>,
+décrivant le Fokker DR.1 de I<Handy Rotary>.
+
+Le nom sera quelque chose comme S<« Fokker> S<DR.1 »>. L'identité sera
+une version simplifiée, de nature à s'intégrer sans peine dans un URI.
+En  d'autres  termes,  il  faut  éviter  les  C<%20>,  les  C<%27>  et
+similaires et ne  conserver que des lettres, des  chiffres, des tirets
+et  des points,  alors  que le  nom peut  sans  problème contenir  des
+espaces et des apostrophes. La première version du fichier sera donc :
+
+   {
+    "identité": "DR1",
+    "nom":      "Fokker DR.1",
+   }
+
+On  y ajoute  le nom  du livret  origine (bien  que cela  ne soit  pas
+utilisé dans les programmes).
+
+   {
+    "identité": "DR1",
+    "nom":      "Fokker DR.1",
+    "livret":   "Handy Rotary",
+   }
+
+Le Fokker est-il  un gentil ou un  méchant ? Voyez page 2  ou page 16.
+Sur la page 2, le méchant est en  train de tirer sur le gentil, sur la
+page 16  le gentil est  en train de tirer  sur le méchant.  Dans notre
+cas, le Fokker est donc dans le camp des méchants, ce qui donne :
+
+   {
+    "identité": "DR1",
+    "nom":      "Fokker DR.1",
+    "livret":   "Handy Rotary",
+    "camp":     "M",
+   }
+
+Pour le gentil, cela aurait été :
+
+    "camp":     "G",
+
+À cela, nous ajoutons la capacité initiale en points de dégâts :
+
+   {
+    "identité": "DR1",
+    "nom":      "Fokker DR.1",
+    "livret":   "Handy Rotary",
+    "camp":     "M",
+    "capacité": 12,
+   }
+
+Puis feuilletez  le livret, en  notant chaque page  où le DR.1  est en
+train  de tirer  sur son  adversaire. Pour  chaque page,  inscrivez le
+numéro de la page et le nombre de points de dégâts infligés :
+
+   {
+    "identité": "DR1",
+    "nom":      "Fokker DR.1",
+    "livret":   "Handy Rotary",
+    "camp":     "M",
+    "capacité": 12,
+    "tirs": {
+          "2": "4"
+      ,   "8": "4"
+           [ ... ]
+      ,  "96": "2"
+           [ ... ]
+      , "116": "1"
+    }
+   }
+
+Nous voici arrivés à la partie  la plus délicate, les manœuvres. Je me
+limiterai ici aux deux manœuvres prises comme exemples dans le brevet.
+Tout d'abord, attribuez un code à chaque manœuvre. Pour I<Wingleader>,
+pour I<Jet Eagles> et pour  certaines éditions de I<Handy Rotary>, les
+codes  sont déjà  attribués,  mais  pour les  autres  jeux, il  faudra
+attribuer des codes C<A> jusqu'à ... (jusqu'à C<M> pour I<Wingleader>,
+jusqu'à C<Y> pour I<Handy Rotary> et I<Jet Eagles>).
+
+Ainsi donc, les manœuvres du brevet sont les manœuvres B<A> et B<J>.
+Ce qui nous donne :
+
+    "manoeuvres": {
+        "A": { "chemin": "?" , "virage": "?", "vitesse": "?" }
+      , "J": { "chemin": "?" , "virage": "?", "vitesse": "?" }
+    },
+
+=for HTML
+<img src='Page-48-All.png' alt="Livret allemand page 48" />
+
+En regardant la ligne du haut dans le tableau des manœuvres, on trouve
+la vitesse  : I<slow>  pour la  manœuvre B<A>  et I<cruising>  pour la
+manœuvre B<J>. Cela se traduit par :
+
+    "manoeuvres": {
+        "A": { "chemin": "?" , "virage": "?", "vitesse": "0" }
+      , "J": { "chemin": "?" , "virage": "?", "vitesse": "1" }
+    },
+
+La deuxième ligne donne la direction du virage : à gauche, en avant ou
+à droite. Dans notre cas, les deux manœuvres vont vers la gauche. Cela
+nous donne :
+
+    "manoeuvres": {
+        "A": { "chemin": "?" , "virage": "G", "vitesse": "0" }
+      , "J": { "chemin": "?" , "virage": "G", "vitesse": "1" }
+    },
+
+Pour le  chemin, nous ouvrons  le livret à  la page 187.  Depuis cette
+page, la manœuvre B<A> nous renvoie  page 205 et la manœuvre B<J> nous
+renvoie page 23. Consultons les lignes correspondantes dans le fichier
+F<Preparation/etape-finale.html>
+
+=for HTML
+<table>
+<tr><td>23</td><td>5;5</td><td>3;1</td><td>A  30 </td><td>...</td></tr>
+<tr><td>205</td><td>;5</td><td>;1</td><td>A  213 </td><td>...</td></tr>
+</table>
+
+Puisque nous nous occupons d'un  méchant, il faut regarder la deuxième
+colonne. Elle nous donne la formule  du chemin, que nous insérons dans
+la spécification des manœuvres :
+
+    "manoeuvres": {
+        "A": { "chemin": ";5"  , "virage": "G", "vitesse": "0" }
+      , "J": { "chemin": "5;5" , "virage": "G", "vitesse": "1" }
+    },
+
+Notons que pour la page 187  du Camel, la manœuvre B<A> aurait conduit
+à la page 198  et la manœuvre B<J> à la page 31.  Pour ces deux pages,
+le fichier F<etape-finale.html> file nous donne :
+
+=for HTML
+<table>
+<tr><td>31</td><td>3;1</td><td>5;5</td><td>A 2 </td><td>...</td></tr>
+<tr><td>198</td><td>;1</td><td>;5</td><td>A 187 </td><td>...</td></tr>
+</table>
+
+Pour un "gentil",  il faut consulter la troisième  colonne. Comme vous
+pouvez le voir, nous obtenons les mêmes formules C<5;5> et C<;5>.
+
+Le document final est donc :
+
+   {
+    "identité": "DR1",
+    "nom":      "Fokker DR.1",
+    "livret":   "Handy Rotary",
+    "camp":     "M",
+    "capacité": 12,
+    "manoeuvres": {
+        "A": { "chemin": ";5"  , "virage": "G", "vitesse": "0" }
+           [ ... ]
+      , "J": { "chemin": "5;5" , "virage": "G", "vitesse": "1" }
+           [ ... ]
+    },
+    "tirs": {
+          "2": "4"
+      ,   "8": "4"
+           [ ... ]
+      ,  "96": "2"
+           [ ... ]
+      , "116": "1"
+    }
+   }
+
+Si vous préférez,  vous pouvez composer ce fichier  avec des mots-clés
+anglophones et le stocker dans F<Preparation/en/DR1-init.json> au lieu
+de F<Preparation/fr/DR1-init.json>. Cela donne :
+
+   {
+    "identity": "DR1",
+    "name":     "Fokker DR.1",
+    "booklet":  "Handy Rotary",
+    "side":     "B",
+    "capacity": 12,
+    "maneuvers": {
+        "A": { "path": ";5"  , "turn": "L", "speed": "0" }
+           [ ... ]
+      , "J": { "path": "5;5" , "turn": "L", "speed": "1" }
+           [ ... ]
+    },
+    "shoots": {
+          "2": "4"
+      ,   "8": "4"
+           [ ... ]
+      ,  "96": "2"
+           [ ... ]
+      , "116": "1"
+    }
+   }
+
+Il ne reste plus qu'à faire :
+
+  raku livret.p6 DR1
+  cp en/DR1.json ../Game
+  cd ../Game
+  ./init-aircraft.raku DR1
+
+Notons  que F<init-aircraft.raku>  attend  des mots-clés  anglophones,
+c'est pour cela que l'on prend le fichier du sous-répertoire F<en>. Le
+sous-répertoire F<fr> contient  un fichier JSON avec  des mots-clés en
+français, utilisable  pour les  programmes du répertoire  F<Jeu>. Seul
+problème, les programmes de ce répertoire ne sont plus maintenus.
+
+Les  deux sous-répertoires  F<en>  et F<fr>  contiennent également  un
+fichier F<DR1.html> qui présente les  mêmes données, mais plus faciles
+à lire que dans le format JSON.
 
 =head2 Préparation
 

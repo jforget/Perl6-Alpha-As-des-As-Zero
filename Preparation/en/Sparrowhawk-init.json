@@ -1,8 +1,8 @@
 {
     "booklet":  "Test",
     "side":     "G",
-    "identity": "Sparrohawk",
-    "name":     "Sparrohawk",
+    "identity": "Sparrowhawk",
+    "name":     "Sparrowhawk",
     "capacity": 12,
     "maneuvers": {
         "A": { "path": "0;5" , "turn": "L", "speed": "1" }

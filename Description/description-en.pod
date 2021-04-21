@@ -789,7 +789,210 @@ it runs and hit C<Ctrl-C>.
 
 =head3 Extending to Real Ace of Aces Games
 
-TODO
+To  play with  the real  aircraft from  the published  I<Ace of  Aces>
+games, you  must use the  programs from the  F<Preparation> directory.
+First, initialise the C<aoa_prep> database with:
+
+  raku init.p6
+  sh maj1
+
+Then,  for   each  aircraft,   type  an  init   file  either   in  the
+F<Preparation/en> directory of in the F<Preparation/fr> directory. The
+difference between these directories is  that the allowed keywords are
+in English in the  former case, in French in the  latter case. Here is
+the  English  keyword   example  for  a  sparrowhak,   that  is,  file
+F<Preparation/en/Sparrowhawk-init.json>.
+
+  {
+    "booklet":  "Test",
+    "side":     "G",
+    "identity": "Sparrowhawk",
+    "name":     "Sparrowhawk",
+    "capacity": 12,
+    "maneuvers": {
+        "A": { "path": "0;5" , "turn": "L", "speed": "1" }
+      , "B": { "path": "0;0" , "turn": "C", "speed": "1" }
+      , "C": { "path": "0;1" , "turn": "R", "speed": "1" }
+      , "D": { "path": "00;5", "turn": "L", "speed": "2" }
+      , "E": { "path": "00;0", "turn": "C", "speed": "2" }
+      , "F": { "path": "00;1", "turn": "R", "speed": "2" }
+    },
+    "shoots": {
+        "187": "4"
+      , "188": "4"
+      , "198": "4"
+      , "205": "4"
+      , "209": "4"
+      , "213": "4"
+    }
+  }
+
+Let us  how to  write the F<Preparation/en/DR1-init.json>  file, which
+describes the Fokker DR.1 from I<Handy Rotary>.
+
+The name will be something like  "Fokker DR.1". The identity should be
+a simplified and URI-friendly version  of the name. By URI-friendly, I
+mean no C<%20>, no C<%27>, etc, only letters, digits, dashes and dots.
+So we have:
+
+   {
+    "identity": "DR1",
+    "name":     "Fokker DR.1",
+   }
+
+Add the name of the booklet it comes from. Actually, this attribute is
+not used.
+
+   {
+    "identity": "DR1",
+    "name":     "Fokker DR.1",
+    "booklet":  "Handy Rotary",
+   }
+
+Is the Fokker a good guy or a bad guy? See page 2 or 16: on page 2 the
+bad  guy is  shooting at  the good  guy, on  page 16  the good  guy is
+shooting at the bad guy. In this case, the Fokker is a bad guy.
+
+   {
+    "identity": "DR1",
+    "name":     "Fokker DR.1",
+    "booklet":  "Handy Rotary",
+    "side":     "B",
+   }
+
+A good guy would have:
+
+    "side":     "G",
+
+Then the initial hit capacity:
+
+   {
+    "identity": "DR1",
+    "name":     "Fokker DR.1",
+    "booklet":  "Handy Rotary",
+    "side":     "B",
+    "capacity": 12,
+   }
+
+Then  leaf through  the booklet  and write  down the  pages where  the
+Fokker is  shooting at its enemy.  For each page, write  the number of
+hit points the opponent loses:
+
+   {
+    "identity": "DR1",
+    "name":     "Fokker DR.1",
+    "booklet":  "Handy Rotary",
+    "side":     "B",
+    "capacity": 12,
+    "shoots": {
+          "2": "4"
+      ,   "8": "4"
+           [ ... ]
+      ,  "96": "2"
+           [ ... ]
+      , "116": "1"
+    }
+   }
+
+Then the most elaborate part, the  maneuvers. I will take for examples
+the two maneuvers used  in the patent. First, you give  a label to all
+the  maneuvers.  For I<Wingleader>  and  I<Jet  Eagles> and  for  some
+releases of I<Handy Rotary> the maneuvers are already labeled, but for
+the other  games you will have  to give labels C<A>  to whatever (C<M>
+for I<Wingleader>, C<Y> for I<Handy Rotary> and I<Jet Eagles>).
+
+The two  maneuvers used in the  patent are maneuver B<A>  and maneuver
+B<J>. So we have:
+
+    "maneuvers": {
+        "A": { "path": "?" , "turn": "?", "speed": "?" }
+      , "J": { "path": "?" , "turn": "?", "speed": "?" }
+    },
+
+=for HTML
+<img src='Page-48-All.png' alt="German booklet page 48" />
+
+Looking at  the top row of  the maneuver table, you  obtain the speed:
+slow for maneuver B<A>, crusing for maneuver B<J>. This translates as:
+
+    "maneuvers": {
+        "A": { "path": "?" , "turn": "?", "speed": "0" }
+      , "J": { "path": "?" , "turn": "?", "speed": "1" }
+    },
+
+The second row gives the lateral direction: left, straight (or center)
+or right.  Both maneuvers are left  maneuvers, so we fill  the missing
+values:
+
+    "maneuvers": {
+        "A": { "path": "?" , "turn": "L", "speed": "0" }
+      , "J": { "path": "?" , "turn": "L", "speed": "1" }
+    },
+
+For the path, we  go to page 187. From this  page, maneuver B<A> leads
+to page 205 and maneuver B<J> leads  to page 23. With these values, we
+refer to lines 205 and 23 of the file F<Preparation/etape-finale.html>
+
+=for HTML
+<table>
+<tr><td>23</td><td>5;5</td><td>3;1</td><td>A  30 </td><td>...</td></tr>
+<tr><td>205</td><td>;5</td><td>;1</td><td>A  213 </td><td>...</td></tr>
+</table>
+
+Since we are dealing with the bad guy, we look at column 2 and we find the
+path formula to insert into the maneuver specification.
+
+    "maneuvers": {
+        "A": { "path": ";5"  , "turn": "L", "speed": "0" }
+      , "J": { "path": "5;5" , "turn": "L", "speed": "1" }
+    },
+
+Note: from the  Camel's page 187, maneuver B<A> leads  to page 198 and
+maneuver B<J> leads to page 31. The F<etape-finale.html> file gives:
+
+=for HTML
+<table>
+<tr><td>31</td><td>3;1</td><td>5;5</td><td>A 2 </td><td>...</td></tr>
+<tr><td>198</td><td>;1</td><td>;5</td><td>A 187 </td><td>...</td></tr>
+</table>
+
+For the good guy, we take the  path formula from column 3 instead of 2
+and, as you can see, we have the same fomulas C<5;5> and C<;5>.
+
+And the final document is:
+
+   {
+    "identity": "DR1",
+    "name":     "Fokker DR.1",
+    "booklet":  "Handy Rotary",
+    "side":     "B",
+    "capacity": 12,
+    "maneuvers": {
+        "A": { "path": ";5"  , "turn": "L", "speed": "0" }
+           [ ... ]
+      , "J": { "path": "5;5" , "turn": "L", "speed": "1" }
+           [ ... ]
+    },
+    "shoots": {
+          "2": "4"
+      ,   "8": "4"
+           [ ... ]
+      ,  "96": "2"
+           [ ... ]
+      , "116": "1"
+    }
+   }
+
+Now run
+
+  raku livret.p6 DR1
+  cp en/DR1.json ../Game
+  cd ../Game
+  ./init-aircraft.raku DR1
+
+And   you  have   also   a  F<en/DR1.html>   file   which  shows   the
+characteristics of  the Fokker DR.1  in a  more readable way  than the
+JSON file.
 
 =head2 Preparation
 
