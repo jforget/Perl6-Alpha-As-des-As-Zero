@@ -260,11 +260,18 @@ sub recherche_chemin_GM(Str $chemin, Str $clé) {
 
 livret.p6 -- programme construisant le livret pour un engin volant de l'As des As
 
+livret.p6 -- program generating the booklet describing a flying object for Ace of Aces
+
 =head1 DESCRIPTION
 
 Ce programme construit le livret décrivant les caractéristiques d'un engin volant de l'As des As,
 c'est-à-dire les enchaînements (page de départ, manœuvre) → page d'arrivée, ainsi que les pages
 de poursuite et les pages de tir.
+
+This program generates the booklet describing the characteristics of a
+flying vehicle  (or a flying creature)  for Ace of Aces,  that is, the
+transitions (start page, maneuver) → end  page, as well as the tailing
+pages and the shoot pages.
 
 =head1 LANCEMENT
 
@@ -278,20 +285,39 @@ En sortie, le programme génère un fichier F<DR1.json> contenant les caractéri
 complètes de l'engin volant, ainsi qu'un fichier F<DR1.html> donnant les mêmes
 caractéristiques sous une forme plus agréable.
 
+There  is only  one  parameter,  the name  of  the  flying vehicle  or
+creature. This name, e.g. C<DR1>, is used to obtain the name of a text
+file F<en/DR1-init.json>  or F<fr/DR1-init.json>, which  specifies the
+complete characteristics of the flying object. The program generates a
+JSON file with French keywords  F<fr/DR1.json>, another JSON file with
+English keywords F<en/DR1.json>, and two HTML files F<en/DR1.html> and
+F<fr/DR1.html> which  give the same data  as the JSON files,  yet in a
+more readable way.
+
 =head1 COPYRIGHT et LICENCE
 
-Copyright (c) 2018, 2020, Jean Forget
+Copyright (c) 2018, 2020, 2021 Jean Forget
 
 Ce programme est diffusé avec les mêmes conditions que Perl 5.16.3 :
 la licence publique GPL version 1 ou ultérieure, ou bien la
 licence artistique Perl.
 
+The program  is published  under the  same terms  as Perl  5.16.3: GPL
+version 1 or later or the Perl Artistic License.
+
 Vous pouvez trouver le texte en anglais de ces licences dans le
-fichier <LICENSE> joint ou bien aux adresses
+fichier F<LICENSE> joint ou bien aux adresses
 L<http://www.perlfoundation.org/artistic_license_1_0>
 et L<http://www.gnu.org/licenses/gpl-1.0.html>.
 
+You can find the text of the licenses in the F<LICENSE> file in this
+repository or you can read them at
+L<http://www.perlfoundation.org/artistic_license_1_0>
+and L<http://www.gnu.org/licenses/gpl-1.0.html>.
+
 Résumé en anglais de la GPL :
+
+Summary of GPL:
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
