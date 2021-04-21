@@ -969,8 +969,8 @@ manœuvre B<J>. Cela se traduit par :
     },
 
 La deuxième ligne donne la direction du virage : à gauche, en avant ou
-à droite. Dans notre cas, les deux manœuvres vont vers la gauche. Cela
-nous donne :
+à droite (respectivement I<left>  I<straight> et I<right>). Dans notre
+cas, les deux manœuvres vont vers la gauche. Cela nous donne :
 
     "manoeuvres": {
         "A": { "chemin": "?" , "virage": "G", "vitesse": "0" }

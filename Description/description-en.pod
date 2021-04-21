@@ -947,8 +947,9 @@ path formula to insert into the maneuver specification.
       , "J": { "path": "5;5" , "turn": "L", "speed": "1" }
     },
 
-Note: from the  Camel's page 187, maneuver B<A> leads  to page 198 and
-maneuver B<J> leads to page 31. The F<etape-finale.html> file gives:
+Note: from the  Sopwith Camel's page 187, maneuver B<A>  leads to page
+198 and maneuver B<J> leads  to page 31. The F<etape-finale.html> file
+gives:
 
 =for HTML
 <table>
