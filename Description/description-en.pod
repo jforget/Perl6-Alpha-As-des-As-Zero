@@ -690,7 +690,8 @@ I<Ubuntu>.  Anyhow, I  made  the hypothesis  that "xubuntu-21.04"  was
 rather  similar to  "Ubuntu-20.04"  and I  followed the  corresponding
 procedure.
 
-When you install MongoDB, you  should read the up-to-date instructions
+When you install MongoDB, you  should read the 
+L<up-to-date instructions|https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/>
 from the MongoDB website. But to give  you an overview, here is what I
 did.
 
@@ -766,7 +767,7 @@ Then, run some initialisations with:
   ./init-pilot.raku    Kevin
   ./init-pilot.raku    Plume-Noire
 
-Now you are ready to launch some games between the Sparrowhawk and the
+Now you are ready to launch some games between the sparrowhawk and the
 drone with:
 
   ./launch
@@ -1035,8 +1036,8 @@ Then run
 
   ./init-pilot.raku Manfred
 
-supposing the  file is  F<Manfred-init.json>. And adapt  the F<launch>
-shell script to allow launching games between named pilots.
+supposing the file  is F<Manfred.json>. And adapt  the F<launch> shell
+script to allow launching games between named pilots.
 
 =head2 Preparation
 

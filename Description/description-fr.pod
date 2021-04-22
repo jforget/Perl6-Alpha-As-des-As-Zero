@@ -960,8 +960,8 @@ Ce qui nous donne :
 <img src='Page-48-All.png' alt="Livret allemand page 48" />
 
 En regardant la ligne du haut dans le tableau des manœuvres, on trouve
-la vitesse  : I<slow>  pour la  manœuvre B<A>  et I<cruising>  pour la
-manœuvre B<J>. Cela se traduit par :
+la  vitesse :  I<slow> (lent)  pour  la manœuvre  B<A> et  I<cruising>
+(vitesse de croisière) pour la manœuvre B<J>. Cela se traduit par :
 
     "manoeuvres": {
         "A": { "chemin": "?" , "virage": "?", "vitesse": "0" }
@@ -1123,9 +1123,9 @@ Une fois le fichier terminé, lancez
 
   ./init-pilot.raku Manfred
 
-en  supposant  que  le fichier  s'appelle  F<Manfred-init.json>.  Puis
-adaptez le  script F<launch>  pour permettre  le lancement  de parties
-entre des pilotes connus.
+en supposant que le fichier s'appelle F<Manfred.json>. Puis adaptez le
+script  F<launch> pour  permettre le  lancement de  parties entre  des
+pilotes connus.
 
 =head2 Préparation
 
@@ -1582,7 +1582,7 @@ le nombre de tours entre ce coup et  la fin de la partie. De la sorte,
 lors des prochaines parties, cela économisera le nombre de documents à
 lire en base de données.
 
-=head3 Programme C<website.raku>) (anciennement C<site.p6>) et programmes annexes
+=head3 Programme C<website.raku> (anciennement C<site.p6>) et programmes annexes
 
 Le programme  C<website.raku> et ses programmes  annexes C<lib/xxx-page.rakumod>
 sont de simples programmes Bailador, qui décodent un URL, en extraient
