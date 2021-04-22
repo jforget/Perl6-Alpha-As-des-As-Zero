@@ -936,7 +936,7 @@ numéro de la page et le nombre de points de dégâts infligés :
            [ ... ]
       ,  "96": "2"
            [ ... ]
-      , "116": "1"
+      , "143": "1"
     }
    }
 
@@ -968,9 +968,14 @@ manœuvre B<J>. Cela se traduit par :
       , "J": { "chemin": "?" , "virage": "?", "vitesse": "1" }
     },
 
+En fait, la vitesse ne sert pas à grand chose. Mais elle était là dans
+les livrets du jeu, je l'ai reprise dans les fichiers init.
+
 La deuxième ligne donne la direction du virage : à gauche, en avant ou
-à droite (respectivement I<left>  I<straight> et I<right>). Dans notre
-cas, les deux manœuvres vont vers la gauche. Cela nous donne :
+à droite (respectivement I<left> I<straight> et I<right>). À l'inverse
+de la vitesse,  c'est une donnée importante, utilisée  pour les règles
+de poursuite  (I<tailing>). Dans  notre cas,  les deux  manœuvres vont
+vers la gauche. Cela nous donne :
 
     "manoeuvres": {
         "A": { "chemin": "?" , "virage": "G", "vitesse": "0" }
@@ -1030,7 +1035,7 @@ Le document final est donc :
            [ ... ]
       ,  "96": "2"
            [ ... ]
-      , "116": "1"
+      , "143": "1"
     }
    }
 
@@ -1056,7 +1061,7 @@ de F<Preparation/fr/DR1-init.json>. Cela donne :
            [ ... ]
       ,  "96": "2"
            [ ... ]
-      , "116": "1"
+      , "143": "1"
     }
    }
 
@@ -1076,6 +1081,19 @@ problème, les programmes de ce répertoire ne sont plus maintenus.
 Les  deux sous-répertoires  F<en>  et F<fr>  contiennent également  un
 fichier F<DR1.html> qui présente les  mêmes données, mais plus faciles
 à lire que dans le format JSON.
+
+Ensuite, faites  de même avec  le Sopwith Camel.  Pour les jeux  de la
+série I<As  des As>, à  l'exception du I<Starfighter Battle  Book>, il
+existe un raccourci dans la mesure  où ces jeux sont symétriques. Vous
+pouvez  ainsi copier-coller  la liste  des manœuvres.  Il vous  faudra
+malgré tout passer en revue le  livret Camel pour déterminer les pages
+de tir.
+
+Une fois que vous avez fait ceci,  il ne reste plus qu'à mettre à jour
+le fichier F<launch> (ou le  dupliquer puis l'adapter) pour lancer des
+parties entre  un Camel  anonyme et  un DR.1  anonyme (voire,  si vous
+aimez l'absurde,  un combat entre  un Camel et  un drone, ou  entre un
+épervier et un DR.1).
 
 =head2 Préparation
 

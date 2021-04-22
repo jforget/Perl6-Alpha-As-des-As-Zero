@@ -890,7 +890,7 @@ hit points the opponent loses:
            [ ... ]
       ,  "96": "2"
            [ ... ]
-      , "116": "1"
+      , "143": "1"
     }
    }
 
@@ -920,9 +920,13 @@ slow for maneuver B<A>, crusing for maneuver B<J>. This translates as:
       , "J": { "path": "?" , "turn": "?", "speed": "1" }
     },
 
+Actually, the speed is not used in the basic rules of the game. But it
+was avaiable in the booklets, so I added it to the init files.
+
 The second row gives the lateral direction: left, straight (or center)
-or right.  Both maneuvers are left  maneuvers, so we fill  the missing
-values:
+or right. Unlike the speed, the  direction is an important element for
+the tailing rules. Both maneuvers B<A> and B<J> are left maneuvers, so
+we fill the missing values:
 
     "maneuvers": {
         "A": { "path": "?" , "turn": "L", "speed": "0" }
@@ -980,7 +984,7 @@ And the final document is:
            [ ... ]
       ,  "96": "2"
            [ ... ]
-      , "116": "1"
+      , "143": "1"
     }
    }
 
@@ -994,6 +998,18 @@ Now run
 And   you  have   also   a  F<en/DR1.html>   file   which  shows   the
 characteristics of  the Fokker DR.1  in a  more readable way  than the
 JSON file.
+
+Now do the same with the Sopwith Camel. A shortcut is available to all
+the I<Ace of  Aces> games, except the I<Starfighter  Battle Book>, the
+maneuvers  are the  same  for  both opponents,  so  you  just have  to
+cut-and-paste  the  C<maneuvers> data.  You  still  have to  fill  the
+C<shoot> data by leafing through the Sopwith Camel booklet.
+
+When this  is done, you just  need to edit the  F<launch> shell script
+(or duplicate and edit), and you can launch games between an anonymous
+Camel and  an anonymous  DR.1 (or,  if you  want silliness,  between a
+Camel and a drone or between a sparrowhawk and a DR.1).
+
 
 =head2 Preparation
 
