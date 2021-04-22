@@ -1582,7 +1582,7 @@ le nombre de tours entre ce coup et  la fin de la partie. De la sorte,
 lors des prochaines parties, cela économisera le nombre de documents à
 lire en base de données.
 
-=head3 Programme C<website.raku) (anciennement C<site.p6>) et programmes annexes
+=head3 Programme C<website.raku>) (anciennement C<site.p6>) et programmes annexes
 
 Le programme  C<website.raku> et ses programmes  annexes C<lib/xxx-page.rakumod>
 sont de simples programmes Bailador, qui décodent un URL, en extraient
