@@ -1095,6 +1095,38 @@ parties entre  un Camel  anonyme et  un DR.1  anonyme (voire,  si vous
 aimez l'absurde,  un combat entre  un Camel et  un drone, ou  entre un
 épervier et un DR.1).
 
+Enuite, tapez des fichiers init pour quelques pilotes, en vous basant sur
+l'exemple ci-dessous.
+
+  {
+    "identity": "Manfred",
+    "name": "Manfred von Richthofen",
+    "aircraft": "DR1",
+    "perspicacity": 0.6,
+    "stiffness": 2.718,
+    "ref": [ "DR1" ]
+  }
+
+Comme pour les avions, l'attribut C<name> est un nom destiné à être lu
+par un  humain, avec si  nécessaire des espaces, des  apostrophes etc.
+tandis que l'attribut C<identity> est  un nom compatible avec les URI,
+donc  sans caractères  spéciaux tels  que  les C<%20>  et les  C<%27>.
+L'attribut  C<aircraft>  est  l'attribut C<identity>  de  l'avion  sur
+lequel  le  pilote  vole.  L'attribut C<perspicacity>  est  un  nombre
+flottant  entre  0 et  1  et  l'attribut  C<stiffness> est  un  nombre
+flottant supérieur à  1. Leur utilisation est expliquée  dans la suite
+de ce  document. Et  l'attribut C<ref>  est une  liste d'avions  et de
+pilotes. Cet  attribut n'est  pas exploité par  les programmes  de jeu
+pour l'instant.
+
+Une fois le fichier terminé, lancez
+
+  ./init-pilot.raku Manfred
+
+en  supposant  que  le fichier  s'appelle  F<Manfred-init.json>.  Puis
+adaptez le  script F<launch>  pour permettre  le lancement  de parties
+entre des pilotes connus.
+
 =head2 Préparation
 
 J'ai commencé par programmer cette partie, bien sûr. Je l'ai faite avant d'initialiser

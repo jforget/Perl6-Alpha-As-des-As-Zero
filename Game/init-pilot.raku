@@ -23,7 +23,7 @@ sub MAIN (Str $identity) {
   my BSON::Document $doc .= new: (
        identity        => $pilot.identity,
        name            => $pilot.name,
-       avion           => $pilot.aircraft,
+       aircraft        => $pilot.aircraft,
        perspicacity    => $pilot.perspicacity,
        stiffness       => $pilot.stiffness,
        ref             => $pilot.ref,

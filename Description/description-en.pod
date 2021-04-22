@@ -1010,6 +1010,33 @@ When this  is done, you just  need to edit the  F<launch> shell script
 Camel and  an anonymous  DR.1 (or,  if you  want silliness,  between a
 Camel and a drone or between a sparrowhawk and a DR.1).
 
+Then, type an init file for a few pilots, based on the example below.
+
+  {
+    "identity": "Manfred",
+    "name": "Manfred von Richthofen",
+    "aircraft": "DR1",
+    "perspicacity": 0.6,
+    "stiffness": 2.718,
+    "ref": [ "DR1" ]
+  }
+
+As for the aircraft, the  C<name> attribute should be a human-friendly
+name or  description of  the pilot (spaces,  quotes and  other special
+chars allowed), while the C<identity> attribute is a URI-friendly name
+(no  C<%20>,  no  C<%27>,  etc).  The  C<aircraft>  attribute  is  the
+C<identity>  of   the  flying   machine  flown   by  the   pilot.  The
+C<perspicacity> attribute  is a floating  number between 0 and  1, the
+C<stiffness> attribute is  a floating number higher than  1, they will
+be explained below. And the C<ref> attribute is a list of aircraft and
+pilots. It is not used yet.
+
+Then run
+
+  ./init-pilot.raku Manfred
+
+supposing the  file is  F<Manfred-init.json>. And adapt  the F<launch>
+shell script to allow launching games between named pilots.
 
 =head2 Preparation
 
