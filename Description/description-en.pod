@@ -1019,6 +1019,7 @@ Then, type an init file for a few pilots, based on the example below.
     "aircraft": "DR1",
     "perspicacity": 0.6,
     "stiffness": 2.718,
+    "hits": 12,
     "ref": [ "DR1" ]
   }
 

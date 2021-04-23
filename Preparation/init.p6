@@ -26,7 +26,7 @@ class Avion does JSON::Class {
   has     %.manoeuvres;
 }
 
-my $fic-init = 'Drone-init.json';
+my $fic-init = 'fr/Drone-init.json';
 
 my BSON::Document $result_supp = $database.run-command: (
   delete => 'Pages',

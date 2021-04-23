@@ -73,8 +73,8 @@ sub MAIN (Str :$date-hour, Str :$good, Str :$bad, Bool :$no-fleeing) {
 
       $pursuit_g     = $aircraft_g.pages[$num_page]<pursuit>;
       $pursuit_b     = $aircraft_b.pages[$num_page]<pursuit>;
-      $damage-pts_b -= $aircraft_g.pages[$num_page]<shoot>;
-      $damage-pts_g -= $aircraft_b.pages[$num_page]<shoot>;
+      $damage-pts_b -= $aircraft_g.pages[$num_page]<shoot>.Num;
+      $damage-pts_g -= $aircraft_b.pages[$num_page]<shoot>.Num;
       if $damage-pts_g ≤ 0 or $damage-pts_b ≤ 0 {
         # at least one aircraft shot down
         $game-in-progress = 0;

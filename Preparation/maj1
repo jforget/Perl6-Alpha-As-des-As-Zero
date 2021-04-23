@@ -10,7 +10,7 @@
 #     See the license in the embedded documentation below.
 #
 
-if [ 1 -ne 1 ]
+if [ 1 -eq 1 ]
 then
   perl6 init.p6
   perl6 aff.p6 > etape0.html
