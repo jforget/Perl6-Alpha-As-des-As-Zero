@@ -13,6 +13,7 @@ unit package game-list-page;
 use Template::Anti :one-off;
 
 sub fill($at, :$lang, :$dh, :@list) {
+  #say DateTime.now.utc ~ ' game-list start';
   if $dh ne '' {
     my $criterion = $at.at('span.criterion');
     $criterion.content($dh);
@@ -23,8 +24,12 @@ sub fill($at, :$lang, :$dh, :@list) {
   my $li-draw = $at.at('ul.games li.draw');
   my $li-flee = $at.at('ul.games li.flee');
   my $li-shot = $at.at('ul.games li.shot');
+  #say DateTime.now.utc ~ ' game-list bricks extracted';
 
   $at('ul.games li')».remove;
+  #say DateTime.now.utc ~ ' game-list frame extracted';
+
+  my Str $game-list = '';
   for @list ==> sort -> $game { $game<dh-begin>; } -> $game {
     my $line;
     if $game<vp-g>.abs == 1 {
@@ -51,8 +56,10 @@ sub fill($at, :$lang, :$dh, :@list) {
     $line.at('span.hits-g'   ).content($game<hits-g>);
     $line.at('span.hits-b'   ).content($game<hits-b>);
 
-    $at.at('ul.games').append-content("$line\n");
+    $game-list ~= "$line\n";
   }
+  $at.at('ul.games').append-content($game-list);
+  #say DateTime.now.utc ~ " game-list games table inserted";
 }
 
 our sub render(Str $lang, Str $dh, @list --> Str) {

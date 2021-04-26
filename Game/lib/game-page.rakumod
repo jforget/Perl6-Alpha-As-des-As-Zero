@@ -14,6 +14,7 @@ use Template::Anti :one-off;
 
 sub fill($at, :$lang, :$dh, :$game, :@list) {
   $at.('span.date-hour')».content($dh);
+  #say DateTime.now.utc ~ ' game page start';
 
   my $tr-turn       = $at.at('tr.turn');
   my $label-attack  = $at.at('span.attack');
@@ -23,11 +24,14 @@ sub fill($at, :$lang, :$dh, :$game, :@list) {
   my $label-center  = $at.at('span.center');
   my $label-right   = $at.at('span.right');
   my $label-tailing = $at.at('span.tailing');
+  #say DateTime.now.utc ~ ' game page bricks extracted';
 
   $at('tbody tr')».remove;
+  #say DateTime.now.utc ~ ' game page frame extracted';
   $at('span.good')».content($game<good>);
   $at('span.bad' )».content($game<bad> );
   $at.at('a.redisplay').attr(href => "http://localhost:3000/$lang/list/$dh");
+  #say DateTime.now.utc ~ ' game page simple values inserted';
 
   # The collection Turns contains *player* turns, not *game* turns and
   # the "game" webpage displays *game* turns, not *player* turns.
@@ -79,7 +83,9 @@ sub fill($at, :$lang, :$dh, :$game, :@list) {
     }
     @game-turn[$turn-nb]<end> = $player-turn<end>;
   }
+  #say DateTime.now.utc ~ " game page gameturn table built";
 
+  my Str $tbody = '';
   for 1 .. $game<nb-turns> -> $n {
     my $game-turn = @game-turn[$n];
     my $target-turn = $n;
@@ -96,8 +102,10 @@ sub fill($at, :$lang, :$dh, :$game, :@list) {
     $line.at('td.end-page'   ).content($game-turn<page2>);
     $line.at('a.man-g').attr(href => "http://localhost:3000/$lang/turn/$dh/$target-turn/$game<good>");
     $line.at('a.man-b').attr(href => "http://localhost:3000/$lang/turn/$dh/$target-turn/$game<bad>");
-    $at.at('tbody').append-content("$line\n");
+    $tbody ~= "$line\n";
   }
+  $at.at('tbody').append-content($tbody);
+  #say DateTime.now.utc ~ " game page turn table inserted";
 }
 
 our sub render(Str $lang, Str $dh, $game, @list --> Str) {

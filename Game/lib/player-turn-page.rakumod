@@ -22,6 +22,7 @@ my $label-tailing;
 
 sub fill($at, :$lang, :$dh, :$game, :$turn-nb, :@turn4, :@similar, :$pilot) {
   my Str $identity = $pilot.identity;
+  #say DateTime.now.utc ~ ' player-turn start';
 
   my $player-turn;
   my $enemy-turn;
@@ -51,6 +52,7 @@ sub fill($at, :$lang, :$dh, :$game, :$turn-nb, :@turn4, :@similar, :$pilot) {
   %label-tailed<C>  = ~ $at.at('span.center');
   %label-tailed<R>  = ~ $at.at('span.right');
   $label-tailing    = ~ $at.at('span.tailing');
+  #say DateTime.now.utc ~ ' player-turn bricks extracted';
 
   $at('tbody.choice-table tr'  )».remove;
   $at('tbody.criteria-table tr')».remove;
@@ -66,6 +68,8 @@ sub fill($at, :$lang, :$dh, :$game, :$turn-nb, :@turn4, :@similar, :$pilot) {
     $at(       'th.with-random')».remove;
     $tr-choice('td.with-random')».remove;
   }
+  #say DateTime.now.utc ~ ' player-turn frame extracted';
+
   my $start-page = $player-turn<page>;
   my $end-page   = $next-turn<page>;
   $start-page ~~ s/(<[LCR]>)/%label-tailed{$0}/;
@@ -95,13 +99,15 @@ sub fill($at, :$lang, :$dh, :$game, :$turn-nb, :@turn4, :@similar, :$pilot) {
   $at.('span.hits0-enemy')».content($h0);
   $at.('span.hits1-enemy')».content($h0 - $h2);
   $at.('span.hits2-enemy')».content($h2);
+  #say DateTime.now.utc ~ ' player-turn simple values inserted';
 
   my Num $cumulative;
   my Num %man-value;
   for $player-turn<choice>[*] -> $choice {
     %man-value{$choice} = 0e0;
   }
-  my Str $prev-man   = '';
+  my Str $prev-man      = '';
+  my Str $body-criteria = '';
   for @similar ==> sort { $_<maneuver> ~ ' ' ~ $_<dh-begin> } -> $similar-turn {
 
     my Num $value = $similar-turn<result> × $pilot.perspicacity ** $similar-turn<delay>;
@@ -116,15 +122,17 @@ sub fill($at, :$lang, :$dh, :$game, :$turn-nb, :@turn4, :@similar, :$pilot) {
 
     $tr-criteria.at('td.game a').attr(href => "http://localhost:3000/$lang/game/$similar-turn<dh-begin>");
     $tr-criteria.at('td.turn a').attr(href => "http://localhost:3000/$lang/turn/$similar-turn<dh-begin>/$similar-turn<turn>/$identity");
-    $tr-criteria.at('td.game a'	   ).content($similar-turn<dh-begin>);
-    $tr-criteria.at('td.turn a'	   ).content($similar-turn<turn>);
-    $tr-criteria.at('td.maneuver'  ).content($similar-turn<maneuver>);
-    $tr-criteria.at('td.result'    ).content($similar-turn<result>);
-    $tr-criteria.at('td.delay'     ).content($similar-turn<delay>);
-    $tr-criteria.at('td.value'     ).content($value-dsp);
-    $tr-criteria.at('td.cumulative').content($cumulative-dsp);
-    $at.at('tbody.criteria-table').append-content("$tr-criteria\n");
+    $tr-criteria.at('td.game a'    ).content(              $similar-turn<dh-begin>);
+    $tr-criteria.at('td.turn a'    ).content(              $similar-turn<turn>);
+    $tr-criteria.at('td.maneuver'  ).content(translate-man($similar-turn<maneuver>));
+    $tr-criteria.at('td.result'    ).content(              $similar-turn<result>);
+    $tr-criteria.at('td.delay'     ).content(              $similar-turn<delay>);
+    $tr-criteria.at('td.value'     ).content(              $value-dsp);
+    $tr-criteria.at('td.cumulative').content(              $cumulative-dsp);
+    $body-criteria ~= "$tr-criteria\n";
   }
+  $at.at('tbody.criteria-table').append-content($body-criteria);
+  #say DateTime.now.utc ~ " player-turn criteria table inserted";
 
   my @maneuvers = %man-value.keys.sort;
   my @values    = %man-value{ @maneuvers };
@@ -140,7 +148,7 @@ sub fill($at, :$lang, :$dh, :$game, :$turn-nb, :@turn4, :@similar, :$pilot) {
     my Str $prob-dsp  = sprintf('%.4g', @prob[  $i]);
     my Str $cumul-dsp = sprintf('%.4g', @cumul[ $i]);
 
-    $tr-choice.at('td.maneuver'   ).content($choice);
+    $tr-choice.at('td.maneuver'   ).content(translate-man($choice));
     $tr-choice.at('td.value'      ).content($value-dsp);
     $tr-choice.at('td.coefficient').content($coef-dsp);
     $tr-choice.at('td.probability').content($prob-dsp);
@@ -157,6 +165,7 @@ sub fill($at, :$lang, :$dh, :$game, :$turn-nb, :@turn4, :@similar, :$pilot) {
 
     $at.at('tbody.choice-table').append-content("$tr-choice\n");
   }
+  #say DateTime.now.utc ~ ' player-turn maneuvers table inserted';
 }
 
 sub translate-man(Str $maneuver --> Str) {
