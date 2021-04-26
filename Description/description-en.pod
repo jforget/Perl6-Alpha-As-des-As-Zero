@@ -665,9 +665,14 @@ prerequisites for the MongoDB module. These are:
 
 Please  note  that installing  Bailador  will  produce an  error  when
 installing its  prerequisite C<HTTP::Supply>. But this  is normal. See
-L<https://github.com/zostay/HTTP-Supply/issues/5>. Some  other modules
+L<https://github.com/zostay/HTTP-Supply/issues/5>. C<Template::Mojo> and C<Bailador>
 also produce  errors which  I did  not write down,  but they  are mere
 warnings too and the modules are installed anyhow.
+
+If you are not interested in taking snapshots of your virtual machine,
+you can  just install Bailador  and Template::Anti, all  other modules
+will be automatically  installed when you request  the installation of
+the MongoDB module.
 
 =head3 Installing MongoDB
 
@@ -746,7 +751,7 @@ So I ran:
 
 (Do not forget the dot at the end of the command line.)
 
-I could have run a simpler command:
+On later tests, I have just run:
 
   zef --/test install MongoDB
 
@@ -771,6 +776,10 @@ Now you are ready to launch some games between the sparrowhawk and the
 drone with:
 
   ./launch
+
+By commenting-out some  lines of F<launch> and  activating others, you
+can launch games  between the sparrowhawk named  "Plume-Noire" and the
+drone user named "Kevin".
 
 Then, you can launch the Bailador webserver with:
 
@@ -989,6 +998,11 @@ And the final document is:
     }
    }
 
+In  all this,  please pay  attention to  the commas  with the  closing
+braces.  I  have  inserted  the  C<maneuvers>  entry  in  next-to-last
+position, so I have coded a comma  for this entry and I have ended the
+C<shoots> entry with a plain brace without comma.
+
 Now run
 
   raku livret.p6 DR1
@@ -1108,26 +1122,26 @@ The characteristics  of the various  aircraft are stored in  JSON text
 files. At first,  it was the same for pilots,  which were described in
 JSON text files. But I discovered  it was more convenient to store the
 pilots in the database, the  gaming programs and the Bailador programs
-would be  simpler. I  wrote a program  C<init-pilote> which  reads the
+would be  simpler. I  wrote a program  C<init-pilot.raku> which  reads the
 JSON  file describing  a pilot,  converts it  into a  Raku object  and
-inserts  it  into the  C<Pilotes>  collection.  Similarly, I  wrote  a
-program C<init-avion> (French for  "aircraft") which reads an aircraft
-JSON file, converts  it and inserts it into  the C<Avions> collection.
+inserts  it  into the  C<Pilots>  collection.  Similarly, I  wrote  a
+program C<init-aircraft.raku> which reads an aircraft
+JSON file, converts  it and inserts it into  the C<Aircraft> collection.
 For the training mode games, I need an anonymous pilot identified with
-the same key  as the aircraft. So the  C<init-avion> program generates
-this anonymous  pilot and inserts  it into the  C<Pilotes> collection.
+the same key  as the aircraft. So the  C<init-aircraft.raku> program generates
+this anonymous  pilot and inserts  it into the  C<Pilots> collection.
 The  JSON files  still  exist, but  they are  used  only for  database
 initialization.
 
-There  is a  problem when  reading back  the C<Avions>  and C<Pilotes>
+There  is a  problem when  reading back the C<Aircraft>  and C<Pilots>
 documents into the  gaming programs and the Bailador  programs. On one
-hand,  the  C<JSON::Class>  module generates  C<Avion>  and  C<Pilote>
+hand, the  C<JSON::Class>  module generates C<Aircraft>  and  C<Pilot>
 objects from  a JSON  string, on  the other  hand the  MongoDB modules
 generate C<BSON::Document>  objects, the data of which are accessed  with the same
 syntax as hash  tables. There is no direct conversion  to a user class
-such as  C<Avion> or C<Pilote>.  Should I write an  object constructor
+such as  C<Aircraft> or C<Pilot>.  Should I write an  object constructor
 which extracts  each value from  the C<BSON::Document> hash  table and
-stores it into the corresponding attribute of the C<Pilote> / C<Avion>
+stores it into the corresponding attribute of the C<Pilot> / C<Aircraft>
 object being created? Is there a  cleaner and simpler solution to this
 dilemma?
 
@@ -1135,14 +1149,14 @@ In computer programming, there is a
 L<saying|https://stackoverflow.com/questions/288623/level-of-indirection-solves-every-problem>:
 "Every problem can be solved by adding a level of indirection". I have
 found  a similar  solution for  my current  problem. When  the program
-creates  a C<Avions>  or  C<Pilotes> document  in  the database,  this
+creates  a C<Aircraft>  or C<Pilots> document  in  the database,  this
 document contains  a C<json>  attribute to store  the raw  JSON string
-used to  create the C<Avion>  or C<Pilote>  object. Then, in  the next
+used to create the C<Aircraft> or C<Pilot>  object. Then, in  the next
 program,  when reading  the BSON  document,  I just  take the  C<json>
-attribute  and I  build  the  C<Avion> or  C<Pilote>  object with  the
+attribute and I build  the  C<Aircraft> or  C<Pilot>  object with  the
 C<from-json>  method provided  by  C<JSON::Class>.  The only  required
-entries  in  the  database   documents  are  C<identité>  (French  for
-"identity") used as key and C<json> for the data payload. I have still
+entries  in  the  database   documents  are  C<identity> 
+used as key and C<json> for the data payload. I have still
 added some other entries to store some object attributes, because they
 may be used for some database queries.
 
@@ -1250,7 +1264,7 @@ numeric and which might have a L/C/R letter or not.
 
 This step should not  require comments. But if you take  a look at the
 conclusion paragraph  below, you will see  that the program has  a "no
-quarters" option (I<à outrance>) for the training games. In this case,
+fleeing" option for the training games. In this case,
 the planes opt to  go on fighting, no matter how  many hit points they
 have lost already. When this option  is on, the umpire program removes
 all  maneuvers  which lead  to  an  intermediate  page 223.  The  only
@@ -1549,7 +1563,7 @@ A. No, the  player program does not  examine if there is  a pattern in
 its opponent's answer,  caused by some preference  or idiosyncrasy. It
 just extract all relevant game  turns, make statistics, crunch numbers
 and  build  probabilities. Yet,  as  I  have  mentioned in  L<List  of
-Available  Maneuvers> paragraph,  the  I<à outrance>  option may  have
+Available  Maneuvers> paragraph,  the  "no fleeing"  option may  have
 introduced a bias for both the player and its opponent.
 
 Q. Is it possible to play a game between a human and an AI?
@@ -1613,6 +1627,9 @@ comments,  English  whatever.  And  the  webpage  generation  will  be
 multilingual,  generating  English-speaking pages  or  French-speaking
 pages depending  on the user's  choice. The preparation step  might be
 translated in English, but not soon.
+
+April  2021: the  game part  is rewritten,  see the  F<Game> directory
+instead of the F<Jeu> directory.
 
 =head3 Graphics, Part 1
 
@@ -1692,8 +1709,8 @@ this situation.
 
 On the other hand, in training mode, fleeing is not useful, because it
 shortens the  training session and it  reduces the amount of  data for
-future fights.  For this reason, I  have created a I<à  outrance> ("no
-quarters") mode, where  choosing the attack has  a greater probability
+future fights.  For this reason, I  have created a "no fleeing"
+mode, where  choosing the attack has  a greater probability
 than choosing to flee.
 
 =head1 Annex: In Retrospect, My First Steps In Raku
@@ -2447,7 +2464,7 @@ prevent this waste  of time, I have decided to  write a cookbook, with
 all the  C<find> variants I  have tried  and with the  resulting error
 messages.
 
-For example, note that a C<find>  statement in a Raky program will not
+For example, note that a C<find>  statement in a Raku program will not
 accept  the options  C<sort>,  C<limit>  and C<skip>.  This  is not  a
 problem  of  old MongoDB  version  2.6  vs up-to-date  MongoDB,  these
 options are described in the 2013 O'Reilly book, on page 68.
@@ -2539,12 +2556,12 @@ You will have to wait a little. Or you may volunteer to fill the gaps.
 One more  point. I do  not know the  MVC architecture (except  for the
 expanded  name, I<Model,  View, Controller>).  Yet I  have decided  to
 split my Bailador program into  several source files. The first, named
-F<site.p6>,  corresponds in  my  mind to  the  Controller. The  second
-source  file, in  a subdirectory  and named  F<lib/acces-mongodb.pm6>,
-would be the  model. And a few  others, fichiers F<lib/site-coup.pm6>,
-F<lib/site-liste-parties.pm6> and F<lib/site-partie.pm6>  would be the
-Views. I can call the  functions of F<lib/acces-mongodb.pm6>, from the
-Controller F<site.p6>,  but not from the  Views F<lib/site-xxx.pm6>. I
+F<website.raku>, corresponds in my mind to the Controller. The  second
+source  file, in  a subdirectory  and named  F<lib/access-mongodb.rakumod>,
+would be the  model. And a few  others, fichiers F<lib/player-turn-page.rakumod>,
+F<lib/game-list-page.rakumod> and F<lib/game-page.rakumod>  would be the
+Views. I can call the  functions of F<lib/access-mongodb.rakumod>, from the
+Controller F<website.raku>,  but not from the  Views F<lib/xxx-page.rakumod>. I
 still have some things to learn about C<use> and C<require> in Raku.
 
 =head1 Conclusion

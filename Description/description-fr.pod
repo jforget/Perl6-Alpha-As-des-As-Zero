@@ -708,9 +708,14 @@ sont :
 
 Notons  que   lors  de   l'installation  de   Bailador,  le   test  de
 C<HTTP::Supply>  produit  un  avertissement.  Mais  c'est  normal  (cf
-L<https://github.com/zostay/HTTP-Supply/issues/5>).  Pour  les  autres
-modules, il  y a eu d'autres  erreurs que je  n'ai pas eu le  temps de
+L<https://github.com/zostay/HTTP-Supply/issues/5>).  Pour  C<Template::Mojo> et
+C<Bailador>, il  y a eu d'autres  erreurs que je  n'ai pas eu le  temps de
 noter. De toute façon, ces erreurs ne sont pas bloquantes.
+
+Si   vous  n'êtes   pas  intéressés   pour  prendre   des  instantanés
+régulièrement,  vous pouvez  vous  contenter  d'installer Bailador  et
+Template::Anti, tout  le reste  sera automatiquement installé  par zef
+lorsque vous demanderez l'installation du module MongoDB.
 
 =head3 Installation de MongoDB
 
@@ -790,7 +795,7 @@ J'ai donc effectué :
 
 (N'oubliez pas le point à la fin de la ligne de commande.)
 
-J'aurais pu faire directement
+Ultérieurement, je me suis contenté de taper :
 
   zef --/test install MongoDB
 
@@ -816,6 +821,10 @@ Et alors vous  êtes prêts à lancer des parties  entre l'épervier et le
 drone avec :
 
   ./launch
+
+En  désactivant  certaines  lignes  de  F<launch>  avec  un  dièse  et
+réactivant  d'autres  lignes, vous  pouvez  lancer  des parties  entre
+Plume-Noire l'épervier et Kévin l'utilisateur de drone.
 
 Ensuite, vous lancez le serveur Bailador :
 
@@ -1065,6 +1074,11 @@ de F<Preparation/fr/DR1-init.json>. Cela donne :
     }
    }
 
+Dans tout cela, faites attention  aux virgules séparant les différents
+attributs. Vous remarquerez que j'ai mis les tirs en dernière position
+et sans virgule, même si j'ai  terminé par la liste des manœuvres, qui
+possède une virgule et qui a été insérée en avant-dernière position.
+
 Il ne reste plus qu'à faire :
 
   raku livret.p6 DR1
@@ -1236,7 +1250,7 @@ objets des classes  C<Aircraft> et C<Pilot> à partir  d'une chaîne JSON,
 les  modules   pour  MongoDB  se   contentent  de  créer   des  objets
 C<BSON::Document> et il faut utiliser la  syntaxe des  tables de
 hachage pour accéder aux informations des avions et des pilotes.
-Il n'y a pas de conversion directe vers la classe C<Aircraf(> ou
+Il n'y a pas de conversion directe vers la classe C<Aircraft> ou
 vers la classe C<Pilot>. Ou alors, il faut écrire un constructeur qui
 extrait  chacune  des  valeurs  du hachage  C<BSON::Document>  et  qui
 alimente l'attribut  correspondant de  l'objet C<Pilot>  ou C<Aircraft>.
@@ -1693,7 +1707,7 @@ pensée dans les manœuvres de son adversaire. Il se contente d'extraire
 les coups  des parties passées,  de mouliner des statistiques  et d'en
 déduire  des probabilités.  Cela dit,  comme je  l'ai signalé  dans le
 paragraphe L<Liste des manœuvres disponibles>, il se peut que l'option
-I<à outrance> pour  les parties d'entraînement ait  introduit un biais
+C<--no-fleeing> (pas de fuite) pour  les parties d'entraînement ait  introduit un biais
 dans la base de données.
 
 Q. Est-il possible de mettre face à face un joueur humain et un joueur
@@ -1777,7 +1791,7 @@ fuir.
 
 D'un autre côté, en mode entraînement, cela ne vaut pas le coup de fuir, car
 cela écourte la séance d'entraînement et cela réduit les informations disponibles
-pour les combats ultérieurs. J'ai donc créé une option S<« à outrance »> où le
+pour les combats ultérieurs. J'ai donc créé une option I<--no-fleeing> (pas de fuite) où le
 choix de l'attaque est privilégié par rapport à la fuite.
 
 =head1 Annexe : à la découverte de Perl 6
@@ -2945,12 +2959,12 @@ Il y a juste un point à ajouter. Ce point n'est pas une conséquence de l'utili
 de Bailador, mais je l'ai découvert parce que j'ai décidé d'utiliser Bailador.
 Même si je ne connais rien à l'architecture MVC (I<Model, View, Controller>), j'ai
 décidé de scinder mon programme Bailador en plusieurs fichiers. Le premier, 
-F<site.p6> correspond, je pense, au Contrôleur. Dans un sous-répertoire,
-j'ai F<lib/acces-mongodb.pm6>, correspondant au Modèle. Et j'ai d'autres
-fichiers F<lib/site-coup.pm6>, F<lib/site-liste-parties.pm6> et F<lib/site-partie.pm6>
-correspondant aux Vues. J'arrive à appeler les fonctions du Modèle F<lib/acces-mongodb.pm6>
-depuis le Contrôleur F<site.p6>, mais pas depuis les Vues F<lib/site-xxx.pm6>.
-J'ai encore quelques notions à apprendre sur les C<use> et les C<require> en Perl 6.
+F<website.raku> correspond, je pense, au Contrôleur. Dans un sous-répertoire,
+j'ai F<lib/access-mongodb.rakumod>, correspondant au Modèle. Et j'ai d'autres
+fichiers F<lib/player-turn-page.rakumod>, F<lib/game-list-page.rakumod> et F<lib/game-page.rakumod>
+correspondant aux Vues. J'arrive à appeler les fonctions du Modèle F<lib/access-mongodb.rakumod>
+depuis le Contrôleur F<website.raku>, mais pas depuis les Vues F<lib/xxx-page.rakumod>.
+J'ai encore quelques notions à apprendre sur les C<use> et les C<require> en Raku.
 
 À compléter.
 
