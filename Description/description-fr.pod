@@ -1142,6 +1142,11 @@ en supposant que le fichier s'appelle F<Manfred.json>. Puis adaptez le
 script  F<launch> pour  permettre le  lancement de  parties entre  des
 pilotes connus.
 
+En fait, les fichiers F<Manfred.json> et F<Roy.json> sont publiés dans
+le répertoire F<Game>, parce qu'il ne contiennent rien qui soit soumis
+au copyright. Vous  pouvez les modifier ou les utiliser  comme base de
+départ pour des fichiers initialisant d'autres joueurs.
+
 =head2 Préparation
 
 J'ai commencé par programmer cette partie, bien sûr. Je l'ai faite avant d'initialiser

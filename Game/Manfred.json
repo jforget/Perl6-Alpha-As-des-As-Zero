@@ -1,0 +1,9 @@
+{
+ "identity": "Manfred",
+ "name": "Manfred von Richthofen",
+ "aircraft": "DR1",
+ "perspicacity": 0.6,
+ "stiffness": 2.718,
+ "hits": 12,
+ "ref": [ "DR1" ]
+}

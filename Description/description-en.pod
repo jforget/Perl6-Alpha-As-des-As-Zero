@@ -1054,6 +1054,11 @@ Then run
 supposing the file  is F<Manfred.json>. And adapt  the F<launch> shell
 script to allow launching games between named pilots.
 
+Actually,  the F<Manfred.json>  and F<Roy.json>  are available  in the
+F<Game> directory,  because they contain no  copyrighted material. You
+are free to alter thel or to  use them as models for other player init
+files.
+
 =head2 Preparation
 
 I have started with this part, of course. But I did not write the programs within the
