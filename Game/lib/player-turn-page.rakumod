@@ -59,14 +59,18 @@ sub fill($at, :$lang, :$dh, :$game, :$turn-nb, :@turn4, :@similar, :$pilot) {
   $at('p.dummy'                )».remove;
 
   my Str $random-dsp = '';
+  my Num $stiffness;
   if $player-turn<random>:exists {
     $random-dsp = sprintf('%.4g', $player-turn<random>);
     $at('span.random')».content($random-dsp);
+    $at('p.without-stiffness')».remove;
+    $stiffness = $pilot.stiffness;
   }
   else {
     $at(        'p.with-random')».remove;
     $at(       'th.with-random')».remove;
     $tr-choice('td.with-random')».remove;
+    $stiffness = 2.718e0;
   }
   #say DateTime.now.utc ~ ' player-turn frame extracted';
 
@@ -85,7 +89,7 @@ sub fill($at, :$lang, :$dh, :$game, :$turn-nb, :@turn4, :@similar, :$pilot) {
   $at.('span.man-enemy'   )».content(translate-man(~  $enemy-turn<maneuver>));
   $at.('span.start-page'  )».content($start-page);
   $at.('span.end-page'    )».content($end-page);
-  $at.('span.stiffness'   )».content($pilot.stiffness);
+  $at.('span.stiffness'   )».content($stiffness);
   $at.('span.perspicacity')».content($pilot.perspicacity);
 
   my $h0 = $player-turn<hits>;
@@ -136,7 +140,7 @@ sub fill($at, :$lang, :$dh, :$game, :$turn-nb, :@turn4, :@similar, :$pilot) {
 
   my @maneuvers = %man-value.keys.sort;
   my @values    = %man-value{ @maneuvers };
-  my @coef      = $pilot.stiffness «**» @values;
+  my @coef      = $stiffness «**» @values;
   my @prob      = @coef «/» [+] @coef;
   my @cumul     = [\+] @prob;
   my $prev-cumul = 0;
