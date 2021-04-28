@@ -2190,7 +2190,7 @@ multiplication numérique utilisait toujours l'étoile.
 sont deux opérateurs différents en Perl 6, respectivement « x »
 et « xx ». Évitez d'utiliser l'un pour l'autre comme je l'ai fait !
 
-=head3 Un autre héritage d'APL
+=head3 Deux autres héritages d'APL
 
 Remarque S<préliminaire :> j'aurais pu écrire ce paragraphe au moment de
 la présentation en 2018 et je n'y ai pas pensé. Je me rattrape en
@@ -2518,7 +2518,7 @@ ci-dessus, on peut ne pas agglomérer le jour avec le mois et l'année et coder 
      ==> map  { $_[0] } \
      ==> my @t1;
 
-Mais c'est plus laborieux et moins stylé.
+C'est plus laborieux et moins stylé. Mais parfois on n'a pas le choix.
 
 =head3 Alignement vertical
 

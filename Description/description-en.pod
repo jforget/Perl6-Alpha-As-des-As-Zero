@@ -2069,7 +2069,7 @@ By the  way, string  repetition and  list repetition  in Raku  are two
 different  operations, respectively  C<x>  and C<xx>.  Do not  confuse
 them. You have been warned.
 
-=head3 Another Legacy From APL
+=head3 Other Legacies From APL
 
 In  the  Ace  of  Aces  programs, I  need  to  convert  a  probability
 distribution into a  cumulative distribution. If you do  not know what
@@ -2328,7 +2328,7 @@ number. The statement would become:
      ==> map  { $_[0] } \
      ==> my @t1;
 
-More verbose and less stylish.
+More verbose and less stylish. But sometimes, we cannot do better.
 
 =head3 Vertical Alignment
 
@@ -2397,7 +2397,77 @@ the name of the module or of its author. What a pity!
 
 =head3 Regexes, formerly Regular Expressions
 
+At the  beginning, when Unix  and C<grep>  had just appeared,  or even
+before their  birth, the  regular expressions  were nothing  more than
+plain  character strings  within which  you  could find  a handful  of
+characters with a  "special char" status: the caret and  the dollar as
+anchors, the dot as  a generic char and the star  as a quantifier. All
+other characters stood for  themselves. Then with C<grep> enhancements
+and  with the  birth  of  C<awk>, there  were  more  and more  special
+characters, but intrinsically, regular  expressions were still strings
+mixing plain chars and special chars.
+
+Some programming languages used  another paradigm, considering regular
+expressions as an definite object  class, complete with attributes and
+methods.
+
+From time to time, a mathematician or a computer scientist shows that
+such or such intellectual construction is 
+L<unintentionally Turing complete|https://en.wikipedia.org/wiki/Turing_completeness#Unintentional_Turing_completeness>.
+This  is the  case with  John  Conway's Life,  this is  the case  with
+I<Magic, the  Gathering>, this  is the  case with  I<Minecraft>. Maybe
+this is  the case with PCRE's  or Perl 5's regular  expressions (to be
+honest, I  did not check  the definition of Turing-completeness,  so I
+may be completely wrong on this point).
+
+Well, with Raku, this will not  happen. In Raku, regexes are no longer
+strings, they  are code chunks.  So even if they  are Turing-complete,
+they cannot be I<unintentionally>  Turing-complete. The description of
+regex as code chunks appears at the  bottom of page 5 of Moritz Lentz'
+book. and is developed in section 4.6,  pages 42 to 46. By the way, we
+can no  longer use the phrase  I<regular expression>, we must  use the
+word I<regex>.
+
+Remember the  date extraction  from the Schwartzian  Transform example
+above. In Perl, the extraction is:
+
+  my %month = qw/January  1    February  2   March     3
+                 April    4    May       5   June      6
+                 July     7    August    8   September 9
+                 October 10    November 11   December 12/;
+
+  my $re = join '|', keys %month;
+  if $ch ~~ /(\d+)'st'?\s+($re)\s+(\d+)/ { ... }
+
+The  month  sub-regex  is  a   plain  scalar  string,  built  with  11
+occurrences  of  the  special  char "C<|>"  and  12  litteral  strings
+C<"January">, C<"February">  and so  on. To be  strict, I  should have
+used the C<quotemeta> operator, but in  this case it is not necessary,
+all the month names are purely alphabetic.
+
+My  first  attempt,  before  reading Moritz  Lentz'  book  and  before
+understanding the regex' essence, was the following:
+
+  my %month = qw/January  1    February  2   March     3
+                 April    4    May       5   June      6
+                 July     7    August    8   September 9
+                 October 10    November 11   December 12/;
+
+  my $re = rx/January|February|March|April|May|June|July|August|September|October|November|December/;
+  if $ch ~~ /(\d+)'st'? \s+ ($re) \s+ (\d+)/ { ... }
+
+And I was complaining about  doing WET programming (I<Write Everything
+Twice>) instead of DRY programming (I<Don't Repeat Yourself>).
+
 =head3 Value and Variable Types
+
+=head3 Undef and (nil)
+
+=head3 References
+
+=head3 New Operators
+
+=head3 POD
 
 =head2 MongoDB
 
