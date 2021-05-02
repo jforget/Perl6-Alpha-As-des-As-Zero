@@ -2785,6 +2785,14 @@ Ce qui veut dire que le présent texte, entièrement écrit en POD version Perl 
 n'a pas été pris en compte par les statistiques de Github, voire a été pris
 en compte mais en tant que POD version Perl 6.
 
+En fait, si vous cherchez plus loin et que vous demandez la liste
+des fichiers dans tel ou tel langage
+(L<Raku par example|https://github.com/jforget/Perl6-Alpha-As-des-As-Zero/search?l=raku>)
+vous obtenez une liste de langages faisant la distinction entre le POD
+version Perl  et le POD  version Raku (dénommé "Pod  6"). Apparamment,
+"Pod" et "Pod 6", ainsi que quelques autres langages, ne sont pas pris
+en compte par les statistiques de la page d'accueil.
+
 =head2 MongoDB
 
 S<Avertissement :> hélas, je n'ai pas pris de notes lorsque j'ai installé le module MongoDB
@@ -2971,7 +2979,46 @@ correspondant aux Vues. J'arrive à appeler les fonctions du Modèle F<lib/acces
 depuis le Contrôleur F<website.raku>, mais pas depuis les Vues F<lib/xxx-page.rakumod>.
 J'ai encore quelques notions à apprendre sur les C<use> et les C<require> en Raku.
 
-À compléter.
+=head2 Template::Anti
+
+Je  n'aime pas  les  modules  de I<templating>.  Sous  le prétexte  de
+permettre  à un  styliste HTML  de taper  un fichier  HTML sans  avoir
+besoin d'apprendre à écrire du code Perl, du code Raku ou du code dans
+un langage de programmation connu, ces modules créent de toutes pièces
+un langage de programmation avec sa syntaxe personnelle et le styliste
+web est obligé d'apprendre ce langage.  Et même si ce styliste web est
+moi-même,  je  n'ai pas  envie  d'apprendre  encore un  autre  langage
+particulier  dont  l'usage  est extrêmement  restreint,  les  langages
+généralistes HTML,  Perl et  Raku devraient suffire,  ou à  la rigueur
+apprendre un nouveau langage généraliste.
+
+Par conséquent,  en 2018, j'ai écrit  mes programmes de page  web avec
+tout plein de C<printf> et de  C<say> pour générer des balises HTML et
+les mixer avec des textes en français.
+
+En 2021, lors de la refonte des programmes, j'ai décidé de migrer d'un
+site purement francophone à un  site bilingue Anglais + Français, tout
+en laissant  la possibilité de  l'étendre à d'autres langues.  Et pour
+cela,  il me  fallait quand  même un  module de  I<Templating>, malgré
+toutes les réticences que j'éprouve à leur égard. J'ai cherché dans le
+site des modules Raku avec
+L<https://modules.raku.org/search/?q=template> et j'ai découvert
+L<Template::Anti|https://modules.raku.org/dist/Template::Anti:cpan:HANENKAMP>.
+Le  paragraphe S<«  DESCRIPTION »>  de ce  module faisait  écho à  mes
+sentiments sur les  modules de I<templates>. Je l'ai  donc essayé puis
+adopté.
+
+Ce module se base sur les sélecteurs CSS inclus dans les balises HTML.
+Chaque  fois que  vous avez  un élément  de texte  variable, provenant
+d'une requête en  base de données, vous lui attribuez  une classe CSS.
+Vous pouvez être  amenés si nécessaire à encadrer ce  morceau de texte
+avec une paire  de balises C<< <span class>...</span> >>  pour être en
+mesure de spécifier  la classe CSS. Ou vous pouvez  tirer partie d'une
+balise  C<< <li>  >>,  C<<  <td> >>  ou  autre  existante. Mais  c'est
+toujours  du HTML  standard, sans  syntaxe bizarre  supplémentaire. Et
+lorsqu'il  faut générer  le fichier  HTML, il  suffit de  remplacer la
+valeur pipeau par la valeur tirée de  la requête en base de données en
+fonction de la classe CSS.
 
 =head1 Conclusion
 

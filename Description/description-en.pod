@@ -2424,7 +2424,7 @@ Well, with Raku, this will not  happen. In Raku, regexes are no longer
 strings, they  are code chunks.  So even if they  are Turing-complete,
 they cannot be I<unintentionally>  Turing-complete. The description of
 regex as code chunks appears at the  bottom of page 5 of Moritz Lentz'
-book. and is developed in section 4.6,  pages 42 to 46. By the way, we
+book, and is developed in section 4.6,  pages 42 to 46. By the way, we
 can no  longer use the phrase  I<regular expression>, we must  use the
 word I<regex>.
 
@@ -2459,15 +2459,152 @@ understanding the regex' essence, was the following:
 And I was complaining about  doing WET programming (I<Write Everything
 Twice>) instead of DRY programming (I<Don't Repeat Yourself>).
 
+After reading  Moritz Lentz' book, I  found the properly DRY  piece of
+code:
+
+  my %month = qw/January  1    February  2   March     3
+                 April    4    May       5   June      6
+                 July     7    August    8   September 9
+                 October 10    November 11   December 12/;
+  my @month = %month.keys;
+  if $ch ~~ /(\d+)'st'? \s+ (@month) \s+ (\d+)/ {
+
+The regex  in this code extract  is using the variable  C<@month>. But
+while Perl 5  would have stringified the array and  included it in the
+regular expression,  the Raku regex  uses this  array as an  array and
+compares the processed string to each array element in turn.
+
 =head3 Value and Variable Types
+
+An important  new feature of Raku  is that variables can  be typed and
+that for each assignment, the interpreter will check the value against
+the type  of the  variable. Yet,  the checks are  sometimes a  bit too
+strict. See the following code chunk.
+
+  class Example {
+    has Num $.measure is rw;
+  }
+  my Example $data .= new;
+  $data.measure = 1;
+
+Result :
+
+  Type check failed in assignment to $!measure; expected Num but got Int (1)
+
+This code chunk fails, because  the interpreter expects a C<(Num)> and
+we  give it  an  C<(Int)>. No,  there  is no  automatic  int to  float
+conversion. So be it, I will code:
+
+  $data.measure = 1.0;
+
+and that's it! Well, no. It still  fails, this time because I tried to
+feed the C<(Num)> variable with a  C<(Rat)> value, that is, a rational
+value. So I ended up with:
+
+  $data.measure = 1.Num;
+
+which is not very elegant. Then  I remembered that some Perl 5 modules
+needed to  give a return  value which would  evaluate to C<True>  in a
+boolean context and to C<0> in a numeric context. Some modules use:
+
+  return 0 but true;
+
+but others use:
+
+  return "0e0";
+
+Very smart. So in Raku, I tried:
+
+  $data.measure = 1e0;
+
+and it worked.
 
 =head3 Undef and (nil)
 
+Another point I have to dig is the typing of parameters when calling a
+function. If  the function signature gives  a type to a  parameter and
+then the function  is called with C<undef>, the  program fails because
+for  example the  C<(Num)>-typed parameter  was attemptly  fed with  a
+C<(Nil)>-typed value. For the moment, I  cop out by not specifying the
+parameter type.
+
 =head3 References
+
+When I  read books to learn  Raku, there was one  big subject missing:
+references. Actually, while this subject  can be awe-inspiring to some
+readers when  learning Perl 5, it  is much more mundane  when learning
+Raku. In Raku, you can declare and initialise an array variable with
+
+  my @t = <N E S W>;
+
+(The  angle  brackets  in  Raku are  equivalent  to  Perl's  C<qw/../>
+operator.) Then you access an element with
+
+  say @t[2];
+
+You can also declare a scalar variable containing several values with:
+
+  my $t = <N E S W>;
+
+and access an element with 
+
+  say $t[2];
+
+The Perl equivalent would be:
+
+  my $t = [ qw/N E S W/ ];
+  say $t->[2];
+
+So I  did not  refrain from  using references in  my programs.  But at
+first, I  still had some  misgivings about doing something  wrong. The
+real problem happened when I tried  to fill an array variable with the
+content of a scalar variable referencing an array:
+
+  my $sc = <N E S W>;
+  my @ar = $sc;
+  say @ar[0];
+
+This does  not print C<N>, this  prints the whole array  of 4 letters.
+The proper scalar-to-array conversion must be done with:
+
+  my $sc = <N E S W>;
+  my @ar = $sc[*];
+  say @ar[0];
 
 =head3 New Operators
 
+From some YAPC talks (or TPCiI<X>  talks), I have learned that you can
+declare new operators. That is fine, but how does Raku parse a formula
+containing these  new operators  along with standard  ones? Especially
+formulas with few parentheses, even none?
+
+Actually, the answer was given during the 2018 French Perl Workshop in
+another talk. When declaring the operator,  you just need to specify a
+trait C<is tighter> or C<is looser>.
+L<This is written in the documentation|http://design.perl6.org/S06.html#Subroutine_traits>
+provided you know where to look.
+
 =head3 POD
+
+When writing  the I<Ace  of Aces> project  in 2018, I  did not  try to
+learn the Raku version of POD. I wrote the documentation with the Perl
+5 POD I  was comfortable with. The  only difference I had  to adopt is
+that it is mandatory to bracket a POD section with a C<=begin POD> tag
+and a C<=end  POD> tag. Also, you cannot display  with a command named
+C<perl6doc> or  C<rakudo>, you have  to call C<raku>  interpreter with
+the option C<--doc>.
+
+Anyhow, if  you read the  statistics in  the "Languages" block  of the
+L<Github front page|https://github.com/jforget/Perl6-Alpha-As-des-As-Zero>   
+of the  project, you  notice that  Perl is absent.  So either  the POD
+files, including  the file  you are  reading now,  are not  taken into
+account in the statistics, or they are interpreted as the Raku version
+of POD.  Actually, if you ask  for the list  of files in such  or such
+language
+(L<Raku for example|https://github.com/jforget/Perl6-Alpha-As-des-As-Zero/search?l=raku>)
+you find that Github can recognize  Perl's POD and Raku's POD (as "Pod
+6") but they are not taken into account by the statistics in the front
+page.
 
 =head2 MongoDB
 
@@ -2638,6 +2775,38 @@ F<lib/game-list-page.rakumod> and F<lib/game-page.rakumod>  would be the
 Views. I can call the  functions of F<lib/access-mongodb.rakumod>, from the
 Controller F<website.raku>,  but not from the  Views F<lib/xxx-page.rakumod>. I
 still have some things to learn about C<use> and C<require> in Raku.
+
+=head2 Template::Anti
+
+I do  not like  template modules.  Under the guise  of allowing  a web
+designer to type an HTML file  without knowing Perl's syntax or Raku's
+syntax or  some other  mainstream language syntax,  they create  a new
+programming language with its specific  syntax, which the web designer
+has to learn. Even  if the web designer is my own self,  I do not want
+to learn yet another specific language with narrow use. HTML, Perl and
+Raku  should be  sufficient.  Or  maybe on  last  resort  learn a  new
+mainstream language.
+
+So in  2018, I wrote  the webpage scripts  with lots of  C<printf> and
+C<say> to print HTML tags mixed with French literals.
+
+In  2021,  I decided  to  migrate  the  French-speaking website  to  a
+bilingual  website:  French  +  English.   In  order  to  allow  other
+developers to scale to a  multilingual website, I needed some template
+system, even if I dislike them. I tried with
+L<https://modules.raku.org/search/?q=template> and I discovered
+L<Template::Anti|https://modules.raku.org/dist/Template::Anti:cpan:HANENKAMP>.
+In this module,  the "DESCRIPTION" pragraph was echoing  my dislike of
+templating languages. So I adopted it.
+
+This module relies on CSS selectors embedded in the attributes of HTML
+tags. Each  time you have a  placeholder that needs to  be replaced by
+some piece  of data, you attach  a CSS class to  this placeholder. You
+may need  to insert a  C<< <span class>...</span>  >> pair of  tags to
+specify the CSS  class or you can  use an existing C<< <li>  >> tag or
+C<< <td>  >> or  other. But it  is still standard  HTML with  no alien
+syntax. Then, when  genrating the HTML file, you  substitute the piece
+of data to the placeholder each time you see the class.
 
 =head1 Conclusion
 
