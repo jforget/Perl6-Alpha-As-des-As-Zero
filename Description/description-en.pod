@@ -1491,7 +1491,7 @@ language (for the  moment, only French and English). One  of the lines
 with  C<class='...'> attributes,  for  each placeholder  in the  line.
 Then, the  C<Template::Anti> module extracts  this line, which  I will
 call a I<brick>. Then it removes all the lines from the list or table,
-leaving  an  empty  C<  <<ul></ul>   >>  structure  or  an  empty  C<<
+leaving  an  empty  C<<  <ul></ul>   >>  structure  or  an  empty  C<<
 <tbody></tbody> >> structure, which I call the I<frame>. Then, I apply
 each document  from the database  extraction to the  I<brick>, filling
 each placeholder  with the value from  the database and I  insert this

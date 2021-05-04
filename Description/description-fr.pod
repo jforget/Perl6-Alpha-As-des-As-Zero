@@ -1630,7 +1630,7 @@ substituer dans la ligne. Ensuite, le module C<Template::Anti> extrait
 cette  ligne,   que  j'appelle   une  I<brique>  (I<brick>   dans  les
 commentaires du programme). Le module supprime ensuite tout le contenu
 de la  liste ou de la  table, de sorte  que l'on se retrouve  avec une
-structure C< <<ul></ul>  >> vide ou une  structure C<< <tbody></tbody>
+structure C<< <ul></ul>  >> vide ou une  structure C<< <tbody></tbody>
 >> vide, que j'appelle I<cadre>  (ou I<frame>). Puis j'applique chaque
 élément extrait de la base de  données à la brique, pour alimenter les
 champs à modifier et j'insère la brique dans le cadre.
