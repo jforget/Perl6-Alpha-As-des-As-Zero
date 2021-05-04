@@ -1612,6 +1612,46 @@ programme C<lib/player-turn-page.rakumod>, les informations  affichées sont un 
 compliquées,  mais elles  reproduisent le  processus décisionnel  déjà
 présenté dans le programme C<player.raku>.
 
+Les  pages générées  par les  programmes C<lib/xxx-page.rakumod>  sont
+bâties  autour  d'une  liste  dynamique. Une  liste  de  parties  pour
+C<lib/game-list-page.rakumod>,  une   liste  de  tours  de   jeu  pour
+C<lib/game-page.rakumod>  (en fait,  il s'agit  d'un tableau,  mais le
+principe est  le même)  et une  liste de manœuvres  plus une  liste de
+tours    de     joueurs    pour     des    parties     passées    pour
+C<lib/player-turn-page.rakumod>.   Voici  comment   ces  listes   sont
+générées.
+
+Tout d'abord, le sous-répertoire F<html> contient une version statique
+de la  page web. Ou plutôt  quelques versions, une pour  chaque langue
+prévue (pour l'instant le français  et l'anglais). L'une de ces lignes
+(C<<  <li>...</li>   >>  ou  C<<  <tr>...</tr>   >>)  est  abondamment
+paramétrée  avec des  attributs C<class='...'>,  pour chaque  valeur à
+substituer dans la ligne. Ensuite, le module C<Template::Anti> extrait
+cette  ligne,   que  j'appelle   une  I<brique>  (I<brick>   dans  les
+commentaires du programme). Le module supprime ensuite tout le contenu
+de la  liste ou de la  table, de sorte  que l'on se retrouve  avec une
+structure C< <<ul></ul>  >> vide ou une  structure C<< <tbody></tbody>
+>> vide, que j'appelle I<cadre>  (ou I<frame>). Puis j'applique chaque
+élément extrait de la base de  données à la brique, pour alimenter les
+champs à modifier et j'insère la brique dans le cadre.
+
+Ce principe  général se décline  en quelques variantes. Pour  la liste
+des parties, il  y a trois briques  et non pas une seule  : une brique
+pour les parties avec une  victoire complète, lorsqu'un avion a abattu
+son adversaire, une  brique pour les parties nulles,  lorsque les deux
+avions s'enfuient simultanément (ou beaucoup plus rarement, lorsqu'ils
+s'abattent  mutuellement)  et  une  brique  pour  les  demi-victoires,
+lorsqu'un avion  s'enfuie. Pour la page  d'une partie et pour  la page
+décrivant un tour de joueur, certaines valeurs provenant de la base de
+données sont traduites  avant d'être insérées dans une  brique ou dans
+la page. Ainsi  on traduit B<Attack> en B<Attaque>, et  B<L> (pour S<«
+left »>) en  B<G> (pour S<« gauche »>). Les  traductions sont stockées
+dans  le  fichier  HTML   statique  avec  un  attribut  C<class='...'>
+permettant  de  les reconnaître  et  de  les extraire.  Elles  peuvent
+apparaître dans  une ligne C<<  <tr> >>  pipeau ou dans  un paragraphe
+pipeau,  lesquels   sont,  bien  évidemment,  supprimés   lors  de  la
+génération de la page web dynamique.
+
 =head2 Quelques questions
 
 J'ai présenté  ce projet  aux Journées  Perl en mai  2018, puis  à une
@@ -1767,6 +1807,14 @@ les opérateur C<my> et C<sub>, etc.
 
 =head2 Conclusion : Retour d'expérience sur l'As des As
 
+Concernant le choix de l'As des As pour un projet dans le genre Google
+Alpha Go Zero, il faut avoir à l'esprit que c'est un jeu beaucoup plus
+simple  que le  go ou  les échecs.  Plus complexe  que le  tic-tac-toe
+certes, mais largement plus simple de plusieurs ordres de grandeur que
+les deux  jeux classiques. C'est  pour cela que  j'ai pu créer  un S<«
+Alpha> As des As S<Zéro »> sur un datacenter constitué d'un seul PC de
+puissance moyenne.
+
 Un  point qui  m'a  surpris et  auquel j'aurais  pu  penser, c'est  la
 réaction  des pilotes  en page  223 en  mode combat.  Le but  était de
 permettre à  un avion déjà bien  amoché de fuir pour  survivre et pour
@@ -1798,6 +1846,24 @@ D'un autre côté, en mode entraînement, cela ne vaut pas le coup de fuir, car
 cela écourte la séance d'entraînement et cela réduit les informations disponibles
 pour les combats ultérieurs. J'ai donc créé une option I<--no-fleeing> (pas de fuite) où le
 choix de l'attaque est privilégié par rapport à la fuite.
+
+Mon but avec ce projet était de montrer que les I<Dikta Boelke>  et les 
+I<règles de Sailor Malan|https://fr.wikipedia.org/wiki/Sailor_Malan#Les_10_r%C3%A8gles_du_combat_a%C3%A9rien_par_Sailor_Malan>
+peuvent se  déduire d'une  expérimentation du  type Alpĥa-I<xxx>-Zéro.
+Certes, on  ne pourra  pas tout retrouver.  Par exemple,  Sailor Malan
+recommande de  tourner suffisamment souvent  et de ne jamais  voler en
+ligne droite plus de 30 secondes. Cette règle a tout son sens dans des
+combats S<«  beaucoup> contre S<beaucoup »>  mais elle ne sert  à rien
+dans l'I<As des  As>, où tous les  combats sont du S<« 1  contre 1 »>.
+Cette  règle  des 30  secondes  ne  pourra  donc  pas émerger  de  mon
+expérimentation.
+
+En revanche, nous devrions pouvoir  retrouver la règle consistant à ne
+pas changer de  direction de virage. Cette règle n'a  pas émergé parce
+que le nombre de parties jouées  est trop faible. J'ai davantage œuvré
+sur  la partie  programmation que  sur la  constitution d'une  base de
+connaissances avec un nombre significatif de parties.
+
 
 =head1 Annexe : à la découverte de Perl 6
 
@@ -3027,12 +3093,11 @@ j'envisageais d'utiliser APL, je pense que ces projets vont utiliser Perl 6
 à la place. J'ai encore des lacunes à combler pour une bonne utilisation
 de Perl 6, mais c'est juste une question de temps.
 
-Quant au choix de l'As des As pour un projet dans le genre Google Alpha Go Zero,
-il faut avoir à l'esprit que c'est un jeu beaucoup plus simple que le go
-ou les échecs. Plus complexe que le tic-tac-toe certes, mais largement plus simple
-de plusieurs ordres de grandeur que les deux jeux classiques. C'est pour cela
-que j'ai pu créer un S<« Alpha> As des As S<Zéro »> sur un datacenter constitué
-d'un seul PC de puissance moyenne.
+Également,  je devrais  relire  les trois  livres  dans lesquels  j'ai
+appris  Raku. Ces  livres  contiennent  des détails  que  je n'ai  pas
+retenus,  parce que  je  n'avais pas  une  connaissance suffisante  du
+contexte. Maintenant que je connais  assez bien le langage, je pourrai
+remarquer lesdits détails, les retenir et les mettre à profit.
 
 =head1 LICENCE
 

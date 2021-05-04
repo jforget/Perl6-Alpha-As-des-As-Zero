@@ -1476,6 +1476,40 @@ the decision process exposed  in the documentation for C<player.raku>,
 so    the     documentation    for    C<player.raku>     applies    to
 C<lib/player-turn-page.rakumod> also.
 
+The  pages generated  by  C<lib/xxx-page.rakumod> are  built around  a
+dynamic    list     of    things:     a    list    of     games    for
+C<lib/game-list-page.rakumod>,    a   list    of   game    turns   for
+C<lib/game-page.rakumod>  (actually  a  table,  not a  list,  but  the
+principle  is the  same),  and a  list  of maneuvers  plus  a list  of
+previous player turns for C<lib/player-turn-page.rakumod>. Here is how
+the dynamic lists are built.
+
+First,  the F<html>  subdirectory  contains a  static  version of  the
+corresponding  page. Or  rather  several versions,  one per  supported
+language (for the  moment, only French and English). One  of the lines
+(C<< <li>...</li> >> or C<<  <tr>...</tr> >>) is extensively decorated
+with  C<class='...'> attributes,  for  each placeholder  in the  line.
+Then, the  C<Template::Anti> module extracts  this line, which  I will
+call a I<brick>. Then it removes all the lines from the list or table,
+leaving  an  empty  C<  <<ul></ul>   >>  structure  or  an  empty  C<<
+<tbody></tbody> >> structure, which I call the I<frame>. Then, I apply
+each document  from the database  extraction to the  I<brick>, filling
+each placeholder  with the value from  the database and I  insert this
+I<brick> into the I<frame>.
+
+This  general principle  has  a few  variants. For  the  game list  in
+C<lib/game-list.rakumod>, there are three bricks,  not one. There is a
+brick for games  ending when a player  is shot down, there  is a brick
+for  games  ending  in  a  draw (usually  both  players  fleeing,  but
+sometimes both players shooting down each  other) and there is a brick
+for games ending when a player flees. For the game webpage and for the
+player turn  webpage, some database  values are not  directly inserted
+into  their  placeholders. They  are  translated  first. For  example,
+B<Attack> →  B<Attaque>, or B<L>  (for "left") → B<G>  (for "gauche").
+Some of these translations come from a  dummy line in the list or from
+a  dummy paragraph  at the  end  of the  webpage. This  dummy line  or
+paragraph is removed from the generated webpage, of course.
+
 =head2 A Few Questions
 
 I have presented  this project during the French Perl  Workshop in May
@@ -1687,6 +1721,13 @@ if someone else is interested, fine by me.
 
 =head2 Conclusion: Lessons Learned with Ace of Aces
 
+About choosing  Ace of Aces for  a Google Alpha Go  Zero-like project,
+you must remember it is a game simpler than Chess and Go. More complex
+than Tic-Tac-Toe, but  way much simpler that both  classic games. This
+is  why I  have been  able to  create a  "Alpha Ace  of Aces  Zero" by
+myself,  on a  datacenter consisting  of  a single  PC with  mid-range
+performance.
+
 A point  which surprised me, although  I could have guessed  it before
 discovering it, is  the answer to page 223 when  fighting. The purpose
 of the flight  (from the verb "to  flee", not "to fly") is  to allow a
@@ -1717,6 +1758,19 @@ shortens the  training session and it  reduces the amount of  data for
 future fights.  For this reason, I  have created a "no fleeing"
 mode, where  choosing the attack has  a greater probability
 than choosing to flee.
+
+My aim with this project was to show that the I<Dikta Boelke> and
+L<Sailor Malan's advices|https://samilhistory.com/2017/03/24/ten-of-my-rules-for-air-fighting-sailor-malan/>
+can be  found by a  Alpha-I<xxx>-Zero method.  Not all of  these rules
+will be  found. For example, Sailor  Malan urges his fellow  pilots to
+turn often, at least every 30 seconds. This is a very sensible rule in
+a many-vs-many  situation, but  the 1-vs-1  configuration of  I<Ace of
+Aces> cannot make this rule emerge.
+
+Even rules about not reversing a turn did not emerge, but in this case
+I think  it is because I  have not run  enough games. I have  tried to
+polish  the programming  part,  without much  emphasis  on building  a
+significant database of games.
 
 =head1 Annex: In Retrospect, My First Steps In Raku
 
@@ -2813,12 +2867,11 @@ of data to the placeholder each time you see the class.
 I like Raku very much. I had some projects for which I intended to
 use APL. Maybe I will use Raku instead.
 
-About choosing  Ace of Aces for  a Google Alpha Go  Zero-like project,
-you must remember it is a game simpler than Chess and Go. More complex
-than Tic-Tac-Toe, but  way much simpler that both  classic games. This
-is  why I  have been  able to  create a  "Alpha Ace  of Aces  Zero" by
-myself,  on a  datacenter consisting  of  a single  PC with  mid-range
-performance.
+Also, I should  read again the three books that  taught me Raku. These
+books contain may remarks that I missed  when I read the books for the
+first time.  I did not remember  these remarks, because I  had not the
+sufficient background for the langage.  Now that I have some knowledge
+of Raku, I would not miss these details and I will benefit of them.
 
 =head1 License
 
