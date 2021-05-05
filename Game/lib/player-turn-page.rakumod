@@ -63,7 +63,8 @@ sub fill($at, :$lang, :$dh, :$game, :$turn-nb, :@turn4, :@similar, :$pilot) {
   if $player-turn<random>:exists {
     $random-dsp = sprintf('%.4g', $player-turn<random>);
     $at('span.random')».content($random-dsp);
-    $at('p.without-stiffness')».remove;
+    $at(    'p.without-stiffness')».remove;
+    $at('p.223-without-stiffness')».remove;
     $stiffness = $pilot.stiffness;
   }
   else {
@@ -71,6 +72,12 @@ sub fill($at, :$lang, :$dh, :$game, :$turn-nb, :@turn4, :@similar, :$pilot) {
     $at(       'th.with-random')».remove;
     $tr-choice('td.with-random')».remove;
     $stiffness = 2.718e0;
+    if  $player-turn<page> == 223 {
+      $at('p.without-stiffness')».remove;
+    }
+    else {
+      $at('p.223-without-stiffness')».remove;
+    }
   }
   #say DateTime.now.utc ~ ' player-turn frame extracted';
 
