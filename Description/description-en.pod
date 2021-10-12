@@ -631,6 +631,13 @@ but  the package  provides a  C<install-zef> script.  Just run  it and
 you're done. Else, access the L<zef repo|https://github.com/ugexe/zef>
 and follow the instructions.
 
+Later, for another project, I had a benign incident. I wanted to test
+the use of SQLite through the 
+L<DBIish module|https://github.com/raku-community-modules/DBIish>.
+The installation by C<zef> failed, because  there was no C compiler on
+this  virtual machine.  Therefore,  in addition  to  Git and  C<curl>,
+already mentioned, you should install C<gcc>, C<binutils> and C<make>.
+
 =head3 Installing Rakudo Modules
 
 In order to take a snapshot of the virtual machine when appropriate, I

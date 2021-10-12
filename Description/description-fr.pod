@@ -65,7 +65,7 @@ Quand a-t-on pensé à ajouter un index des mots importants en fin d'ouvrage ?
 Quand a-t-on écrit un ouvrage qui utilise de façon I<intensive> les renvois
 à une autre page ?
 
-À la suite des travaux des naturalistes du XVIIIe siècle (Jussieu, Buffon, Cuvier, etc)
+À la suite des travaux des naturalistes du XVIIIe siècle (Linné, Jussieu, Buffon, Cuvier, etc)
 on a commencé à publier des flores, des livres décrivant l'ensemble des végétaux
 d'une région ou d'un biotope. Mon père m'en a montré une datant des années 1950
 et qui était organisée sous la forme d'une série de questions-réponses :
@@ -565,9 +565,9 @@ d'une dose de fonction I<random>. D'où l'idée d'un programme jouant à ce jeu 
 du contexte réel, mais se basant uniquement sur une analyse statistique des parties passées.
 
 Il  y  a  deux  grandes  parties dans  le  projet.  Tout  d'abord,  la
-L</"préparation">,  consistant  à  produire  les  livrets  sous  forme
+L<préparation/"Préparation">,  consistant  à  produire  les  livrets  sous  forme
 électronique, en générant les fichiers plutôt qu'en tapant la totalité
-des enchaînements entre  pages et manœuvres. Puis il y  a le L</"jeu">
+des enchaînements entre  pages et manœuvres. Puis il y  a le L<jeu/"Jeu">
 proprement dit  où des  programmes combattent  l'un contre  l'autre et
 tirent la leçon de leurs combats passés. Mais avant de décrire dans le
 détail les programmes, voici les instructions pour installer le projet
@@ -671,6 +671,14 @@ C<zef>.   Sur  d'autres   systèmes,  vous   pouvez  avoir   un  script
 F<install-zef>.  Il faut  bien entendu  le lancer.  Sinon, suivez  les
 instructions dans le
 L<dépôt Github de zef|https://github.com/ugexe/zef>.
+
+À noter  une mésaventure  qui m'est  arrivée ultérieurement  sur cette
+machine  S<virtuelle  :>  j'ai  voulu  tester  l'accès  à  SQLite  par
+l'intermédiaire du
+L<module DBIish|https://github.com/raku-community-modules/DBIish>.
+L'installation de C<DBIish> par C<zef> a planté, parce qu'il n'y avait
+pas de compilateur C. Donc, en plus de Git et C<curl> déjà mentionnés,
+pensez à installer C<gcc>, C<binutils> et C<make>.
 
 =head3 Installation de modules Rakudo
 
@@ -1796,11 +1804,12 @@ vous n'êtes pas  obligés de boucler sur chaque  composant, vous pouvez
 effectuer votre opération en une  seule fois. C'est possible également
 en Raku.
 
-Et en fait,  L<la fonctionnalité de Raku la  plus intéressante>, c'est
-les points communs entre Perl et Raku. Une grande partie des lignes de
-code dans un  programme Raku ressemblent à ce que  l'on écrit en Perl.
-Dans les deux langages, on  utilise les accolades les points-vigrules,
-les opérateur C<my> et C<sub>, etc.
+Et  en   fait,  L<la   fonctionnalité  de   Raku  la   plus  utile|"La
+fonctionnalité de Raku la plus utile">, c'est les points communs entre
+Perl et Raku.  Une grande partie des lignes de  code dans un programme
+Raku ressemblent à ce que l'on  écrit en Perl. Dans les deux langages,
+on utilise les  accolades les points-vigrules, les  opérateur C<my> et
+C<sub>, etc.
 
 =head2 Reste à Faire
 
@@ -1910,7 +1919,7 @@ par C<brian d foy>,
 
 L<Parsing with Perl 6 Regexes and Grammars|https://www.apress.com/gp/book/9781484232279>
 par Moritz Lenz, pour comprendre
-L<les regex, anciennement expressions régulières>.
+L<les regex, anciennement expressions régulières|"Les regex, anciennement expressions régulières">.
 
 =back
 
@@ -2082,10 +2091,10 @@ raisonnable.
 
 =head2 Utilisation
 
-=head3 La fonctionnalité de Raku la plus intéressante
+=head3 La fonctionnalité de Raku la plus utile
 
 Cela  m'a   pris  très  longtemps   pour  me  rendre  compte   que  la
-particularité la  plus intéressante  de Raku est  qu'il a  beaucoup de
+particularité la  plus utile  de Raku est  qu'il a  beaucoup de
 points communs avec Perl, tant du point  de vue de la syntaxe et de la
 sémantique que du  point de vue de  la culture et de  la communauté de
 programmeurs.
