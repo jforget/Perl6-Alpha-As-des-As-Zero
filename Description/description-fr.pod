@@ -175,7 +175,7 @@ allemand choisit la flèche la plus à gauche dans la page et annonce :
 
 -- Je t'envoie en page 8.
 
-Simultanément, le Britannique choisit la manœuvre en dessous de S<« EF »>
+Simultanément, le Britannique choisit la manE<oelig>uvre en dessous de S<« EF »>
 S<« Cruising> S<Left »> et répond :
 
 -- Et toi, tu vas page 48.
