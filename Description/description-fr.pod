@@ -1336,7 +1336,7 @@ choix accessibles aux deux joueurs pour le tour en cours.
 
 =item 3 Lecture dans la collection C<Turns> de la réponse de chaque joueur.
 
-=item 4 Application des transitions page initiale → page intermédiaire → page finale.
+=item 4 Application des transitions page initiale -> page intermédiaire -> page finale.
 
 =item 5 Détection de la fuite d'un avion ou des deux.
 
@@ -1858,7 +1858,7 @@ choix de l'attaque est privilégié par rapport à la fuite.
 
 Mon but avec ce projet était de montrer que les I<Dikta Boelke>  et les 
 I<règles de Sailor Malan|https://fr.wikipedia.org/wiki/Sailor_Malan#Les_10_r%C3%A8gles_du_combat_a%C3%A9rien_par_Sailor_Malan>
-peuvent se  déduire d'une  expérimentation du  type Alpĥa-I<xxx>-Zéro.
+peuvent se  déduire d'une  expérimentation du  type Alpha-I<xxx>-Zéro.
 Certes, on  ne pourra  pas tout retrouver.  Par exemple,  Sailor Malan
 recommande de  tourner suffisamment souvent  et de ne jamais  voler en
 ligne droite plus de 30 secondes. Cette règle a tout son sens dans des

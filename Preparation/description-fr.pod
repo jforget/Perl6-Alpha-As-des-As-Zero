@@ -5,24 +5,24 @@
 =head1 INTRODUCTION
 
 Les programmes de jeu pour l'As des As se basent sur une table
-de transition (page de départ, manœuvre) → page d'arrivée,
-stockée dans un fichier JSON. I<Handy Rotary> comporte 25 manœuvres par page.
-Recopier un livret avec 222 pages et 25 manœuvres dans un fichier JSON, soit 5550 entrées,
+de transition (page de départ, manoeuvre) -> page d'arrivée,
+stockée dans un fichier JSON. I<Handy Rotary> comporte 25 manoeuvres par page.
+Recopier un livret avec 222 pages et 25 manoeuvres dans un fichier JSON, soit 5550 entrées,
 est fastidieux, donc sujet à erreur. Et il faut le faire pour au moins
-deux livrets. Même dans le cas de I<Wingleader>, qui a seulement 13 manœuvres
+deux livrets. Même dans le cas de I<Wingleader>, qui a seulement 13 manoeuvres
 par page, cela ferait 2886 entrées à taper pour chaque livret.
 
 Heureusement, les différentes pages correspondent au positionnement d'un
 avion sur une grille de 37 hexagones avec 6 orientations possibles.
 En se basant sur cette géométrie sous-jacente, il est possible 
 de saisir un sous-ensemble représentatif 
-de transitions (page de départ, manœuvre) → page d'arrivée
+de transitions (page de départ, manoeuvre) -> page d'arrivée
 et d'obtenir toutes les autres par calcul et par déduction.
 
 De plus, tous les jeux de la série utilisent la même grille de 37 hexagones
 avec la même numérotation. Donc, il suffit de déterminer une bonne
 fois pour toutes les numéros de page des hexagones et tous les livrets
-peuvent être alors générés en décrivant les 13 à 26 manœuvres disponibles
+peuvent être alors générés en décrivant les 13 à 26 manoeuvres disponibles
 (plus la table des tirs, qu'il est difficile d'automatiser).
 
 J'ai ainsi reconstitué la grille hexagonale en me basant sur le
@@ -67,9 +67,9 @@ sur un livret S<« drone »> existant au lieu du livret FW190.
 =head2 Saisie
 
 Sous éditeur de texte, écrire un fichier F<Drone-init.json>.
-Ce fichier contient la description des manœuvres du drone, ainsi que les
+Ce fichier contient la description des manoeuvres du drone, ainsi que les
 pages où le drone peut S<« tirer »> sur l'épervier (c'est-à-dire le filmer). Le fichier ne contient aucune
-transition (page de départ, manœuvre) → page d'arrivée.
+transition (page de départ, manoeuvre) -> page d'arrivée.
 
 =head2 Initialisation
 
@@ -89,28 +89,28 @@ une autre page initiale.
 
 Le programme F<maj.p6> est un programme en ligne de commande
 qui reçoit comme paramètres un numéro de page de départ
-et la liste des transitions manœuvre → page d'arrivée
+et la liste des transitions manoeuvre -> page d'arrivée
 pour cette page. Par exemple la première fois qu'on l'exécutera,
 ce sera forcément avec la page 187, donc la ligne de commande S<sera :>
 
   perl6 maj.p6 --page=187 -a=205 -b=187 -c=198 -d=3 -e=15 -f=16 -g=2 -h=17 -i=1
 
 Le programme met à jour les 
-transitions (page de départ, manœuvre) → page d'arrivée.
+transitions (page de départ, manoeuvre) -> page d'arrivée.
 Si la ligne de commande mentionne des pages d'arrivée que l'on n'avait pas
 encore rencontrées jusqu'à présent, le programme détermine où se situent
 ces pages dans la grille hexagonale et quelle est l'orientation de
 l'avion (ou du drone, ou de l'oiseau, etc).
 
-En outre, le programme applique chaque manœuvre à chacune des
+En outre, le programme applique chaque manoeuvre à chacune des
 nouvelles pages. Si le résultat est une page déjà identifiée, le programme
-renseigne cette transition (page de départ, manœuvre) → page d'arrivée
+renseigne cette transition (page de départ, manoeuvre) -> page d'arrivée
 dans la base de données. Si le résultat n'est pas connu, le programme laisse
 tomber cette transition pour l'instant.
 
-Également, le programme applique les manœuvres
+Également, le programme applique les manoeuvres
 S<« à> S<rebrousse-poil »> pour déterminer les
-transitions (page de départ, manœuvre) → page d'arrivée
+transitions (page de départ, manoeuvre) -> page d'arrivée
 dans laquelle la page d'arrivée est la nouvelle page et la page
 de départ est une page déjà ajoutée précédemment.
 
@@ -118,15 +118,15 @@ Cette recherche S<« à> S<rebrousse-poil »> n'existait pas dans
 la version de mars 2018, je l'ai ajoutée en juin 2018. À la place,
 j'avais un paramètre S<« recalcul> S<complet »> qui passait en
 revue I<toutes> les pages, les anciennes comme les nouvelles
-et qui déterminait pour chaque manœuvre la page d'arrivée.
+et qui déterminait pour chaque manoeuvre la page d'arrivée.
 Très chronophage.
 
 =head3 Exemple
 
-Prenons un engin avec très peu de manœuvres disponibles.
-La manœuvre A, qui permet un déplacement en crabe vers l'hexagone
-voisin à 10 heures, la manœuvre B qui fait avancer dans l'hexagone
-juste devant la position initiale et la manœuvre C qui permet un
+Prenons un engin avec très peu de manoeuvres disponibles.
+La manoeuvre A, qui permet un déplacement en crabe vers l'hexagone
+voisin à 10 heures, la manoeuvre B qui fait avancer dans l'hexagone
+juste devant la position initiale et la manoeuvre C qui permet un
 déplacement en crabe vers l'hexagone voisin à 2 heures.
 
 =for html
@@ -142,9 +142,9 @@ est donc :
 
 Le programme met à jour les enchaînements avec :
 
-  (187, A) → 15
-  (187, B) → 16
-  (187, C) → 17
+  (187, A) -> 15
+  (187, B) -> 16
+  (187, C) -> 17
 
 Et la carte est complétée avec :
 
@@ -154,11 +154,11 @@ Et la carte est complétée avec :
 I<Copie d'écran personnelle. Les conditions de licence sont les mêmes que pour le texte.>
 
 En examinant les pages nouvellement créées 15, 16 et 17 et en leur appliquant
-les manœuvres A, B et C, le programme constate que sur les 9 tentatives, deux
+les manoeuvres A, B et C, le programme constate que sur les 9 tentatives, deux
 réussissent. Par conséquent, il ajoute les enchaînements 
 
-  ( 15, C) → 16
-  ( 17, A) → 16
+  ( 15, C) -> 16
+  ( 17, A) -> 16
 
 Le deuxième appel à F<maj.p6> s'applique à la page 16 :
 
@@ -166,9 +166,9 @@ Le deuxième appel à F<maj.p6> s'applique à la page 16 :
 
 Le programme met à jour les enchaînements avec :
 
-  ( 16, A) →  46
-  ( 16, B) →  91
-  ( 16, C) → 107
+  ( 16, A) ->  46
+  ( 16, B) ->  91
+  ( 16, C) -> 107
 
 Et la carte est complétée avec :
 
@@ -178,45 +178,45 @@ Et la carte est complétée avec :
 I<Copie d'écran personnelle. Les conditions de licence sont les mêmes que pour le texte.>
 
 En examinant les pages nouvellement créées 46, 91 et 107 et en leur appliquant
-les manœuvres A, B et C, le programme
+les manoeuvres A, B et C, le programme
 ajoute les enchaînements 
 
-  ( 46, C) → 91
-  (107, A) → 91
+  ( 46, C) -> 91
+  (107, A) -> 91
 
-Le programme applique également les manœuvres A, B et C à rebrousse-poil
+Le programme applique également les manoeuvres A, B et C à rebrousse-poil
 sur les pages 46, 91 et 107. On retrouve certains enchaînements déjà S<créés :>
 
-  (x, A) →  46 avec x =  16
-  (x, A) →  91 avec x = 107
-  (x, B) →  91 avec x =  16
-  (x, C) →  91 avec x =  46
-  (x, C) → 107 avec x =  16
+  (x, A) ->  46 avec x =  16
+  (x, A) ->  91 avec x = 107
+  (x, B) ->  91 avec x =  16
+  (x, C) ->  91 avec x =  46
+  (x, C) -> 107 avec x =  16
 
 il y a quelques S<échecs :>
 
-  (x, C) →  46
-  (x, A) → 107
+  (x, C) ->  46
+  (x, A) -> 107
 
 mais également quelques S<réussites :>
 
-  (x, B) →  46 avec x = 15
-  (x, B) → 107 avec x = 17
+  (x, B) ->  46 avec x = 15
+  (x, B) -> 107 avec x = 17
 
 ce qui permet d'ajouter les S<enregistrements :>
 
-  ( 15, B) →  46
-  ( 17, B) → 107
+  ( 15, B) ->  46
+  ( 17, B) -> 107
 
 =head3 Itérations
 
 Le programme F<maj.p6> est appelé autant de fois qu'il le faut pour
 que toutes les transitions soient connues pour toutes les pages
-et toutes les manœuvres. Tous ces appels sont accumulés dans le
+et toutes les manoeuvres. Tous ces appels sont accumulés dans le
 script shell F<maj1>, de sorte que l'on peut refaire la totalité
 des itérations en un seul appel de F<maj1>.
 
-Avec 9 manœuvres, dont une (C<B>) qui consiste à faire du sur-place,
+Avec 9 manoeuvres, dont une (C<B>) qui consiste à faire du sur-place,
 il faut au moins 28 itérations pour définir toutes les pages.
 Compte tenu des recouvrements inévitables, il a fallu 48 appels
 de F<maj.p6> pour définir toutes les pages. Il y avait peut-être
@@ -252,7 +252,7 @@ ou n'importe quelle créature volante. Le programme F<livret.p6>
 lit en entrée un fichier F<Epervier-init.json> de taille réduite
 et produit un fichier complet F<Epervier.json> et un fichier
 F<Epervier.html> qui contiennent la totalité des
-transitions (page de départ, manœuvre) → page d'arrivée.
+transitions (page de départ, manoeuvre) -> page d'arrivée.
 
 =head1 FONCTIONNEMENT INTERNE
 
@@ -262,8 +262,8 @@ Une question centrale pour les programmes de préparation, c'est comment
 représenter la position relative de deux avions, qu'il s'agisse de la position
 du drone par rapport à l'épervier ou qu'il s'agisse de la position finale
 du drone par rapport à sa position initiale, suite à l'exécution d'une
-manœuvre. Pour cela, j'ai créé une classe C<Depl.pm6>, pour S<« déplacement »>.
-Il s'agit soit du déplacement entraîné par l'exécution d'une manœuvre, soit
+manoeuvre. Pour cela, j'ai créé une classe C<Depl.pm6>, pour S<« déplacement »>.
+Il s'agit soit du déplacement entraîné par l'exécution d'une manoeuvre, soit
 du déplacement virtuel que le drone aurait effectué, en une ou plusieurs fois,
 pour aller de la position de l'épervier jusqu'à la position qu'il occupe.
 
