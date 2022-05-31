@@ -96,6 +96,8 @@ In this kind of book, the player would choose how the story would develop. For e
 
 I had five of these books, in French. One is lost and I still have the four others.
 
+![Four interactive books](Les_livres_dont_vous_etes_le_heros.jpg)
+
 _Personal picture. License is the same as for the text._
 
 # Ace of Aces, the Game
@@ -104,6 +106,8 @@ In 1981, Alfred Leonardi filed a patent for a new type of game, which he had
 developed with Douglas Kaufman. Instead of gathering two players in the same room around
 the same game map and making them push cardboard markers, each player has a booklet
 in which each page shows a plane seen from the cockpit of another plane.
+
+![Example of game](pic1051809-l.jpg)
 
 _Picture taken by Chris Norwood and published on [Boardgame Geek](https://boardgamegeek.com/image/1051809/ace-aces-handy-rotary-series?size=large). 
 License [Creative Commons Attribution 3.0 Unported, CC BY 3.0](https://creativecommons.org/licenses/by/3.0/)._
@@ -114,6 +118,8 @@ The patent  gives an example  of a game  turn. The players  begin this
 turn on page  1. In both booklets, the picture  shows that both planes
 have the same  heading and that the  Dr.I is located at  the Camel's 4
 o'clock, or conversely, the Camel is at the Dr.I's 10 o'clock.
+
+![Page 1 in both booklets](Page-1-GB-All.png)
 
 _Pictures from patent USP 4,378,118, in public domain since 2001._
 
@@ -130,17 +136,23 @@ and answers:
 
 \-- Go to page 48.
 
+![Page 1, arrow pointing to page 8 and arrow pointing to page 48](Manoeuvre-1-8-48.png)
+
 _Pictures from patent USP 4,378,118, in public domain since 2001._
 
 The German player opens his booklet page 48 and applies the same maneuver as before: same arrow,
 different page number, 96. At the same time, the British player opens his booklet page 8,
 spots the same maneuver and reads the page number. They obtain the same page number, 96.
 
+![German booklet page 48 and British booklet page 8](Pages-48-8.png)
+
 _Pictures from patent USP 4,378,118, in public domain since 2001._
 
 The final page for the game turn is page 96. As you can see, _Ace of Aces_ is not only a forerunner
 of hypertext links, but it is also a forerunner for First Person Shooter games, 12 years or so
 before Wolfenstein 3D and Doom.
+
+![German booklet page 96 and British booklet page 96](Page-96-All-GB.png)
 
 _Pictures from patent USP 4,378,118, in public domain since 2001._
 
@@ -159,10 +171,7 @@ and imagine you are in a big empty parking lot, with only a Mini Austin and
 a VW Beetle. At first, they set up in the following position (use the plain lines
 and ignore the dotted lines):
 
-<div>
-
-    <img src='Exp-1-A.png' alt='Start position for the cars' />
-</div>
+![Start position for the cars](Exp-1-A.png)
 
 _Personal picture. License is the same as for the text._
 _Picture from patent USP 4,378,118, in public domain since 2001._
@@ -171,10 +180,7 @@ This position corresponds to page 1 of both booklets.
 
 Now, suppose the Beetle moves as shown below, while the Mini stays idle.
 
-<div>
-
-    <img src='Exp-1-B.png' alt='Mini on its start position, Beetle on its end position' />
-</div>
+![Mini on its start position, Beetle on its end position](Exp-1-B.png)
 
 _Personal picture. License is the same as for the text._
 _Picture from patent USP 4,378,118, in public domain since 2001._
@@ -182,20 +188,14 @@ _Picture from patent USP 4,378,118, in public domain since 2001._
 After this movement, we obtain the situation of page 8. And now, the Beetle stops
 and the Mini starts moving.
 
-<div>
-
-    <img src='Exp-1-C.png' alt='End position for the cars' />
-</div>
+![End position for the cars](Exp-1-C.png)
 
 _Personal picture. License is the same as for the text._
 _Picture from patent USP 4,378,118, in public domain since 2001._
 
 The end result is the position of page 96.
 
-<div>
-
-    <img src='Exp-1-D.png' alt='End position for the cars' />
-</div>
+![End position for the cars](Exp-1-D.png)
 
 _Personal picture. License is the same as for the text._
 _Picture from patent USP 4,378,118, in public domain since 2001._
@@ -203,10 +203,7 @@ _Picture from patent USP 4,378,118, in public domain since 2001._
 Second step of the experiment. Both cars come back to the starting position
 corresponding to page 1.
 
-<div>
-
-    <img src='Exp-2-A.png' alt='Start position for the cars' />
-</div>
+![Start position for the cars](Exp-2-A.png)
 
 _Personal picture. License is the same as for the text._
 _Picture from patent USP 4,378,118, in public domain since 2001._
@@ -214,20 +211,14 @@ _Picture from patent USP 4,378,118, in public domain since 2001._
 Now the Mini is the first to move, while the Beetle stays idle. So we obtain
 the position like on page 48.
 
-<div>
-
-    <img src='Exp-2-B.png' alt='Beetle on its start position, Mini on its end position' />
-</div>
+![Beetle on its start position, Mini on its end position](Exp-2-B.png)
 
 _Personal picture. License is the same as for the text._
 _Picture from patent USP 4,378,118, in public domain since 2001._
 
 And when the Beetle moves, the end position is the position of page 96.
 
-<div>
-
-    <img src='Exp-2-C.png' alt='End position for the cars' />
-</div>
+![End position for the cars](Exp-2-C.png)
 
 _Personal picture. License is the same as for the text._
 _Picture from patent USP 4,378,118, in public domain since 2001._
@@ -236,10 +227,7 @@ Third step of the experiment. The cars come back to their page 1 position.
 Now they move _simultaneously_. As in both previous steps, the end position
 is the page 96 position.
 
-<div>
-
-    <img src='Exp-3-B.png' alt='End position for the cars' />
-</div>
+![End position for the cars](Exp-3-B.png)
 
 _Personal picture. License is the same as for the text._
 _Picture from patent USP 4,378,118, in public domain since 2001._
@@ -250,10 +238,7 @@ in the Picardy or Flanders sky.
 
 ### Special Case, Page 223
 
-<div>
-
-    <img src='page-223.jpeg' alt='Picture of page 223: no enemy plane, only clouds' />
-</div>
+![Picture of page 223: no enemy plane, only clouds](page-223.jpeg)
 
 _Personal picture using a page from Handy Rotary, copyright © 1986 Nova Game Designs, Inc., artwork copyright © 1986 Emithill limited_
 
@@ -275,10 +260,7 @@ is in the Dr.I's 11 1/2 o'clock and let us suppose the plane move forward at med
 If we apply first the Camel's move, the contact is lost and the intermediate page is page 223,
 where no maneuver is shown.
 
-<div>
-
-    <img src='Page-223-a.png' alt='British movement ending at page 223' />
-</div>
+![British movement ending at page 223](Page-223-a.png)
 
 _Personal picture. License is the same as for the text._
 
@@ -286,20 +268,14 @@ On the other hand, if we apply first the Dr.I's move, the intermediate
 page is page 60, where the Camel is in the Dr.I's 11 o'clock at medium
 distance.
 
-<div>
-
-    <img src='Page-223-b.png' alt='German movement from page 180 to page 60' />
-</div>
+![German movement from page 180 to page 60](Page-223-b.png)
 
 _Personal picture. License is the same as for the text._
 
 Then we apply the Camel's move and  we arrive on page 180. This number
 cannot be cross-checked.
 
-<div>
-
-    <img src='Page-223-c.png' alt='British movement from page 60 to page 180' />
-</div>
+![British movement from page 60 to page 180](Page-223-c.png)
 
 _Personal picture. License is the same as for the text._
 
@@ -320,13 +296,13 @@ German booklet). I did not mention it for pedagogical reasons. When a plane is t
 the simultaneous moves are no longer quite simultaneous. The sequence of play is now
 the following:
 
-- 1 The tailed plane chooses a maneuver.
-- 2 The player tells his opponent whether the chosen maneuver is
-a leftward maneuver, a rightward maneuver or a forward maneuver. He does not
-give the intermediate page number.
-- 3 The tailing player chooses a maneuver.
-- 4 Both players simultaneously announce their intermediate page numbers.
-- 5 Both players compute the final page.
+1. The tailed plane chooses a maneuver.
+2. The  player tells  his opponent  whether the  chosen maneuver  is a
+leftward maneuver, a rightward maneuver or a forward maneuver. He does
+not give the intermediate page number.
+3. The tailing player chooses a maneuver.
+4. Both players simultaneously announce their intermediate page numbers.
+5. Both players compute the final page.
 
 ### Successive Maneuvers
 
@@ -369,14 +345,14 @@ maneuvers.
 
 During a game turn, you must keep in mind:
 
-- 1 the initial page number,
-- 2 the maneuver you chose,
-- 3 the intermediate page number you gave to your opponent,
-- 4 the intermediate page number you received from your opponent,
-- 5 the final page number
-- 6 the number of remaining hit points,
-- 7 the type of maneuver (normal, straight ahead, acrobatic, slow speed) if using the rule on successive maneuvers.
-- 8 optionaly the number of remaining hit points for your opponent.
+1. the initial page number,
+2. the maneuver you chose,
+3. the intermediate page number you gave to your opponent,
+4. the intermediate page number you received from your opponent,
+5. the final page number
+6. the number of remaining hit points,
+7. the type of maneuver (normal, straight ahead, acrobatic, slow speed) if using the rule on successive maneuvers.
+8. optionaly the number of remaining hit points for your opponent.
 
 According to some studies, the human short-term memory has room for 7 ± 2 pieces of data (except for
 waiters in bars, who are way beyond this limit). Unless you are in the lower part of the
@@ -421,17 +397,11 @@ A bit of caution about _Wingleader_. There is
 with a similar name. If you are interested by this game and if you want to buy it, be sure
 it is the right game.
 
-<div>
-
-    <img src='As-des-As-Wingleader-Jet-Eagles.png' alt="Ace of Aces, First World War, Second World War and Cold War" />
-</div>
+![Ace of Aces, First World War, Second World War and Cold War](As-des-As-Wingleader-Jet-Eagles.png)
 
 _Personal pictures. License is the same as for the text._
 
-<div>
-
-    <img src='Jet-Eagles-96.png' alt="Page 96 for Jet Eagles, 'Red Force' booklet and 'Blue Force' booklet" />
-</div>
+![Page 96 for Jet Eagles, 'Red Force' booklet and 'Blue Force' booklet](Jet-Eagles-96.png)
 
 _Personal pictures using a page in the booklets from Jet Eagles, copyright © 1990 Nova Game Designs, Inc._
 
@@ -456,10 +426,7 @@ _les Maîtres des Dragons_
 and a series I had not heard about before writing these explanations,
 _[Lost Worlds](https://boardgamegeek.com/boardgame/3969/lost-worlds-adventure-set-i-ruins-ancients)_.
 
-<div>
-
-    <img src='Le_sherif_et_le_hors-la-loi.png' alt="Shootout at the Saloon" />
-</div>
+![Shootout at the Saloon](Le_sherif_et_le_hors-la-loi.png)
 
 _Personal pictures using "Le Shérif et le Hors-la-loi", copyright © 1986 Gallimard,
 French translation of "Shootout at the Saloon", Copyright © 1982 Nova Games Design Inc, copyright © 1986 Emithill Limited_
@@ -877,6 +844,8 @@ The two  maneuvers used in the  patent are maneuver **A**  and maneuver
       , "J": { "path": "?" , "turn": "?", "speed": "?" }
     },
 
+![German booklet page 48](Page-48-All.png)
+
 Looking at  the top row of  the maneuver table, you  obtain the speed:
 slow for maneuver **A**, crusing for maneuver **J**. This translates as:
 
@@ -902,6 +871,10 @@ For the path, we  go to page 187. From this  page, maneuver **A** leads
 to page 205 and maneuver **J** leads  to page 23. With these values, we
 refer to lines 205 and 23 of the file `Preparation/etape-finale.html`
 
+| 23  | 5;5 | 3;1 | A 30  | ... |
+|-----|-----|-----|-------|-----|
+| 205 | ;5  | ;1  | A 213 | ... |
+
 Since we are dealing with the bad guy, we look at column 2 and we find the
 path formula to insert into the maneuver specification.
 
@@ -913,6 +886,10 @@ path formula to insert into the maneuver specification.
 Note: from the  Sopwith Camel's page 187, maneuver **A**  leads to page
 198 and maneuver **J** leads  to page 31. The `etape-finale.html` file
 gives:
+
+| 31  | 3;1 | 5;5 | A 2   | ... |
+|-----|-----|-----|-------|-----|
+| 198 | ;1  | ;5  | A 187 | ... |
 
 For the good guy, we take the  path formula from column 3 instead of 2
 and, as you can see, we have the same fomulas `5;5` and `;5`.
@@ -2118,10 +2095,7 @@ French schools.  I know  that there are  some differences  between the
 mathematical notations in different countries. I will use the (French)
 notation I learned, even if this document is in English.
 
-<div>
-
-    <img src='gof.png' width='45%' alt='Graphical representation of the composition of two functions' />
-</div>
+![Graphical representation of the composition of two functions](gof.png)
 
 _Personal pictures. License is the same as for the text._
 
@@ -2147,10 +2121,7 @@ monstruosity. For example, you have a  number `x`, you apply in order
 the  logarithm  function,  the  cosine  function,  the  absolute  part
 function and the square root. A graphical representation would be:
 
-<div>
-
-    <img src='hogof.png' width='45%' alt='Graphical representation of the composition of four functions' />
-</div>
+![Graphical representation of the composition of four fouctions](hogof.png)
 
 _Personal pictures. License is the same as for the text._
 
