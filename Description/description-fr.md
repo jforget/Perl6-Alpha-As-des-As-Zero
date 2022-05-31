@@ -148,15 +148,17 @@ allemand choisit la flèche la plus à gauche dans la page et annonce :
 
 \-- Je t'envoie en page 8.
 
-Simultanément, le Britannique  choisit la manoeuvre en  dessous de « EF » « Cruising Left » et répond :
+Simultanément, le Britannique choisit la manœuvre en dessous de « EF »
+« Cruising Left » et répond :
 
 \-- Et toi, tu vas page 48.
 
 _Copies d'écran provenant du brevet USP 4,378,118, dans le domaine public depuis 2001._
 
-Le joueur allemand ouvre son livret page 48 et applique la même manoeuvre que
-précédemment, ce qui donne la page 96. De même, le joueur britannique ouvre
-son livret page 8, repère la manoeuvre choisie et obtient le même numéro de page, 96.
+Le  joueur allemand  ouvre  son livret  page 48  et  applique la  même
+manœuvre que précédemment, ce qui donne la page 96. De même, le joueur
+britannique ouvre  son livret  page 8, repère  la manœuvre  choisie et
+obtient le même numéro de page, 96.
 
 _Copies d'écran provenant du brevet USP 4,378,118, dans le domaine public depuis 2001._
 
@@ -283,22 +285,27 @@ _Photo personnelle reprenant une page de Handy Rotary, copyright © 1986 Nova Ga
 
 Si vous consultez certains fichiers d'aide fournis par 
 [Boardgame Geek](https://www.boardgamegeek.com/boardgame/798/ace-aces-handy-rotary-series/files),
-vous verrez que le jeu de base sur une grille de 37 hexagones, permettant de 
-générer 222 pages, représentant toutes les positions relatives des deux avions
-du moment qu'ils sont à une distance inférieure ou égale à trois hexagones.
-Et que se passe-t-il si la distance est supérieure ?
-Si, du fait de leurs manoeuvres, les avions se retrouvent plus loin que cette
-distance limite, le livret affiche une page spéciale, la page 223 qui représente des
-nuages derrière lesquels l'ennemi a disparu. Même si cette page montre le ciel en avant de l'avion,
-il est possible que l'ennemi ait disparu sur un côté ou derrière.
+vous  verrez que  le  jeu de  base  sur une  grille  de 37  hexagones,
+permettant  de générer  222 pages,  représentant toutes  les positions
+relatives  des  deux avions  du  moment  qu'ils  sont à  une  distance
+inférieure ou  égale à  trois hexagones.  Et que  se passe-t-il  si la
+distance est supérieure ?  Si, du fait de leurs  manœuvres, les avions
+se retrouvent plus  loin que cette distance limite,  le livret affiche
+une  page spéciale,  la page  223 qui  représente des  nuages derrière
+lesquels l'ennemi  a disparu.  Même si  cette page  montre le  ciel en
+avant de l'avion, il est possible que l'ennemi ait disparu sur un côté
+ou derrière.
 
-Si un seul joueur a une page intermédiaire à 223, on utilise la page intermédiaire de l'autre
-pour obtenir la page finale. Impossible dans ce cas de faire la vérification présentée, expliquée et démythifiée
-au paragraphe précédent. Un tel cas de figure se produit par exemple lorsque les deux avions se poursuivent
-à grande distance. Supposons que nous soyons page 180, où le Camel est à longue distance
-dans les onze heures  et demie du Dr.I et supposons que les deux avions avancent tout droit à vitesse
-moyenne. Si l'on applique d'abord le mouvement du Camel, le Dr.I le perd de vue temporairement et la page
-intermédiaire est la page 223, sur laquelle aucune manoeuvre n'est indiquée.
+Si un seul joueur  a une page intermédiaire à 223,  on utilise la page
+intermédiaire de l'autre pour obtenir  la page finale. Impossible dans
+ce cas de faire la vérification présentée, expliquée et démythifiée au
+paragraphe  précédent. Un  tel cas  de figure  se produit  par exemple
+lorsque les  deux avions se  poursuivent à grande  distance. Supposons
+que nous soyons page  180, où le Camel est à  longue distance dans les
+onze heures et demie du Dr.I et supposons que les deux avions avancent
+tout droit à vitesse moyenne. Si l'on applique d'abord le mouvement du
+Camel, le Dr.I le perd de  vue temporairement et la page intermédiaire
+est la page 223, sur laquelle aucune manœuvre n'est indiquée.
 
 <div>
 
@@ -307,7 +314,7 @@ intermédiaire est la page 223, sur laquelle aucune manoeuvre n'est indiquée.
 
 _Image personnelle. Les conditions de licence sont les mêmes que pour le texte._
 
-En revanche,  si l'on applique  d'abord la  manoeuvre du Dr.I,  la page
+En revanche,  si l'on applique  d'abord la  manœuvre du Dr.I,  la page
 intermédiaire est la  page 60 où le Camel est  à distance moyenne dans
 les 11 heures du Dr.I.
 
@@ -339,29 +346,31 @@ faire descendre et d'accorder ainsi une victoire complète à son adversaire.
 
 ### Autre cas particulier, la poursuite
 
-Lorsqu'un avion est dans le quadrant arrière d'un autre (4 à 8 heures) et que
-son cap est identique ou presque, alors on dit qu'il poursuit l'autre avion.
-C'était le cas sur la page 1 présentée ci-dessus (et aussi des pages 48 et 96, remarquez
-le « T » sous le numéro de page dans le livret allemand). Pour des raisons pédagogiques,
-j'ai préféré faire le silence sur cette particularité.
-La simultanéité du choix des manoeuvres est partiellement annulée. La séquence est la suivante
+Lorsqu'un avion est dans le quadrant arrière d'un autre (4 à 8 heures)
+et que son  cap est identique ou presque, alors  on dit qu'il poursuit
+l'autre avion.  C'était le cas sur  la page 1 présentée  ci-dessus (et
+aussi des pages  48 et 96, remarquez  le « T » sous le  numéro de page
+dans le livret allemand). Pour  des raisons pédagogiques, j'ai préféré
+faire le silence sur cette particularité. La simultanéité du choix des
+manœuvres est partiellement annulée. La séquence est la suivante
 
-- 1 L'avion poursuivi choisit une manoeuvre.
-- 2 Il indique au poursuivant s'il s'agit d'une manoeuvre vers
-la gauche, d'une manoeuvre vers la droite ou d'une manoeuvre en ligne droite
-vers l'avant. Il ne donne pas le numéro de la page intermédiaire.
-- 3 L'avion poursuivant choisit une manoeuvre.
-- 4 Les deux joueurs annoncent simultanément les pages intermédiaires.
-- 5 Les deux joueurs déterminent la page finale.
+1. L'avion poursuivi choisit une manœuvre.
+2.  Il indique  au  poursuivant  s'il s'agit  d'une  manœuvre vers  la
+gauche,  d'une manœuvre  vers la  droite  ou d'une  manœuvre en  ligne
+droite  vers  l'avant.   Il  ne  donne  pas  le  numéro   de  la  page
+intermédiaire.
+3. L'avion poursuivant choisit une manœuvre.
+4. Les deux joueurs annoncent simultanément les pages intermédiaires.
+5. Les deux joueurs déterminent la page finale.
 
-### Enchaînement des manoeuvres
+### Enchaînement des manœuvres
 
-Si vous avez jeté un coup d'oeil sur les aides de jeu fournies dans
+Si vous avez jeté un coup d'œil sur les aides de jeu fournies dans
 [Boardgamegeek](https://www.boardgamegeek.com/boardgame/798/ace-aces-handy-rotary-series/files),
 vous avez pu voir que lorsque le pilote  allemand va de la page 1 à la
 page 8, sa vitesse est très faible et son mouvement reste en réalité à
 l'intérieur de l'hexagone de départ. Une  fois, ça va, mais si l'avion
-effectue une telle  manoeuvre plusieurs fois d'affilée,  cela revient à
+effectue une telle  manœuvre plusieurs fois d'affilée,  cela revient à
 faire du  surplace. Pas  de problème s'il  s'agit d'un  colibri, d'une
 alouette, d'un frelon, d'un drone ou d'une gazelle (non pas
 [ce genre de gazelle](https://fr.wikipedia.org/wiki/Gazelle),
@@ -369,12 +378,12 @@ mais plutôt
 [ce genre de gazelle](https://fr.wikipedia.org/wiki/Sud-Aviation_SA340/341/342_Gazelle))
 mais  lorsqu'il s'agit  d'un Fokker  Dr.I  ou d'un  Sopwith Camel,  le
 surplace est hors de question. Il  y a donc une règle optionnelle mais
-fortement recommandée, empêchant de faire ce genre de manoeuvre au tour
+fortement recommandée, empêchant de faire ce genre de manœuvre au tour
 _n_ si l'avion en a déjà fait une au tour _n_-1.
 
-Également,  il y  a les  manoeuvres acrobatiques,  qui ne  peuvent être
-effectuées au  tour _n_ que  si l'avion  a effectué une  manoeuvre
-« tout droit » au tour _n_-1.
+Également,  il y  a les  manœuvres acrobatiques,  qui ne  peuvent être
+effectuées au tour  _n_ que si l'avion a effectué  une manœuvre « tout
+droit » au tour _n_-1.
 
 ### Altitude
 
@@ -389,30 +398,31 @@ est muette à ce sujet.
 Il y a des règles avancées, dont une qui demande de noter l'altitude à
 chaque tour  de jeu. C'est beaucoup  d'effort pour un gain  mineur, le
 jeu n'en vaut pas la chandelle.  La seule règle optionnelle qui vaille
-le coup, c'est la règle sur l'enchaînement des manoeuvres.
+le coup, c'est la règle sur l'enchaînement des manœuvres.
 
 ### Considérations diverses
 
 Lors d'un tour de jeu, vous devez garder à l'esprit :
 
-- 1 le numéro de la page initiale,
-- 2 la manoeuvre choisie
-- 3 la page intermédiaire que vous communiquez à votre adversaire,
-- 4 la page intermédiaire que votre adversaire vous indique,
-- 5 la page finale du tour,
-- 6 le nombre de points de dégâts encaissés,
-- 7 le type de manoeuvre (normale, tout droit, acrobatique, basse vitesse) si vous utilisez la règle sur les enchaînements de manoeuvres,
-- 8 optionnellement le nombre de points de dégâts infligés à votre adversaire.
+1. le numéro de la page initiale,
+2. la manœuvre choisie
+3. la page intermédiaire que vous communiquez à votre adversaire,
+4. la page intermédiaire que votre adversaire vous indique,
+5. la page finale du tour,
+6. le nombre de points de dégâts encaissés,
+7. le type de manœuvre (normale, tout droit, acrobatique, basse vitesse) si vous utilisez la règle sur les enchaînements de manœuvres,
+8. optionnellement le nombre de points de dégâts infligés à votre adversaire.
 
-On dit que la mémoire à court terme d'un humain contient 7 ± 2 informations (à part les serveurs
-de café, qui dépassent largement cette valeur). À moins d'être
-dans la catégorie inférieure, il est possible de jouer à l'_As des As_ sans avoir besoin
-de noter quoi que ce soit, ni de déplacer des marqueurs sur des tableaux. Il est possible
-de jouer à la plage, il est possible de jouer à côté de la machine à café,
-il est possible de jouer dans une salle d'attente, il est possible
-de jouer dans le bus. Et si vous êtes dans une catégorie supérieure pour cette faculté,
-vous pouvez même jouer dans le bus tout en gardant un oeil sur les arrêts restants avant
-votre destination.
+On  dit que  la mémoire  à  court terme  d'un  humain contient  7 ±  2
+informations (à  part les  serveurs de  café, qui  dépassent largement
+cette valeur).  À moins  d'être dans la  catégorie inférieure,  il est
+possible de jouer à l'_As des As_  sans avoir besoin de noter quoi que
+ce  soit, ni  de  déplacer  des marqueurs  sur  des  tableaux. Il  est
+possible de jouer  à la plage, il  est possible de jouer à  côté de la
+machine à café, il est possible  de jouer dans une salle d'attente, il
+est possible de jouer dans le bus.  Et si vous êtes dans une catégorie
+supérieure pour cette faculté, vous pouvez même jouer dans le bus tout
+en gardant un œil sur les arrêts restants avant votre destination.
 
 ## Extensions
 
@@ -466,13 +476,13 @@ _Photos personnelles. Les conditions de licence sont les mêmes que pour le text
 
 _Photos personnelles reprenant une page dans les deux livrets de Jet Eagles, copyright © 1990 Nova Game Designs, Inc._
 
-Toutes ces variantes proposent également des règles avancées, pour
-l'altitude par exemple, ou le jeu 2-contre-2, ou
-encore pour les radars et les missiles dans le cas de _Jet Eagles_.
-Hélas, ces règles avancées font perdre la compatibilité avec la capacité 7 ± 2 de la mémoire à court terme.
-À part une règle sur la compatibilité entre deux manoeuvres successives
-d'un même avion, je n'ai pas l'intention de les prendre en compte dans
-mes programmes.
+Toutes  ces variantes  proposent également  des règles  avancées, pour
+l'altitude  par exemple,  ou le  jeu  2-contre-2, ou  encore pour  les
+radars et les missiles dans le  cas de _Jet Eagles_. Hélas, ces règles
+avancées font  perdre la compatibilité  avec la capacité  7 ± 2  de la
+mémoire à  court terme. À  part une  règle sur la  compatibilité entre
+deux manœuvres successives d'un même avion, je n'ai pas l'intention de
+les prendre en compte dans mes programmes.
 
 Il y a également une extension 
 _[Balloon Buster](https://boardgamegeek.com/boardgame/5736/ace-aces-balloon-buster)_
@@ -519,24 +529,29 @@ avions de l'un des jeux existants, car si le brevet est expiré, le copyright ne
 
 # L'As des As, description des programmes
 
-Lorsque j'ai découvert le jeu, je me suis dit que finalement, ce jeu consistait à combiner des
-nombres (les numéros de page) et des symboles (les manoeuvres) pour obtenir d'autres nombres.
-L'image figurant sur chaque page a  pour but d'aider le joueur humain à choisir le bon symbole
-de manoeuvre, du moment que ce joueur a une idée suffisamment précise du vol d'un avion et qu'il connaît
-les Dicta Boelke, les conseils de Sailor Malan, l'ouvrage _No Guts, No Glory_ de « Boots » Blesse
-et autres écrits du même genre. Il est possible d'enlever tout cet habillage aéronautique pour ne
-conserver que le mécanisme abstrait reposant sur un automate à états finis éventuellement mâtiné 
-d'une dose de fonction _random_. D'où l'idée d'un programme jouant à ce jeu sans rien connaître
-du contexte réel, mais se basant uniquement sur une analyse statistique des parties passées.
+Lorsque j'ai découvert  le jeu, je me suis dit  que finalement, ce jeu
+consistait  à  combiner des  nombres  (les  numéros  de page)  et  des
+symboles  (les  manœuvres)  pour  obtenir  d'autres  nombres.  L'image
+figurant sur chaque page a pour but d'aider le joueur humain à choisir
+le  bon symbole  de  manœuvre, du  moment  que ce  joueur  a une  idée
+suffisamment  précise du  vol d'un  avion et  qu'il connaît  les Dicta
+Boelke, les conseils de Sailor Malan, l'ouvrage _No Guts, No Glory_ de
+« Boots »  Blesse et  autres écrits  du  même genre.  Il est  possible
+d'enlever tout  cet habillage  aéronautique pour  ne conserver  que le
+mécanisme   abstrait  reposant   sur   un  automate   à  états   finis
+éventuellement  mâtiné d'une  dose de  fonction _random_.  D'où l'idée
+d'un programme jouant  à ce jeu sans rien connaître  du contexte réel,
+mais  se basant  uniquement sur  une analyse  statistique des  parties
+passées.
 
 Il  y  a  deux  grandes  parties dans  le  projet.  Tout  d'abord,  la
-[préparation](#préparation),  consistant  à  produire  les  livrets  sous  forme
-électronique, en générant les fichiers plutôt qu'en tapant la totalité
-des enchaînements entre  pages et manoeuvres. Puis il y  a le [jeu](#jeu)
-proprement dit  où des  programmes combattent  l'un contre  l'autre et
-tirent la leçon de leurs combats passés. Mais avant de décrire dans le
-détail les programmes, voici les instructions pour installer le projet
-sur votre machine.
+[préparation](#préparation),  consistant à  produire les  livrets sous
+forme électronique,  en générant les  fichiers plutôt qu'en  tapant la
+totalité des  enchaînements entre pages et  manœuvres. Puis il y  a le
+[jeu](#jeu) proprement  dit où  des programmes combattent  l'un contre
+l'autre et  tirent la  leçon de  leurs combats  passés. Mais  avant de
+décrire dans  le détail  les programmes,  voici les  instructions pour
+installer le projet sur votre machine.
 
 ## Installation
 
@@ -764,7 +779,7 @@ module pour la première fois.
 
 ### Installation du projet pour l'As des As
 
-Récupérez mes oeuvres avec :
+Récupérez mes œuvres avec :
 
     git clone https://github.com/jforget/Perl6-Alpha-As-des-As-Zero.git
 
@@ -908,15 +923,15 @@ numéro de la page et le nombre de points de dégâts infligés :
      }
     }
 
-Nous voici arrivés à la partie la plus délicate, les manoeuvres. Je me
-limiterai ici aux deux manoeuvres prises comme exemples dans le brevet.
-Tout d'abord, attribuez un code à chaque manoeuvre. Pour _Wingleader_,
-pour _Jet Eagles_ et pour  certaines éditions de _Handy Rotary_, les
+Nous voici arrivés à la partie  la plus délicate, les manœuvres. Je me
+limiterai ici aux deux manœuvres prises comme exemples dans le brevet.
+Tout d'abord, attribuez un code  à chaque manœuvre. Pour _Wingleader_,
+pour _Jet  Eagles_ et pour  certaines éditions de _Handy  Rotary_, les
 codes  sont déjà  attribués,  mais  pour les  autres  jeux, il  faudra
-attribuer des codes `A` jusqu'à ... (jusqu'à `M` pour _Wingleader_,
+attribuer des  codes `A` jusqu'à  ... (jusqu'à `M`  pour _Wingleader_,
 jusqu'à `Y` pour _Handy Rotary_ et _Jet Eagles_).
 
-Ainsi donc, les manoeuvres du brevet sont les manoeuvres **A** et **J**.
+Ainsi donc, les manœuvres du brevet sont les manœuvres **A** et **J**.
 Ce qui nous donne :
 
     "manoeuvres": {
@@ -924,9 +939,9 @@ Ce qui nous donne :
       , "J": { "chemin": "?" , "virage": "?", "vitesse": "?" }
     },
 
-En regardant la ligne du haut dans le tableau des manoeuvres, on trouve
-la  vitesse :  _slow_ (lent)  pour  la manoeuvre  **A** et  _cruising_
-(vitesse de croisière) pour la manoeuvre **J**. Cela se traduit par :
+En regardant la ligne du haut dans le tableau des manœuvres, on trouve
+la  vitesse :  _slow_  (lent)  pour la  manœuvre  **A** et  _cruising_
+(vitesse de croisière) pour la manœuvre **J**. Cela se traduit par :
 
     "manoeuvres": {
         "A": { "chemin": "?" , "virage": "?", "vitesse": "0" }
@@ -937,10 +952,10 @@ En fait, la vitesse ne sert pas à grand chose. Mais elle était là dans
 les livrets du jeu, je l'ai reprise dans les fichiers init.
 
 La deuxième ligne donne la direction du virage : à gauche, en avant ou
-à droite (respectivement _left_ _straight_ et _right_). À l'inverse
-de la vitesse,  c'est une donnée importante, utilisée  pour les règles
-de poursuite  (_tailing_). Dans  notre cas, les deux  manoeuvres vont
-vers la gauche. Cela nous donne :
+à droite (respectivement _left_ _straight_ et _right_). À l'inverse de
+la vitesse, c'est  une donnée importante, utilisée pour  les règles de
+poursuite (_tailing_). Dans notre cas, les deux manœuvres vont vers la
+gauche. Cela nous donne :
 
     "manoeuvres": {
         "A": { "chemin": "?" , "virage": "G", "vitesse": "0" }
@@ -948,21 +963,21 @@ vers la gauche. Cela nous donne :
     },
 
 Pour le  chemin, nous ouvrons  le livret à  la page 187.  Depuis cette
-page, la manoeuvre **A** nous renvoie page 205 et la manoeuvre **J** nous
-renvoie page 23. Consultons les lignes correspondantes dans le fichier
-`Preparation/etape-finale.html`
+page, la  manœuvre **A** nous  renvoie page  205 et la  manœuvre **J**
+nous renvoie  page 23. Consultons  les lignes correspondantes  dans le
+fichier `Preparation/etape-finale.html`
 
 Puisque nous nous occupons d'un  méchant, il faut regarder la deuxième
 colonne. Elle nous donne la formule  du chemin, que nous insérons dans
-la spécification des manoeuvres :
+la spécification des manœuvres :
 
     "manoeuvres": {
         "A": { "chemin": ";5"  , "virage": "G", "vitesse": "0" }
       , "J": { "chemin": "5;5" , "virage": "G", "vitesse": "1" }
     },
 
-Notons que pour la page 187 du Camel, la manoeuvre **A** aurait conduit
-à la page 198 et la manoeuvre **J**  à la page 31. Pour ces deux pages,
+Notons que pour la page 187 du Camel, la manœuvre **A** aurait conduit
+à la page 198 et la manœuvre **J**  à la page 31. Pour ces deux pages,
 le fichier `etape-finale.html` file nous donne :
 
 Pour un "gentil",  il faut consulter la troisième  colonne. Comme vous
@@ -1020,7 +1035,7 @@ de `Preparation/fr/DR1-init.json`. Cela donne :
 
 Dans tout cela, faites attention  aux virgules séparant les différents
 attributs. Vous remarquerez que j'ai mis les tirs en dernière position
-et sans virgule, même si j'ai  terminé par la liste des manoeuvres, qui
+et sans virgule, même si j'ai  terminé par la liste des manœuvres, qui
 possède une virgule et qui a été insérée en avant-dernière position.
 
 Il ne reste plus qu'à faire :
@@ -1041,9 +1056,9 @@ fichier `DR1.html` qui présente les  mêmes données, mais plus faciles
 à lire que dans le format JSON.
 
 Ensuite, faites  de même avec  le Sopwith Camel.  Pour les jeux  de la
-série _As  des As_, à  l'exception du _Starfighter Battle  Book_, il
+série  _As des  As_, à  l'exception du  _Starfighter Battle  Book_, il
 existe un raccourci dans la mesure  où ces jeux sont symétriques. Vous
-pouvez  ainsi copier-coller  la liste  des manoeuvres. Il vous  faudra
+pouvez  ainsi copier-coller  la liste  des manœuvres.  Il vous  faudra
 malgré tout passer en revue le  livret Camel pour déterminer les pages
 de tir.
 
@@ -1098,21 +1113,24 @@ le dépôt Git. Du coup, les programmes étaient dans un répertoire extérieur.
 Ces programmes ont été réintégrés après coup dans le dépôt Git, avec une
 phase de nettoyage. Vous ne verrez donc pas mes tout premiers pas en Perl 6.
 
-Les programmes de ce dossier tiennent compte de la géométrie sous-jacente des pages.
-Dans un premier temps, en se basant sur un seul livret de la série, on cherche à
-retrouver l'interprétation de chaque page sur la grille hexagonale implicite.
-On commence par charger la base de données avec une page codée « en dur », 
-plus la page spéciale 223. Ensuite, le processus est itératif. On prend une page
-déjà référencée dans la base de données, puis on fournit au programme la liste des
-transitions manoeuvres -> page d'arrivée de cette page de départ. Cela permet de
-définir à quel hexagone et à quelle orientation ces pages d'arrivée correspondent.
-Au bout d'un certain temps, on a passé en revue toutes les pages du livret et donc
-on connaît la grille hexagonale entière.
+Les  programmes  de  ce  dossier   tiennent  compte  de  la  géométrie
+sous-jacente des  pages. Dans un  premier temps,  en se basant  sur un
+seul livret  de la série,  on cherche à retrouver  l'interprétation de
+chaque  page  sur la  grille  hexagonale  implicite. On  commence  par
+charger la  base de données  avec une page  codée « en dur »,  plus la
+page spéciale  223. Ensuite, le  processus est itératif. On  prend une
+page  déjà référencée  dans la  base de  données, puis  on fournit  au
+programme la liste des transitions manœuvres → page d'arrivée de cette
+page de  départ. Cela permet  de définir à  quel hexagone et  à quelle
+orientation ces  pages d'arrivée  correspondent. Au bout  d'un certain
+temps, on  a passé  en revue  toutes les  pages du  livret et  donc on
+connaît la grille hexagonale entière.
 
-Dans un deuxième temps, on initialise un fichier JSON avec les manoeuvres d'un avion,
-on croise avec la base de données de la première étape, et on génère un livret 
-donnant la liste des transitions page de départ + manoeuvre -> page d'arrivée.
-Ce livret est codé sous la forme d'un fichier JSON avec en prime un fichier HTML.
+Dans  un  deuxième temps,  on  initialise  un  fichier JSON  avec  les
+manœuvres d'un avion, on croise avec la base de données de la première
+étape, et on génère un livret donnant la liste des transitions page de
+départ + manœuvre  → page d'arrivée. Ce livret est  codé sous la forme
+d'un fichier JSON avec en prime un fichier HTML.
 
 Vous en saurez plus en lisant la
 [documentation](https://github.com/jforget/Perl6-Alpha-As-des-As-Zero/blob/master/Preparation/description-fr.pod)
@@ -1127,36 +1145,38 @@ communiquant avec deux processus joueurs. Les deux processus
 joueurs fonctionnent avec le même programme Perl 6, mais avec des
 arguments d'appel différents.
 
-Pour rester dans la même optique que Google Alpha Go Zero et Google Alpha Chess Zero,
-le programme joueur n'a aucune connaissance intrinsèque des mécanismes de vol
-et des doctrines de combat aérien. Il se contente de recevoir une liste
-de manoeuvres de l'arbitre, d'en sélectionner une et de renvoyer la réponse
-à l'arbitre.
+Pour rester  dans la même optique  que Google Alpha Go  Zero et Google
+Alpha  Chess  Zero,  le   programme  joueur  n'a  aucune  connaissance
+intrinsèque des mécanismes  de vol et des doctrines  de combat aérien.
+Il se contente  de recevoir une liste de manœuvres  de l'arbitre, d'en
+sélectionner une et de renvoyer la réponse à l'arbitre.
 
-Le programme joueur fonctionne en deux modes. Il y a le mode entraînement
-où le choix est totalement aléatoire. Et il y a le mode combat où le
-programme joueur extrait de la base de données les situations analogues
-pendant les parties précédentes pour savoir ce qui a bien marché et
-ce qui n'a pas donné de bons résultats. Il attribue des probabilités 
-plus ou moins élevées aux
-différentes manoeuvres proposées par le programme arbitre et tire au
-hasard une manoeuvre, en tenant compte de la loi de probabilité attribuée.
+Le  programme  joueur  fonctionne  en  deux modes.  Il  y  a  le  mode
+entraînement où le  choix est totalement aléatoire. Et il  y a le mode
+combat  où le  programme  joueur extrait  de la  base  de données  les
+situations analogues  pendant les  parties précédentes pour  savoir ce
+qui  a bien  marché et  ce qui  n'a pas  donné de  bons résultats.  Il
+attribue  des  probabilités  plus  ou moins  élevées  aux  différentes
+manœuvres proposées  par le  programme arbitre et  tire au  hasard une
+manœuvre, en tenant compte de la loi de probabilité attribuée.
 
-J'ai choisi une méthode aléatoire pour le choix des manoeuvres, de manière
-à éviter d'aboutir à un jeu stéréotypé, chaque programme joueur faisant
-un calcul de minimax sur les manoeuvres pour toujours obtenir le même choix
-dans la même situation. Avec un tirage aléatoire, la meilleure solution 
-est celle qui a la plus forte probabilité, mais cela n'exclut pas de temps
-en temps de choisir une manoeuvre inhabituelle « pour dérouter l'adversaire »
-(non, l'argument est foireux dans le cas d'un combat programme contre programme).
+J'ai  choisi une  méthode aléatoire  pour le  choix des  manœuvres, de
+manière  à éviter  d'aboutir  à un  jeu  stéréotypé, chaque  programme
+joueur faisant  un calcul de  minimax sur les manœuvres  pour toujours
+obtenir  le  même  choix  dans  la  même  situation.  Avec  un  tirage
+aléatoire,  la  meilleure solution  est  celle  qui  a la  plus  forte
+probabilité, mais cela  n'exclut pas de temps en temps  de choisir une
+manœuvre inhabituelle « pour  dérouter l'adversaire » (non, l'argument
+est foireux dans le cas d'un combat programme contre programme).
 
 Le programme arbitre, lui, a une meilleure connaissance des mécanismes
-de vol et de tir, mais rien sur la tactique ni la doctrine.
-C'est lui qui lit le fichier JSON créé par les programmes de préparation
-et qui connaît ainsi à quelle page on aboutit lorsque l'on exécute
-telle manoeuvre sur telle page de départ. Ce qui ne veut pas dire qu'il
-connaît la géométrie sous-jacente, il se contente d'utiliser le fichier
-JSON comme une table de transitions page de départ + manoeuvre -> page d'arrivée.
+de vol et de tir, mais rien  sur la tactique ni la doctrine. C'est lui
+qui lit le fichier JSON créé  par les programmes de préparation et qui
+connaît  ainsi à  quelle page  on aboutit  lorsque l'on  exécute telle
+manœuvre  sur telle  page de  départ. Ce  qui ne  veut pas  dire qu'il
+connaît  la  géométrie  sous-jacente,  il se  contente  d'utiliser  le
+fichier JSON comme une table de  transitions page de départ + manœuvre
+→ page d'arrivée.
 
 ### Base de données
 
@@ -1263,21 +1283,21 @@ principales variables sont initialisées. Rien de spécial à noter.
 Ensuite, c'est la boucle événementielle, qui enchaîne les tours de jeu.
 Cette boucle contient les étapes suivantes :
 
-- 1  Résolution des  tirs du coup  précédent et  détermination des
+1.  Résolution des  tirs du coup  précédent et  détermination des
 choix accessibles aux deux joueurs pour le tour en cours.
-- 2 Écriture dans la collection `Turns` des choix proposés aux deux joueurs.
-- 3 Lecture dans la collection `Turns` de la réponse de chaque joueur.
-- 4 Application des transitions page initiale -> page intermédiaire -> page finale.
-- 5 Détection de la fuite d'un avion ou des deux.
-- 6 Traitement de la fin de partie (fuite ou destruction).
+2. Écriture dans la collection `Turns` des choix proposés aux deux joueurs.
+3. Lecture dans la collection `Turns` de la réponse de chaque joueur.
+4. Application des transitions page initiale → page intermédiaire → page finale.
+5. Détection de la fuite d'un avion ou des deux.
+6. Traitement de la fin de partie (fuite ou destruction).
 
 #### Résolution des tirs
 
-La résolution du tir du tour _n_ se fait en réalité lors de l'étape 1
-du tour _n_+1.  Pourquoi ? Parce que les  tirs n'entraînent aucune
+La résolution du tir du tour _n_  se fait en réalité lors de l'étape 1
+du  tour _n_+1.  Pourquoi ?  Parce que  les  tirs n'entraînent  aucune
 décision de la part des joueurs.  Il est donc inutile de déclencher un
 mécanisme d'échange  par boîte  aux lettres pour  les tirs,  il suffit
-d'attendre le tour  suivant et la procédure de choix  de manoeuvre pour
+d'attendre le tour  suivant et la procédure de choix  de manœuvre pour
 que l'arbitre signale  au joueur combien de points de  dégâts il vient
 de  perdre.  C'est  peut-être   anti-intuitif,  mais  cela  permet  de
 simplifier les programmes.
@@ -1294,35 +1314,35 @@ deux joueurs. Cela donne alors :
 - 2A Écriture dans la collection `Turns` des choix proposés au joueur poursuivi.
 - 3A Lecture dans la collection `Turns` de la réponse du joueur poursuivi.
 - 2B Écriture dans la  collection `Turns` des choix proposés au
-joueur poursuivant, avec  indication L/C/R de la  manoeuvre choisie par
+joueur poursuivant, avec  indication L/C/R de la  manœuvre choisie par
 le poursuivi (L/C/R étant la codification anglaise pour G/A/D).
 - 3B Lecture dans la collection `Turns` de la réponse du joueur poursuivant.
 
-Lorsque le programme  arbitre demande sa prochaine  manoeuvre à l'avion
+Lorsque le programme  arbitre demande sa prochaine  manœuvre à l'avion
 poursuivant, il lui communique un  numéro de page sous forme spéciale,
 le  véritable numéro  de page  concaténé avec  la direction  L/C/R. En
-reprenant l'exemple tiré du brevet, l'avion britannique est page **1**,
-tandis que l'avion allemand est page **1L** ou  **1G**, pour tenir compte du fait
-que le britannique a choisi une manoeuvre vers la gauche. Les pages 1L / 1G,
-1C / 1A et 1R / 1D ont exactement les  mêmes transitions manoeuvre -> page finale,
-mais le joueur allemand a  trois différents groupes de « situations
-antérieures »  pour choisir  sa manoeuvre  suivante selon  qu'il est
-page  **1L**, page  **1C** ou  page **1R**.  Cela simplifie  le programme
-joueur, qui n'a  aucune procédure spéciale pour la  poursuite, au prix
-d'une  légère complexification  du programme  arbitre (qui  doit tenir
-compte de la lettre L/C/R à la suite du numéro de page, qui n'est plus
-tout-à-fait numérique).
+reprenant  l'exemple  tiré du  brevet,  l'avion  britannique est  page
+**1**, tandis  que l'avion  allemand est page  **1L** ou  **1G**, pour
+tenir compte du fait que le  britannique a choisi une manœuvre vers la
+gauche. Les pages 1L / 1G, 1C / 1A et 1R / 1D ont exactement les mêmes
+transitions manœuvre  → page finale,  mais le joueur allemand  a trois
+différents  groupes  de  « situations antérieures »  pour  choisir  sa
+manœuvre suivante  selon qu'il  est page **1L**,  page **1C**  ou page
+**1R**. Cela simplifie  le programme joueur, qui  n'a aucune procédure
+spéciale pour la  poursuite, au prix d'une  légère complexification du
+programme arbitre (qui doit tenir compte de la lettre L/C/R à la suite
+du numéro de page, qui n'est plus tout-à-fait numérique).
 
-#### Liste des manoeuvres disponibles
+#### Liste des manœuvres disponibles
 
 Cette étape ne  devrait pas donner lieu à commentaires.  Si vous jetez
-un  coup d'oeil  ci-dessous,  dans le  paragraphe  de conclusion,  vous
-verrez que  j'ai prévu un  mode _no fleeing_ (pas de fuite)  où, dans le  cadre d'un
-entraînement,  les avions  cherchent  à continuer  le  combat le  plus
-longtemps  possible. Lorsque  cette  option est  active, le  programme
-arbitre filtre les manoeuvres qu'il autorise aux programmes joueurs, il
-supprime toutes les manoeuvres conduisant à une page intermédiaire 223.
-Cas particulier, si _toutes_ les  manoeuvres conduisent à la page 223,
+un  coup d'œil  ci-dessous,  dans le  paragraphe  de conclusion,  vous
+verrez que j'ai prévu un mode _no  fleeing_ (pas de fuite) où, dans le
+cadre d'un entraînement, les avions cherchent à continuer le combat le
+plus longtemps possible. Lorsque cette option est active, le programme
+arbitre filtre les manœuvres qu'il autorise aux programmes joueurs, il
+supprime toutes les manœuvres conduisant à une page intermédiaire 223.
+Cas particulier, si  _toutes_ les manœuvres conduisent à  la page 223,
 alors le programme arbitre les laisse telles quelles.
 
 Il n'est pas possible en revanche d'éliminer les situations où la page
@@ -1352,12 +1372,12 @@ dans la collection `Games`.
 
 ### Programme `player.raku`, anciennement `joueur.p6`
 
-Le  programme `player.raku`  est basé  sur  une boucle  où, à  chaque
-itération, il  lit un coup dans  la collection `Turns` et  le réécrit
-pour indiquer à l'arbitre la manoeuvre sélectionnée.
+Le  programme `player.raku`  est  basé  sur une  boucle  où, à  chaque
+itération, il  lit un coup  dans la  collection `Turns` et  le réécrit
+pour indiquer à l'arbitre la manœuvre sélectionnée.
 
 Chaque joueur a  deux attributs numériques, utilisés pour  le choix de
-la manoeuvre suivante, la  _psycho-rigidité_ et la _perspicacité_. La
+la manœuvre  suivante, la  _psycho-rigidité_ et la  _perspicacité_. La
 psycho-rigidité  est un  nombre flottant  supérieur  ou égal  à 1,  la
 perspicacité est un nombre flottant entre 0 et 1.
 
@@ -1424,13 +1444,13 @@ E.III » et les coups « Camel contre Fokker D.VII ».
 
 #### Évaluation des situations similaires extraites
 
-«  Perspicacité »  signifie «  voir  à travers  ». À  travers
-quoi ? À travers les brumes du  temps dans notre cas. Si une partie
-se termine au tour 15, un  joueur perspicace estimera que la manoeuvre
-choisie au  tour 10 a  pu avoir une  influence sur le  résultat final,
-tandis qu'un joueur peu perspicace estimera que seule- la manoeuvre du
-tour 14 aura pu avoir une influence, ou bien à la rigueur, à l'extrême
-rigueur, celle du tour 13.
+«  Perspicacité » signifie  «  voir à  travers  ». À travers  quoi ? À
+travers les brumes  du temps dans notre cas. Si  une partie se termine
+au tour 15,  un joueur perspicace estimera que la  manœuvre choisie au
+tour 10 a  pu avoir une influence sur le  résultat final, tandis qu'un
+joueur peu perspicace estimera que seule-  la manœuvre du tour 14 aura
+pu avoir  une influence, ou  bien à  la rigueur, à  l'extrême rigueur,
+celle du tour 13.
 
 Comment  cela se  traduit-il  en termes  de  programmation ?  Voici
 quelques exemples, qui vous permettront de deviner la règle générale :
@@ -1447,71 +1467,71 @@ quelques exemples, qui vous permettront de deviner la règle générale :
      -1 VP            15           14             0,9      -0,9
      -0,5 VP          15           14             0.9      -0,45
 
-#### Évaluation des manoeuvres
+#### Évaluation des manœuvres
 
-Pour  une  manoeuvre  donnée,   le  programme  sélectionne  toutes  les
-situations  antérieures ayant  été suivies  par la  manoeuvre en  cours
-d'examen et il additionne les évaluations de ces manoeuvres. Non, on ne
+Pour  une  manœuvre  donnée,   le  programme  sélectionne  toutes  les
+situations  antérieures ayant  été suivies  par la  manœuvre en  cours
+d'examen et il additionne les évaluations de ces manœuvres. Non, on ne
 fait pas la  moyenne, on fait la  somme, ce qui donne,  en théorie, un
 nombre dans la plage de moins l'infini à plus l'infini.
 
-#### Choix de la manoeuvre
+#### Choix de la manœuvre
 
 C'est  à  ce  moment   qu'intervient  la  psycho-rigidité.  Un  pilote
-psycho-rigide préférera  de loin choisir **la**  manoeuvre la meilleure,
+psycho-rigide préférera de loin  choisir **la** manœuvre la meilleure,
 de préférence à  n'importe quelle autre. Un pilote un  peu plus souple
-choisira, de temps en temps, une manoeuvre qui n'est pas optimale, mais
+choisira, de temps en temps, une manœuvre qui n'est pas optimale, mais
 qui peut ouvrir des horizons inhabituels.
 
-Le programme affecte des « poids » à chaque manoeuvre, en prenant la
+Le programme  affecte des « poids »  à chaque manœuvre, en  prenant la
 psycho-rigidité du pilote et en l'élevant à la puissance correspondant
-à l'évaluation de la manoeuvre. Une fois les poids calculés pour toutes
-les  manoeuvres, le  programme les  normalise pour  avoir  une loi  de
+à l'évaluation de la manœuvre. Une fois les poids calculés pour toutes
+les  manœuvres, le  programme  les  normalise pour  avoir  une loi  de
 probabilité (P(A), P(B),  P(C)...). Pour faciliter le  tirage au sort,
 le  programme  convertit  cette  loi de  probabilité  en  fonction  de
 répartition (P(A),  P(A+B), P(A+B+C)...). Enfin, le  programme tire un
 nombre  pseudo-aléatoire dans  l'intervalle  0..1, le  croise avec  la
-fonction de répartition et en déduit la manoeuvre tirée au sort.
+fonction de répartition et en déduit la manœuvre tirée au sort.
 
 C'est  plus clair  avec quelques  exemples. Supposons  que nous  ayons
-trois manoeuvres, avec respectivement les  évaluations -2, 1 et 2. Pour
+trois manœuvres, avec respectivement les  évaluations -2, 1 et 2. Pour
 un premier pilote, très psycho-rigide (10), nous avons
 
-    manoeuvre évaluation  poids    probabilité   répartition
+    manœuvre  évaluation  poids    probabilité   répartition
         A        -2         0,01      0,000091    0,000091
         B         1        10         0,090901    0,090992
         C         2       100         0,909008    1
       total               110,01      1,000000
 
 Si  le  nombre  aléatoire  tiré  est dans  l'intervalle  de  9,1e-5  à
-0,090992, on prend la manoeuvre B. Si ce nombre aléatoire est supérieur
-à 0,090992, alors c'est la manoeuvre  C. Enfin, dans les cas rarissimes
-où le nombre est inférieur à 9,1e-5, on prend la manoeuvre A.
+0,090992, on prend la manœuvre B. Si ce nombre aléatoire est supérieur
+à 0,090992, alors c'est la manœuvre  C. Enfin, dans les cas rarissimes
+où le nombre est inférieur à 9,1e-5, on prend la manœuvre A.
 
-Avec  les  mêmes manoeuvres,  prenons  maintenant  un pilote  très  peu
+Avec  les  mêmes manœuvres,  prenons  maintenant  un pilote  très  peu
 psycho-rigide (1,1). Les différents calculs donnent :
 
-    manoeuvre évaluation  poids       probabilité  répartition
+    manœuvre  évaluation  poids       probabilité   répartition
         A        -2         0,826446   0,2634976   0,2634976
         B         1         1,1        0,35071543  0,61421303
         C         2         1,21       0,38578697  1
       total                 3,136446   1,00000000
 
-Ainsi qu'on  peut le voir,  les trois manoeuvres ont  des probabilités
+Ainsi qu'on  peut le  voir, les trois  manœuvres ont  des probabilités
 voisines  d'un  tiers,  avec  quand  même  une  légère  mais  sensible
-préférence pour la manoeuvre C.
+préférence pour la manœuvre C.
 
 #### Parties d'entraînement
 
 Si vous  baissez la psycho-rigidité  jusqu'à 1, vous voyez  sans peine
-que  toutes les  manoeuvres ont  la même probabilité,  peu importe  le
+que  toutes les  manœuvres ont  la  même probabilité,  peu importe  le
 nombre de situations antérieures où  elles apparaissent et quel fut le
 résultat final  de la partie.  Donc, pour les  parties d'entraînement,
 j'utilise des pilotes anonymes avec une psycho-rigidité de 1. De plus,
-lorsque le programme `player.raku`  constate que la psycho-rigidité est
+lorsque le programme `player.raku` constate que la psycho-rigidité est
 à 1, il ne se fatigue pas à extraire les situations antérieures, à les
 évaluer  et à  mouliner les  nombres obtenus.  Il prend  la liste  des
-manoeuvres disponibles et  en tire une au sort  (instruction `pick` de
+manœuvres disponibles  et en tire  une au sort (instruction  `pick` de
 Raku).
 
 #### Fin de partie
@@ -1534,13 +1554,13 @@ programme `lib/player-turn-page.rakumod`, les informations  affichées sont un p
 compliquées,  mais elles  reproduisent le  processus décisionnel  déjà
 présenté dans le programme `player.raku`.
 
-Les  pages générées  par les  programmes `lib/xxx-page.rakumod`  sont
+Les  pages générées  par  les  programmes `lib/xxx-page.rakumod`  sont
 bâties  autour  d'une  liste  dynamique. Une  liste  de  parties  pour
-`lib/game-list-page.rakumod`,  une   liste  de  tours  de   jeu  pour
-`lib/game-page.rakumod`  (en fait,  il s'agit  d'un tableau,  mais le
-principe est  le même) et  une liste de  manoeuvres plus une  liste de
+`lib/game-list-page.rakumod`,  une   liste  de   tours  de   jeu  pour
+`lib/game-page.rakumod`  (en fait,  il  s'agit d'un  tableau, mais  le
+principe est  le même)  et une  liste de manœuvres  plus une  liste de
 tours    de     joueurs    pour     des    parties     passées    pour
-`lib/player-turn-page.rakumod`.   Voici  comment   ces  listes   sont
+`lib/player-turn-page.rakumod`.   Voici   comment  ces   listes   sont
 générées.
 
 Tout d'abord, le sous-répertoire `html` contient une version statique
@@ -1596,7 +1616,7 @@ Pis, dans le cas d'engins et de créatures nouveaux, il faudrait que je
 les dessine, ce qui serait encore plus chronophage.
 
 D'un autre  côté, cela serait bien  si les pages servies  par Bailador
-pouvaient contenir  les flèches  de manoeuvres,  et pas  seulement les
+pouvaient  contenir les  flèches de  manœuvres, et  pas seulement  les
 codes alphabétiques.
 
 Q. Mais on peut voir sur le web  des pages ou des vidéos avec des gens
@@ -1660,20 +1680,21 @@ R. Je connais le  concept de chaîne de Markov, mais  je ne l'ai jamais
 utilisé. Je ne peux dont pas  donner un avis fiable. Je peux toutefois
 dire qu'il  y a un problème  combinatoire. À part Wingleader  (2GM) et
 Early Craft  (début de la  1GM), les livrets  ont toujours plus  de 20
-manoeuvres par page. Donc, pour une situation donnée, vous avez plus de
+manœuvres par page. Donc, pour une situation donnée, vous avez plus de
 400 possibilités. Et  même avec Wingleader, le  nombre de possibilités
 pour chaque page est de 169.
 
 Q.  Est-ce qu'un  programme peut  tenir  compte des  habitudes et  des
-préférences de son adversaire pour orienter le choix de sa manoeuvre ?
+préférences de son adversaire pour orienter le choix de sa manœuvre ?
 
 R. Non, le  programme joueur ne cherche pas à  identifier un schéma de
-pensée dans les manoeuvres de son adversaire. Il se contente d'extraire
+pensée dans les manœuvres de son adversaire. Il se contente d'extraire
 les coups  des parties passées,  de mouliner des statistiques  et d'en
 déduire  des probabilités.  Cela dit,  comme je  l'ai signalé  dans le
-paragraphe ["Liste des manoeuvres disponibles"](#liste-des-manoeuvres-disponibles), il se peut que l'option
-`--no-fleeing` (pas de fuite) pour  les parties d'entraînement ait  introduit un biais
-dans la base de données.
+paragraphe
+["Liste des manœuvres disponibles"](#liste-des-manœuvres-disponibles),
+il se peut que l'option `--no-fleeing` (pas de fuite) pour les parties
+d'entraînement ait introduit un biais dans la base de données.
 
 Q. Est-il possible de mettre face à face un joueur humain et un joueur
 IA ?
@@ -1681,7 +1702,7 @@ IA ?
 R. Oui,  il serait assez simple  d'écrire un programme de  joueur, qui
 assure  la liaison  entre un  joueur humain  et le  processus arbitre,
 prenant la place du programme joueur qui mouline les statistiques pour
-choisir sa  manoeuvre. Il y a toutefois un  problème de temps  de jeu.
+choisir sa  manœuvre. Il y  a toutefois un  problème de temps  de jeu.
 J'ai introduit des garde-fous pour éviter  les boucles sans fin. Si le
 processus  arbitre ne  reçoit pas  de  réponse de  l'un des  processus
 joueurs au  bout d'une cinquantaine  de secondes, il considère  que le
@@ -1690,7 +1711,7 @@ d'interrompre la partie. De même, si un processus joueur ne reçoit pas
 de  réponse du  processus  arbitre.  En théorie,  cette  limite de  50
 secondes devrait convenir pour un jeu  avec un ou deux humains. Le jeu
 simule un  combat aérien, donc  une action  avec un cycle  de décision
-rapide et si un joueur passe cinq minutes à décider d'une manoeuvre, il
+rapide et si un joueur passe cinq minutes à décider d'une manœuvre, il
 a tout  faux. Mais  dans la  vraie vie,  il peut  se produire  que des
 circonstances empêchent  un joueur  de répondre dans  les délais  : le
 téléphone sonne, ou  bien la sonnette de la porte  d'entrée, le four à
@@ -1778,7 +1799,7 @@ expérimentation.
 
 En revanche, nous devrions pouvoir  retrouver la règle consistant à ne
 pas changer de  direction de virage. Cette règle n'a  pas émergé parce
-que le nombre de parties jouées  est trop faible. J'ai davantage oeuvré
+que le nombre de parties jouées  est trop faible. J'ai davantage œuvré
 sur  la partie  programmation que  sur la  constitution d'une  base de
 connaissances avec un nombre significatif de parties.
 
@@ -1917,14 +1938,17 @@ modules Perl 5 nécessaires pour certaines étapes de cette compilation ou des t
 l'on compile Rakudo Star tous les matins, les modules utilitaires sont déjà installés et 
 les étapes de la compilation prennent moins de temps que le premier jour.
 
-Après les Journées Perl, j'ai réinitialisé ma machine xubuntu-16.10 64 bits en remplaçant par une distribution
-xubuntu-18.04 64 bits. Il existe pour cette distribution des paquets NQP, Perl 6 et Rakudo.
-Toutefois, pour avoir le coeur net, j'ai préféré installer Rakudo Star à partir des sources.
-J'ai repris le même script que précédemment, auquel j'ai ajouté quelques appels à `ifconfig`
-pour avoir le nombre d'octets échangés avec Internet. De manière étonnante, l'installation
-totale a duré moins de 25 minutes ! Et à part le chargement de `rakudo-star-2018.01.tar.gz`,
-il n'y a eu quasiment aucun trafic réseau pendant l'installation, donc aucun module
-Perl 5 n'a été installé.
+Après les Journées Perl, j'ai réinitialisé ma machine xubuntu-16.10 64
+bits  en remplaçant  par une  distribution xubuntu-18.04  64 bits.  Il
+existe  pour cette  distribution des  paquets NQP,  Perl 6  et Rakudo.
+Toutefois, pour avoir le cœur  net, j'ai préféré installer Rakudo Star
+à partir  des sources.  J'ai repris le  même script  que précédemment,
+auquel j'ai ajouté  quelques appels à `ifconfig` pour  avoir le nombre
+d'octets échangés avec Internet.  De manière étonnante, l'installation
+totale  a duré  moins  de  25 minutes ! Et  à  part  le chargement  de
+`rakudo-star-2018.01.tar.gz`,  il  n'y  a eu  quasiment  aucun  trafic
+réseau  pendant  l'installation, donc  aucun  module  Perl 5  n'a  été
+installé.
 
 En 2020,  j'ai retenté  l'expérience en compilant  Rakudo-Star 2019.03
 sur une  machine virtuelle. J'ai  donc créé un machine  virtuelle avec
