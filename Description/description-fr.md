@@ -20,10 +20,7 @@ de caractères basé sur une interface entre un humain (fournissant
 le moteur de reconnaissance de caractères) et une
 machine (pour la base de données). J'aurais pu le présenter autrement.
 
-<div>
-
-    <img src='comparaison-l-1.png' alt='Comparaison entre une cellule l (Lima) et un glyphe 1 (unité)' />
-</div>
+![Comparaison entre une cellule l (Lima) et un glyphe 1 (unité)](comparaison-l-1.png)
 
 _Copie d'écran personnelle. Les conditions de licence sont les mêmes que pour le texte._
 
@@ -121,6 +118,8 @@ sous le titre
 
 J'en ai eu cinq, dont deux édités par Gallimard et trois par Solar, il m'en reste quatre.
 
+![Quatres livres dont vous êtes le héros](Les_livres_dont_vous_etes_le_heros.jpg)
+
 _Photo personnelle. Les conditions de licence sont les mêmes que pour le texte._
 
 # L'As des AS, le Jeu
@@ -128,6 +127,8 @@ _Photo personnelle. Les conditions de licence sont les mêmes que pour le texte.
 En 1981, un dénommé Alfred Leonardi a déposé un brevet pour un
 nouveau type de jeu, mis au point avec Douglas Kaufman. Au lieu de réunir les deux joueurs sur une même
 carte où ils poussent des pions, chaque joueur est muni d'un livret.
+
+![Exemple de partie](pic1051809-l.jpg)
 
 _Photo prise par Chris Norwood et publiée sur [Boardgame Geek](https://boardgamegeek.com/image/1051809/ace-aces-handy-rotary-series?size=large). 
 Licence [Creative Commons Attribution 3.0 Unported, CC BY 3.0](https://creativecommons.org/licenses/by/3.0/)._
@@ -138,6 +139,8 @@ Le brevet donne un exemple de tour de jeu. Les deux joueurs commencent
 le tour page 1. Dans les deux  livrets, cette page montre que les deux
 avions ont le même cap et que le  Dr.I est dans les 4 heures du Camel,
 c'est-à-dire que le Camel est dans les 10 heures du Dr.I.
+
+![Page 1 dans les deux livrets](Page-1-GB-All.png)
 
 _Copies d'écran provenant du brevet USP 4,378,118, dans le domaine public depuis 2001._
 
@@ -153,6 +156,8 @@ Simultanément, le Britannique choisit la manœuvre en dessous de « EF »
 
 \-- Et toi, tu vas page 48.
 
+![Page 1, flèche pointant vers la page 8 et flèche pointant vers la page 48](Manoeuvre-1-8-48.png)
+
 _Copies d'écran provenant du brevet USP 4,378,118, dans le domaine public depuis 2001._
 
 Le  joueur allemand  ouvre  son livret  page 48  et  applique la  même
@@ -160,12 +165,16 @@ manœuvre que précédemment, ce qui donne la page 96. De même, le joueur
 britannique ouvre  son livret  page 8, repère  la manœuvre  choisie et
 obtient le même numéro de page, 96.
 
+![Livret allemand page 48 et livret britannique page 8](Pages-48-8.png)
+
 _Copies d'écran provenant du brevet USP 4,378,118, dans le domaine public depuis 2001._
 
 La page finale du tour est donc la page 96. Et comme vous pouvez le voir,
 non seulement l'As des As est un précurseur des liens hypertextes, mais
 c'est aussi un précurseur des jeux de tir en vision subjective
 (_First Person Shooters_ en anglais), une douzaine d'années avant Wolfenstein 3D et Doom.
+
+![Livret allemand page 96 et livret britannique page 96](Page-96-All-GB.png)
 
 _Copies d'écran provenant du brevet USP 4,378,118, dans le domaine public depuis 2001._
 
@@ -186,10 +195,7 @@ les voitures sont garées à proximité du bâtiment et il y a donc un large esp
 peu plus loin. Dans cet espace libre, se trouvent une Mini Austin et une VW Coccinelle
 disposées ainsi (prenez les images en trait plein) :
 
-<div>
-
-    <img src='Exp-1-A.png' alt='Position de départ des deux voitures' />
-</div>
+![Position de départ des deux voitures](Exp-1-A.png)
 
 _Image personnelle. Les conditions de licence sont les mêmes que pour le texte._
 _Copie d'écran provenant du brevet USP 4,378,118, dans le domaine public depuis 2001._
@@ -198,10 +204,7 @@ Cela correspond à la page 1 des deux livrets.
 
 Maintenant, imaginons que la VW fasse ce mouvement pendant que la Mini reste immobile.
 
-<div>
-
-    <img src='Exp-1-B.png' alt="Mini dans sa position de départ et VW dans sa position d'arrivée" />
-</div>
+![Mini dans sa position de départ et VW dans sa position d'arrivée](Exp-1-B.png)
 
 _Image personnelle. Les conditions de licence sont les mêmes que pour le texte._
 _Copie d'écran provenant du brevet USP 4,378,118, dans le domaine public depuis 2001._
@@ -209,30 +212,21 @@ _Copie d'écran provenant du brevet USP 4,378,118, dans le domaine public depuis
 On obtient alors la disposition de la page 8. À ce moment-là, la Coccinelle s'arrête
 et l'Austin démarre en faisant ce mouvement
 
-<div>
-
-    <img src='Exp-1-C.png' alt="Position d'arrivée des deux voitures" />
-</div>
+![Position d'arrivée des deux voitures](Exp-1-C.png)
 
 _Image personnelle. Les conditions de licence sont les mêmes que pour le texte._
 _Copie d'écran provenant du brevet USP 4,378,118, dans le domaine public depuis 2001._
 
 Le résultat est celui de la page 96.
 
-<div>
-
-    <img src='Exp-1-D.png' alt="Position d'arrivée des deux voitures" />
-</div>
+![Position d'arrivée des deux voitures](Exp-1-D.png)
 
 _Image personnelle. Les conditions de licence sont les mêmes que pour le texte._
 _Copie d'écran provenant du brevet USP 4,378,118, dans le domaine public depuis 2001._
 
 Deuxième étape de l'expérience. Les deux voitures se remettent dans la disposition correspondant à la page 1.
 
-<div>
-
-    <img src='Exp-2-A.png' alt='Position de départ des deux voitures' />
-</div>
+![Position de départ des deux voitures](Exp-2-A.png)
 
 _Image personnelle. Les conditions de licence sont les mêmes que pour le texte._
 _Copie d'écran provenant du brevet USP 4,378,118, dans le domaine public depuis 2001._
@@ -240,20 +234,14 @@ _Copie d'écran provenant du brevet USP 4,378,118, dans le domaine public depuis
 Puis c'est la Mini qui bouge la première pendant que la VW reste immobile.
 On aboutit alors à la disposition de la page 48.
 
-<div>
-
-    <img src='Exp-2-B.png' alt="VW dans sa position de départ et Mini dans sa position d'arrivée" />
-</div>
+![VW dans sa position de départ et Mini dans sa position d'arrivée](Exp-2-B.png)
 
 _Image personnelle. Les conditions de licence sont les mêmes que pour le texte._
 _Copie d'écran provenant du brevet USP 4,378,118, dans le domaine public depuis 2001._
 
 Et lorsque la Coccinelle effectue son mouvement, on aboutit à la configuration de la page 96.
 
-<div>
-
-    <img src='Exp-2-C.png' alt="Position d'arrivée des deux voitures" />
-</div>
+![Position d'arrivée des deux voitures](Exp-2-C.png)
 
 _Image personnelle. Les conditions de licence sont les mêmes que pour le texte._
 _Copie d'écran provenant du brevet USP 4,378,118, dans le domaine public depuis 2001._
@@ -262,10 +250,7 @@ Troisième étape. Les voitures se remettent dans la position de la page 1, puis
 _simultanément_ leur mouvement. Comme les deux fois précédentes, on obtient la disposition de
 la page 96.
 
-<div>
-
-    <img src='Exp-3-B.png' alt="Position d'arrivée des deux voitures" />
-</div>
+![Position d'arrivée des deux voitures](Exp-3-B.png)
 
 _Image personnelle. Les conditions de licence sont les mêmes que pour le texte._
 _Copie d'écran provenant du brevet USP 4,378,118, dans le domaine public depuis 2001._
@@ -276,10 +261,7 @@ l'espace aérien de la Picardie ou des Flandres.
 
 ### Cas particulier, la page 223.
 
-<div>
-
-    <img src='page-223.jpeg' alt='Image de la page 223 : aucun avion ennemi, seulement des nuages' />
-</div>
+![Image de la page 223 : aucun avion ennemi, seulement des nuages](page-223.jpeg)
 
 _Photo personnelle reprenant une page de Handy Rotary, copyright © 1986 Nova Game Designs, Inc., image copyright © 1986 Emithill limited_
 
@@ -307,10 +289,7 @@ tout droit à vitesse moyenne. Si l'on applique d'abord le mouvement du
 Camel, le Dr.I le perd de  vue temporairement et la page intermédiaire
 est la page 223, sur laquelle aucune manœuvre n'est indiquée.
 
-<div>
-
-    <img src='Page-223-a.png' alt="Mouvement britannique aboutissant à la page 223" />
-</div>
+![Mouvement britannique aboutissant à la page 223](Page-223-a.png)
 
 _Image personnelle. Les conditions de licence sont les mêmes que pour le texte._
 
@@ -318,10 +297,7 @@ En revanche,  si l'on applique  d'abord la  manœuvre du Dr.I,  la page
 intermédiaire est la  page 60 où le Camel est  à distance moyenne dans
 les 11 heures du Dr.I.
 
-<div>
-
-    <img src='Page-223-b.png' alt="Mouvement allemand de la page 180 à la page 60" />
-</div>
+![Mouvement allemand de la page 180 à la page 60](Page-223-b.png)
 
 _Image personnelle. Les conditions de licence sont les mêmes que pour le texte._
 
@@ -329,10 +305,7 @@ Puis on applique le  mouvement du Camel, ce qui donne  la page 180. Il
 n'est plus possible  de vérifier que la page finale  est la même selon
 les deux déterminations, mais tant pis.
 
-<div>
-
-    <img src='Page-223-c.png' alt="Mouvement britannique de la page 60 à la page 180" />
-</div>
+![Mouvement britannique de la page 60 à la page 180](Page-223-c.png)
 
 _Image personnelle. Les conditions de licence sont les mêmes que pour le texte._
 
@@ -462,17 +435,11 @@ beaucoup plus récent du
 même nom chez GMT. Si vous êtes intéressé par le jeu décrit et que vous voulez l'acheter
 par correspondance, vérifiez bien qu'il s'agit du bon jeu.
 
-<div>
-
-    <img src='As-des-As-Wingleader-Jet-Eagles.png' alt="L'As des As,  Première Guerre Mondiale, Seconde Guerre Mondiale et Guerre Froide" />
-</div>
+![L'As des As, Première Guerre Mondiale, Seconde Guerre Mondiale et Guerre Froide](As-des-As-Wingleader-Jet-Eagles.png)
 
 _Photos personnelles. Les conditions de licence sont les mêmes que pour le texte._
 
-<div>
-
-    <img src='Jet-Eagles-96.png' alt="Page 96 pour Jet Eagles, livret 'Red Force' et  livret 'Blue Force'" />
-</div>
+![Page 96 pour Jet Eagles, livret 'Red Force' et  livret 'Blue Force'](Jet-Eagles-96.png)
 
 _Photos personnelles reprenant une page dans les deux livrets de Jet Eagles, copyright © 1990 Nova Game Designs, Inc._
 
@@ -497,10 +464,7 @@ traduit par Gallimard avec le titre _les Maîtres des Dragons_
 et une série dont je n'avais jamais entendu parler avant de rédiger ces explications,
 _[Lost Worlds](https://boardgamegeek.com/boardgame/3969/lost-worlds-adventure-set-i-ruins-ancients)_.
 
-<div>
-
-    <img src='Le_sherif_et_le_hors-la-loi.png' alt="Le Shérif et le Hors-la-loi" />
-</div>
+![Le Shérif et le Hors-la-loi](Le_sherif_et_le_hors-la-loi.png)
 
 _Photos personnelles reprenant « Le Shérif et le Hors-la-loi », Copyright © 1982 Nova Games Design Inc, copyright © 1986 Emithill Limited,
 copyright © 1986 Gallimard pour la traduction française et pour les illustrations de couverture._
@@ -939,6 +903,8 @@ Ce qui nous donne :
       , "J": { "chemin": "?" , "virage": "?", "vitesse": "?" }
     },
 
+![Livret allemand page 48](Page-48-All.png)
+
 En regardant la ligne du haut dans le tableau des manœuvres, on trouve
 la  vitesse :  _slow_  (lent)  pour la  manœuvre  **A** et  _cruising_
 (vitesse de croisière) pour la manœuvre **J**. Cela se traduit par :
@@ -967,6 +933,10 @@ page, la  manœuvre **A** nous  renvoie page  205 et la  manœuvre **J**
 nous renvoie  page 23. Consultons  les lignes correspondantes  dans le
 fichier `Preparation/etape-finale.html`
 
+| 23  | 5;5 | 3;1 | A 30  | ... |
+---------------------------------
+| 205 | ;5  | ;1  | A 213 | ... |
+
 Puisque nous nous occupons d'un  méchant, il faut regarder la deuxième
 colonne. Elle nous donne la formule  du chemin, que nous insérons dans
 la spécification des manœuvres :
@@ -979,6 +949,10 @@ la spécification des manœuvres :
 Notons que pour la page 187 du Camel, la manœuvre **A** aurait conduit
 à la page 198 et la manœuvre **J**  à la page 31. Pour ces deux pages,
 le fichier `etape-finale.html` file nous donne :
+
+| 31  | 3;1 | 5;5 | A 2   | ... |
+---------------------------------
+| 198 | ;1  | ;5  | A 187 | ... |
 
 Pour un "gentil",  il faut consulter la troisième  colonne. Comme vous
 pouvez le voir, nous obtenons les mêmes formules `5;5` et `;5`.
@@ -1787,7 +1761,7 @@ pour les combats ultérieurs. J'ai donc créé une option _--no-fleeing_ (pas de
 choix de l'attaque est privilégié par rapport à la fuite.
 
 Mon but avec ce projet était de montrer que les _Dikta Boelke_  et les 
-_règles de Sailor Malan|https://fr.wikipedia.org/wiki/Sailor\_Malan#Les\_10\_r%C3%A8gles\_du\_combat\_a%C3%A9rien\_par\_Sailor\_Malan_
+[règles de Sailor Malan](https://fr.wikipedia.org/wiki/Sailor\_Malan#Les\_10\_r%C3%A8gles\_du\_combat\_a%C3%A9rien\_par\_Sailor\_Malan_)
 peuvent se  déduire d'une  expérimentation du  type Alpha-_xxx_-Zéro.
 Certes, on  ne pourra  pas tout retrouver.  Par exemple,  Sailor Malan
 recommande de  tourner suffisamment souvent  et de ne jamais  voler en
@@ -2275,10 +2249,7 @@ j'ai enfin trouvé ce que je cherchais, la
 
 ### Notation fonctionnelle
 
-<div>
-
-    <img src='gof.png' width='45%' alt='Diagramme de Venn de la composition de deux fonctions' />
-</div>
+![Diagramme de Venn de la composition de deux fonctions](gof.png)
 
 _Image personnelle. Les conditions de licence sont les mêmes que pour le texte._
 
@@ -2306,10 +2277,7 @@ la fonction logarithme, la fonction cosinus, vous en prenez la valeur absolue
 puis la racine carrée.
 En dessinant un diagramme de Venn, cela donne :
 
-<div>
-
-    <img src='hogof.png' width='45%' alt='Diagramme de Venn de la composition de quatre fonctions' />
-</div>
+![Diagramme de Venn de la composition de quatre fonctions](hogof.png)
 
 _Image personnelle. Les conditions de licence sont les mêmes que pour le texte._
 
