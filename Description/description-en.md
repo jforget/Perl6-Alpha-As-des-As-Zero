@@ -1,24 +1,20 @@
--*- encoding: utf-8; indent-tabs-mode: nil -*-
+# Introduction
 
-=encoding utf-8
-
-=head1 Introduction
-
-This document is not an exact translation of F<description-fr.pod>.
+This document is not an exact translation of `description-fr.pod`.
 The documents are about two years apart. In the interim Perl 6 has been renamed
 Raku and I have learned much about this language. And I have removed
 a few jokes which would puzzle the readers who does not share the same background
 as me.
 
-This project was what is called I<Conference-driven development>.
+This project was what is called _Conference-driven development_.
 In 2018, I was looking for a project which could use Raku and MongoDB and
 which could be interesting to the audience of the French Perl Workshop.
 So I dug out from the depths of my memory an idea I had in the early 1980's
 when I discovered Nova Games'
-L<"Ace of Aces"|https://boardgamegeek.com/boardgame/798/ace-aces-handy-rotary-series>. 
+["Ace of Aces"](https://boardgamegeek.com/boardgame/798/ace-aces-handy-rotary-series). 
 Only later did I discover
 that I could use Bailador, the Raku port of
-L<Dancer2|http://perldancer.org/>
+[Dancer2](http://perldancer.org/)
 and that the conference
 would be within a few weeks of the 100th anniversary of Richthofen's death
 and of the 100th anniversary of the creation of the RAF. If you extend the
@@ -26,18 +22,18 @@ celebration window to a few months, it was also the 100th anniversary of
 Guynemer's passing and of the 1918 armistice.
 
 So, what is it about?
-A few years ago, we learned that Google had experimented with I<supervised machine learning>
+A few years ago, we learned that Google had experimented with _supervised machine learning_
 writing Google Alpha Go, a program to play Go. Then we learned about another
 experiment, Google Alpha Go Zero and the chess equivalent Google
-Alpha Chess Zero, which were I<unsupervised machine learning>
-or I<machine self-learning>.
+Alpha Chess Zero, which were _unsupervised machine learning_
+or _machine self-learning_.
 
 The software knows only the rules of the game and how to determine the result
 of a game that has ended (win / draw / loss). It knows absolutely nothing about
 the tactics or the strategy of the game. Then the software plays a huge 
 number of games against itself, analyses the results and learns which are the
 good moves and which are the bad moves.
- 
+
 This idea of machine self-learning did not appear in 2017 or 2018. I have read an article
 in the 1970's describing what would be such a system for tic-tac-toe.
 A few years later, when I discovered Nova Games' Ace of Aces, I thought that
@@ -45,25 +41,19 @@ this game, much more complicated than tic-tac-toe but hugely simpler than chess,
 could be the ground for a similar self-learning system. For more than thirty years,
 this idea was not implemented, until I decided to prepare this talk for FPW 2018.
 
-=head2 A Sidenote about Hypertext Links Forerunners
+## A Sidenote about Hypertext Links Forerunners
 
 When did we begin to number the pages of a book (or of a papyrus roll)?
 When did we write for the first time "please see page #"?
 When did we add an index of important words at the end of a book?
-When did we write a book with an I<intensive> use of "see page #" references?
+When did we write a book with an _intensive_ use of "see page #" references?
 
 With the rise of natural sciences, especially botany, in the 18th century,
 several books describing the flora of various regions were published. My father
 showed me one of them, published in the 1950's and organised in a Q&A manner.
 
-=for html
-<blockquote>
-
-In the leaves, how are the veins organized? If they are parallel, see page 17.
-If they build a tree-like network, see page 33.
-
-=for html
-</blockquote>
+> In the leaves, how are the veins organized? If they are parallel, see page 17.
+> If they build a tree-like network, see page 33.
 
 And on pages 17 and 33, you would find other questions, other answers and other
 target page numbers.
@@ -71,14 +61,8 @@ target page numbers.
 I have been told that in the 1960's, IBM published hardware maintenance manuals
 based on a similar principle:
 
-=for html
-<blockquote>
-
-If smoke pours out of the disk drive, see page 17. If it goes "crrr crrr crrr", see
-page 33.
-
-=for html
-</blockquote>
+> If smoke pours out of the disk drive, see page 17. If it goes "crrr crrr crrr", see
+> page 33.
 
 The questions above are apocryphal, of course, but you can see the pattern.
 
@@ -87,64 +71,51 @@ in the world". In dictionaries, what is space consuming is the definitions. So
 by getting rid of the definitions, we can considerably reduce the size of the
 dictionary. The skit performers gave a few examples. One I remember would give this in English:
 
-  Clown: see circus
-  Circus: see circle
-  Circle: see club
-  Club: see member
-  Member: see parliament
-  Parliament: see politician
-  Politician: see clown
+> Clown: see circus           \
+> Circus: see circle          \
+> Circle: see club            \
+> Club: see member            \
+> Member: see parliament      \
+> Parliament: see politician  \
+> Politician: see clown
 
-=head3 Warlock of the Firetop Mountain and its Legacy
+### Warlock of the Firetop Mountain and its Legacy
 
 In 1982, a new kind of book was published. The first title was
-L<Warlock of the Firetop Mountain|http://fightingfantasy.wikia.com/wiki/The_Warlock_of_Firetop_Mountain_(book)>. 
+[Warlock of the Firetop Mountain](http://fightingfantasy.wikia.com/wiki/The_Warlock_of_Firetop_Mountain_\(book\)). 
 In this kind of book, the player would choose how the story would develop. For example:
 
-=for html
-<blockquote>
-
-Paragraph 1. You enter an inn. In the back of the main room, you see the innkeeper
-cleaning a few glasses. On your left, in a dark corner, a man sits alone at a table, his
-head covered by a black hood. On your right, you see (and hear) some boisterous 
-mountain dwarves quaffing beer and laughing loudly. What do you do? You speak to
-the innkeeper, go to paragraph 17. You sit down beside the hooded man, go to paragraph
-33. You hail the dwarves with the words "Hello lawn ornaments!", go to paragraph 52.
-
-=for html
-</blockquote>
+> Paragraph 1. You enter  an inn. In the back of the  main room, you see
+> the innkeeper cleaning a few glasses.  On your left, in a dark corner,
+> a man sits alone at a table, his head covered by a black hood. On your
+> right, you  see (and hear)  some boisterous mountain  dwarves quaffing
+> beer and laughing loudly. What do  you do? You speak to the innkeeper,
+> go  to  paragraph 17.  You  sit  down beside  the  hooded  man, go  to
+> paragraph  33\.  You hail  the  dwarves  with  the words  "Hello  lawn
+> ornaments!", go to paragraph 52.
 
 I had five of these books, in French. One is lost and I still have the four others.
 
-=for HTML
-<img src='Les_livres_dont_vous_etes_le_heros.jpg' alt="Four interactive books" width='85%' />
+_Personal picture. License is the same as for the text._
 
-I<Personal picture. License is the same as for the text.>
-
-=head1 Ace of Aces, the Game
+# Ace of Aces, the Game
 
 In 1981, Alfred Leonardi filed a patent for a new type of game, which he had
 developed with Douglas Kaufman. Instead of gathering two players in the same room around
 the same game map and making them push cardboard markers, each player has a booklet
 in which each page shows a plane seen from the cockpit of another plane.
 
-=for HTML
-<img src='pic1051809-l.jpg' alt="Example of game" width='85%' />
+_Picture taken by Chris Norwood and published on [Boardgame Geek](https://boardgamegeek.com/image/1051809/ace-aces-handy-rotary-series?size=large). 
+License [Creative Commons Attribution 3.0 Unported, CC BY 3.0](https://creativecommons.org/licenses/by/3.0/)._
 
-I<Picture taken by Chris Norwood and published on L<Boardgame Geek|https://boardgamegeek.com/image/1051809/ace-aces-handy-rotary-series?size=large>. 
-License L<Creative Commons Attribution 3.0 Unported, CC BY 3.0|https://creativecommons.org/licenses/by/3.0/>.>
-
-=head2 Rules Summary
+## Rules Summary
 
 The patent  gives an example  of a game  turn. The players  begin this
 turn on page  1. In both booklets, the picture  shows that both planes
 have the same  heading and that the  Dr.I is located at  the Camel's 4
 o'clock, or conversely, the Camel is at the Dr.I's 10 o'clock.
 
-=for HTML
-<img src='Page-1-GB-All.png' alt="Page 1 in both booklets" width='100%' />
-
-I<Pictures from patent USP 4,378,118, in public domain since 2001.>
+_Pictures from patent USP 4,378,118, in public domain since 2001._
 
 At the bottom of each page, you notice a line of arrows and a line of numbers. 
 Each number refers to a page of the booklet and each arrow is a graphical representation
@@ -152,133 +123,142 @@ of a maneuver the plane can execute. Each player chooses an arrow and gives the
 corresponding page number to his opponent. For example, the German player
 chooses the leftmost arrow and says:
 
--- I send you page 8.
+\-- I send you page 8.
 
 At the same time, the British player chooses the arrow below "EF" in the "Cruising Left" part
 and answers:
 
--- Go to page 48.
+\-- Go to page 48.
 
-=for HTML
-<img src='Manoeuvre-1-8-48.png' alt="Page 1, arrow pointing to page 8 and arrow pointing to page 48" />
-
-I<Pictures from patent USP 4,378,118, in public domain since 2001.>
+_Pictures from patent USP 4,378,118, in public domain since 2001._
 
 The German player opens his booklet page 48 and applies the same maneuver as before: same arrow,
 different page number, 96. At the same time, the British player opens his booklet page 8,
 spots the same maneuver and reads the page number. They obtain the same page number, 96.
 
-=for HTML
-<img src='Pages-48-8.png' alt="German booklet page 48 and British booklet page 8" />
+_Pictures from patent USP 4,378,118, in public domain since 2001._
 
-I<Pictures from patent USP 4,378,118, in public domain since 2001.>
-
-The final page for the game turn is page 96. As you can see, I<Ace of Aces> is not only a forerunner
+The final page for the game turn is page 96. As you can see, _Ace of Aces_ is not only a forerunner
 of hypertext links, but it is also a forerunner for First Person Shooter games, 12 years or so
 before Wolfenstein 3D and Doom.
 
-=for HTML
-<img src='Page-96-All-GB.png' alt="German booklet page 96 and British booklet page 96" />
-
-I<Pictures from patent USP 4,378,118, in public domain since 2001.>
+_Pictures from patent USP 4,378,118, in public domain since 2001._
 
 The fire / damage rules are very simple. Each plane starts with 12 hit points. Each time
 you end your turn on a page where your plane receives bullets from the other guy, you lose
 1, 2 or 4 hit points, depending on the specific page. Intermediate pages are not taken into
 account. When your hit point total is zero or negative, your plane is shot down.
 
-=head2 Explanation of the Mechanism
+## Explanation of the Mechanism
 
 With this rule mechanism, the final pages are always the same for both players. 
 Many newbie players are amazed by this, yet the explanation is simple.
 Forget the skies above Poelcapelle or 
-L<Vaux-sur-Somme|http://military.wikia.com/wiki/Manfred_von_Richthofen>,
+[Vaux-sur-Somme](http://military.wikia.com/wiki/Manfred_von_Richthofen),
 and imagine you are in a big empty parking lot, with only a Mini Austin and 
 a VW Beetle. At first, they set up in the following position (use the plain lines
 and ignore the dotted lines):
 
-=for html
-<img src='Exp-1-A.png' alt='Start position for the cars' />
+<div>
 
-I<Personal picture. License is the same as for the text.>
-I<Picture from patent USP 4,378,118, in public domain since 2001.>
+    <img src='Exp-1-A.png' alt='Start position for the cars' />
+</div>
+
+_Personal picture. License is the same as for the text._
+_Picture from patent USP 4,378,118, in public domain since 2001._
 
 This position corresponds to page 1 of both booklets.
 
 Now, suppose the Beetle moves as shown below, while the Mini stays idle.
 
-=for html
-<img src='Exp-1-B.png' alt='Mini on its start position, Beetle on its end position' />
+<div>
 
-I<Personal picture. License is the same as for the text.>
-I<Picture from patent USP 4,378,118, in public domain since 2001.>
+    <img src='Exp-1-B.png' alt='Mini on its start position, Beetle on its end position' />
+</div>
+
+_Personal picture. License is the same as for the text._
+_Picture from patent USP 4,378,118, in public domain since 2001._
 
 After this movement, we obtain the situation of page 8. And now, the Beetle stops
 and the Mini starts moving.
 
-=for html
-<img src='Exp-1-C.png' alt='End position for the cars' />
+<div>
 
-I<Personal picture. License is the same as for the text.>
-I<Picture from patent USP 4,378,118, in public domain since 2001.>
+    <img src='Exp-1-C.png' alt='End position for the cars' />
+</div>
+
+_Personal picture. License is the same as for the text._
+_Picture from patent USP 4,378,118, in public domain since 2001._
 
 The end result is the position of page 96.
 
-=for html
-<img src='Exp-1-D.png' alt='End position for the cars' />
+<div>
 
-I<Personal picture. License is the same as for the text.>
-I<Picture from patent USP 4,378,118, in public domain since 2001.>
+    <img src='Exp-1-D.png' alt='End position for the cars' />
+</div>
+
+_Personal picture. License is the same as for the text._
+_Picture from patent USP 4,378,118, in public domain since 2001._
 
 Second step of the experiment. Both cars come back to the starting position
 corresponding to page 1.
 
-=for html
-<img src='Exp-2-A.png' alt='Start position for the cars' />
+<div>
 
-I<Personal picture. License is the same as for the text.>
-I<Picture from patent USP 4,378,118, in public domain since 2001.>
+    <img src='Exp-2-A.png' alt='Start position for the cars' />
+</div>
+
+_Personal picture. License is the same as for the text._
+_Picture from patent USP 4,378,118, in public domain since 2001._
 
 Now the Mini is the first to move, while the Beetle stays idle. So we obtain
 the position like on page 48.
 
-=for html
-<img src='Exp-2-B.png' alt='Beetle on its start position, Mini on its end position' />
+<div>
 
-I<Personal picture. License is the same as for the text.>
-I<Picture from patent USP 4,378,118, in public domain since 2001.>
+    <img src='Exp-2-B.png' alt='Beetle on its start position, Mini on its end position' />
+</div>
+
+_Personal picture. License is the same as for the text._
+_Picture from patent USP 4,378,118, in public domain since 2001._
 
 And when the Beetle moves, the end position is the position of page 96.
 
-=for html
-<img src='Exp-2-C.png' alt='End position for the cars' />
+<div>
 
-I<Personal picture. License is the same as for the text.>
-I<Picture from patent USP 4,378,118, in public domain since 2001.>
+    <img src='Exp-2-C.png' alt='End position for the cars' />
+</div>
+
+_Personal picture. License is the same as for the text._
+_Picture from patent USP 4,378,118, in public domain since 2001._
 
 Third step of the experiment. The cars come back to their page 1 position.
-Now they move I<simultaneously>. As in both previous steps, the end position
+Now they move _simultaneously_. As in both previous steps, the end position
 is the page 96 position.
 
-=for html
-<img src='Exp-3-B.png' alt='End position for the cars' />
+<div>
 
-I<Personal picture. License is the same as for the text.>
-I<Picture from patent USP 4,378,118, in public domain since 2001.>
+    <img src='Exp-3-B.png' alt='End position for the cars' />
+</div>
+
+_Personal picture. License is the same as for the text._
+_Picture from patent USP 4,378,118, in public domain since 2001._
 
 So, there is no difference between moving simultaneously or moving sequentially
 in this or that order. This is true both for cars in a parking lot and for planes
 in the Picardy or Flanders sky.
 
-=head3 Special Case, Page 223
+### Special Case, Page 223
 
-=for html
-<img src='page-223.jpeg' alt='Picture of page 223: no enemy plane, only clouds' />
+<div>
 
-I<Personal picture using a page from Handy Rotary, copyright © 1986 Nova Game Designs, Inc., artwork copyright © 1986 Emithill limited>
+    <img src='page-223.jpeg' alt='Picture of page 223: no enemy plane, only clouds' />
+</div>
+
+_Personal picture using a page from Handy Rotary, copyright © 1986 Nova Game Designs, Inc., artwork copyright © 1986 Emithill limited_
 
 If you read some help files provided by
-L<Boardgame Geek|https://www.boardgamegeek.com/boardgame/798/ace-aces-handy-rotary-series/files>,
+[Boardgame Geek](https://www.boardgamegeek.com/boardgame/798/ace-aces-handy-rotary-series/files),
 you will understand that the game is based on a 37-hexagon grid and on a 6-heading orientation,
 which produce 222 pages, for all relative positions of the planes, provided they are
 with 3 hexagons of each other. But what happens if the distance is greater?
@@ -295,27 +275,33 @@ is in the Dr.I's 11 1/2 o'clock and let us suppose the plane move forward at med
 If we apply first the Camel's move, the contact is lost and the intermediate page is page 223,
 where no maneuver is shown.
 
-=for html
-<img src='Page-223-a.png' alt='British movement ending at page 223' />
+<div>
 
-I<Personal picture. License is the same as for the text.>
+    <img src='Page-223-a.png' alt='British movement ending at page 223' />
+</div>
+
+_Personal picture. License is the same as for the text._
 
 On the other hand, if we apply first the Dr.I's move, the intermediate
 page is page 60, where the Camel is in the Dr.I's 11 o'clock at medium
 distance.
 
-=for html
-<img src='Page-223-b.png' alt='German movement from page 180 to page 60' />
+<div>
 
-I<Personal picture. License is the same as for the text.>
+    <img src='Page-223-b.png' alt='German movement from page 180 to page 60' />
+</div>
+
+_Personal picture. License is the same as for the text._
 
 Then we apply the Camel's move and  we arrive on page 180. This number
 cannot be cross-checked.
 
-=for html
-<img src='Page-223-c.png' alt='British movement from page 60 to page 180' />
+<div>
 
-I<Personal picture. License is the same as for the text.>
+    <img src='Page-223-c.png' alt='British movement from page 60 to page 180' />
+</div>
+
+_Personal picture. License is the same as for the text._
 
 On the other hand, if both players' intermediate pages are page 223, or if the final page is page 223,
 the planes have really broken contact. Each player chooses to stay and fight or to flee.
@@ -325,58 +311,50 @@ their current level of damage. If only one plane decides to flee, its opponent o
 But sometimes, it is better to flee and live and fight another day, than to press on the current
 fight and lose and give a full victory to one's opponent.
 
-=head3 Other Special Case, Tailing
+### Other Special Case, Tailing
 
 When a plane is in the other plane's rear quadrant (4 o'clock to 8 o'clock) with a similar
-heading, we consider that this plane is I<tailing> the other. It was the case on page 1
+heading, we consider that this plane is _tailing_ the other. It was the case on page 1
 above (and also on pages 48 and 96, please notice the "T" under the page numbers in the
 German booklet). I did not mention it for pedagogical reasons. When a plane is tailing another,
 the simultaneous moves are no longer quite simultaneous. The sequence of play is now
 the following:
 
-=over 4
-
-=item 1 The tailed plane chooses a maneuver.
-
-=item 2 The player tells his opponent whether the chosen maneuver is
+- 1 The tailed plane chooses a maneuver.
+- 2 The player tells his opponent whether the chosen maneuver is
 a leftward maneuver, a rightward maneuver or a forward maneuver. He does not
 give the intermediate page number.
+- 3 The tailing player chooses a maneuver.
+- 4 Both players simultaneously announce their intermediate page numbers.
+- 5 Both players compute the final page.
 
-=item 3 The tailing player chooses a maneuver.
-
-=item 4 Both players simultaneously announce their intermediate page numbers.
-
-=item 5 Both players compute the final page.
-
-=back
-
-=head3 Successive Maneuvers
+### Successive Maneuvers
 
 If you have read some help files provided by
-L<Boardgamegeek|https://www.boardgamegeek.com/boardgame/798/ace-aces-handy-rotary-series/files>,
+[Boardgamegeek](https://www.boardgamegeek.com/boardgame/798/ace-aces-handy-rotary-series/files),
 you may have noticed that in  the example above, when the German plane
 goes from page 1 to page 8, its  move is a very low-speed move and the
 plane stays  in its starting hex.  Doing this once is  fine, but doing
 this  several times  in  a row,  this  is no  longer  flying, this  is
 hovering. This is OK if you are  playing a hummingbird, a lark, a bee,
 a drone or a gazelle (not
-L<this kind of gazelle|https://simple.wikipedia.org/wiki/Gazelle>
+[this kind of gazelle](https://simple.wikipedia.org/wiki/Gazelle)
 but rather 
-L<that kind of Gazelle|https://en.wikipedia.org/wiki/A%C3%A9rospatiale_Gazelle>)
+[that kind of Gazelle](https://en.wikipedia.org/wiki/A%C3%A9rospatiale_Gazelle))
 but when you are  playing a Fokker Dr.I or a  Sopwith Camel, you cannot
 hover. There is  an optional but very recommended  rule which prevents
-planes from doing a slow speed  maneuver during turn I<n> if they have
-already done a similar maneuver during turn I<n>-1.
+planes from doing a slow speed  maneuver during turn _n_ if they have
+already done a similar maneuver during turn _n_-1.
 
 In  the same  manner, the  rule deals  with acrobatics,  which can  be
-executed during  turn I<n> only if  the aircraft did a  straight ahead
-maneuver during turn I<n>-1.
+executed during  turn _n_ only if  the aircraft did a  straight ahead
+maneuver during turn _n_-1.
 
-=head3 Altitude
+### Altitude
 
 This is a game about planes, so we must deal with altitude, of course!
 Well, no. For the basic rules, the game
-L<just uses two dimensions|https://tvtropes.org/pmwiki/pmwiki.php/Main/TwoDSpace>.
+[just uses two dimensions](https://tvtropes.org/pmwiki/pmwiki.php/Main/TwoDSpace).
 There is only one instance when altitude is implied. There are six pages where both
 aircraft are in the same hex. It is convenient to suppose that there are separated 
 in altitude by a few meters. This is the players' opinion, the rules say nothing about
@@ -387,49 +365,38 @@ at each  game turn. The  additional burden is  not worth it.  The only
 optional  rule  which  is  worth  it  is  the  rule  about  successive
 maneuvers.
 
-=head3 A Few Remarks
+### A Few Remarks
 
 During a game turn, you must keep in mind:
 
-=over 4
-
-=item 1 the initial page number,
-
-=item 2 the maneuver you chose,
-
-=item 3 the intermediate page number you gave to your opponent,
-
-=item 4 the intermediate page number you received from your opponent,
-
-=item 5 the final page number
-
-=item 6 the number of remaining hit points,
-
-=item 7 the type of maneuver (normal, straight ahead, acrobatic, slow speed) if using the rule on successive maneuvers.
-
-=item 8 optionaly the number of remaining hit points for your opponent.
-
-=back
+- 1 the initial page number,
+- 2 the maneuver you chose,
+- 3 the intermediate page number you gave to your opponent,
+- 4 the intermediate page number you received from your opponent,
+- 5 the final page number
+- 6 the number of remaining hit points,
+- 7 the type of maneuver (normal, straight ahead, acrobatic, slow speed) if using the rule on successive maneuvers.
+- 8 optionaly the number of remaining hit points for your opponent.
 
 According to some studies, the human short-term memory has room for 7 ± 2 pieces of data (except for
 waiters in bars, who are way beyond this limit). Unless you are in the lower part of the
-range, you can play I<Ace of Aces> without writing anything and without arraying markers on
+range, you can play _Ace of Aces_ without writing anything and without arraying markers on
 any board. You can play anywhere: on the beach, beside the coffee machine, in a waiting
 room, in the bus. And if your short-term memory is in the upper-range, you can even play
 in the bus and not miss your stop.
 
-=head2 Extensions
+## Extensions
 
 This game has two extensions, one with late war planes
-(I<L<Powerhouse|https://boardgamegeek.com/boardgame/7104/ace-aces-powerhouse-series>>,
+(_[Powerhouse](https://boardgamegeek.com/boardgame/7104/ace-aces-powerhouse-series)_,
 Spad XIII vs Fokker D.VII) the other with early war planes
-(I<L<Flying Machines|https://boardgamegeek.com/boardgame/7103/ace-aces-flying-machines>>,
+(_[Flying Machines](https://boardgamegeek.com/boardgame/7103/ace-aces-flying-machines)_,
 Airco DH2 vs. Fokker E.III). There is also a WWII variant
-(I<L<Wingleader|https://boardgamegeek.com/boardgame/6504/ace-aces-wingleader>>, 
+(_[Wingleader](https://boardgamegeek.com/boardgame/6504/ace-aces-wingleader)_, 
 P-51 Mustang vs FW190), a cold war version 
-(I<L<Jet Eagles|https://boardgamegeek.com/boardgame/1991/ace-aces-jet-eagles>>,
+(_[Jet Eagles](https://boardgamegeek.com/boardgame/1991/ace-aces-jet-eagles)_,
 F-15 Eagle vs MiG-29 Fulcrum). There is even a Star Wars version,
-I<L<Starfighter Battle Book|https://boardgamegeek.com/boardgame/3152/star-wars-starfighter-battle-book>>,
+_[Starfighter Battle Book](https://boardgamegeek.com/boardgame/3152/star-wars-starfighter-battle-book)_,
 X-wing vs TIE-fighter, this last one published by West End Games.
 
 All the bookets have the same positions at the same page numbers. For example, in every booklet,
@@ -437,110 +404,109 @@ page 96 is the page where the "bad guy" is tailing the "good guy" and shooting a
 same heading. You can play any combination of a "good guy" booklet and a "bad guy" booklet,
 even staging a fight between a X-Wing and a Fokker E.III! Or you can just match
 a F-15 against a FW190, the closest way to reenact the
-L<famous fight|https://www.youtube.com/watch?v=f3XNEWtJF0o>
+[famous fight](https://www.youtube.com/watch?v=f3XNEWtJF0o)
 between a pair of F-14's and a pair of A6M2 Zeros.
 
 There are just a few problems. The distance scale is not the same from a game to the other: a few meters
 for the WWI version, several hundred meters for the Cold War version. And the hit points are
 much different. You will need a big dose of 
-L<willing suspension of disbelief|http://tvtropes.org/pmwiki/pmwiki.php/Main/WillingSuspensionOfDisbelief>
+[willing suspension of disbelief](http://tvtropes.org/pmwiki/pmwiki.php/Main/WillingSuspensionOfDisbelief)
 to play such a game!
 
 And you cannot set up a dogfight between two "good guys" (e.g. F-15 vs
 P-51) or between two "bad guys" (e.g. Fokker Dr.I vs FW190).
 
-A bit of caution about I<Wingleader>. There is 
-L<another game|https://boardgamegeek.com/boardgame/160418/wing-leader-victories-1940-1942>
+A bit of caution about _Wingleader_. There is 
+[another game](https://boardgamegeek.com/boardgame/160418/wing-leader-victories-1940-1942)
 with a similar name. If you are interested by this game and if you want to buy it, be sure
 it is the right game.
 
-=for html
-<img src='As-des-As-Wingleader-Jet-Eagles.png' alt="Ace of Aces, First World War, Second World War and Cold War" />
+<div>
 
-I<Personal pictures. License is the same as for the text.>
+    <img src='As-des-As-Wingleader-Jet-Eagles.png' alt="Ace of Aces, First World War, Second World War and Cold War" />
+</div>
 
-=for html
-<img src='Jet-Eagles-96.png' alt="Page 96 for Jet Eagles, 'Red Force' booklet and 'Blue Force' booklet" />
+_Personal pictures. License is the same as for the text._
 
-I<Personal pictures using a page in the booklets from Jet Eagles, copyright © 1990 Nova Game Designs, Inc.>
+<div>
+
+    <img src='Jet-Eagles-96.png' alt="Page 96 for Jet Eagles, 'Red Force' booklet and 'Blue Force' booklet" />
+</div>
+
+_Personal pictures using a page in the booklets from Jet Eagles, copyright © 1990 Nova Game Designs, Inc._
 
 All these variants propose advanced rules, e.g. altitude, 2-vs-2 or, in the case
-of I<Jet Eagles>, radars and missiles. Unfortunately, these rules are incompatible with
+of _Jet Eagles_, radars and missiles. Unfortunately, these rules are incompatible with
 the  7 ± 2 short-term memory capacity. Except for the already mentioned rule about compatibility between
 two successive maneuvers, I do not plan to include these advanced rules in my programs.
 
 There is also an extension 
-I<L<Balloon Buster|https://boardgamegeek.com/boardgame/5736/ace-aces-balloon-buster>>
+_[Balloon Buster](https://boardgamegeek.com/boardgame/5736/ace-aces-balloon-buster)_
 with a 2-vs-1 fight. The German player controls a rather passive
 observation balloon and an anti-aircraft gun, while the British player
 controls a plane.
 
 Other similar extensions, but incompatible with the air combat series:
-I<L<Shootout at the Saloon|https://boardgamegeek.com/boardgame/3089/bounty-hunter-shootout-saloon>>
+_[Shootout at the Saloon](https://boardgamegeek.com/boardgame/3089/bounty-hunter-shootout-saloon)_
 translated in French as 
-I<Le shérif et le hors-la-loi>,
-I<L<Dragons Riders of Pern|https://boardgamegeek.com/boardgame/5735/dragonriders-pern-book-game>>
+_Le shérif et le hors-la-loi_,
+_[Dragons Riders of Pern](https://boardgamegeek.com/boardgame/5735/dragonriders-pern-book-game)_
 translated in French as 
-I<les Maîtres des Dragons>
+_les Maîtres des Dragons_
 and a series I had not heard about before writing these explanations,
-I<L<Lost Worlds|https://boardgamegeek.com/boardgame/3969/lost-worlds-adventure-set-i-ruins-ancients>>.
+_[Lost Worlds](https://boardgamegeek.com/boardgame/3969/lost-worlds-adventure-set-i-ruins-ancients)_.
 
-=for html
-<img src='Le_sherif_et_le_hors-la-loi.png' alt="Shootout at the Saloon" />
+<div>
 
-I<Personal pictures using "Le Shérif et le Hors-la-loi", copyright © 1986 Gallimard,
-French translation of "Shootout at the Saloon", Copyright © 1982 Nova Games Design Inc, copyright © 1986 Emithill Limited>
+    <img src='Le_sherif_et_le_hors-la-loi.png' alt="Shootout at the Saloon" />
+</div>
+
+_Personal pictures using "Le Shérif et le Hors-la-loi", copyright © 1986 Gallimard,
+French translation of "Shootout at the Saloon", Copyright © 1982 Nova Games Design Inc, copyright © 1986 Emithill Limited_
 
 Since the patent is in the public domain, anyone can write and publish his own extension
 to the Ace of Aces game. Here are a few examples:
 
-=over 4
-
-=item * Apache AH-64 vs Mi-24 Hind
-
-=item * Quidditch: Griffindor vs Slytherin
-
-=item * Superman vs Ironman
-
-=item * Sparrowhawk vs hobbyist's drone
-
-=back
+- Apache AH-64 vs Mi-24 Hind
+- Quidditch: Griffindor vs Slytherin
+- Superman vs Ironman
+- Sparrowhawk vs hobbyist's drone
 
 Actually, I have chosen this last extension to add test data to my programs. I was
 reluctant to use data from an existing game, because while the patent is expired, the
 copyright is not.
 
-=head1 Aces of Aces, the Programs
+# Aces of Aces, the Programs
 
 When I discovered the game, I thought that, actually, the game consists in mixing numbers
 (page numbers) and symbols (maneuvers) to get other numbers. The role of the picture is 
 just to add meaning for the benefit of the players and to help them choose the proper maneuver
 symbol, provided the players know how the basics of plane flight, and provided they have 
-some notions about the I<Dicta Boelke>, Sailor Malan's advices, "Boots" Blesse's 
-I<No Guts, No Glory> and similar writings. But you can strip all this air combat decoration
+some notions about the _Dicta Boelke_, Sailor Malan's advices, "Boots" Blesse's 
+_No Guts, No Glory_ and similar writings. But you can strip all this air combat decoration
 and keep only the abstract mechanism, based on a finite state automaton with maybe a few
-uses of a I<random> function. Hence the idea of a program playing the game without any knowledge
+uses of a _random_ function. Hence the idea of a program playing the game without any knowledge
 of air combat, but relying on a statistical analysis of previous games.
 
 There are two parts in this project. First, preparation, to create booklets in electronic
 format, by generating the files rather than typing them entirely from the paper version. Second, the game
 itself, where cyber pilots fight against each other and learn from their mistakes.
 
-=head2 Warning
+## Warning
 
 When  I wrote  these programs,  I  used French  names for  everything:
 programs, database  entities, variables, class names,  attribute names
 and so  on. You may  have problems reading  the source files  and even
 reading the  explanations. The only  exception is the  database, named
-C<Ace_of_Aces>. Why? I do not remember.
+`Ace_of_Aces`. Why? I do not remember.
 
 Before  describing the  guts of  the  various programs,  here are  the
 instructions to install the project on your computer.
 
-=head2 Installation
+## Installation
 
 I describe here how I installed  the project on a virtual machine with
-L<xubuntu|https://xubuntu.org/> 21.04  "Hirsute Hippo". I do  not give
+[xubuntu](https://xubuntu.org/) 21.04  "Hirsute Hippo". I do  not give
 you a  precise procedure which  must be strictly followed,  but rather
 some guidelines  which you might  find useful  for your case.  If your
 computer already has Raku or MongoDB,  or if you computer runs another
@@ -551,7 +517,7 @@ there will be important differences with what I describe here.
 
 First, a warning.
 
-=head3 About security
+### About security
 
 This project is for fun and nothing  else. It does not deal with vital
 confidential data. If the contents of the database leaks outside, I do
@@ -559,7 +525,7 @@ not care.  If the  database is altered  by an intruder,  it is  just a
 minor inconvenience.
 
 So I  have adopted a  very light security  setup. The database  can be
-accessed from  the host computer only  (C<localhost> or C<127.0.0.1>).
+accessed from  the host computer only  (`localhost` or `127.0.0.1`).
 But anybody logged in this computer can freely access the database. No
 additional authentification feature.
 
@@ -576,103 +542,89 @@ case, I  am the  only one  accessing the website.  But if  the website
 hosted on  your computer is visible  from outside and allows  users to
 display your Ace  of Aces games, several  strangers can simultaneously
 request webpages  and your  computer will choke.  You could  even have
-something which looks like a denial of service (I<DOS> or I<DDOS>).
+something which looks like a denial of service (_DOS_ or _DDOS_).
 
 Lastly, I did not attempt to write a cleanly packaged software, with a
-global configuration  file stored  in F</etc> and  local configuration
-files stored in F<$HOME> and whose  name begins with a dot. Everything
+global configuration  file stored  in `/etc` and  local configuration
+files stored in `$HOME` and whose  name begins with a dot. Everything
 is stored  in the  repository's directory,  everything runs  from this
 directory or from a sub-directory: executable scripts, input parameter
 files, output  data files,  etc. You  will even need  to update  a few
-programs by editing them. For example, the published F<launch> program
+programs by editing them. For example, the published `launch` program
 starts a  game between a generic  sparrowhawk and a generic  drone. If
 you want  a game between Plume-Noire  and Kevin, you have  to edit the
-F<launch> file,  deactivate a  few lines  by adding  a sharp  char and
+`launch` file,  deactivate a  few lines  by adding  a sharp  char and
 reactivate some others by removing other sharp characters.
 
-=head3 Configuration of the Computer
+### Configuration of the Computer
 
 If you use  a virtual machine, you  should allocate at least 2048  MB to it.
-The L<Rakudo  documentation|https://rakudo.org/downloads/rakudo/source> asks
+The [Rakudo  documentation](https://rakudo.org/downloads/rakudo/source) asks
 for 1.5 GB, which I rounded up to  2 GB. Also, the virtual machine should be
 able to access Internet.
 
-=head3 Installing Outside Software
+### Installing Outside Software
 
-With the distribution package  manager (command-line C<apt-get> or the
-graphical program I<synaptic>), install
-L<Emacs|https://www.gnu.org/software/emacs/>,
-L<Git|https://git-scm.com/>,
-L<curl|https://curl.se/>
-and the C<libssl-dev> library.
+With the distribution package  manager (command-line `apt-get` or the
+graphical program _synaptic_), install
+[Emacs](https://www.gnu.org/software/emacs/),
+[Git](https://git-scm.com/),
+[curl](https://curl.se/)
+and the `libssl-dev` library.
 
-And check that L<GnuPG|https://gnupg.org/> is already installed.
+And check that [GnuPG](https://gnupg.org/) is already installed.
 
 Installing   Emacs   is  a   personal   preference.   If  you   prefer
-L<vim|https://www.vim.org/>  or  L<nano|https://www.nano-editor.org/>,
+[vim](https://www.vim.org/)  or  [nano](https://www.nano-editor.org/),
 go ahead,  install them. On  the other  hand, the other  softwares are
 really necessary.
 
-=head3 Installing Rakudo
+### Installing Rakudo
 
 Unlike   the   2018   installation,   described   at   the   paragraph
-L</"Compilation  and  Installation  of  Rakudo">  below,  the  xubuntu
+["Compilation  and  Installation  of  Rakudo"](#compilation-and-installation-of-rakudo)  below,  the  xubuntu
 version I used  is a very recent  one and the Perl6  / Rakudo packages
 are rather up-to-date:  Perl 6.d.3 and Rakudo 2020.12.  So I installed
-the packages with I<Synaptic>, I did not try to compile the sources.
+the packages with _Synaptic_, I did not try to compile the sources.
 
-If  you want  to  compile  the sources,  see  the L</"Compilation  and
-Installation of Rakudo"> paragraph.
+If  you want  to  compile  the sources,  see  the ["Compilation  and
+Installation of Rakudo"](#compilation-and-installation-of-rakudo) paragraph.
 
 Among the  pre-requisite packages automatically installed,  there is a
-I<perl6-zef> package. So  you do not have to  install C<zef> yourself.
-On some  other distributions,  C<zef> is not  automatically installed,
-but  the package  provides a  C<install-zef> script.  Just run  it and
-you're done. Else, access the L<zef repo|https://github.com/ugexe/zef>
+_perl6-zef_ package. So  you do not have to  install `zef` yourself.
+On some  other distributions,  `zef` is not  automatically installed,
+but  the package  provides a  `install-zef` script.  Just run  it and
+you're done. Else, access the [zef repo](https://github.com/ugexe/zef)
 and follow the instructions.
 
 Later, for another project, I had a benign incident. I wanted to test
 the use of SQLite through the 
-L<DBIish module|https://github.com/raku-community-modules/DBIish>.
-The installation by C<zef> failed, because  there was no C compiler on
-this  virtual machine.  Therefore,  in addition  to  Git and  C<curl>,
-already mentioned, you should install C<gcc>, C<binutils> and C<make>.
+[DBIish module](https://github.com/raku-community-modules/DBIish).
+The installation by `zef` failed, because  there was no C compiler on
+this  virtual machine.  Therefore,  in addition  to  Git and  `curl`,
+already mentioned, you should install `gcc`, `binutils` and `make`.
 
-=head3 Installing Rakudo Modules
+### Installing Rakudo Modules
 
 In order to take a snapshot of the virtual machine when appropriate, I
 have  installed at  this  time the  modules for  the  website and  the
 prerequisites for the MongoDB module. These are:
 
-=over 4
-
-=item * OpenSSL
-
-=item * Semaphore::ReadersWriters
-
-=item * HTTP::UserAgent
-
-=item * Auth::SCRAM
-
-=item * Config::DataLang::Refine
-
-=item * BSON
-
-=item * Log::Async
-
-=item * Terminal::ANSIColor
-
-=item * Digest::MD5
-
-=item * Bailador
-
-=item * Template::Anti
-
-=back
+- OpenSSL
+- Semaphore::ReadersWriters
+- HTTP::UserAgent
+- Auth::SCRAM
+- Config::DataLang::Refine
+- BSON
+- Log::Async
+- Terminal::ANSIColor
+- Digest::MD5
+- Bailador
+- Template::Anti
 
 Please  note  that installing  Bailador  will  produce an  error  when
-installing its  prerequisite C<HTTP::Supply>. But this  is normal. See
-L<https://github.com/zostay/HTTP-Supply/issues/5>. C<Template::Mojo> and C<Bailador>
+installing its  prerequisite `HTTP::Supply`. But this  is normal. See
+[https://github.com/zostay/HTTP-Supply/issues/5](https://github.com/zostay/HTTP-Supply/issues/5). `Template::Mojo` and `Bailador`
 also produce  errors which  I did  not write down,  but they  are mere
 warnings too and the modules are installed anyhow.
 
@@ -681,7 +633,7 @@ you can  just install Bailador  and Template::Anti, all  other modules
 will be automatically  installed when you request  the installation of
 the MongoDB module.
 
-=head3 Installing MongoDB
+### Installing MongoDB
 
 The fact that "Hirsute Hippo" is a very recent distribution has helped
 me a  lot when  installing Rakudo.  On the other  hand, it  produced a
@@ -690,192 +642,191 @@ Hippo" package  repository contains  no packages for  MongoDB servers,
 only a few packages for MongoDB clients.
 
 If your distribution  provides packages for MongoDB  servers, good for
-you, install them  and skip to the  L<next paragraph|/"Installation of
-the MongoDB Module">.
+you, install them  and skip to the  [next paragraph](#installation-of-the-mongodb-module).
 
-The L<MongoDB website|https://www.mongodb.com/> does not describe how
+The [MongoDB website](https://www.mongodb.com/) does not describe how
 to install  MongoDB on the  21.04 "Hirsute Hippo" release  of xubuntu.
 The  installation procedure  applies only  to LTS  releases, that  is,
 16.04, 18.04 and 20.04 "Focal Fossa".  Moreover, it does not deal with
-the I<Kubuntu>  or I<xubuntu>  variants, only  with the  basic variant
-I<Ubuntu>.  Anyhow, I  made  the hypothesis  that "xubuntu-21.04"  was
+the _Kubuntu_  or _xubuntu_  variants, only  with the  basic variant
+_Ubuntu_.  Anyhow, I  made  the hypothesis  that "xubuntu-21.04"  was
 rather  similar to  "Ubuntu-20.04"  and I  followed the  corresponding
 procedure.
 
 When you install MongoDB, you  should read the 
-L<up-to-date instructions|https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/>
+[up-to-date instructions](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/)
 from the MongoDB website. But to give  you an overview, here is what I
 did.
 
 Import MongoDB's GPG key
 
-  wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add -
+    wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add -
 
-Add the MongoDB 20.04 "Focal Fossa" repository to the C<apt> config, hoping
+Add the MongoDB 20.04 "Focal Fossa" repository to the `apt` config, hoping
 that it will be fine with 21.04 "Hirsute Hippo":
 
-  echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/4.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.4.list
+    echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/4.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.4.list
 
 Refresh the list of packages
 
-  sudo apt-get update
+    sudo apt-get update
 
 Install MongoDB
 
-  sudo apt-get install -y mongodb-org
+    sudo apt-get install -y mongodb-org
 
 (what a difference with the clickable application Synaptic!).
 
 Specify that the MongoDB server will be launched each time the computer starts:
 
-  sudo systemctl enable mongod
+    sudo systemctl enable mongod
 
 And either restart the computer now, or start the server with
 
-  sudo systemctl start mongod
+    sudo systemctl start mongod
 
-In  addition,  check  security  by  reading  F</etc/mongodb.conf>  and
+In  addition,  check  security  by  reading  `/etc/mongodb.conf`  and
 checking the presence of the following lines:
 
-  bind_ip = 127.0.0.1
-  #port = 27017
+    bind_ip = 127.0.0.1
+    #port = 27017
 
-=head3 Installation of the MongoDB Module
+### Installation of the MongoDB Module
 
 The first idea is to type
 
-  zef install MongoDB
+    zef install MongoDB
 
-Bad move. The  F<t/099-start-servers> test fails with  a message about
-some spawned command and the F<t/200-Database.t> test enters a runaway
+Bad move. The  `t/099-start-servers` test fails with  a message about
+some spawned command and the `t/200-Database.t` test enters a runaway
 loop.
 
 So I ran:
 
-  git clone https://github.com/MARTIMM/mongo-perl6-driver.git
-  cd mongo-perl6-driver
-  zef --/test install .
+    git clone https://github.com/MARTIMM/mongo-perl6-driver.git
+    cd mongo-perl6-driver
+    zef --/test install .
 
 (Do not forget the dot at the end of the command line.)
 
 On later tests, I have just run:
 
-  zef --/test install MongoDB
+    zef --/test install MongoDB
 
 I  must acknowledge  that even  if there  are still  some errors,  the
 situation has greatly improved when compared to March 2018.
 
-=head3 Installing the Ace of Aces Project
+### Installing the Ace of Aces Project
 
 Clone my repository with:
 
-  git clone https://github.com/jforget/Perl6-Alpha-As-des-As-Zero.git
+    git clone https://github.com/jforget/Perl6-Alpha-As-des-As-Zero.git
 
 Then, run some initialisations with:
 
-  cd Perl6-Alpha-As-des-As-Zero/Game
-  ./init-aircraft.raku Epervier
-  ./init-aircraft.raku Drone
-  ./init-pilot.raku    Kevin
-  ./init-pilot.raku    Plume-Noire
+    cd Perl6-Alpha-As-des-As-Zero/Game
+    ./init-aircraft.raku Epervier
+    ./init-aircraft.raku Drone
+    ./init-pilot.raku    Kevin
+    ./init-pilot.raku    Plume-Noire
 
 Now you are ready to launch some games between the sparrowhawk and the
 drone with:
 
-  ./launch
+    ./launch
 
-By commenting-out some  lines of F<launch> and  activating others, you
+By commenting-out some  lines of `launch` and  activating others, you
 can launch games  between the sparrowhawk named  "Plume-Noire" and the
 drone user named "Kevin".
 
 Then, you can launch the Bailador webserver with:
 
-  raku website.raku
+    raku website.raku
 
 To access the webpages showing the past games, open you web 
 browser and type the address:
 
-  http://localhost:3000
+    http://localhost:3000
 
 If you prefer the French language, you can type:
 
-  http://localhost:3000/fr/list
+    http://localhost:3000/fr/list
 
 To stop the  Bailador webserver, go back to the  terminal window where
-it runs and hit C<Ctrl-C>.
+it runs and hit `Ctrl-C`.
 
-=head3 Extending to Real Ace of Aces Games
+### Extending to Real Ace of Aces Games
 
-To  play with  the real  aircraft from  the published  I<Ace of  Aces>
-games, you  must use the  programs from the  F<Preparation> directory.
-First, initialise the C<aoa_prep> database with:
+To  play with  the real  aircraft from  the published  _Ace of  Aces_
+games, you  must use the  programs from the  `Preparation` directory.
+First, initialise the `aoa_prep` database with:
 
-  raku init.p6
-  sh maj1
+    raku init.p6
+    sh maj1
 
 Then,  for   each  aircraft,   type  an  init   file  either   in  the
-F<Preparation/en> directory of in the F<Preparation/fr> directory. The
+`Preparation/en` directory of in the `Preparation/fr` directory. The
 difference between these directories is  that the allowed keywords are
 in English in the  former case, in French in the  latter case. Here is
 the  English  keyword   example  for  a  sparrowhak,   that  is,  file
-F<Preparation/en/Sparrowhawk-init.json>.
+`Preparation/en/Sparrowhawk-init.json`.
 
-  {
-    "booklet":  "Test",
-    "side":     "G",
-    "identity": "Sparrowhawk",
-    "name":     "Sparrowhawk",
-    "capacity": 12,
-    "maneuvers": {
-        "A": { "path": "0;5" , "turn": "L", "speed": "1" }
-      , "B": { "path": "0;0" , "turn": "C", "speed": "1" }
-      , "C": { "path": "0;1" , "turn": "R", "speed": "1" }
-      , "D": { "path": "00;5", "turn": "L", "speed": "2" }
-      , "E": { "path": "00;0", "turn": "C", "speed": "2" }
-      , "F": { "path": "00;1", "turn": "R", "speed": "2" }
-    },
-    "shoots": {
-        "187": "4"
-      , "188": "4"
-      , "198": "4"
-      , "205": "4"
-      , "209": "4"
-      , "213": "4"
+    {
+      "booklet":  "Test",
+      "side":     "G",
+      "identity": "Sparrowhawk",
+      "name":     "Sparrowhawk",
+      "capacity": 12,
+      "maneuvers": {
+          "A": { "path": "0;5" , "turn": "L", "speed": "1" }
+        , "B": { "path": "0;0" , "turn": "C", "speed": "1" }
+        , "C": { "path": "0;1" , "turn": "R", "speed": "1" }
+        , "D": { "path": "00;5", "turn": "L", "speed": "2" }
+        , "E": { "path": "00;0", "turn": "C", "speed": "2" }
+        , "F": { "path": "00;1", "turn": "R", "speed": "2" }
+      },
+      "shoots": {
+          "187": "4"
+        , "188": "4"
+        , "198": "4"
+        , "205": "4"
+        , "209": "4"
+        , "213": "4"
+      }
     }
-  }
 
-Let us  how to  write the F<Preparation/en/DR1-init.json>  file, which
-describes the Fokker DR.1 from I<Handy Rotary>.
+Let us  how to  write the `Preparation/en/DR1-init.json`  file, which
+describes the Fokker DR.1 from _Handy Rotary_.
 
 The name will be something like  "Fokker DR.1". The identity should be
 a simplified and URI-friendly version  of the name. By URI-friendly, I
-mean no C<%20>, no C<%27>, etc, only letters, digits, dashes and dots.
+mean no `%20`, no `%27`, etc, only letters, digits, dashes and dots.
 So we have:
 
-   {
-    "identity": "DR1",
-    "name":     "Fokker DR.1",
-   }
+    {
+     "identity": "DR1",
+     "name":     "Fokker DR.1",
+    }
 
 Add the name of the booklet it comes from. Actually, this attribute is
 not used.
 
-   {
-    "identity": "DR1",
-    "name":     "Fokker DR.1",
-    "booklet":  "Handy Rotary",
-   }
+    {
+     "identity": "DR1",
+     "name":     "Fokker DR.1",
+     "booklet":  "Handy Rotary",
+    }
 
 Is the Fokker a good guy or a bad guy? See page 2 or 16: on page 2 the
 bad  guy is  shooting at  the good  guy, on  page 16  the good  guy is
 shooting at the bad guy. In this case, the Fokker is a bad guy.
 
-   {
-    "identity": "DR1",
-    "name":     "Fokker DR.1",
-    "booklet":  "Handy Rotary",
-    "side":     "B",
-   }
+    {
+     "identity": "DR1",
+     "name":     "Fokker DR.1",
+     "booklet":  "Handy Rotary",
+     "side":     "B",
+    }
 
 A good guy would have:
 
@@ -883,54 +834,51 @@ A good guy would have:
 
 Then the initial hit capacity:
 
-   {
-    "identity": "DR1",
-    "name":     "Fokker DR.1",
-    "booklet":  "Handy Rotary",
-    "side":     "B",
-    "capacity": 12,
-   }
+    {
+     "identity": "DR1",
+     "name":     "Fokker DR.1",
+     "booklet":  "Handy Rotary",
+     "side":     "B",
+     "capacity": 12,
+    }
 
 Then  leaf through  the booklet  and write  down the  pages where  the
 Fokker is  shooting at its enemy.  For each page, write  the number of
 hit points the opponent loses:
 
-   {
-    "identity": "DR1",
-    "name":     "Fokker DR.1",
-    "booklet":  "Handy Rotary",
-    "side":     "B",
-    "capacity": 12,
-    "shoots": {
-          "2": "4"
-      ,   "8": "4"
-           [ ... ]
-      ,  "96": "2"
-           [ ... ]
-      , "143": "1"
+    {
+     "identity": "DR1",
+     "name":     "Fokker DR.1",
+     "booklet":  "Handy Rotary",
+     "side":     "B",
+     "capacity": 12,
+     "shoots": {
+           "2": "4"
+       ,   "8": "4"
+            [ ... ]
+       ,  "96": "2"
+            [ ... ]
+       , "143": "1"
+     }
     }
-   }
 
 Then the most elaborate part, the  maneuvers. I will take for examples
 the two maneuvers used  in the patent. First, you give  a label to all
-the  maneuvers.  For I<Wingleader>  and  I<Jet  Eagles> and  for  some
-releases of I<Handy Rotary> the maneuvers are already labeled, but for
-the other  games you will have  to give labels C<A>  to whatever (C<M>
-for I<Wingleader>, C<Y> for I<Handy Rotary> and I<Jet Eagles>).
+the  maneuvers.  For _Wingleader_  and  _Jet  Eagles_ and  for  some
+releases of _Handy Rotary_ the maneuvers are already labeled, but for
+the other  games you will have  to give labels `A`  to whatever (`M`
+for _Wingleader_, `Y` for _Handy Rotary_ and _Jet Eagles_).
 
-The two  maneuvers used in the  patent are maneuver B<A>  and maneuver
-B<J>. So we have:
+The two  maneuvers used in the  patent are maneuver **A**  and maneuver
+**J**. So we have:
 
     "maneuvers": {
         "A": { "path": "?" , "turn": "?", "speed": "?" }
       , "J": { "path": "?" , "turn": "?", "speed": "?" }
     },
 
-=for HTML
-<img src='Page-48-All.png' alt="German booklet page 48" />
-
 Looking at  the top row of  the maneuver table, you  obtain the speed:
-slow for maneuver B<A>, crusing for maneuver B<J>. This translates as:
+slow for maneuver **A**, crusing for maneuver **J**. This translates as:
 
     "maneuvers": {
         "A": { "path": "?" , "turn": "?", "speed": "0" }
@@ -942,7 +890,7 @@ was avaiable in the booklets, so I added it to the init files.
 
 The second row gives the lateral direction: left, straight (or center)
 or right. Unlike the speed, the  direction is an important element for
-the tailing rules. Both maneuvers B<A> and B<J> are left maneuvers, so
+the tailing rules. Both maneuvers **A** and **J** are left maneuvers, so
 we fill the missing values:
 
     "maneuvers": {
@@ -950,15 +898,9 @@ we fill the missing values:
       , "J": { "path": "?" , "turn": "L", "speed": "1" }
     },
 
-For the path, we  go to page 187. From this  page, maneuver B<A> leads
-to page 205 and maneuver B<J> leads  to page 23. With these values, we
-refer to lines 205 and 23 of the file F<Preparation/etape-finale.html>
-
-=for HTML
-<table>
-<tr><td>23</td><td>5;5</td><td>3;1</td><td>A  30 </td><td>...</td></tr>
-<tr><td>205</td><td>;5</td><td>;1</td><td>A  213 </td><td>...</td></tr>
-</table>
+For the path, we  go to page 187. From this  page, maneuver **A** leads
+to page 205 and maneuver **J** leads  to page 23. With these values, we
+refer to lines 205 and 23 of the file `Preparation/etape-finale.html`
 
 Since we are dealing with the bad guy, we look at column 2 and we find the
 path formula to insert into the maneuver specification.
@@ -968,105 +910,99 @@ path formula to insert into the maneuver specification.
       , "J": { "path": "5;5" , "turn": "L", "speed": "1" }
     },
 
-Note: from the  Sopwith Camel's page 187, maneuver B<A>  leads to page
-198 and maneuver B<J> leads  to page 31. The F<etape-finale.html> file
+Note: from the  Sopwith Camel's page 187, maneuver **A**  leads to page
+198 and maneuver **J** leads  to page 31. The `etape-finale.html` file
 gives:
 
-=for HTML
-<table>
-<tr><td>31</td><td>3;1</td><td>5;5</td><td>A 2 </td><td>...</td></tr>
-<tr><td>198</td><td>;1</td><td>;5</td><td>A 187 </td><td>...</td></tr>
-</table>
-
 For the good guy, we take the  path formula from column 3 instead of 2
-and, as you can see, we have the same fomulas C<5;5> and C<;5>.
+and, as you can see, we have the same fomulas `5;5` and `;5`.
 
 And the final document is:
 
-   {
-    "identity": "DR1",
-    "name":     "Fokker DR.1",
-    "booklet":  "Handy Rotary",
-    "side":     "B",
-    "capacity": 12,
-    "maneuvers": {
-        "A": { "path": ";5"  , "turn": "L", "speed": "0" }
-           [ ... ]
-      , "J": { "path": "5;5" , "turn": "L", "speed": "1" }
-           [ ... ]
-    },
-    "shoots": {
-          "2": "4"
-      ,   "8": "4"
-           [ ... ]
-      ,  "96": "2"
-           [ ... ]
-      , "143": "1"
+    {
+     "identity": "DR1",
+     "name":     "Fokker DR.1",
+     "booklet":  "Handy Rotary",
+     "side":     "B",
+     "capacity": 12,
+     "maneuvers": {
+         "A": { "path": ";5"  , "turn": "L", "speed": "0" }
+            [ ... ]
+       , "J": { "path": "5;5" , "turn": "L", "speed": "1" }
+            [ ... ]
+     },
+     "shoots": {
+           "2": "4"
+       ,   "8": "4"
+            [ ... ]
+       ,  "96": "2"
+            [ ... ]
+       , "143": "1"
+     }
     }
-   }
 
 In  all this,  please pay  attention to  the commas  with the  closing
-braces.  I  have  inserted  the  C<maneuvers>  entry  in  next-to-last
+braces.  I  have  inserted  the  `maneuvers`  entry  in  next-to-last
 position, so I have coded a comma  for this entry and I have ended the
-C<shoots> entry with a plain brace without comma.
+`shoots` entry with a plain brace without comma.
 
 Now run
 
-  raku livret.p6 DR1
-  cp en/DR1.json ../Game
-  cd ../Game
-  ./init-aircraft.raku DR1
+    raku livret.p6 DR1
+    cp en/DR1.json ../Game
+    cd ../Game
+    ./init-aircraft.raku DR1
 
-And   you  have   also   a  F<en/DR1.html>   file   which  shows   the
+And   you  have   also   a  `en/DR1.html`   file   which  shows   the
 characteristics of  the Fokker DR.1  in a  more readable way  than the
 JSON file.
 
 Now do the same with the Sopwith Camel. A shortcut is available to all
-the I<Ace of  Aces> games, except the I<Starfighter  Battle Book>, the
+the _Ace of  Aces_ games, except the _Starfighter  Battle Book_, the
 maneuvers  are the  same  for  both opponents,  so  you  just have  to
-cut-and-paste  the  C<maneuvers> data.  You  still  have to  fill  the
-C<shoot> data by leafing through the Sopwith Camel booklet.
+cut-and-paste  the  `maneuvers` data.  You  still  have to  fill  the
+`shoot` data by leafing through the Sopwith Camel booklet.
 
-When this  is done, you just  need to edit the  F<launch> shell script
+When this  is done, you just  need to edit the  `launch` shell script
 (or duplicate and edit), and you can launch games between an anonymous
 Camel and  an anonymous  DR.1 (or,  if you  want silliness,  between a
 Camel and a drone or between a sparrowhawk and a DR.1).
 
 Then, type an init file for a few pilots, based on the example below.
 
-  {
-    "identity": "Manfred",
-    "name": "Manfred von Richthofen",
-    "aircraft": "DR1",
-    "perspicacity": 0.6,
-    "stiffness": 2.718,
-    "hits": 12,
-    "ref": [ "DR1" ]
-  }
+    {
+      "identity": "Manfred",
+      "name": "Manfred von Richthofen",
+      "aircraft": "DR1",
+      "perspicacity": 0.6,
+      "stiffness": 2.718,
+      "hits": 12,
+      "ref": [ "DR1" ]
+    }
 
-As for the aircraft, the  C<name> attribute should be a human-friendly
+As for the aircraft, the  `name` attribute should be a human-friendly
 name or  description of  the pilot (spaces,  quotes and  other special
-chars allowed), while the C<identity> attribute is a URI-friendly name
-(no  C<%20>,  no  C<%27>,  etc).  The  C<aircraft>  attribute  is  the
-C<identity>  of   the  flying   machine  flown   by  the   pilot.  The
-C<perspicacity> attribute  is a floating  number between 0 and  1, the
-C<stiffness> attribute is  a floating number higher than  1, they will
-be explained below. And the C<ref> attribute is a list of aircraft and
+chars allowed), while the `identity` attribute is a URI-friendly name
+(no  `%20`,  no  `%27`,  etc).  The  `aircraft`  attribute  is  the
+`identity`  of   the  flying   machine  flown   by  the   pilot.  The
+`perspicacity` attribute  is a floating  number between 0 and  1, the
+`stiffness` attribute is  a floating number higher than  1, they will
+be explained below. And the `ref` attribute is a list of aircraft and
 pilots. It is not used yet.
 
 Then run
 
-  ./init-pilot.raku Manfred
+    ./init-pilot.raku Manfred
 
-supposing the file  is F<Manfred.json>. And adapt  the F<launch> shell
+supposing the file  is `Manfred.json`. And adapt  the `launch` shell
 script to allow launching games between named pilots.
 
-Actually,  the F<Manfred.json>  and F<Roy.json>  are available  in the
-F<Game> directory,  because they contain no  copyrighted material. You
+Actually,  the `Manfred.json`  and `Roy.json`  are available  in the
+`Game` directory,  because they contain no  copyrighted material. You
 are free to alter thel or to  use them as models for other player init
 files.
 
-=head2 Preparation
+## Preparation
 
 I have started with this part, of course. But I did not write the programs within the
 Git repo, I wrote them in an external directory. Later, I cleaned them and I copied them
@@ -1084,10 +1020,10 @@ I generate a booklet, that is, the full list of transitions
 JSON format and in HTML format.
 
 You will learn more by reading the dedicated
-L<documentation|https://github.com/jforget/Perl6-Alpha-As-des-As-Zero/blob/master/Preparation/description-en.pod>
+[documentation](https://github.com/jforget/Perl6-Alpha-As-des-As-Zero/blob/master/Preparation/description-en.pod)
 for this step.
 
-=head2 Game
+## Game
 
 The original game is meant for two human players with no umpire.
 For the electronic players, I have prefered to use an umpire program, or
@@ -1116,17 +1052,17 @@ nothing about tactics. The umpire program reads the JSON files created by the pr
 This allows it to know the relation (start page + maneuver) → end page. But the umpire program
 does not know and does not care about the underlying hexagonal geometry.
 
-=head3 Database
+### Database
 
-I have chosen L<MongoDB|https://www.mongodb.com/>
+I have chosen [MongoDB](https://www.mongodb.com/)
 for the database. The reasons are not technical reasons (performance, for 
 example), but the fact that I know data manipulation with SQL, but I am not familiar with
 noSQL databases. The programs could be written with a SQL database, such as 
-L<SQLite|https://sqlite.org/index.html>
+[SQLite](https://sqlite.org/index.html)
 or any other, but for me, it was less interesting.
 
 During my FPW 2018 talk, someone remarked that MongoDB allows the storage of pictures,
-which would be interesting for a game such as I<Ace of Aces>, which relies heavily
+which would be interesting for a game such as _Ace of Aces_, which relies heavily
 on pictures. Actually, this was not a criterion for my choice, I had no intention
 to copy the plane pictures into the database.
 
@@ -1134,50 +1070,50 @@ The characteristics  of the various  aircraft are stored in  JSON text
 files. At first,  it was the same for pilots,  which were described in
 JSON text files. But I discovered  it was more convenient to store the
 pilots in the database, the  gaming programs and the Bailador programs
-would be  simpler. I  wrote a program  C<init-pilot.raku> which  reads the
+would be  simpler. I  wrote a program  `init-pilot.raku` which  reads the
 JSON  file describing  a pilot,  converts it  into a  Raku object  and
-inserts  it  into the  C<Pilots>  collection.  Similarly, I  wrote  a
-program C<init-aircraft.raku> which reads an aircraft
-JSON file, converts  it and inserts it into  the C<Aircraft> collection.
+inserts  it  into the  `Pilots`  collection.  Similarly, I  wrote  a
+program `init-aircraft.raku` which reads an aircraft
+JSON file, converts  it and inserts it into  the `Aircraft` collection.
 For the training mode games, I need an anonymous pilot identified with
-the same key  as the aircraft. So the  C<init-aircraft.raku> program generates
-this anonymous  pilot and inserts  it into the  C<Pilots> collection.
+the same key  as the aircraft. So the  `init-aircraft.raku` program generates
+this anonymous  pilot and inserts  it into the  `Pilots` collection.
 The  JSON files  still  exist, but  they are  used  only for  database
 initialization.
 
-There  is a  problem when  reading back the C<Aircraft>  and C<Pilots>
+There  is a  problem when  reading back the `Aircraft`  and `Pilots`
 documents into the  gaming programs and the Bailador  programs. On one
-hand, the  C<JSON::Class>  module generates C<Aircraft>  and  C<Pilot>
+hand, the  `JSON::Class`  module generates `Aircraft`  and  `Pilot`
 objects from  a JSON  string, on  the other  hand the  MongoDB modules
-generate C<BSON::Document>  objects, the data of which are accessed  with the same
+generate `BSON::Document`  objects, the data of which are accessed  with the same
 syntax as hash  tables. There is no direct conversion  to a user class
-such as  C<Aircraft> or C<Pilot>.  Should I write an  object constructor
-which extracts  each value from  the C<BSON::Document> hash  table and
-stores it into the corresponding attribute of the C<Pilot> / C<Aircraft>
+such as  `Aircraft` or `Pilot`.  Should I write an  object constructor
+which extracts  each value from  the `BSON::Document` hash  table and
+stores it into the corresponding attribute of the `Pilot` / `Aircraft`
 object being created? Is there a  cleaner and simpler solution to this
 dilemma?
 
 In computer programming, there is a 
-L<saying|https://stackoverflow.com/questions/288623/level-of-indirection-solves-every-problem>:
+[saying](https://stackoverflow.com/questions/288623/level-of-indirection-solves-every-problem):
 "Every problem can be solved by adding a level of indirection". I have
 found  a similar  solution for  my current  problem. When  the program
-creates  a C<Aircraft>  or C<Pilots> document  in  the database,  this
-document contains  a C<json>  attribute to store  the raw  JSON string
-used to create the C<Aircraft> or C<Pilot>  object. Then, in  the next
-program,  when reading  the BSON  document,  I just  take the  C<json>
-attribute and I build  the  C<Aircraft> or  C<Pilot>  object with  the
-C<from-json>  method provided  by  C<JSON::Class>.  The only  required
-entries  in  the  database   documents  are  C<identity> 
-used as key and C<json> for the data payload. I have still
+creates  a `Aircraft`  or `Pilots` document  in  the database,  this
+document contains  a `json`  attribute to store  the raw  JSON string
+used to create the `Aircraft` or `Pilot`  object. Then, in  the next
+program,  when reading  the BSON  document,  I just  take the  `json`
+attribute and I build  the  `Aircraft` or  `Pilot`  object with  the
+`from-json`  method provided  by  `JSON::Class`.  The only  required
+entries  in  the  database   documents  are  `identity` 
+used as key and `json` for the data payload. I have still
 added some other entries to store some object attributes, because they
 may be used for some database queries.
 
 On  the other  hand, I  have not  defined classes  for games  and game
-turns,  I use  basic C<BSON::Document>  in the  C<Games> and  C<Turns>
+turns,  I use  basic `BSON::Document`  in the  `Games` and  `Turns`
 collections respectively and  I use the hash table syntax  to read and
 update data. Not very consistent, I agree.
 
-=head3 Inter-Process Communication
+### Inter-Process Communication
 
 Like I said above, there are three processes which send data to each other. Did I
 use sockets? Message queues? No. I used a mechanism based on John le Carré spy novels,
@@ -1195,12 +1131,12 @@ Just as in John le Carré novels, if a process does not find the record it is wa
 it waits a few moments and it makes a new attempt. And as in John le Carré novels, 
 after a number of failed attempts, the process considers something bad has happened 
 on the other side and it stops all activities. The comparison ends there, because in
-spy novels the spy is exfiltrated, while here the process executes a C<die>.
+spy novels the spy is exfiltrated, while here the process executes a `die`.
 
 "With a hammer, everything looks like a nail". Indeed, but by doing so, I have only
 one module to deal with, which reduces the number of standing issues (bugs and PEBCAK).
 
-=head3 Umpire program: C<umpire.raku>, formerly C<arbitre.p6>
+### Umpire program: `umpire.raku`, formerly `arbitre.p6`
 
 The program begins,  as usual, with an initialization  step, where the
 main variables are initialized. Nothing special to discuss.
@@ -1208,27 +1144,18 @@ main variables are initialized. Nothing special to discuss.
 Then you have  an event loop, which manages the  successive game turns
 with the following steps:
 
-=over 4
-
-=item  1  Resolving  the  shooting  for the  previous  game  turn  and
+- 1  Resolving  the  shooting  for the  previous  game  turn  and
 computing the possible maneuver choices for the current turn.
+- 2 Writing these choices into the `Turns` (player turn) collection for each player.
+- 3 Reading back the players' answers from the `Turns` collection.
+- 4 Applying the transitions: initial page → intermediate page → final page.
+- 5 Checking whether a plane flees or not (or both planes).
+- 6 Dealing with the end of game (fleeing or destruction).
 
-=item 2 Writing these choices into the C<Turns> (player turn) collection for each player.
+#### Shooting
 
-=item 3 Reading back the players' answers from the C<Turns> collection.
-
-=item 4 Applying the transitions: initial page → intermediate page → final page.
-
-=item 5 Checking whether a plane flees or not (or both planes).
-
-=item 6 Dealing with the end of game (fleeing or destruction).
-
-=back
-
-=head4 Shooting
-
-Fire combat for game turn I<n> is  actually computed in step 1 of turn
-I<n>+1. Why? Because shooting involves  no choice from the players. It
+Fire combat for game turn _n_ is  actually computed in step 1 of turn
+_n_+1. Why? Because shooting involves  no choice from the players. It
 is not necessary to execute a mailbox exchange just for the resolution
 of any shooting.  We just wait for  the next turn and  the players are
 warned they have lost some hit points  at the same time they are given
@@ -1239,40 +1166,33 @@ Of course,  if step  1 computes that  a plane has  zero hit  points or
 less, steps 2 to 5 are skipped  and we imediately deal with the end of
 the game in step 6.
 
-=head4 Tailing
+#### Tailing
 
 For game turns where an aircraft is tailing another, steps 2 and 3 are
 split in the following way:
 
-=over 4
-
-=item * 2A Writing into the C<Turns> (player turn) collection the choices for the tailed player.
-
-=item * 3A Reading back the tailed player's answer from the C<Turns> collection.
-
-=item  * 2B  Writing into  the C<Turns>  (player turn)  collection the
+- 2A Writing into the `Turns` (player turn) collection the choices for the tailed player.
+- 3A Reading back the tailed player's answer from the `Turns` collection.
+- 2B  Writing into  the `Turns`  (player turn)  collection the
 choices for the  tailing player, with a L/C/R (left  / center / right)
 indication relative to the tailed player's maneuver.
-
-=item * 3B Reading back the tailing player's answer from the C<Turns> collection.
-
-=back
+- 3B Reading back the tailing player's answer from the `Turns` collection.
 
 When the umpire  program asks to the tailing plane  which maneuvers it
 chooses,  it gives  a special  code to  the current  page number:  the
 actual  number concatenated  with the  L/C/R code.  Going back  to the
-example from  the patent,  the British  player is  page B<1>,  but the
-German player is  page B<1L>, because the British player  has chosen a
+example from  the patent,  the British  player is  page **1**,  but the
+German player is  page **1L**, because the British player  has chosen a
 leftward maneuver.  Pages 1L, 1C and  1R have exactly the  same set of
 transitions  maneuver  →  final  page,   but  the  German  player  has
-completely different sets of "previous situations" for page B<1L>, for
-page B<1C> and for page B<1R>  from which to choose the next maneuver.
+completely different sets of "previous situations" for page **1L**, for
+page **1C** and for page **1R**  from which to choose the next maneuver.
 The player  program has no special  case for choosing a  maneuver when
 tailing the enemy. The  price to pay is a that  the umpire program has
 to  be careful  about  the page  number, which  is  no longer strictly
 numeric and which might have a L/C/R letter or not.
 
-=head4 List of Available Maneuvers
+#### List of Available Maneuvers
 
 This step should not  require comments. But if you take  a look at the
 conclusion paragraph  below, you will see  that the program has  a "no
@@ -1280,12 +1200,12 @@ fleeing" option for the training games. In this case,
 the planes opt to  go on fighting, no matter how  many hit points they
 have lost already. When this option  is on, the umpire program removes
 all  maneuvers  which lead  to  an  intermediate  page 223.  The  only
-exception is when I<all> maneuvers lead  to page 223, which can happen
+exception is when _all_ maneuvers lead  to page 223, which can happen
 with the  sparrowhawk. In these rare  cases, the list of  maneuvers is
 not filtered.
 
 On the other  hand, you cannot remove maneuvers which  would lead to a
-I<final> page 223. So  the planes can end the game  turn on this page.
+_final_ page 223. So  the planes can end the game  turn on this page.
 In this case, the umpire program gives  them a choice with 4 times the
 attack option and only one fleeing option. So the fight most certainly
 goes on. The probability is 16/25 instead of 1/4.
@@ -1294,50 +1214,44 @@ This filtering may  induce a cognitive bias in  the self-learning. But
 this gives us richer training games  with many game turns, rather than
 training games ending after a handful of turns.
 
-=head4 End of Game
+#### End of Game
 
 When the umpire  notices an end of game condition,  either a plane (or
 both) having received enough hit points, or a plane (or both) fleeing,
-the program  writes a last C<Turns>  record for each player,  with the
-C<end> attribute set to C<1> and the C<result> set to the number of VP
+the program  writes a last `Turns`  record for each player,  with the
+`end` attribute set to `1` and the `result` set to the number of VP
 (+1, -1, +1/2  or -1/2). The pilot processes will  know that they must
 leave their event loop.
 
 In  addition,  the umpire  program  writes  a  summary record  in  the
-C<Games> collection.
+`Games` collection.
 
-=head3 Player program: C<player.raku>, formerly C<joueur.p6>
+### Player program: `player.raku`, formerly `joueur.p6`
 
-The C<player.raku> program is based on a loop, reading each successive
-player turn  from the C<Turns>  collection and rewriting it  to notify
+The `player.raku` program is based on a loop, reading each successive
+player turn  from the `Turns`  collection and rewriting it  to notify
 the selected maneuver to the umpire.
 
-Each player  has two  attributes, I<stiffness> (mental  stiffness) and
-I<perspicacity>, used to choose the next maneuver. The I<stiffness> is
-a float  greater than or  equal to 1,  the I<perspicacity> is  a float
+Each player  has two  attributes, _stiffness_ (mental  stiffness) and
+_perspicacity_, used to choose the next maneuver. The _stiffness_ is
+a float  greater than or  equal to 1,  the _perspicacity_ is  a float
 between 0 and 1.
 
 Here are the successive steps for a game turn.
 
-=head4 Extracting Similar Situations
+#### Extracting Similar Situations
 
-The program  extracts from  the C<Turns>  collection all  player turns
+The program  extracts from  the `Turns`  collection all  player turns
 similar to the current player turn, using the following criteria:
 
-=over 4
-
-=item 1 Same page.
-
-=item 2 Previous game (according to the date-hour key).
-
-=item 3 Same pilot or just any similar pilot.
-
-=back
+- 1 Same page.
+- 2 Previous game (according to the date-hour key).
+- 3 Same pilot or just any similar pilot.
 
 Let us look again at the criteria.
 
 Same page: Remember that, for a tailing plane located on, say, page 1,
-there are three different pages, page B<1L>, page B<1C> and page B<1R>
+there are three different pages, page **1L**, page **1C** and page **1R**
 depending on the choice of the tailed plane for its next maneuver. The
 situations from these pseudo-pages are not mixed together.
 
@@ -1356,21 +1270,21 @@ Guynemer on  a SPAD  XIII as  an example.  His instructors  were Jules
 Védrines  and Paul  Tarascon. So  Guynemer will  use the  knowledge he
 accumulated  himself, plus  the lessons  from the  training fights  by
 anonymous pilots flying SPAD XIII's  and the knowledge that was taught
-him by Védrines and Tarascon. In  other words, he will select C<Turns>
-documents for  which the  C<identity> field  belongs to  the following
+him by Védrines and Tarascon. In  other words, he will select `Turns`
+documents for  which the  `identity` field  belongs to  the following
 list (in Raku syntax):
 
-  < Guynemer SPAD_XIII Vedrines Tarascon >
+    < Guynemer SPAD_XIII Vedrines Tarascon >
 
 To be consistent, we must ensure that Védrines and Tarascon have flown
 SPAD XIII  too. On  the other  hand, we  can imagine  a pilot  who has
 learnt flying and fighting on a Fokker  E.III and who is assigned to a
 Jasta flying Fokker D.VII's.
 
-Another remark: the  C<ref> attribute exists in version V1,  but it is
+Another remark: the  `ref` attribute exists in version V1,  but it is
 not used. In other words, in version V1, Guynemer will use only:
 
-  < Guynemer SPAD_XIII >
+    < Guynemer SPAD_XIII >
 
 A last  remark: when extracting  the similar situations, a  pilot does
 not care about the opponent. For example, when playing a Sopwith Camel
@@ -1378,7 +1292,7 @@ against a  Fokker Dr.I, the program  will extract any "Camel  vs Dr.I"
 game  turn, but  also any  "Camel vs  Fokker E.III"  game turn  or any
 "Camel vs Fokker D.VII" game turn.
 
-=head4 Evaluating The Extracted Similar Situations
+#### Evaluating The Extracted Similar Situations
 
 "Perspicacity"  means  "being  able  to see  through".  Through  what?
 Through the haze of  passing time in our case. If a  game ends at turn
@@ -1390,18 +1304,18 @@ turn 13 maneuver, but in this case only a very remote possibility.
 How does  this translate in  program terms?  Here are a  few examples,
 from which you will deduce the rule:
 
-  Final result   final turn   current turn   perspicacity   score
-      1 VP            15           10             0.1       0.00001
-     -1 VP            15           10             0.1      -0.00001
-      1 VP            15           14             0.1       0.1
-      0.5 VP          15           14             0.1       0.05
-      1 VP            15           10             0.5       0.03125
-      1 VP            15           14             0.5       0.5
-      1 VP            15           10             0.9       0.59049
-     -1 VP            15           14             0.9      -0.9
-     -0.5 VP          15           14             0.9      -0.45
+    Final result   final turn   current turn   perspicacity   score
+        1 VP            15           10             0.1       0.00001
+       -1 VP            15           10             0.1      -0.00001
+        1 VP            15           14             0.1       0.1
+        0.5 VP          15           14             0.1       0.05
+        1 VP            15           10             0.5       0.03125
+        1 VP            15           14             0.5       0.5
+        1 VP            15           10             0.9       0.59049
+       -1 VP            15           14             0.9      -0.9
+       -0.5 VP          15           14             0.9      -0.45
 
-=head4 Evaluating the Maneuvers
+#### Evaluating the Maneuvers
 
 For  each possible  maneuver, the  program selects  all the  "previous
 situations" that  were followed by  the maneuver being  examined. Then
@@ -1409,16 +1323,16 @@ the program adds  the scores of the corresponding  situations. It does
 not compute the average value, it computes the total value. In theory,
 that would give any value in the minus infinity to plus infinity span.
 
-=head4 Choosing a Maneuver
+#### Choosing a Maneuver
 
-This is when  I<mental stiffness> (or I<psycho-rigidité>)  comes in. A
-stiff pilot  will nearly always  choose B<the> best maneuver  over any
+This is when  _mental stiffness_ (or _psycho-rigidité_)  comes in. A
+stiff pilot  will nearly always  choose **the** best maneuver  over any
 other, while a more versatile pilot  will choose, from time to time, a
 less  efficient maneuver  but which  will open  a new  set of  unusual
 situations.
 
 The   program  assigns   a   weight  to   each   maneuver,  by   using
-I<psycho-rigidité>  and  raising  it  to the  power  of  the  maneuver
+_psycho-rigidité_  and  raising  it  to the  power  of  the  maneuver
 evaluation. Once all weights are  computed for all maneuvers, they are
 normalized to obtain a probability distribution (P(A), P(B), P(C)...).
 This  distribution is  then converted  into a  cumulative distribution
@@ -1430,31 +1344,31 @@ Here  is  an  example,  with  3   maneuvers  A,  B  and  C,  evaluated
 respectively with  -2, 1  and 2.  With a really  stiff pilot  (10), we
 have:
 
-  maneuver  evaluation  weight   probability    cumulative
-      A        -2         0.01      0.000091    0.000091
-      B         1        10         0.090901    0.090992
-      C         2       100         0.909008    1
-    total               110.01      1.000000
+    maneuver  evaluation  weight   probability    cumulative
+        A        -2         0.01      0.000091    0.000091
+        B         1        10         0.090901    0.090992
+        C         2       100         0.909008    1
+      total               110.01      1.000000
 
 If the random number is in  the 9.1e-5 to 0.090992 interval, we choose
 maneuver B. If  the random number is greater than  0.090992, we choose
 maneuver C.  And for  the very  unlikely case where  it is  lower than
 9.1e-5, we choose maneuver A.
 
-Same thing, with a more relaxed pilot (I<stiffness> 1.1):
+Same thing, with a more relaxed pilot (_stiffness_ 1.1):
 
-  maneuver  evaluation  weight      probability  cumulative
-      A        -2         0.826446   0.2634976   0.2634976
-      B         1         1.1        0.35071543  0.61421303
-      C         2         1.21       0.38578697  1
-    total                 3,136446   1.00000000
+    maneuver  evaluation  weight      probability  cumulative
+        A        -2         0.826446   0.2634976   0.2634976
+        B         1         1.1        0.35071543  0.61421303
+        C         2         1.21       0.38578697  1
+      total                 3,136446   1.00000000
 
 As we  can see, the  probabilities are  around 1/3 for  each maneuver,
 with still an advantage for maneuver C.
 
-=head4 Training Games
+#### Training Games
 
-If  you lower  the  I<stiffness> to  1, you  find  that all  available
+If  you lower  the  _stiffness_ to  1, you  find  that all  available
 maneuvers have the same probability,  no matter how many previous game
 turns they  were used in and  which end result occurred  then. So, for
 training games, I use an anonymous pilot with a mental stiffness of 1.
@@ -1463,61 +1377,60 @@ to extract  previous similar  situations, it does  not bother  to rate
 them and to crunch numbers. The program just randomly picks a maneuver
 among the available maneuvers.
 
-=head4 End of game
+#### End of game
 
-When the  C<player.raku> program  reads a  C<Turns> document  with the
-C<end> attribute set to 1, it knows the game has ended. It updates all
-the C<Turns> documents  for the current game to store  in each of them
+When the  `player.raku` program  reads a  `Turns` document  with the
+`end` attribute set to 1, it knows the game has ended. It updates all
+the `Turns` documents  for the current game to store  in each of them
 the final result  and the delay between  the game turn and  the end of
 game. This will reduce the number of documents to retrieve in the next
 games.
 
-=head3 C<website.raku> Program (formerly C<site.p6>) and its Associate Programs
+### `website.raku` Program (formerly `site.p6`) and its Associate Programs
 
-C<website.raku> and its associate programs C<lib/xxx-page.rakumod> are
+`website.raku` and its associate programs `lib/xxx-page.rakumod` are
 basic Bailador  programs, which read  a URL,  extract a key  from this
 URL, access the database with this key, and display the extracted data
 in  HTML.  Nothing  out  of   the  ordinary.  The  data  displayed  by
-C<lib/player-turn-page.rakumod>  may be  complicated, but  they mirror
-the decision process exposed  in the documentation for C<player.raku>,
-so    the     documentation    for    C<player.raku>     applies    to
-C<lib/player-turn-page.rakumod> also.
+`lib/player-turn-page.rakumod`  may be  complicated, but  they mirror
+the decision process exposed  in the documentation for `player.raku`,
+so    the     documentation    for    `player.raku`     applies    to
+`lib/player-turn-page.rakumod` also.
 
-The  pages generated  by  C<lib/xxx-page.rakumod> are  built around  a
+The  pages generated  by  `lib/xxx-page.rakumod` are  built around  a
 dynamic    list     of    things:     a    list    of     games    for
-C<lib/game-list-page.rakumod>,    a   list    of   game    turns   for
-C<lib/game-page.rakumod>  (actually  a  table,  not a  list,  but  the
+`lib/game-list-page.rakumod`,    a   list    of   game    turns   for
+`lib/game-page.rakumod`  (actually  a  table,  not a  list,  but  the
 principle  is the  same),  and a  list  of maneuvers  plus  a list  of
-previous player turns for C<lib/player-turn-page.rakumod>. Here is how
+previous player turns for `lib/player-turn-page.rakumod`. Here is how
 the dynamic lists are built.
 
-First,  the F<html>  subdirectory  contains a  static  version of  the
+First,  the `html`  subdirectory  contains a  static  version of  the
 corresponding  page. Or  rather  several versions,  one per  supported
 language (for the  moment, only French and English). One  of the lines
-(C<< <li>...</li> >> or C<<  <tr>...</tr> >>) is extensively decorated
-with  C<class='...'> attributes,  for  each placeholder  in the  line.
-Then, the  C<Template::Anti> module extracts  this line, which  I will
-call a I<brick>. Then it removes all the lines from the list or table,
-leaving  an  empty  C<<  <ul></ul>   >>  structure  or  an  empty  C<<
-<tbody></tbody> >> structure, which I call the I<frame>. Then, I apply
-each document  from the database  extraction to the  I<brick>, filling
+(`<li>...</li>` or `<tr>...</tr>`) is extensively decorated
+with  `class='...'` attributes,  for  each placeholder  in the  line.
+Then, the  `Template::Anti` module extracts  this line, which  I will
+call a _brick_. Then it removes all the lines from the list or table,
+leaving  an  empty  `<ul></ul>`  structure  or  an  empty  `<tbody></tbody>` structure, which I call the _frame_. Then, I apply
+each document  from the database  extraction to the  _brick_, filling
 each placeholder  with the value from  the database and I  insert this
-I<brick> into the I<frame>.
+_brick_ into the _frame_.
 
 This  general principle  has  a few  variants. For  the  game list  in
-C<lib/game-list.rakumod>, there are three bricks,  not one. There is a
+`lib/game-list.rakumod`, there are three bricks,  not one. There is a
 brick for games  ending when a player  is shot down, there  is a brick
 for  games  ending  in  a  draw (usually  both  players  fleeing,  but
 sometimes both players shooting down each  other) and there is a brick
 for games ending when a player flees. For the game webpage and for the
 player turn  webpage, some database  values are not  directly inserted
 into  their  placeholders. They  are  translated  first. For  example,
-B<Attack> →  B<Attaque>, or B<L>  (for "left") → B<G>  (for "gauche").
+**Attack** →  **Attaque**, or **L**  (for "left") → **G**  (for "gauche").
 Some of these translations come from a  dummy line in the list or from
 a  dummy paragraph  at the  end  of the  webpage. This  dummy line  or
 paragraph is removed from the generated webpage, of course.
 
-=head2 A Few Questions
+## A Few Questions
 
 I have presented  this project during the French Perl  Workshop in May
 2018 and  during a  meeting of  DC.pm in  March 2021.  Here are  a few
@@ -1548,7 +1461,7 @@ the Ace of Aces pictures. Can't we do the same?
 A. As  I said,  scanning the 223  pages of each  booklet is  a lengthy
 process and  I do not  consider it  is worth the  time. If you  have a
 different opinion, go  for it and scan the booklets  for personal use.
-Showing 5 or  6 pictures from I<Ace  of Aces> on one's  webpage may be
+Showing 5 or  6 pictures from _Ace  of Aces_ on one's  webpage may be
 considered fair  use, providing the  full set  of 223 pictures  may be
 considered copyright infringement.
 
@@ -1567,21 +1480,21 @@ run enough Dr.I vs Camel games to give you significant values.
 
 Q.  When an  AI  learns to  play  a game,  such as  chess  or go,  the
 programmers uses some reference books  describing the game openings or
-some common techniques and tactics. Is there such a thing for I<Ace of
-Aces>?
+some common techniques and tactics. Is there such a thing for _Ace of
+Aces_?
 
 A. No. Initializing  an AI with game openings was  how Google Alpha Go
 was written. But its younger sibling Google Alpha Go Zero started from
-a clean slate. I have done the same with I<As des As Zéro>.
+a clean slate. I have done the same with _As des As Zéro_.
 
 Let us  leave aside my programs  and let us speak  about human newbies
 learning the game. Are there any reference books for them to learn the
 tricks  of  the  trade?  If  your consider  Chess  and  Go,  they  are
-I<classic> games with a huge number of players, so there is room for a
+_classic_ games with a huge number of players, so there is room for a
 big amount  of litterature on them.  You find very easily  hundreds of
 books  and  magazines devoted  to  these  games.  On the  other  hand,
 Mastermind and  Othello are  less famous, but  still classic.  You may
-find  I<some>  litterature,  but  not   much  (I  have  a  book  about
+find  _some_  litterature,  but  not   much  (I  have  a  book  about
 Mastermind, my brother  has a book about Othello, but  that's all). On
 the third  hand, for  Ace of  Aces, there  are not  enough experienced
 players to write books and there  are not enough newbie players to buy
@@ -1608,8 +1521,8 @@ and idiosyncrasies?
 A. No, the  player program does not  examine if there is  a pattern in
 its opponent's answer,  caused by some preference  or idiosyncrasy. It
 just extract all relevant game  turns, make statistics, crunch numbers
-and  build  probabilities. Yet,  as  I  have  mentioned in  L<List  of
-Available  Maneuvers> paragraph,  the  "no fleeing"  option may  have
+and  build  probabilities. Yet,  as  I  have  mentioned in  ["List  of
+Available  Maneuvers"](#list-of-available-maneuvers) paragraph,  the  "no fleeing"  option may  have
 introduced a bias for both the player and its opponent.
 
 Q. Is it possible to play a game between a human and an AI?
@@ -1631,7 +1544,7 @@ after more  that 50  seconds: the  phone rings,  or the  doorbell, the
 microwave oven  beeps because the  pizza is  warm, the baby  starts to
 cry, his two older siblings start  a row, the dog looks imploringly at
 you with the leash in its mouth,
-L<etc|https://www.imdb.com/title/tt0080455/quotes?item=qt0320024>.
+[etc](https://www.imdb.com/title/tt0080455/quotes?item=qt0320024).
 A human opponent  would easily understand that real  life interfers, a
 computer opponent  would still  enforce the 50-second  timeout without
 second thoughts.
@@ -1647,19 +1560,19 @@ learned long ago  in APL, especially the operations  on lists (vectors
 in  APL  parlance) as  a  whole  instead  of processing  each  element
 separately in a loop.
 
-L<The Most Useful Feature Of  Raku> is actually the commonalities with
+["The Most Useful Feature Of  Raku"](#the-most-useful-feature-of-raku) is actually the commonalities with
 Perl. Much of what you write in Raku is very similar to what you would
-have  written in  Perl: curly  braces, semi-colons,  C<my> and  C<sub>
+have  written in  Perl: curly  braces, semi-colons,  `my` and  `sub`
 operators, etc.
 
-=head2 Todo List And Vaporware
+## Todo List And Vaporware
 
 Here is  a list of  possible improvements for  this project. I  do not
 necessarily  intend to  achieve all  of them.  That is  why the  title
 mentions  "vaporware". If  you  are interested  in implementing  these
 points, you can still get in touch with me.
 
-=head3 Coding Standards
+### Coding Standards
 
 The biggest mistake I did in this project was thinking that I would be
 the only one to read and write code. So I used French names for nearly
@@ -1674,37 +1587,37 @@ multilingual,  generating  English-speaking pages  or  French-speaking
 pages depending  on the user's  choice. The preparation step  might be
 translated in English, but not soon.
 
-April  2021: the  game part  is rewritten,  see the  F<Game> directory
-instead of the F<Jeu> directory.
+April  2021: the  game part  is rewritten,  see the  `Game` directory
+instead of the `Jeu` directory.
 
-=head3 Graphics, Part 1
+### Graphics, Part 1
 
 Until now,  I was perfectly OK  with displaying the maneuvers  as mere
 alphabetic codes. Now, I think it would be better if the arrow symbols
 could be displayed together with the alpha maneuver code.
 
-=head3 Graphics, Part 2
+### Graphics, Part 2
 
 As already  mentioned above,  some people  think it  would be  nice to
 display the full images from the booklets.  I do not plan to do it for
 myself, but if you are interested in this, you can fork my Github repo
 and add this functionality.
 
-=head3 Website
+### Website
 
 In  addition  to  multi-linguism,   the  website  should  be  somewhat
 improved: more queries, more options...
 
-=head3 Training Mode
+### Training Mode
 
 When starting a game and when resuming a game after visiting page 223,
 it is customary to use a neutral page, that is, page 170. So this page
 is over-represented in  the database. While the use of  a neutral page
 is justified  in competitive games,  it is not important  for training
-games.  So  the  umpire   program  should  accept  a  C<starting-page>
+games.  So  the  umpire   program  should  accept  a  `starting-page`
 parameter to expand the coverage of the database.
 
-=head3 Human-vs-AI Mode
+### Human-vs-AI Mode
 
 There should be a human player  program, which would prompt for a play
 and read the user's answer  from the command-line. As explained above,
@@ -1714,19 +1627,19 @@ timeout duration.
 Or instead of the command line, the human-player program could display
 a simple web-form and read the player's answer with this web-form.
 
-=head3 Compatibility of Maneuvers
+### Compatibility of Maneuvers
 
 Enforce the rule about  the compatibility between successive maneuvers
 to prevent, for example, helicopter-like hovering. The problem is that
 this would obsolete all previous games in the database.
 
-=head3 Other AI Technologies
+### Other AI Technologies
 
 Instead of  a pure number-crunching  AI, program a  neural-network AI.
 The problem is that I do  not know anything about neural networks. But
 if someone else is interested, fine by me.
 
-=head2 Conclusion: Lessons Learned with Ace of Aces
+## Conclusion: Lessons Learned with Ace of Aces
 
 About choosing  Ace of Aces for  a Google Alpha Go  Zero-like project,
 you must remember it is a game simpler than Chess and Go. More complex
@@ -1766,103 +1679,67 @@ future fights.  For this reason, I  have created a "no fleeing"
 mode, where  choosing the attack has  a greater probability
 than choosing to flee.
 
-My aim with this project was to show that the I<Dikta Boelke> and
-L<Sailor Malan's advices|https://samilhistory.com/2017/03/24/ten-of-my-rules-for-air-fighting-sailor-malan/>
-can be  found by a  Alpha-I<xxx>-Zero method.  Not all of  these rules
+My aim with this project was to show that the _Dikta Boelke_ and
+[Sailor Malan's advices](https://samilhistory.com/2017/03/24/ten-of-my-rules-for-air-fighting-sailor-malan/)
+can be  found by a  Alpha-_xxx_-Zero method.  Not all of  these rules
 will be  found. For example, Sailor  Malan urges his fellow  pilots to
 turn often, at least every 30 seconds. This is a very sensible rule in
-a many-vs-many  situation, but  the 1-vs-1  configuration of  I<Ace of
-Aces> cannot make this rule emerge.
+a many-vs-many  situation, but  the 1-vs-1  configuration of  _Ace of
+Aces_ cannot make this rule emerge.
 
 Even rules about not reversing a turn did not emerge, but in this case
 I think  it is because I  have not run  enough games. I have  tried to
 polish  the programming  part,  without much  emphasis  on building  a
 significant database of games.
 
-=head1 Annex: In Retrospect, My First Steps In Raku
+# Annex: In Retrospect, My First Steps In Raku
 
-=head2 Documentation
+## Documentation
 
 To learn a  new skill, I prefer  reading a book printed  on paper than
 browsing tutorials on the web. The books I used for this project are:
 
-=over 4
-
-=item * 
-
-L<Think Perl 6|https://greenteapress.com/wp/think-perl-6/>
+- [Think Perl 6](https://greenteapress.com/wp/think-perl-6/)
 by Laurent Rosenfeld (renamed
-L<Think Raku|https://github.com/LaurentRosenfeld/think_raku>),
-
-=item *
-
-L<Perl 6 Deep Dive|https://www.packtpub.com/product/perl-6-deep-dive/9781787282049>, 
+[Think Raku](https://github.com/LaurentRosenfeld/think_raku)),
+- [Perl 6 Deep Dive](https://www.packtpub.com/product/perl-6-deep-dive/9781787282049), 
 which I had  received and which I  began to read just a  few days before
 writing my first lines of code for this project,
-
-=item *
-
-L<MongoDB, the Definitive Guide|https://www.eyrolles.com/Informatique/Livre/mongodb-the-definitive-guide-9781449381561/>
+- [MongoDB, the Definitive Guide](https://www.eyrolles.com/Informatique/Livre/mongodb-the-definitive-guide-9781449381561/)
 with no line of Raku code (even of Perl code), but very useful for this project.
-
-=back
 
 After the first version of this project, I have also read and appreciated:
 
-=over 4
-
-=item *
-
-L<Learning Perl 6|https://www.oreilly.com/library/view/learning-perl-6/9781491977675/>
-similarly renamed L<Learning Raku|https://www.learningraku.com/>,
-by C<brian d foy>,
-
-=item *
-
-L<Parsing with Perl 6 Regexes and Grammars|https://www.apress.com/gp/book/9781484232279>
-by Moritz Lenz, about L<Regexes, formerly Regular Expressions>.
-
-=back
+- [Learning Perl 6](https://www.oreilly.com/library/view/learning-perl-6/9781491977675/)
+similarly renamed [Learning Raku](https://www.learningraku.com/),
+by `brian d foy`,
+- [Parsing with Perl 6 Regexes and Grammars](https://www.apress.com/gp/book/9781484232279)
+by Moritz Lenz, about ["Regexes, formerly Regular Expressions"](#regexes-formerly-regular-expressions).
 
 For specific requests (not for a wide-range learning), I still
 use websites, mainly the
-L<documentation of standard types|https://docs.raku.org/type.html>
-and the L<list of modules|https://modules.raku.org/>.
+[documentation of standard types](https://docs.raku.org/type.html)
+and the [list of modules](https://modules.raku.org/).
 
-=head2 Compilation and Installation of Rakudo
+## Compilation and Installation of Rakudo
 
 There are four methods to install Raku on a Linux computer:
 
-=over 4
-
-=item 1
-
-Installing the F<.rpm> or F<.deb> package provided by your distribution.
-
-=item 2
-
-Installing the F<.rpm> or F<.deb> package provided by a L<contributor|https://github.com/nxadm>
-in a L<Github repository|https://github.com/nxadm/rakudo-pkg/releases>
-
-=item 3
-
-Downloading a Docker image, as suggested by Moritz Lenz in his book I<Perl 6 Fundamentals>.
-
-=item 4
-
-Compiling the sources.
-
-=back
+1. Installing the `.rpm` or `.deb` package provided by your distribution.
+2. Installing the `.rpm` or `.deb` package provided by a [contributor](https://github.com/nxadm)
+in a [Github repository](https://github.com/nxadm/rakudo-pkg/releases)
+3. Downloading a Docker image, as suggested by Moritz Lenz in his book _Perl 6 Fundamentals_.
+4. Compiling the sources.
 
 In my case, the second method did  not apply, there was no package for
 xubuntu 16.10.  And the  first method was  giving obsolete  (for 2018)
 versions. My various hardware and virtual computers at this time were:
 
-  hardware    xubuntu-12.04   32 bits  rakudo 2011.07
-  virtual     xubuntu-14.10   32 bits  rakudo 2013.12
-  virtual     lubuntu-15.10   32 bits  rakudo 2014.07
-  hardware    xubuntu-16.10   64 bits  rakudo 2016.06
-  virtual     Mageia-5        32 bits  not found
+    hardware    xubuntu-12.04   32 bits  rakudo 2011.07
+    virtual     xubuntu-14.10   32 bits  rakudo 2013.12
+    virtual     lubuntu-15.10   32 bits  rakudo 2014.07
+    hardware    xubuntu-16.10   64 bits  rakudo 2016.06
+    virtual     Mageia-5        32 bits  not found
 
 I must acknowledge that, at the time a version of Ubuntu was released,
 the version of  the Rakudo package was  a recent one. Yet,  it was not
@@ -1880,52 +1757,52 @@ I would not need to type the successive commands and the compile would
 run unattended. The script would also  display the date and time after
 each step. Here it is:
 
-  #!/bin/sh
-  # -*- encoding: utf-8; indent-tabs-mode: nil -*-
+    #!/bin/sh
+    # -*- encoding: utf-8; indent-tabs-mode: nil -*-
 
-  interlude() {
-    echo
-    echo
-    date +'%Y-%m-%d %H:%M:%S'
-    echo
-    echo
-  }
+    interlude() {
+      echo
+      echo
+      date +'%Y-%m-%d %H:%M:%S'
+      echo
+      echo
+    }
 
-  mkdir ~/rakudo && cd $_
-  wget https://rakudo.perl6.org/downloads/star/rakudo-star-2018.01.tar.gz
-  interlude
-  tar -xvzf rakudo-star-2018.01.tar.gz
-  interlude
-  cd rakudo-star-2018.01/
-  interlude
-  perl Configure.pl --backend=moar --gen-moar
-  interlude
-  make
-  interlude
-  # If you wish, you can run the tests
-  # Depending on your machine, they could take over half an hour to run
-  make rakudo-test
-  interlude
-  make rakudo-spectest
-  interlude
-  make install
-  interlude
-  echo "export PATH=$(pwd)/install/bin/:$(pwd)/install/share/perl6/site/bin:\$PATH" >> ~/.bashrc
-  source ~/.bashrc
+    mkdir ~/rakudo && cd $_
+    wget https://rakudo.perl6.org/downloads/star/rakudo-star-2018.01.tar.gz
+    interlude
+    tar -xvzf rakudo-star-2018.01.tar.gz
+    interlude
+    cd rakudo-star-2018.01/
+    interlude
+    perl Configure.pl --backend=moar --gen-moar
+    interlude
+    make
+    interlude
+    # If you wish, you can run the tests
+    # Depending on your machine, they could take over half an hour to run
+    make rakudo-test
+    interlude
+    make rakudo-spectest
+    interlude
+    make install
+    interlude
+    echo "export PATH=$(pwd)/install/bin/:$(pwd)/install/share/perl6/site/bin:\$PATH" >> ~/.bashrc
+    source ~/.bashrc
 
 Of  course, the  script has  changed a  little, with  the renaming  to
 "Raku"   and    the   obvious   change   of    version   number.   See
-L<https://rakudo.org/downloads/rakudo/source>, the "Build" paragraph.
+[https://rakudo.org/downloads/rakudo/source](https://rakudo.org/downloads/rakudo/source), the "Build" paragraph.
 
 Since the  script has run on  a virtual machine, which  is necessarily
 less powerful  than the  host computer,  the time  was longer  than it
 would have  been on  my physical  machine. Yet,  this would  give some
 insights.
 
-  make                   1h 40mn
-  make rakudo-test          20mn
-  make rakudo-spectest   3h 10mn
-  make install           1h
+    make                   1h 40mn
+    make rakudo-test          20mn
+    make rakudo-spectest   3h 10mn
+    make install           1h
 
 In addition, there were some errors  in the "spectest" step, but I did
 not mind, because Rakudo Star is  a work in progress, which means that
@@ -1939,7 +1816,7 @@ the xterm CLI windows where I  launched the compilation script. At one
 time, I noticed that the  task manager was displaying (translated from
 French):
 
-  Memory: 90 %     Swap file: 100 %
+    Memory: 90 %     Swap file: 100 %
 
 So I  understood why the compilation  was taking so long  and why even
 the mouse  was unresponsive: the  VM's VM  was thrashing! I  mean, the
@@ -1950,7 +1827,7 @@ discarded it, then I created a new  VM with a 2048 MB RAM, I installed
 xubuntu-19.10 (Eoan Ermine) and xfce,  and I ran again the compilation
 script. The duration  was still a long one, but  this time measured in
 minutes instead of hours. And there  were two test scripts which would
-not stop,  F<16-io/eof.t> and F<32-io/out-buffering>. For  the reasons
+not stop,  `16-io/eof.t` and `32-io/out-buffering`. For  the reasons
 mentioned above, I killed both test processes. The compilation process
 ended a few minutes later with no other incident.
 
@@ -1958,9 +1835,9 @@ So, if you want to compile Raku  (or Rakudo Star) from the sources, be
 sure your  computer has  at least 2  GB's worth of  RAM. And  skip the
 "spectest" step.
 
-=head2 Usage
+## Usage
 
-=head3 The Most Useful Feature Of Raku
+### The Most Useful Feature Of Raku
 
 It took me much time to be  aware of this simple fact: the most useful
 feature of  Raku is that  it shares  many features with  Perl: syntax,
@@ -1968,19 +1845,19 @@ semantics, even the programmers' community.
 
 An example about the common syntax: take this program.
 
-  sub fact {
-    my ($n) = @_;
-    if ($n <= 1) {
-      return 1;
+    sub fact {
+      my ($n) = @_;
+      if ($n <= 1) {
+        return 1;
+      }
+      else {
+        return $n * fact($n - 1);
+      }
     }
-    else {
-      return $n * fact($n - 1);
-    }
-  }
 
-  print join ' ', 5, fact(5), "\n";
-  print join ' ', 8, fact(8), "\n";
-  print join ' ', 12, fact(12), "\n";
+    print join ' ', 5, fact(5), "\n";
+    print join ' ', 8, fact(8), "\n";
+    print join ' ', 12, fact(12), "\n";
 
 It is valid both for Perl and Raku  and it does the same thing in both
 languages. Or course,  some purists will say that, as  a Raku program,
@@ -1991,23 +1868,23 @@ writing  basic  Raku code  is  easy.  The seasoned  Perl  programmer's
 If you  want to know  what a  more idiomatic factorial  function would
 look like, here is what it would look like:
 
-  sub fact(Int $n --> Int) {
-    if $n ≤ 1 {
-      return 1;
+    sub fact(Int $n --> Int) {
+      if $n ≤ 1 {
+        return 1;
+      }
+      else {
+        return $n × fact($n - 1);
+      }
     }
-    else {
-      return $n × fact($n - 1);
-    }
-  }
 
 Another more elaborated and yet shorter example:
 
-  multi sub fact(Int $n where 0 ≤ $n ≤ 1 --> Int) {
-    return 1;
-  }
-  multi sub fact(Int $n where $n > 1 --> Int) {
-    return $n × fact($n - 1);
-  }
+    multi sub fact(Int $n where 0 ≤ $n ≤ 1 --> Int) {
+      return 1;
+    }
+    multi sub fact(Int $n where $n > 1 --> Int) {
+      return $n × fact($n - 1);
+    }
 
 The three variants are not functionally equivalent. All three give the
 proper result  when called with  a valid input.  But if you  call them
@@ -2020,102 +1897,102 @@ Of course, in the following, I  will give the differences between Raku
 and Perl, because  if I limit myself to the  common features, you will
 not learn much.
 
-=head3 Identifiers
+### Identifiers
 
 It  seems that  with some  recent versions  of Perl,  you can  include
 accents in the variable names and the function names. I never dared do
 this in Perl, but in Raku it is has become customary. In the same way,
 you can  use the dash or  hyphen inside an identifier  where you would
 use underscore in  Perl. There are a few conditions,  though. The char
-following the hyphen  must be a letter. You can  write C<$coef-a>, but
-not C<$coef-1>,  which would be  interpreted as a  subtraction between
-C<$coef> and C<1>.
+following the hyphen  must be a letter. You can  write `$coef-a`, but
+not `$coef-1`,  which would be  interpreted as a  subtraction between
+`$coef` and `1`.
 
-The downside  of this is  that sometimes, I declare  a C<$return-code>
-variable and  then I use  C<$return_code> (or the opposite).  I should
+The downside  of this is  that sometimes, I declare  a `$return-code`
+variable and  then I use  `$return_code` (or the opposite).  I should
 use Emacs' auto-completion  more often. Another downside  is that with
 vowels properly accented, I feel  more inclined to use French variable
 names than in Perl and for you, reading my code is more difficult.
 
 Actually, even English speakers can benefit of the new syntax for variable
 names. Take for example my first Raku module, the
-L<French Revolutionary calendar module|https://modules.raku.org/dist/Date::Calendar::FrenchRevolutionary:cpan:JFORGET>
+[French Revolutionary calendar module](https://modules.raku.org/dist/Date::Calendar::FrenchRevolutionary:cpan:JFORGET)
 first released in 2019. In the English speaking examples, I have used
-variable names such as C<$Bonaparte's-coup> and
-C<$Robespierre's-downfall>.
+variable names such as `$Bonaparte's-coup` and
+`$Robespierre's-downfall`.
 
-=head3 Negative Indices in Arrays
+### Negative Indices in Arrays
 
 At one time, I had to add together the elements of two arrays, in this
 fashion (Perl syntax):
 
-  $t[0] = $a[0] + $b[4];
-  $t[1] = $a[1] + $b[5];
-  $t[2] = $a[2] + $b[0];
-  $t[3] = $a[3] + $b[1];
-  $t[4] = $a[4] + $b[2];
-  $t[5] = $a[5] + $b[3];
+    $t[0] = $a[0] + $b[4];
+    $t[1] = $a[1] + $b[5];
+    $t[2] = $a[2] + $b[0];
+    $t[3] = $a[3] + $b[1];
+    $t[4] = $a[4] + $b[2];
+    $t[5] = $a[5] + $b[3];
 
 With negative indices, these lines can be rewritten this way in Perl:
 
-  $t[0] = $a[0] + $b[-2];
-  $t[1] = $a[1] + $b[-1];
-  $t[2] = $a[2] + $b[ 0];
-  $t[3] = $a[3] + $b[ 1];
-  $t[4] = $a[4] + $b[ 2];
-  $t[5] = $a[5] + $b[ 3];
+    $t[0] = $a[0] + $b[-2];
+    $t[1] = $a[1] + $b[-1];
+    $t[2] = $a[2] + $b[ 0];
+    $t[3] = $a[3] + $b[ 1];
+    $t[4] = $a[4] + $b[ 2];
+    $t[5] = $a[5] + $b[ 3];
 
 You can compact this with an explicit loop:
 
-  for (0..5) {
-    $t[$_] = $a[$_] + $b[$_ - 2];
-  }
+    for (0..5) {
+      $t[$_] = $a[$_] + $b[$_ - 2];
+    }
 
 or an implicit one:
 
-  @t = map { $a[$_] + $b[$_ - 2] } 0..5;
+    @t = map { $a[$_] + $b[$_ - 2] } 0..5;
 
 But in Raku,  you cannot use negative indices. The proper Raku syntax is:
 
-  @t[0] = @a[0] + @b[* - 2];
-  @t[1] = @a[1] + @b[* - 1];
-  @t[2] = @a[2] + @b[ 0];
-  @t[3] = @a[3] + @b[ 1];
-  @t[4] = @a[4] + @b[ 2];
-  @t[5] = @a[5] + @b[ 3];
+    @t[0] = @a[0] + @b[* - 2];
+    @t[1] = @a[1] + @b[* - 1];
+    @t[2] = @a[2] + @b[ 0];
+    @t[3] = @a[3] + @b[ 1];
+    @t[4] = @a[4] + @b[ 2];
+    @t[5] = @a[5] + @b[ 3];
 
 So it is impossible to do this in a single loop in Raku. Raku sucks...
 
 ...Then  I remembered  APL. How  would I  have done  this in  APL? APL
 allows  you  to  do  this  kind of  computation  without  a  loop,  by
 processing vectors (APL-parlance  for "arrays") as a  whole. First you
-rotate vector  B to bring  the element with index  4 (*) in  the first
+rotate vector  B to bring  the element with index  4 (\*) in  the first
 position.  Then you  add this  vector to  vector A  and you  store the
 result in vector T.
 
-(*) Actually, in  APL, it is customary  to begin with index  1. So, in
+(\*) Actually, in  APL, it is customary  to begin with index  1. So, in
 this case, you bring the element with index 5 in the first position.
 
 So you write:
 
-  T ← A + ¯2 ⌽ B
+    T ← A + ¯2 ⌽ B
 
 You can do the same in Raku:
 
-  @t = @a «+» @b.rotate(-2);
+    @t = @a «+» @b.rotate(-2);
 
 The syntax is a bit less elegant, but the semantics are the same.
 
 APL rules! Raku rules!
 
-=head3 Unicode Operators
+### Unicode Operators
 
 Another point I  like in APL is  the fact that you  can compare values
 with ≤ and  ≥ (U+2264 and U+2265)  instead of <= and  >=. Even better,
 you can multiply number with ×  (U+00D7) instead of this horrible star
 that all other programming languages use.  We can do the same in Raku,
 using ≤ ≥ and ×. When I worked  on an APL project in 2014--2015, I had
-written an  Emacs-Lisp function  C<apl-insert> which would  insert APL
+written an  Emacs-Lisp function  `apl-insert` which would  insert APL
 special chars into the source code. When  I discovered I could use ≤ ≥
 and × in Raku,  I copied the Emacs-Lisp file into  the directory of my
 Raku project, without  even renaming the function or  removing the APL
@@ -2127,10 +2004,10 @@ string by a  number or a list by a  number. Unfortunately, the numeric
 multiplication was still the horrible star.
 
 By the  way, string  repetition and  list repetition  in Raku  are two
-different  operations, respectively  C<x>  and C<xx>.  Do not  confuse
+different  operations, respectively  `x`  and `xx`.  Do not  confuse
 them. You have been warned.
 
-=head3 Other Legacies From APL
+### Other Legacies From APL
 
 In  the  Ace  of  Aces  programs, I  need  to  convert  a  probability
 distribution into a  cumulative distribution. If you do  not know what
@@ -2139,46 +2016,46 @@ without 29th February.  We are given an array with  the number of days
 per month.  And we  need to compute  the number of  days from  the 1st
 January until the end of each month. The input vector is
 
-  31 28 31 30 31 30 31 31 30 31 30 31
+    31 28 31 30 31 30 31 31 30 31 30 31
 
 in APL and
 
-  0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31
+    0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31
 
 in Raku. Remember that in APL the  indices usually start at 1 and that
-in Raku  they start at 0.  Let us call  this vector C<NBD> in  APL and
-C<@nbd> in Raku.
+in Raku  they start at 0.  Let us call  this vector `NBD` in  APL and
+`@nbd` in Raku.
 
 If we just want to know how many days are in a year, we just type
 
-  +/NBD
-  [+] @nbd
+    +/NBD
+    [+] @nbd
 
 and we get 365. But what about for the number of days from 1st January
 until the end of  each month? It is easy in APL,  you just replace the
 slash by a backslash.
 
-  +\NBD
+    +\NBD
 
 which gives
 
-  31 59 90 120 151 181 212 243 273 304 334 365
+    31 59 90 120 151 181 212 243 273 304 334 365
 
-In  my French-speaking  books on  APL, this  is called  a I<balayage>,
+In  my French-speaking  books on  APL, this  is called  a _balayage_,
 which translates as "sweep". I do not know the English term. Can we do
 the  same in  Raku?  Enboldened by  the success  in  the previous  two
 paragraphs, I thought  that if a sweep  can be done in APL,  it can be
 done also in Raku. And if you use  a backslash in APL, you would use a
 backslash also in Raku. So I tried
 
-  [\+] @nbd
+    [\+] @nbd
 
 and O frabjous day! Callooh! Callay! it works!
 
-  0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334,  365
+    0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334,  365
 
 Later, in March 2020, I needed another APL operator for my
-L<Maya calendar module|https://modules.raku.org/dist/Date::Calendar::MayaAztec:cpan:JFORGET>,
+[Maya calendar module](https://modules.raku.org/dist/Date::Calendar::MayaAztec:cpan:JFORGET),
 to convert a long count into a number of days or the opposite.
 Since you may not be familiar with the Maya calendar, here is
 a similar example:
@@ -2186,65 +2063,67 @@ a similar example:
 A million of seconds is equal  to how many weeks, days, hours, minutes
 and seconds?
 
-      52 7 24 60 60 ⊤ 1000000
-  1 4 13 46 40
+        52 7 24 60 60 ⊤ 1000000
+    1 4 13 46 40
 
 A million  seconds is one  week, 4 days, 13  hours, 46 minutes  and 40
 seconds. Check:
 
-      52 7 24 60 60 ⊥ 1 4 13 46 40
-  1000000 
+        52 7 24 60 60 ⊥ 1 4 13 46 40
+    1000000 
 
 I did not find alone the Raku equivalent. I asked on a
 mailing-list and I was redirected to
-L<the polymod function|https://docs.raku.org/routine/polymod>
+[the polymod function](https://docs.raku.org/routine/polymod)
 (thank you Laurent). Just one point, the order of parameter is
 different from APL:
 
-  say 1000000.polymod(60, 60, 24, 7, 52)
-  # --> (40 46 13 4 1 0)
+    say 1000000.polymod(60, 60, 24, 7, 52)
+    # --> (40 46 13 4 1 0)
 
-=head3 L-value Substring
+### L-value Substring
 
 when I  learned Perl,  at the  end of  the last  century, there  was a
 functionality which thrilled me and made me understand that Perl 5 was
 not "just one  more programming language". This  functionality was the
-possibility of  using the C<substr>  function in  the left part  of an
+possibility of  using the `substr`  function in  the left part  of an
 assignment:
 
-  substr($_,  0, 0) = "Larry";
-  substr($_,  0, 1) = "Moe";
-  substr($_, -1, 1) = "Curly";
+    substr($_,  0, 0) = "Larry";
+    substr($_,  0, 1) = "Moe";
+    substr($_, -1, 1) = "Curly";
 
-in I<Programming Perl> 2nd edition, pages 227 and 228.
+in _Programming Perl_ 2nd edition, pages 227 and 228.
 
 When I began using Raku, I had no doubt that it would still work. This
 shiny idea would obviously be present in Raku.
 
 Well, no. The first time I tried this kind of assignment, I got an error:
 
-  Cannot modify an immutable Str
+    Cannot modify an immutable Str
 
 I did not find anything about modifying a substring in the books where I learned Raku.
-I tried the L<online documentation for substr|https://docs.perl6.org/routine/substr>,
+I tried the [online documentation for substr](https://docs.perl6.org/routine/substr),
 nothing either. I had to ask for the
-L<list of standard types|https://docs.perl6.org/type.html>.
+[list of standard types](https://docs.perl6.org/type.html).
 and then go to the
-L<online documentation of type Str|https://docs.perl6.org/type/Str>
+[online documentation of type Str](https://docs.perl6.org/type/Str)
 to at last find what I needed: the
-L<function C<substr-rw>|https://docs.perl6.org/type/Str#method_substr-rw>.
+[function `substr-rw`](https://docs.perl6.org/type/Str#method_substr-rw).
 
-=head3 Functional Notation
+### Functional Notation
 
 Disclaimer: my mother language is  French and I learned mathematics in
 French schools.  I know  that there are  some differences  between the
 mathematical notations in different countries. I will use the (French)
 notation I learned, even if this document is in English.
 
-=for html
-<img src='gof.png' width='45%' alt='Graphical representation of the composition of two functions' />
+<div>
 
-I<Personal pictures. License is the same as for the text.>
+    <img src='gof.png' width='45%' alt='Graphical representation of the composition of two functions' />
+</div>
+
+_Personal pictures. License is the same as for the text._
 
 When I learned  relations and functions as a  11-year schoolboy, there
 was one point  which I did not  like and which was  fooling many other
@@ -2264,105 +2143,107 @@ embedded  within   each  other  and   where  you  have  to   read  the
 chronological order right-to-left,  I still do not  like it. Moreover,
 nearly  all programming  languages have  followed the  example set  by
 Backus'  "formula  translator"  (FORTRAN)   and  use  this  syntaxical
-monstruosity. For example, you have a  number C<x>, you apply in order
+monstruosity. For example, you have a  number `x`, you apply in order
 the  logarithm  function,  the  cosine  function,  the  absolute  part
 function and the square root. A graphical representation would be:
 
-=for html
-<img src='hogof.png' width='45%' alt='Graphical representation of the composition of four functions' />
+<div>
 
-I<Personal pictures. License is the same as for the text.>
+    <img src='hogof.png' width='45%' alt='Graphical representation of the composition of four functions' />
+</div>
+
+_Personal pictures. License is the same as for the text._
 
 Which would translate in Perl (for example) as:
 
-  $y = sqrt(abs(cos(log($x))))
+    $y = sqrt(abs(cos(log($x))))
 
 The only  light of hope  is HP  calculators, and also  TI calculators,
 which use the natural order:
 
-  RCL 0
-  LN
-  COS
-  ABS
-  SQRT
-  RTN
+    RCL 0
+    LN
+    COS
+    ABS
+    SQRT
+    RTN
 
 There may  be other languages  such as  Forth and Postscript,  which I
 never used, and Smalltalk, which I used very briefly.
 
 And now, there is also Raku:
 
-  $y = $x.log.cos.abs.sqrt;
+    $y = $x.log.cos.abs.sqrt;
 
-=head3 Schwartzian Transform
+### Schwartzian Transform
 
 The problem with a Perl Schwartzian Transform:
 
-  my @t2 = map  { $_->[0] }
-           sort { $a->[1] <=> $b->[1] }
-           map  { [ $_, extr($_) ] } @t;
+    my @t2 = map  { $_->[0] }
+             sort { $a->[1] <=> $b->[1] }
+             map  { [ $_, extr($_) ] } @t;
 
 is that you have to read it from  bottom to top or from right to left,
 in the  opposite direction of normal  reading (for people used  to the
 Latin  script). This  is similar  to composing  functions while  using
 Euler's notation.
 
-With Raku, we have the I<feed> operator  C<< ==> >> which allows us to
+With Raku, we have the _feed_ operator  `==>` which allows us to
 imitate the  Unix pipes and  write statements that  read left-to-right
 and top-to-bottom. A program would look like:
 
-  use v6;
+    use v6;
 
-  my @t = split "---\n", q:to/EOF/;
-  Georges Guynemer vanished on 11 September 1917 in the neighborhood of Poelcappelle.
-  ---
-  On 21 April 1918, Manfred von Richthofen was shot down at Vaux-sur-Somme. Was he downed by the
-  canadian pilot Albert Roy Brown or by the artillerymen from the 53rd Australian Battery?
-  ---
-  First aerial victory in the East: Pyotr Nikolayevich Nesterov deliberately rammed
-  an Austrian Albatros on 8 September 1914.
-  ---
-  5 October 1914, first Western Front aerial victory by Frantz and Quenault.
-  ---
-  Charles Nungesser, for some time nicknamed "le Hussard de la Mors", is better known for his failed attempt
-  to cross the Atlantic on 8 May 1927 than for his 45 victories.
-  ---
-  RAF was created on 1st April 1918. April Fool's Day!
-  ---
-  Sarajevo, 28 June 1914: a mass murder with more than 18 millions deaths and how many wounded...
-  ---
-  11 November 1918, the nightmare is held off for a score of years.
-  EOF
+    my @t = split "---\n", q:to/EOF/;
+    Georges Guynemer vanished on 11 September 1917 in the neighborhood of Poelcappelle.
+    ---
+    On 21 April 1918, Manfred von Richthofen was shot down at Vaux-sur-Somme. Was he downed by the
+    canadian pilot Albert Roy Brown or by the artillerymen from the 53rd Australian Battery?
+    ---
+    First aerial victory in the East: Pyotr Nikolayevich Nesterov deliberately rammed
+    an Austrian Albatros on 8 September 1914.
+    ---
+    5 October 1914, first Western Front aerial victory by Frantz and Quenault.
+    ---
+    Charles Nungesser, for some time nicknamed "le Hussard de la Mors", is better known for his failed attempt
+    to cross the Atlantic on 8 May 1927 than for his 45 victories.
+    ---
+    RAF was created on 1st April 1918. April Fool's Day!
+    ---
+    Sarajevo, 28 June 1914: a mass murder with more than 18 millions deaths and how many wounded...
+    ---
+    11 November 1918, the nightmare is held off for a score of years.
+    EOF
 
-  my %month = qw/January  1    February  2   March     3
-                 April    4    May       5   June      6
-                 July     7    August    8   September 9
-                 October 10    November 11   December 12/;
+    my %month = qw/January  1    February  2   March     3
+                   April    4    May       5   June      6
+                   July     7    August    8   September 9
+                   October 10    November 11   December 12/;
 
-  my @month = %month.keys;
+    my @month = %month.keys;
 
-  sub extr(Str $ch) {
-    if $ch ~~ /(\d+)'st'? \s+ (@month) \s+ (\d+)/ {
-      return $2 × 10000 + %month{$1} × 100 + $0;
+    sub extr(Str $ch) {
+      if $ch ~~ /(\d+)'st'? \s+ (@month) \s+ (\d+)/ {
+        return $2 × 10000 + %month{$1} × 100 + $0;
+      }
+      else {
+        return 1e8;
+      }
     }
-    else {
-      return 1e8;
-    }
-  }
 
-  @t ==> map  { [ $_, extr($_) ] } \
-     ==> sort { $^a[1] <=> $^b[1] } \
-     ==> map  { $_[0] } \
-     ==> my @t1;
+    @t ==> map  { [ $_, extr($_) ] } \
+       ==> sort { $^a[1] <=> $^b[1] } \
+       ==> map  { $_[0] } \
+       ==> my @t1;
 
-  say join "\n", @t1;
+    say join "\n", @t1;
 
 A point which bothers me is  the requirement to add backslashes at the
 end  of the  lines to  show  that the  statement is  continued on  the
 following  line. Like  someone  said during  my 2018  talk,  "It is  a
-40-year backward leap". See L<the next point|"Vertical Alignment">.
+40-year backward leap". See [the next point](#vertical-alignment).
 
-=head4 Beyond the Schwartzian Transform
+#### Beyond the Schwartzian Transform
 
 After my  2018 talk, someone  told me that there  is a simpler  way to
 sort  the texts,  which makes  the  Schwartzian Transform  a bit  less
@@ -2370,13 +2251,13 @@ useful. For the frequent case where  there is only one sort criterion,
 you can replace the comparison function with a function extracting the
 sort criterion. So the feed statement would be reduced to:
 
-  @t ==> sort { extr($_) } \
-     ==> my @t1;
+    @t ==> sort { extr($_) } \
+       ==> my @t1;
 
 With this syntax, Raku ensures the extraction and storing of criterion
 values and  then the removing of  these values. You no  longer need to
-code the  two C<map> steps. By  including a C<print> statement  in the
-C<extr> function,  you can check  that the C<extr> function  is called
+code the  two `map` steps. By  including a `print` statement  in the
+`extr` function,  you can check  that the `extr` function  is called
 only once per record.
 
 The Schwartzian  Transform is  still useful for  multi-criteria sorts.
@@ -2384,14 +2265,14 @@ With the same example as above, let us suppose we have three different
 functions  for extracting  the  year,  the month  number  and the  day
 number. The statement would become:
 
-  @t ==> map  { [ $_, year($_), month($_), day($_) ] } \
-     ==> sort { $^a[1] <=> $^b[1] || $^a[2] <=> $^b[2] || $^a[3] <=> $^b[3] } \
-     ==> map  { $_[0] } \
-     ==> my @t1;
+    @t ==> map  { [ $_, year($_), month($_), day($_) ] } \
+       ==> sort { $^a[1] <=> $^b[1] || $^a[2] <=> $^b[2] || $^a[3] <=> $^b[3] } \
+       ==> map  { $_[0] } \
+       ==> my @t1;
 
 More verbose and less stylish. But sometimes, we cannot do better.
 
-=head3 Vertical Alignment
+### Vertical Alignment
 
 In my  opinion, vertical alignment  is an important factor  to improve
 the readability of  code and to help  a human understand it.  I do not
@@ -2399,35 +2280,35 @@ speak only  of code indentation  for the first non-space  character. I
 speak  about  aligning  similar  elements  on  successive  lines.  For
 example, in Perl I can write:
 
-  $length[$n] = $length[$n - 1] + $dx;
-  $width [$n] = $width [$n - 1] + $dy;
+    $length[$n] = $length[$n - 1] + $dx;
+    $width [$n] = $width [$n - 1] + $dy;
 
 On the other hand, in Raku, the following is syntactically incorrect:
 
-  @length[$n] = @length[$n - 1] + $dx;
-  @width [$n] = @width [$n - 1] + $dy;
+    @length[$n] = @length[$n - 1] + $dx;
+    @width [$n] = @width [$n - 1] + $dy;
 
 Because no  space can exist between  the array's name and  the opening
 square bracket. The right syntax is horrible:
 
-  @length[$n] = @length[$n - 1] + $dx;
-  @width[$n] = @width[$n - 1] + $dy;
+    @length[$n] = @length[$n - 1] + $dx;
+    @width[$n] = @width[$n - 1] + $dy;
 
 I ended with this compromise:
 
-  @length[$n] = @length[$n - 1] + $dx;
-  @width[ $n] = @width[ $n - 1] + $dy;
+    @length[$n] = @length[$n - 1] + $dx;
+    @width[ $n] = @width[ $n - 1] + $dy;
 
 All similar elements are aligned, except the opening square brackets.
 
 There  is  an  interesting  syntax functionality,  which  has  already
 appeared  in  the  paragraph  about  the  Schwartzian  Transform,  the
-I<unspace>. If there is a backslash followed by any whitespace (space,
+_unspace_. If there is a backslash followed by any whitespace (space,
 tab, line feed,  etc), the Raku parser ignores this  backslash and all
 consecutive whitespace chars. These two lines are equivalent:
 
-  @length[$n]
-  @length\         [$n]
+    @length[$n]
+    @length\         [$n]
 
 In the  paragraph about the  Schwartzian Transform, the  backslash was
 used to virtually  remove the linefeed (and all  following spaces), so
@@ -2435,7 +2316,7 @@ the Raku  parser would  see a  complete statement  on one  single line
 while the human reader would see a statement on four successive lines,
 each one with a medium length.
 
-Could  the  I<unspace> be  useful  for  my length/width  example?  No,
+Could  the  _unspace_ be  useful  for  my length/width  example?  No,
 because adding  a backslash to inhibit  the space on the  "width" line
 would shift  the line alignment with  one additional char. So  I would
 have to insert a space in the "length" line also. And this space would
@@ -2443,28 +2324,28 @@ need  to be  inhibited  with another  backslash.  Which would  require
 adding yet  another space in the  "width" line. The result  would have
 been:
 
-  @length\ [$n] = @length\ [$n - 1] + $dx;
-  @width\  [$n] = @width\  [$n - 1] + $dy;
+    @length\ [$n] = @length\ [$n - 1] + $dx;
+    @width\  [$n] = @width\  [$n - 1] + $dy;
 
 There are  other ways to ensure  a vertical alignment. One  is to make
 deliberate spelling mistakes:
 
-  @length[$n] = @length[$n - 1] + $dx;
-  @widthh[$n] = @widthh[$n - 1] + $dy;
+    @length[$n] = @length[$n - 1] + $dx;
+    @widthh[$n] = @widthh[$n - 1] + $dy;
 
 Another way  is to use a  module which changes Raku's  syntax to allow
 whitespace where the  standard syntax rejects them. I  do not remember
 the name of the module or of its author. What a pity!
 
-=head3 Regexes, formerly Regular Expressions
+### Regexes, formerly Regular Expressions
 
-At the  beginning, when Unix  and C<grep>  had just appeared,  or even
+At the  beginning, when Unix  and `grep`  had just appeared,  or even
 before their  birth, the  regular expressions  were nothing  more than
 plain  character strings  within which  you  could find  a handful  of
 characters with a  "special char" status: the caret and  the dollar as
 anchors, the dot as  a generic char and the star  as a quantifier. All
-other characters stood for  themselves. Then with C<grep> enhancements
-and  with the  birth  of  C<awk>, there  were  more  and more  special
+other characters stood for  themselves. Then with `grep` enhancements
+and  with the  birth  of  `awk`, there  were  more  and more  special
 characters, but intrinsically, regular  expressions were still strings
 mixing plain chars and special chars.
 
@@ -2474,217 +2355,217 @@ methods.
 
 From time to time, a mathematician or a computer scientist shows that
 such or such intellectual construction is 
-L<unintentionally Turing complete|https://en.wikipedia.org/wiki/Turing_completeness#Unintentional_Turing_completeness>.
+[unintentionally Turing complete](https://en.wikipedia.org/wiki/Turing_completeness#Unintentional_Turing_completeness).
 This  is the  case with  John  Conway's Life,  this is  the case  with
-I<Magic, the  Gathering>, this  is the  case with  I<Minecraft>. Maybe
+_Magic, the  Gathering_, this  is the  case with  _Minecraft_. Maybe
 this is  the case with PCRE's  or Perl 5's regular  expressions (to be
 honest, I  did not check  the definition of Turing-completeness,  so I
 may be completely wrong on this point).
 
 Well, with Raku, this will not  happen. In Raku, regexes are no longer
 strings, they  are code chunks.  So even if they  are Turing-complete,
-they cannot be I<unintentionally>  Turing-complete. The description of
+they cannot be _unintentionally_  Turing-complete. The description of
 regex as code chunks appears at the  bottom of page 5 of Moritz Lentz'
 book, and is developed in section 4.6,  pages 42 to 46. By the way, we
-can no  longer use the phrase  I<regular expression>, we must  use the
-word I<regex>.
+can no  longer use the phrase  _regular expression_, we must  use the
+word _regex_.
 
 Remember the  date extraction  from the Schwartzian  Transform example
 above. In Perl, the extraction is:
 
-  my %month = qw/January  1    February  2   March     3
-                 April    4    May       5   June      6
-                 July     7    August    8   September 9
-                 October 10    November 11   December 12/;
+    my %month = qw/January  1    February  2   March     3
+                   April    4    May       5   June      6
+                   July     7    August    8   September 9
+                   October 10    November 11   December 12/;
 
-  my $re = join '|', keys %month;
-  if $ch ~~ /(\d+)'st'?\s+($re)\s+(\d+)/ { ... }
+    my $re = join '|', keys %month;
+    if $ch ~~ /(\d+)'st'?\s+($re)\s+(\d+)/ { ... }
 
 The  month  sub-regex  is  a   plain  scalar  string,  built  with  11
-occurrences  of  the  special  char "C<|>"  and  12  litteral  strings
-C<"January">, C<"February">  and so  on. To be  strict, I  should have
-used the C<quotemeta> operator, but in  this case it is not necessary,
+occurrences  of  the  special  char "`|`"  and  12  litteral  strings
+`"January"`, `"February"`  and so  on. To be  strict, I  should have
+used the `quotemeta` operator, but in  this case it is not necessary,
 all the month names are purely alphabetic.
 
 My  first  attempt,  before  reading Moritz  Lentz'  book  and  before
 understanding the regex' essence, was the following:
 
-  my %month = qw/January  1    February  2   March     3
-                 April    4    May       5   June      6
-                 July     7    August    8   September 9
-                 October 10    November 11   December 12/;
+    my %month = qw/January  1    February  2   March     3
+                   April    4    May       5   June      6
+                   July     7    August    8   September 9
+                   October 10    November 11   December 12/;
 
-  my $re = rx/January|February|March|April|May|June|July|August|September|October|November|December/;
-  if $ch ~~ /(\d+)'st'? \s+ ($re) \s+ (\d+)/ { ... }
+    my $re = rx/January|February|March|April|May|June|July|August|September|October|November|December/;
+    if $ch ~~ /(\d+)'st'? \s+ ($re) \s+ (\d+)/ { ... }
 
-And I was complaining about  doing WET programming (I<Write Everything
-Twice>) instead of DRY programming (I<Don't Repeat Yourself>).
+And I was complaining about  doing WET programming (_Write Everything
+Twice_) instead of DRY programming (_Don't Repeat Yourself_).
 
 After reading  Moritz Lentz' book, I  found the properly DRY  piece of
 code:
 
-  my %month = qw/January  1    February  2   March     3
-                 April    4    May       5   June      6
-                 July     7    August    8   September 9
-                 October 10    November 11   December 12/;
-  my @month = %month.keys;
-  if $ch ~~ /(\d+)'st'? \s+ (@month) \s+ (\d+)/ {
+    my %month = qw/January  1    February  2   March     3
+                   April    4    May       5   June      6
+                   July     7    August    8   September 9
+                   October 10    November 11   December 12/;
+    my @month = %month.keys;
+    if $ch ~~ /(\d+)'st'? \s+ (@month) \s+ (\d+)/ {
 
-The regex  in this code extract  is using the variable  C<@month>. But
+The regex  in this code extract  is using the variable  `@month`. But
 while Perl 5  would have stringified the array and  included it in the
 regular expression,  the Raku regex  uses this  array as an  array and
 compares the processed string to each array element in turn.
 
-=head3 Value and Variable Types
+### Value and Variable Types
 
 An important  new feature of Raku  is that variables can  be typed and
 that for each assignment, the interpreter will check the value against
 the type  of the  variable. Yet,  the checks are  sometimes a  bit too
 strict. See the following code chunk.
 
-  class Example {
-    has Num $.measure is rw;
-  }
-  my Example $data .= new;
-  $data.measure = 1;
+    class Example {
+      has Num $.measure is rw;
+    }
+    my Example $data .= new;
+    $data.measure = 1;
 
 Result :
 
-  Type check failed in assignment to $!measure; expected Num but got Int (1)
+    Type check failed in assignment to $!measure; expected Num but got Int (1)
 
-This code chunk fails, because  the interpreter expects a C<(Num)> and
-we  give it  an  C<(Int)>. No,  there  is no  automatic  int to  float
+This code chunk fails, because  the interpreter expects a `(Num)` and
+we  give it  an  `(Int)`. No,  there  is no  automatic  int to  float
 conversion. So be it, I will code:
 
-  $data.measure = 1.0;
+    $data.measure = 1.0;
 
 and that's it! Well, no. It still  fails, this time because I tried to
-feed the C<(Num)> variable with a  C<(Rat)> value, that is, a rational
+feed the `(Num)` variable with a  `(Rat)` value, that is, a rational
 value. So I ended up with:
 
-  $data.measure = 1.Num;
+    $data.measure = 1.Num;
 
 which is not very elegant. Then  I remembered that some Perl 5 modules
-needed to  give a return  value which would  evaluate to C<True>  in a
-boolean context and to C<0> in a numeric context. Some modules use:
+needed to  give a return  value which would  evaluate to `True`  in a
+boolean context and to `0` in a numeric context. Some modules use:
 
-  return 0 but true;
+    return 0 but true;
 
 but others use:
 
-  return "0e0";
+    return "0e0";
 
 Very smart. So in Raku, I tried:
 
-  $data.measure = 1e0;
+    $data.measure = 1e0;
 
 and it worked.
 
-=head3 Undef and (nil)
+### Undef and (nil)
 
 Another point I have to dig is the typing of parameters when calling a
 function. If  the function signature gives  a type to a  parameter and
-then the function  is called with C<undef>, the  program fails because
-for  example the  C<(Num)>-typed parameter  was attemptly  fed with  a
-C<(Nil)>-typed value. For the moment, I  cop out by not specifying the
+then the function  is called with `undef`, the  program fails because
+for  example the  `(Num)`-typed parameter  was attemptly  fed with  a
+`(Nil)`-typed value. For the moment, I  cop out by not specifying the
 parameter type.
 
-=head3 References
+### References
 
 When I  read books to learn  Raku, there was one  big subject missing:
 references. Actually, while this subject  can be awe-inspiring to some
 readers when  learning Perl 5, it  is much more mundane  when learning
 Raku. In Raku, you can declare and initialise an array variable with
 
-  my @t = <N E S W>;
+    my @t = <N E S W>;
 
-(The  angle  brackets  in  Raku are  equivalent  to  Perl's  C<qw/../>
+(The  angle  brackets  in  Raku are  equivalent  to  Perl's  `qw/../`
 operator.) Then you access an element with
 
-  say @t[2];
+    say @t[2];
 
 You can also declare a scalar variable containing several values with:
 
-  my $t = <N E S W>;
+    my $t = <N E S W>;
 
 and access an element with 
 
-  say $t[2];
+    say $t[2];
 
 The Perl equivalent would be:
 
-  my $t = [ qw/N E S W/ ];
-  say $t->[2];
+    my $t = [ qw/N E S W/ ];
+    say $t->[2];
 
 So I  did not  refrain from  using references in  my programs.  But at
 first, I  still had some  misgivings about doing something  wrong. The
 real problem happened when I tried  to fill an array variable with the
 content of a scalar variable referencing an array:
 
-  my $sc = <N E S W>;
-  my @ar = $sc;
-  say @ar[0];
+    my $sc = <N E S W>;
+    my @ar = $sc;
+    say @ar[0];
 
-This does  not print C<N>, this  prints the whole array  of 4 letters.
+This does  not print `N`, this  prints the whole array  of 4 letters.
 The proper scalar-to-array conversion must be done with:
 
-  my $sc = <N E S W>;
-  my @ar = $sc[*];
-  say @ar[0];
+    my $sc = <N E S W>;
+    my @ar = $sc[*];
+    say @ar[0];
 
-=head3 New Operators
+### New Operators
 
-From some YAPC talks (or TPCiI<X>  talks), I have learned that you can
+From some YAPC talks (or TPCi_X_  talks), I have learned that you can
 declare new operators. That is fine, but how does Raku parse a formula
 containing these  new operators  along with standard  ones? Especially
 formulas with few parentheses, even none?
 
 Actually, the answer was given during the 2018 French Perl Workshop in
 another talk. When declaring the operator,  you just need to specify a
-trait C<is tighter> or C<is looser>.
-L<This is written in the documentation|http://design.perl6.org/S06.html#Subroutine_traits>
+trait `is tighter` or `is looser`.
+[This is written in the documentation](http://design.perl6.org/S06.html#Subroutine_traits)
 provided you know where to look.
 
-=head3 POD
+### POD
 
-When writing  the I<Ace  of Aces> project  in 2018, I  did not  try to
+When writing  the _Ace  of Aces_ project  in 2018, I  did not  try to
 learn the Raku version of POD. I wrote the documentation with the Perl
 5 POD I  was comfortable with. The  only difference I had  to adopt is
-that it is mandatory to bracket a POD section with a C<=begin POD> tag
-and a C<=end  POD> tag. Also, you cannot display  with a command named
-C<perl6doc> or  C<rakudo>, you have  to call C<raku>  interpreter with
-the option C<--doc>.
+that it is mandatory to bracket a POD section with a `=begin POD` tag
+and a `=end  POD` tag. Also, you cannot display  with a command named
+`perl6doc` or  `rakudo`, you have  to call `raku`  interpreter with
+the option `--doc`.
 
 Anyhow, if  you read the  statistics in  the "Languages" block  of the
-L<Github front page|https://github.com/jforget/Perl6-Alpha-As-des-As-Zero>   
+[Github front page](https://github.com/jforget/Perl6-Alpha-As-des-As-Zero)   
 of the  project, you  notice that  Perl is absent.  So either  the POD
 files, including  the file  you are  reading now,  are not  taken into
 account in the statistics, or they are interpreted as the Raku version
 of POD.  Actually, if you ask  for the list  of files in such  or such
 language
-(L<Raku for example|https://github.com/jforget/Perl6-Alpha-As-des-As-Zero/search?l=raku>)
+([Raku for example](https://github.com/jforget/Perl6-Alpha-As-des-As-Zero/search?l=raku))
 you find that Github can recognize  Perl's POD and Raku's POD (as "Pod
 6") but they are not taken into account by the statistics in the front
 page.
 
-=head2 MongoDB
+## MongoDB
 
 I have installed MongoDB on my  computer with the packages provided by
 the distribution. Nothing more to say.
 
 The  installation of  the  Raku  module for  MongoDB  was  a bit  more
 eventful.  Please note  that I  describe here  the situation  in March
-2018. Things  has moved on since  this time. Some advices  given below
+2018\. Things  has moved on since  this time. Some advices  given below
 are still relevant, others are obsolete.
 
 First try:
 
-  zef install MongoDB
+    zef install MongoDB
 
-Some tests  fails. The F<README> file  tells me that this  is expected
+Some tests  fails. The `README` file  tells me that this  is expected
 and that I should not bother about these few failed tests. Second try:
 
-  zef install --/test MongoDB
+    zef install --/test MongoDB
 
 It  is  installed.  I  copy-paste  an  example  script  from  the  POD
 documentation. It fails!  I quickly finds it is caused  by a debugging
@@ -2692,7 +2573,7 @@ statement:
 
      debug-message("command done {$command.find-key(0)}");
 
-I find  the source file  in the F<.zef/store> directory  for installed
+I find  the source file  in the `.zef/store` directory  for installed
 modules and I remove the debugging statement. This is not recommanded,
 but from time to time I do  this in Perl, for a quick-and-dirty check,
 followed  soon after  by a  clean  reinstallation of  the module.  The
@@ -2702,111 +2583,111 @@ text format which is ignored by  the runtime. The example script still
 fails, because the bytecode file has not changed.
 
 I clone the
-L<Git Hub repo|https://github.com/MARTIMM/mongo-perl6-driver/>, 
+[Git Hub repo](https://github.com/MARTIMM/mongo-perl6-driver/), 
 I remove the debugging message, and I reinstall the module with:
 
-  zef install --/test .
+    zef install --/test .
 
-That is, installing  what is in the current  directory. C<zef> refuses
-to install the module, because the  module is up-to-date, or so C<zef>
+That is, installing  what is in the current  directory. `zef` refuses
+to install the module, because the  module is up-to-date, or so `zef`
 says. After reading the on-line help, I type
 
-  zef install --force --/test .
+    zef install --force --/test .
 
 Is  this the  right thing  to do?  I do  not know,  but I  suppose so,
 because  at  least the  module  is  installed. And  the  copied-pasted
-example now works, prrovided I remove the C<findAndUpdate> line, which
+example now works, prrovided I remove the `findAndUpdate` line, which
 does not exist in version 2.6 of MongoDB.
 
 When I try to  write and run my own programs,  I have another problem,
 something about unkept promises. After many tries, I conclude that for
-each C<find> statement the parameters should include
+each `find` statement the parameters should include
 
       projection => ( _id => 0, )
 
 That  is, extract  all attributes  of the  document, except  attribute
-C<_id>. Why?  I do not know.  All I know  is that it always  fail when
-C<_id> is included, it usually succeed when C<_id> is excluded. Now, I
-always type the  exclusion in all my C<find> statements.  Maybe that a
-few  years later,  I should  once more  try a  C<find> statement  with
-C<_id>?
+`_id`. Why?  I do not know.  All I know  is that it always  fail when
+`_id` is included, it usually succeed when `_id` is excluded. Now, I
+always type the  exclusion in all my `find` statements.  Maybe that a
+few  years later,  I should  once more  try a  `find` statement  with
+`_id`?
 
 I  have mentioned  "after  many tries".  The problem  is  that I  have
 zigzagged a  lot and I have  done the same attempts  several times. To
 prevent this waste  of time, I have decided to  write a cookbook, with
-all the  C<find> variants I  have tried  and with the  resulting error
+all the  `find` variants I  have tried  and with the  resulting error
 messages.
 
-For example, note that a C<find>  statement in a Raku program will not
-accept  the options  C<sort>,  C<limit>  and C<skip>.  This  is not  a
+For example, note that a `find`  statement in a Raku program will not
+accept  the options  `sort`,  `limit`  and `skip`.  This  is not  a
 problem  of  old MongoDB  version  2.6  vs up-to-date  MongoDB,  these
 options are described in the 2013 O'Reilly book, on page 68.
 
 With MongoDB,  there is a variant  of the problem I  have described in
-L<Value and Variable Types>. MongoDB knows about integers C<(Int)> and
-floats C<(Num)>, but not rational  numbers C<(Rat)>. The error message
+["Value and Variable Types"](#value-and-variable-types). MongoDB knows about integers `(Int)` and
+floats `(Num)`, but not rational  numbers `(Rat)`. The error message
 with the 2018 is rather cryptic:
 
-  2018-05-25 05:31:06.093687 [E]  1: localhost:27017: encode() on 1.5, error: Not yet implemented
-  . At site#sources/9F1921D0AA42F2C1C0229F51082ED0A3E384968C (MongoDB::Wire):112
-  2018-05-25 05:31:06.097117 [E]  1: No server reply on query. At site#sources/C727D6F914B4AE4082E938B9310DC8D2F4CD7B53 (MongoDB::Collection):101 in find()
-  2018-05-25 05:31:06.098900 [E]  1: No cursor returned. At site#sources/BC4819BBBB818C799983157518CA75F0C1A6DFC7 (MongoDB::Database):73 in run-command()
+    2018-05-25 05:31:06.093687 [E]  1: localhost:27017: encode() on 1.5, error: Not yet implemented
+    . At site#sources/9F1921D0AA42F2C1C0229F51082ED0A3E384968C (MongoDB::Wire):112
+    2018-05-25 05:31:06.097117 [E]  1: No server reply on query. At site#sources/C727D6F914B4AE4082E938B9310DC8D2F4CD7B53 (MongoDB::Collection):101 in find()
+    2018-05-25 05:31:06.098900 [E]  1: No cursor returned. At site#sources/BC4819BBBB818C799983157518CA75F0C1A6DFC7 (MongoDB::Database):73 in run-command()
 
 The error message  with the 2021 version is not  only cryptic but also
 very long, displaying the complete stack of program calls.
 
 The minimum work example would be:
 
-  use v6;
-  use BSON::Document;
-  use MongoDB::Client;
-  use MongoDB::Database;
-  use MongoDB::Collection;
+    use v6;
+    use BSON::Document;
+    use MongoDB::Client;
+    use MongoDB::Database;
+    use MongoDB::Collection;
 
-  my MongoDB::Client     $client  .= new(:uri('mongodb://'));
-  my MongoDB::Database   $database = $client.database('example2');
-  my MongoDB::Collection $coll     = $database.collection('example2');
+    my MongoDB::Client     $client  .= new(:uri('mongodb://'));
+    my MongoDB::Database   $database = $client.database('example2');
+    my MongoDB::Collection $coll     = $database.collection('example2');
 
-  my BSON::Document $doc .= new: (
-       number => 1.5,
-       );
-  my BSON::Document $req .= new: (
-    insert => 'example2',
-    documents => [ $doc ],
-    );
+    my BSON::Document $doc .= new: (
+         number => 1.5,
+         );
+    my BSON::Document $req .= new: (
+      insert => 'example2',
+      documents => [ $doc ],
+      );
 
-  my BSON::Document $result = $database.run-command($req);
-  say "Création example2 ok : ", $result<ok>, " nb : ", $result<n>;
+    my BSON::Document $result = $database.run-command($req);
+    say "Création example2 ok : ", $result<ok>, " nb : ", $result<n>;
 
 After the French  Perl Workshop 2018 was over, I  upgraded my computer
 to xubuntu-18.04 64-bits and MongoDB 3.6.3 and I installed Rakudo Star
 from the sources. Then I tried to install the MongoDB module with:
 
-  zef install MongoDB
+    zef install MongoDB
 
-This failed  because there was  no F<libssl.so> on my  computer. There
-were   a   F<libssl3.so>   lib,   a   F<libssl.so.1.1>   lib   and   a
-F<libssl.so.1.0.0>  lib, but  it seems  that MongoDB  does not  accept
+This failed  because there was  no `libssl.so` on my  computer. There
+were   a   `libssl3.so`   lib,   a   `libssl.so.1.1`   lib   and   a
+`libssl.so.1.0.0`  lib, but  it seems  that MongoDB  does not  accept
 them. So I typed the no-test variant:
 
-  zef install --/test MongoDB
+    zef install --/test MongoDB
 
 And the  installation succeeded. I  tried a few  Raku+MongoDB programs
 and they worked at first try. The situation has improved between March
 2018 and June 2018.
 
-Remark: I did not check whether the problem with C<_id> is still there
+Remark: I did not check whether the problem with `_id` is still there
 and whether I still need to add
 
       projection => ( _id => 0, )
 
-On the  other hand, I have  checked the C<(Rat)> problem,  it is still
+On the  other hand, I have  checked the `(Rat)` problem,  it is still
 here.
 
-And in 2021, the C<_id>  problem has disappeared, the C<(Rat)> problem
+And in 2021, the `_id`  problem has disappeared, the `(Rat)` problem
 is still here.
 
-=head2 Bailador
+## Bailador
 
 At first, I had no intention  of producing dynamic webpages within the
 scope  of this  project. Then  I found  that reading  the database  in
@@ -2821,23 +2702,23 @@ I must admit that  the way I use Bailador in this  project is as basic
 as the  way I used Dancer2  in my 2017 character  recognition project.
 Even more basic, because I do not  even use HTML forms. By the way, do
 not expect to have as many
-L<modules for Bailador|https://modules.perl6.org/t/WEB>
+[modules for Bailador](https://modules.perl6.org/t/WEB)
 as what you can find
-L<for Dancer2|https://metacpan.org/search?q=Dancer2>.
+[for Dancer2](https://metacpan.org/search?q=Dancer2).
 You will have to wait a little. Or you may volunteer to fill the gaps.
 
 One more  point. I do  not know the  MVC architecture (except  for the
-expanded  name, I<Model,  View, Controller>).  Yet I  have decided  to
+expanded  name, _Model,  View, Controller_).  Yet I  have decided  to
 split my Bailador program into  several source files. The first, named
-F<website.raku>, corresponds in my mind to the Controller. The  second
-source  file, in  a subdirectory  and named  F<lib/access-mongodb.rakumod>,
-would be the  model. And a few  others, fichiers F<lib/player-turn-page.rakumod>,
-F<lib/game-list-page.rakumod> and F<lib/game-page.rakumod>  would be the
-Views. I can call the  functions of F<lib/access-mongodb.rakumod>, from the
-Controller F<website.raku>,  but not from the  Views F<lib/xxx-page.rakumod>. I
-still have some things to learn about C<use> and C<require> in Raku.
+`website.raku`, corresponds in my mind to the Controller. The  second
+source  file, in  a subdirectory  and named  `lib/access-mongodb.rakumod`,
+would be the  model. And a few  others, fichiers `lib/player-turn-page.rakumod`,
+`lib/game-list-page.rakumod` and `lib/game-page.rakumod`  would be the
+Views. I can call the  functions of `lib/access-mongodb.rakumod`, from the
+Controller `website.raku`,  but not from the  Views `lib/xxx-page.rakumod`. I
+still have some things to learn about `use` and `require` in Raku.
 
-=head2 Template::Anti
+## Template::Anti
 
 I do  not like  template modules.  Under the guise  of allowing  a web
 designer to type an HTML file  without knowing Perl's syntax or Raku's
@@ -2848,28 +2729,28 @@ to learn yet another specific language with narrow use. HTML, Perl and
 Raku  should be  sufficient.  Or  maybe on  last  resort  learn a  new
 mainstream language.
 
-So in  2018, I wrote  the webpage scripts  with lots of  C<printf> and
-C<say> to print HTML tags mixed with French literals.
+So in  2018, I wrote  the webpage scripts  with lots of  `printf` and
+`say` to print HTML tags mixed with French literals.
 
 In  2021,  I decided  to  migrate  the  French-speaking website  to  a
 bilingual  website:  French  +  English.   In  order  to  allow  other
 developers to scale to a  multilingual website, I needed some template
 system, even if I dislike them. I tried with
-L<https://modules.raku.org/search/?q=template> and I discovered
-L<Template::Anti|https://modules.raku.org/dist/Template::Anti:cpan:HANENKAMP>.
+[https://modules.raku.org/search/?q=template](https://modules.raku.org/search/?q=template) and I discovered
+[Template::Anti](https://modules.raku.org/dist/Template::Anti:cpan:HANENKAMP).
 In this module,  the "DESCRIPTION" pragraph was echoing  my dislike of
 templating languages. So I adopted it.
 
 This module relies on CSS selectors embedded in the attributes of HTML
 tags. Each  time you have a  placeholder that needs to  be replaced by
 some piece  of data, you attach  a CSS class to  this placeholder. You
-may need  to insert a  C<< <span class>...</span>  >> pair of  tags to
-specify the CSS  class or you can  use an existing C<< <li>  >> tag or
-C<< <td>  >> or  other. But it  is still standard  HTML with  no alien
+may need  to insert a  `<span class>...</span>` pair of  tags to
+specify the CSS  class or you can  use an existing `<li>` tag or
+`<td>` or  other. But it  is still standard  HTML with  no alien
 syntax. Then, when  genrating the HTML file, you  substitute the piece
 of data to the placeholder each time you see the class.
 
-=head1 Conclusion
+# Conclusion
 
 I like Raku very much. I had some projects for which I intended to
 use APL. Maybe I will use Raku instead.
@@ -2880,7 +2761,7 @@ first time.  I did not remember  these remarks, because I  had not the
 sufficient background for the langage.  Now that I have some knowledge
 of Raku, I would not miss these details and I will benefit of them.
 
-=head1 License
+# License
 
 This text is published under the CC-BY-NC-ND license: Attribution-NonCommercial-NoDerivs 2.0 Generic.
 
