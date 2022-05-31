@@ -934,7 +934,7 @@ nous renvoie  page 23. Consultons  les lignes correspondantes  dans le
 fichier `Preparation/etape-finale.html`
 
 | 23  | 5;5 | 3;1 | A 30  | ... |
----------------------------------
+|-----|-----|-----|-------|-----|
 | 205 | ;5  | ;1  | A 213 | ... |
 
 Puisque nous nous occupons d'un  méchant, il faut regarder la deuxième
@@ -951,7 +951,7 @@ Notons que pour la page 187 du Camel, la manœuvre **A** aurait conduit
 le fichier `etape-finale.html` file nous donne :
 
 | 31  | 3;1 | 5;5 | A 2   | ... |
----------------------------------
+|-----|-----|-----|-------|-----|
 | 198 | ;1  | ;5  | A 187 | ... |
 
 Pour un "gentil",  il faut consulter la troisième  colonne. Comme vous
@@ -1761,7 +1761,7 @@ pour les combats ultérieurs. J'ai donc créé une option _--no-fleeing_ (pas de
 choix de l'attaque est privilégié par rapport à la fuite.
 
 Mon but avec ce projet était de montrer que les _Dikta Boelke_  et les 
-[règles de Sailor Malan](https://fr.wikipedia.org/wiki/Sailor\_Malan#Les\_10\_r%C3%A8gles\_du\_combat\_a%C3%A9rien\_par\_Sailor\_Malan_)
+[règles de Sailor Malan](https://fr.wikipedia.org/wiki/Sailor\_Malan#Les\_10\_r%C3%A8gles\_du\_combat\_a%C3%A9rien\_par\_Sailor\_Malan)
 peuvent se  déduire d'une  expérimentation du  type Alpha-_xxx_-Zéro.
 Certes, on  ne pourra  pas tout retrouver.  Par exemple,  Sailor Malan
 recommande de  tourner suffisamment souvent  et de ne jamais  voler en
