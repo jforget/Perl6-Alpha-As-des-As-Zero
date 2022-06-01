@@ -11,7 +11,7 @@ In 2018, I was looking for a project which could use Raku and MongoDB and
 which could be interesting to the audience of the French Perl Workshop.
 So I dug out from the depths of my memory an idea I had in the early 1980's
 when I discovered Nova Games'
-["Ace of Aces"](https://boardgamegeek.com/boardgame/798/ace-aces-handy-rotary-series). 
+["Ace of Aces"](https://boardgamegeek.com/boardgame/798/ace-aces-handy-rotary-series).
 Only later did I discover
 that I could use Bailador, the Raku port of
 [Dancer2](http://perldancer.org/)
@@ -30,7 +30,7 @@ or _machine self-learning_.
 
 The software knows only the rules of the game and how to determine the result
 of a game that has ended (win / draw / loss). It knows absolutely nothing about
-the tactics or the strategy of the game. Then the software plays a huge 
+the tactics or the strategy of the game. Then the software plays a huge
 number of games against itself, analyses the results and learns which are the
 good moves and which are the bad moves.
 
@@ -66,7 +66,7 @@ based on a similar principle:
 
 The questions above are apocryphal, of course, but you can see the pattern.
 
-In the 1970's, I watched on television a skit about "the shortest dictionary 
+In the 1970's, I watched on television a skit about "the shortest dictionary
 in the world". In dictionaries, what is space consuming is the definitions. So
 by getting rid of the definitions, we can considerably reduce the size of the
 dictionary. The skit performers gave a few examples. One I remember would give this in English:
@@ -82,7 +82,7 @@ dictionary. The skit performers gave a few examples. One I remember would give t
 ### Warlock of the Firetop Mountain and its Legacy
 
 In 1982, a new kind of book was published. The first title was
-[Warlock of the Firetop Mountain](http://fightingfantasy.wikia.com/wiki/The_Warlock_of_Firetop_Mountain_\(book\)). 
+[Warlock of the Firetop Mountain](http://fightingfantasy.wikia.com/wiki/The_Warlock_of_Firetop_Mountain_\(book\)).
 In this kind of book, the player would choose how the story would develop. For example:
 
 > Paragraph 1. You enter  an inn. In the back of the  main room, you see
@@ -109,7 +109,7 @@ in which each page shows a plane seen from the cockpit of another plane.
 
 ![Example of game](pic1051809-l.jpg)
 
-_Picture taken by Chris Norwood and published on [Boardgame Geek](https://boardgamegeek.com/image/1051809/ace-aces-handy-rotary-series?size=large). 
+_Picture taken by Chris Norwood and published on [Boardgame Geek](https://boardgamegeek.com/image/1051809/ace-aces-handy-rotary-series?size=large).
 License [Creative Commons Attribution 3.0 Unported, CC BY 3.0](https://creativecommons.org/licenses/by/3.0/)._
 
 ## Rules Summary
@@ -123,7 +123,7 @@ o'clock, or conversely, the Camel is at the Dr.I's 10 o'clock.
 
 _Pictures from patent USP 4,378,118, in public domain since 2001._
 
-At the bottom of each page, you notice a line of arrows and a line of numbers. 
+At the bottom of each page, you notice a line of arrows and a line of numbers.
 Each number refers to a page of the booklet and each arrow is a graphical representation
 of a maneuver the plane can execute. Each player chooses an arrow and gives the
 corresponding page number to his opponent. For example, the German player
@@ -163,11 +163,11 @@ account. When your hit point total is zero or negative, your plane is shot down.
 
 ## Explanation of the Mechanism
 
-With this rule mechanism, the final pages are always the same for both players. 
+With this rule mechanism, the final pages are always the same for both players.
 Many newbie players are amazed by this, yet the explanation is simple.
-Forget the skies above Poelcapelle or 
+Forget the skies above Poelcapelle or
 [Vaux-sur-Somme](http://military.wikia.com/wiki/Manfred_von_Richthofen),
-and imagine you are in a big empty parking lot, with only a Mini Austin and 
+and imagine you are in a big empty parking lot, with only a Mini Austin and
 a VW Beetle. At first, they set up in the following position (use the plain lines
 and ignore the dotted lines):
 
@@ -254,7 +254,7 @@ enemy can have disappeared behind.
 
 If only one player has an intermediate page 223, we use the intermediate page of the
 other player to obtain the final page of the game turn. You can no longer check the consistency
-of the final page as shown above. This situation arises, for example, when the planes are 
+of the final page as shown above. This situation arises, for example, when the planes are
 pursuing each other at a big distance. Let us suppose we are on page 180, where the Camel
 is in the Dr.I's 11 1/2 o'clock and let us suppose the plane move forward at medium speed.
 If we apply first the Camel's move, the contact is lost and the intermediate page is page 223,
@@ -315,7 +315,7 @@ this  several times  in  a row,  this  is no  longer  flying, this  is
 hovering. This is OK if you are  playing a hummingbird, a lark, a bee,
 a drone or a gazelle (not
 [this kind of gazelle](https://simple.wikipedia.org/wiki/Gazelle)
-but rather 
+but rather
 [that kind of Gazelle](https://en.wikipedia.org/wiki/A%C3%A9rospatiale_Gazelle))
 but when you are  playing a Fokker Dr.I or a  Sopwith Camel, you cannot
 hover. There is  an optional but very recommended  rule which prevents
@@ -332,7 +332,7 @@ This is a game about planes, so we must deal with altitude, of course!
 Well, no. For the basic rules, the game
 [just uses two dimensions](https://tvtropes.org/pmwiki/pmwiki.php/Main/TwoDSpace).
 There is only one instance when altitude is implied. There are six pages where both
-aircraft are in the same hex. It is convenient to suppose that there are separated 
+aircraft are in the same hex. It is convenient to suppose that there are separated
 in altitude by a few meters. This is the players' opinion, the rules say nothing about
 that.
 
@@ -368,8 +368,8 @@ This game has two extensions, one with late war planes
 Spad XIII vs Fokker D.VII) the other with early war planes
 (_[Flying Machines](https://boardgamegeek.com/boardgame/7103/ace-aces-flying-machines)_,
 Airco DH2 vs. Fokker E.III). There is also a WWII variant
-(_[Wingleader](https://boardgamegeek.com/boardgame/6504/ace-aces-wingleader)_, 
-P-51 Mustang vs FW190), a cold war version 
+(_[Wingleader](https://boardgamegeek.com/boardgame/6504/ace-aces-wingleader)_,
+P-51 Mustang vs FW190), a cold war version
 (_[Jet Eagles](https://boardgamegeek.com/boardgame/1991/ace-aces-jet-eagles)_,
 F-15 Eagle vs MiG-29 Fulcrum). There is even a Star Wars version,
 _[Starfighter Battle Book](https://boardgamegeek.com/boardgame/3152/star-wars-starfighter-battle-book)_,
@@ -385,14 +385,14 @@ between a pair of F-14's and a pair of A6M2 Zeros.
 
 There are just a few problems. The distance scale is not the same from a game to the other: a few meters
 for the WWI version, several hundred meters for the Cold War version. And the hit points are
-much different. You will need a big dose of 
+much different. You will need a big dose of
 [willing suspension of disbelief](http://tvtropes.org/pmwiki/pmwiki.php/Main/WillingSuspensionOfDisbelief)
 to play such a game!
 
 And you cannot set up a dogfight between two "good guys" (e.g. F-15 vs
 P-51) or between two "bad guys" (e.g. Fokker Dr.I vs FW190).
 
-A bit of caution about _Wingleader_. There is 
+A bit of caution about _Wingleader_. There is
 [another game](https://boardgamegeek.com/boardgame/160418/wing-leader-victories-1940-1942)
 with a similar name. If you are interested by this game and if you want to buy it, be sure
 it is the right game.
@@ -410,7 +410,7 @@ of _Jet Eagles_, radars and missiles. Unfortunately, these rules are incompatibl
 the  7 ± 2 short-term memory capacity. Except for the already mentioned rule about compatibility between
 two successive maneuvers, I do not plan to include these advanced rules in my programs.
 
-There is also an extension 
+There is also an extension
 _[Balloon Buster](https://boardgamegeek.com/boardgame/5736/ace-aces-balloon-buster)_
 with a 2-vs-1 fight. The German player controls a rather passive
 observation balloon and an anti-aircraft gun, while the British player
@@ -418,10 +418,10 @@ controls a plane.
 
 Other similar extensions, but incompatible with the air combat series:
 _[Shootout at the Saloon](https://boardgamegeek.com/boardgame/3089/bounty-hunter-shootout-saloon)_
-translated in French as 
+translated in French as
 _Le shérif et le hors-la-loi_,
 _[Dragons Riders of Pern](https://boardgamegeek.com/boardgame/5735/dragonriders-pern-book-game)_
-translated in French as 
+translated in French as
 _les Maîtres des Dragons_
 and a series I had not heard about before writing these explanations,
 _[Lost Worlds](https://boardgamegeek.com/boardgame/3969/lost-worlds-adventure-set-i-ruins-ancients)_.
@@ -446,10 +446,10 @@ copyright is not.
 # Aces of Aces, the Programs
 
 When I discovered the game, I thought that, actually, the game consists in mixing numbers
-(page numbers) and symbols (maneuvers) to get other numbers. The role of the picture is 
+(page numbers) and symbols (maneuvers) to get other numbers. The role of the picture is
 just to add meaning for the benefit of the players and to help them choose the proper maneuver
-symbol, provided the players know how the basics of plane flight, and provided they have 
-some notions about the _Dicta Boelke_, Sailor Malan's advices, "Boots" Blesse's 
+symbol, provided the players know how the basics of plane flight, and provided they have
+some notions about the _Dicta Boelke_, Sailor Malan's advices, "Boots" Blesse's
 _No Guts, No Glory_ and similar writings. But you can strip all this air combat decoration
 and keep only the abstract mechanism, based on a finite state automaton with maybe a few
 uses of a _random_ function. Hence the idea of a program playing the game without any knowledge
@@ -565,7 +565,7 @@ you're done. Else, access the [zef repo](https://github.com/ugexe/zef)
 and follow the instructions.
 
 Later, for another project, I had a benign incident. I wanted to test
-the use of SQLite through the 
+the use of SQLite through the
 [DBIish module](https://github.com/raku-community-modules/DBIish).
 The installation by `zef` failed, because  there was no C compiler on
 this  virtual machine.  Therefore,  in addition  to  Git and  `curl`,
@@ -620,7 +620,7 @@ _Ubuntu_.  Anyhow, I  made  the hypothesis  that "xubuntu-21.04"  was
 rather  similar to  "Ubuntu-20.04"  and I  followed the  corresponding
 procedure.
 
-When you install MongoDB, you  should read the 
+When you install MongoDB, you  should read the
 [up-to-date instructions](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/)
 from the MongoDB website. But to give  you an overview, here is what I
 did.
@@ -710,7 +710,7 @@ Then, you can launch the Bailador webserver with:
 
     raku website.raku
 
-To access the webpages showing the past games, open you web 
+To access the webpages showing the past games, open you web
 browser and type the address:
 
     http://localhost:3000
@@ -1014,11 +1014,11 @@ the umpire.
 
 The player program has two different modes. The first mode is the training mode, where
 each maneuver is randomly chosen with equal probability. The second mode is the combat mode,
-where the player program searches the database from similar situations encountered during 
+where the player program searches the database from similar situations encountered during
 previous games, evaluates which ones led to success and which ones led to failure, gives
 different probabilities to these maneuvers and makes a random choice according to the probabilities.
 
-Even in the combat mode, the maneuvers are chosen with a random function. So we prevent 
+Even in the combat mode, the maneuvers are chosen with a random function. So we prevent
 stereotypical plays, where each process would compute a minimax best solution and always obtain the
 same choice in the same situation. The random choice gives a higher probability to the
 best answer, but this does not prevent the program from choosing an unexpected maneuver
@@ -1032,9 +1032,9 @@ does not know and does not care about the underlying hexagonal geometry.
 ### Database
 
 I have chosen [MongoDB](https://www.mongodb.com/)
-for the database. The reasons are not technical reasons (performance, for 
+for the database. The reasons are not technical reasons (performance, for
 example), but the fact that I know data manipulation with SQL, but I am not familiar with
-noSQL databases. The programs could be written with a SQL database, such as 
+noSQL databases. The programs could be written with a SQL database, such as
 [SQLite](https://sqlite.org/index.html)
 or any other, but for me, it was less interesting.
 
@@ -1070,7 +1070,7 @@ stores it into the corresponding attribute of the `Pilot` / `Aircraft`
 object being created? Is there a  cleaner and simpler solution to this
 dilemma?
 
-In computer programming, there is a 
+In computer programming, there is a
 [saying](https://stackoverflow.com/questions/288623/level-of-indirection-solves-every-problem):
 "Every problem can be solved by adding a level of indirection". I have
 found  a similar  solution for  my current  problem. When  the program
@@ -1080,7 +1080,7 @@ used to create the `Aircraft` or `Pilot`  object. Then, in  the next
 program,  when reading  the BSON  document,  I just  take the  `json`
 attribute and I build  the  `Aircraft` or  `Pilot`  object with  the
 `from-json`  method provided  by  `JSON::Class`.  The only  required
-entries  in  the  database   documents  are  `identity` 
+entries  in  the  database   documents  are  `identity`
 used as key and `json` for the data payload. I have still
 added some other entries to store some object attributes, because they
 may be used for some database queries.
@@ -1097,7 +1097,7 @@ use sockets? Message queues? No. I used a mechanism based on John le Carré spy 
 the mailbox. The controlling officer writes his instructions to the spy on a microfilm
 and inserts this microfilm into a agreed-upon discreet location: tree stump, crack between
 two bricks in a wall, and the like. The spy comes a few hours later, takes the microfilm
-and goes away. A few days later, after gathering the requested information, the spy 
+and goes away. A few days later, after gathering the requested information, the spy
 delivers a new microfilm by inserting it in the same hidden place and the controlling
 officer takes it in the same manner. This is the same with the umpire process and the
 player processes. The umpire process writes a database record for each player. Then each
@@ -1105,8 +1105,8 @@ player process reads the record which applies to it, fills the missing data and 
 it. Then the umpire process reads the updated record.
 
 Just as in John le Carré novels, if a process does not find the record it is waiting for,
-it waits a few moments and it makes a new attempt. And as in John le Carré novels, 
-after a number of failed attempts, the process considers something bad has happened 
+it waits a few moments and it makes a new attempt. And as in John le Carré novels,
+after a number of failed attempts, the process considers something bad has happened
 on the other side and it stops all activities. The comparison ends there, because in
 spy novels the spy is exfiltrated, while here the process executes a `die`.
 
@@ -1121,13 +1121,12 @@ main variables are initialized. Nothing special to discuss.
 Then you have  an event loop, which manages the  successive game turns
 with the following steps:
 
-- 1  Resolving  the  shooting  for the  previous  game  turn  and
-computing the possible maneuver choices for the current turn.
-- 2 Writing these choices into the `Turns` (player turn) collection for each player.
-- 3 Reading back the players' answers from the `Turns` collection.
-- 4 Applying the transitions: initial page → intermediate page → final page.
-- 5 Checking whether a plane flees or not (or both planes).
-- 6 Dealing with the end of game (fleeing or destruction).
+1. Resolving  the  shooting  for the  previous  game  turn  and computing the possible maneuver choices for the current turn.
+2. Writing these choices into the `Turns` (player turn) collection for each player.
+3. Reading back the players' answers from the `Turns` collection.
+4. Applying the transitions: initial page → intermediate page → final page.
+5. Checking whether a plane flees or not (or both planes).
+6. Dealing with the end of game (fleeing or destruction).
 
 #### Shooting
 
@@ -1221,9 +1220,9 @@ Here are the successive steps for a game turn.
 The program  extracts from  the `Turns`  collection all  player turns
 similar to the current player turn, using the following criteria:
 
-- 1 Same page.
-- 2 Previous game (according to the date-hour key).
-- 3 Same pilot or just any similar pilot.
+1. Same page.
+2. Previous game (according to the date-hour key).
+3.  Same pilot or just any similar pilot.
 
 Let us look again at the criteria.
 
@@ -1679,7 +1678,7 @@ browsing tutorials on the web. The books I used for this project are:
 - [Think Perl 6](https://greenteapress.com/wp/think-perl-6/)
 by Laurent Rosenfeld (renamed
 [Think Raku](https://github.com/LaurentRosenfeld/think_raku)),
-- [Perl 6 Deep Dive](https://www.packtpub.com/product/perl-6-deep-dive/9781787282049), 
+- [Perl 6 Deep Dive](https://www.packtpub.com/product/perl-6-deep-dive/9781787282049),
 which I had  received and which I  began to read just a  few days before
 writing my first lines of code for this project,
 - [MongoDB, the Definitive Guide](https://www.eyrolles.com/Informatique/Livre/mongodb-the-definitive-guide-9781449381561/)
@@ -2047,7 +2046,7 @@ A million  seconds is one  week, 4 days, 13  hours, 46 minutes  and 40
 seconds. Check:
 
         52 7 24 60 60 ⊥ 1 4 13 46 40
-    1000000 
+    1000000
 
 I did not find alone the Raku equivalent. I asked on a
 mailing-list and I was redirected to
@@ -2325,7 +2324,7 @@ expressions as an definite object  class, complete with attributes and
 methods.
 
 From time to time, a mathematician or a computer scientist shows that
-such or such intellectual construction is 
+such or such intellectual construction is
 [unintentionally Turing complete](https://en.wikipedia.org/wiki/Turing_completeness#Unintentional_Turing_completeness).
 This  is the  case with  John  Conway's Life,  this is  the case  with
 _Magic, the  Gathering_, this  is the  case with  _Minecraft_. Maybe
@@ -2459,7 +2458,7 @@ You can also declare a scalar variable containing several values with:
 
     my $t = <N E S W>;
 
-and access an element with 
+and access an element with
 
     say $t[2];
 
@@ -2508,7 +2507,7 @@ and a `=end  POD` tag. Also, you cannot display  with a command named
 the option `--doc`.
 
 Anyhow, if  you read the  statistics in  the "Languages" block  of the
-[Github front page](https://github.com/jforget/Perl6-Alpha-As-des-As-Zero)   
+[Github front page](https://github.com/jforget/Perl6-Alpha-As-des-As-Zero)
 of the  project, you  notice that  Perl is absent.  So either  the POD
 files, including  the file  you are  reading now,  are not  taken into
 account in the statistics, or they are interpreted as the Raku version
@@ -2554,7 +2553,7 @@ text format which is ignored by  the runtime. The example script still
 fails, because the bytecode file has not changed.
 
 I clone the
-[Git Hub repo](https://github.com/MARTIMM/mongo-perl6-driver/), 
+[Git Hub repo](https://github.com/MARTIMM/mongo-perl6-driver/)
 I remove the debugging message, and I reinstall the module with:
 
     zef install --/test .

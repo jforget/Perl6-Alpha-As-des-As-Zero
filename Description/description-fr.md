@@ -6,11 +6,11 @@ J'y ajoute certaines réflexions que l'assistance m'a faites lors de l'exposé.
 Je cherchais un projet utilisant Perl 6 et MongoDB et qui puisse intéresser l'auditoire
 des Journées Perl. J'ai donc exhumé des tréfonds
 de ma mémoire une idée consistant à écrire un programme jouant à
-l'[As des As](https://boardgamegeek.com/boardgame/798/ace-aces-handy-rotary-series). 
+l'[As des As](https://boardgamegeek.com/boardgame/798/ace-aces-handy-rotary-series).
 Ce n'est que plus tard que j'ai constaté que ce projet pouvait bénéficier de
 l'utilisation de Bailador (la version Perl 6 de Dancer2) et que cela me permettait
 de célébrer le centenaire de la création de la RAF (1er avril 1918) et de la mort
-de Manfred von Richthofen (21 avril 1918) ou, plus approximativement, la disparition 
+de Manfred von Richthofen (21 avril 1918) ou, plus approximativement, la disparition
 de Georges Guynemer (11 septembre 1917) et l'armistice (11 novembre 1918).
 
 ## Rappel
@@ -99,9 +99,9 @@ Il expliquait à son interlocuteur avec un exemple ressemblant à :
 ### Les Livres dont vous êtes le héros, Le Sorcier de la Montagne de Feu
 
 En 1982, est paru un livre d'un genre nouveau,
-[Warlock of the Firetop Mountain](http://fightingfantasy.wikia.com/wiki/The_Warlock_of_Firetop_Mountain_\(book\)), 
+[Warlock of the Firetop Mountain](http://fightingfantasy.wikia.com/wiki/The_Warlock_of_Firetop_Mountain_\(book\)),
 bientôt traduit en français par
-[Gallimard Folio Junior](http://planete-ldvelh.com/page/dossier-edition-gallimard.html) 
+[Gallimard Folio Junior](http://planete-ldvelh.com/page/dossier-edition-gallimard.html)
 sous le titre
 « le Sorcier de la Montagne de Feu », le premier de la série
 [« les Livres dont vous êtes le héros »](http://www.gallimard-jeunesse.fr/Catalogue/GALLIMARD-JEUNESSE/Un-Livre-dont-vous-etes-le-Heros).
@@ -130,7 +130,7 @@ carte où ils poussent des pions, chaque joueur est muni d'un livret.
 
 ![Exemple de partie](pic1051809-l.jpg)
 
-_Photo prise par Chris Norwood et publiée sur [Boardgame Geek](https://boardgamegeek.com/image/1051809/ace-aces-handy-rotary-series?size=large). 
+_Photo prise par Chris Norwood et publiée sur [Boardgame Geek](https://boardgamegeek.com/image/1051809/ace-aces-handy-rotary-series?size=large).
 Licence [Creative Commons Attribution 3.0 Unported, CC BY 3.0](https://creativecommons.org/licenses/by/3.0/)._
 
 ## Aperçu des règles
@@ -178,7 +178,7 @@ c'est aussi un précurseur des jeux de tir en vision subjective
 
 _Copies d'écran provenant du brevet USP 4,378,118, dans le domaine public depuis 2001._
 
-Quant au mécanisme des tirs, c'est très simple. Vous commencez avec 12 points de vie. 
+Quant au mécanisme des tirs, c'est très simple. Vous commencez avec 12 points de vie.
 Chaque fois que vous aboutissez sur une page finale où vous recevez des pruneaux de l'avion
 ennemi, vous perdez 1, 2 ou 4 points de vie, selon la page finale. On ne tient pas
 compte des pages intermédiaires. Quand votre total de points de vie
@@ -188,7 +188,7 @@ est négatif ou nul, votre avion est abattu.
 
 Avec ce mécanisme, les pages finales sont toujours identiques. Cela émerveille les joueurs
 qui découvrent le jeu, mais cela peut s'expliquer simplement. Oublions les cieux au-dessus
-de [Poelcapelle](http://acepilots.com/wwi/fr_guynemer.html) 
+de [Poelcapelle](http://acepilots.com/wwi/fr_guynemer.html)
 et de [Vaux-sur-Somme](http://military.wikia.com/wiki/Manfred_von_Richthofen),
 et imaginons un parking de supermarché. Toutes
 les voitures sont garées à proximité du bâtiment et il y a donc un large espace libre un
@@ -265,7 +265,7 @@ l'espace aérien de la Picardie ou des Flandres.
 
 _Photo personnelle reprenant une page de Handy Rotary, copyright © 1986 Nova Game Designs, Inc., image copyright © 1986 Emithill limited_
 
-Si vous consultez certains fichiers d'aide fournis par 
+Si vous consultez certains fichiers d'aide fournis par
 [Boardgame Geek](https://www.boardgamegeek.com/boardgame/798/ace-aces-handy-rotary-series/files),
 vous  verrez que  le  jeu de  base  sur une  grille  de 37  hexagones,
 permettant  de générer  222 pages,  représentant toutes  les positions
@@ -403,11 +403,11 @@ Deux extensions sont sorties avec des avions plus récents
 (_[Powerhouse](https://boardgamegeek.com/boardgame/7104/ace-aces-powerhouse-series)_,
 Spad XIII contre Fokker D.VII) ou plus anciens
 (_[Flying Machines](https://boardgamegeek.com/boardgame/7103/ace-aces-flying-machines)_,
-Airco DH2 contre Fokker E.III). Également, il y a la version Seconde Guerre Mondiale 
-(_[Wingleader](https://boardgamegeek.com/boardgame/6504/ace-aces-wingleader)_, 
+Airco DH2 contre Fokker E.III). Également, il y a la version Seconde Guerre Mondiale
+(_[Wingleader](https://boardgamegeek.com/boardgame/6504/ace-aces-wingleader)_,
 P-51 Mustang contre FW190), la version Guerre Froide
 (_[Jet Eagles](https://boardgamegeek.com/boardgame/1991/ace-aces-jet-eagles)_,
-F-15 Eagle contre MiG-29 Fulcrum) et 
+F-15 Eagle contre MiG-29 Fulcrum) et
 même la version Guerre des Étoiles
 (_[Starfighter Battle Book](https://boardgamegeek.com/boardgame/3152/star-wars-starfighter-battle-book)_,
 X-Wing contre TIE-Fighter, extension publiée par West End Games).
@@ -415,8 +415,8 @@ X-Wing contre TIE-Fighter, extension publiée par West End Games).
 À remarquer que toutes ces versions ont la même pagination. Dans tous les livrets, la page 96 montre
 le « méchant » derrière le « gentil », à distance moyenne, avec le même cap et en train de lui tirer dessus.
 Il est possible de jouer avec un livret « gentil » d'un jeu et un livret « méchant » d'un autre jeu, quitte
-à faire combattre un X-Wing contre un Fokker E.III ! Ou vous contenter d'un duel F-15 contre FW190, 
-ce qui vous rappelera le 
+à faire combattre un X-Wing contre un Fokker E.III ! Ou vous contenter d'un duel F-15 contre FW190,
+ce qui vous rappelera le
 [célèbre accrochage](https://www.youtube.com/watch?v=f3XNEWtJF0o)
 entre deux F-14 et deux A6M2 Zéro.
 
@@ -429,7 +429,7 @@ Et vous ne pouvez pas opposer un « gentil » à un autre « gentil », par 
 ni faire combattre un « méchant » avec un autre « méchant », par exemple un Fokker D.VII
 contre un FW190.
 
-Attention au sujet de _Wingleader_ : il existe un 
+Attention au sujet de _Wingleader_ : il existe un
 [autre jeu](https://boardgamegeek.com/boardgame/160418/wing-leader-victories-1940-1942)
 beaucoup plus récent du
 même nom chez GMT. Si vous êtes intéressé par le jeu décrit et que vous voulez l'acheter
@@ -451,7 +451,7 @@ mémoire à  court terme. À  part une  règle sur la  compatibilité entre
 deux manœuvres successives d'un même avion, je n'ai pas l'intention de
 les prendre en compte dans mes programmes.
 
-Il y a également une extension 
+Il y a également une extension
 _[Balloon Buster](https://boardgamegeek.com/boardgame/5736/ace-aces-balloon-buster)_
 où l'on fait du 2-contre-1. Le joueur allemand contrôle un ballon d'observation
 (assez passif) plus un canon anti-aérien, contre un avion britannique.
@@ -665,7 +665,7 @@ uniquement pour des clients.
 
 Si  vous avez  la  chance de  disposer de  paquets  pour installer  un
 serveur MongoDB  sur votre  distribution, tant mieux,  installez-le et
-passez  directement  au 
+passez  directement  au
 [paragraphe suivant](#installation-du-module-mongodb).
 
 Le  [site   de  MongoDB](https://www.mongodb.com/fr)  ne   décrit  pas
@@ -1154,7 +1154,7 @@ fichier JSON comme une table de  transitions page de départ + manœuvre
 
 ### Base de données
 
-Le choix de la base de données 
+Le choix de la base de données
 [MongoDB](https://www.mongodb.com/fr)
 s'appuie sur les mêmes raisons que celles
 que j'ai données lors de ma présentation aux Journées Perl 2017. J'en sais déjà
@@ -1246,7 +1246,7 @@ effectue un `die`.
 
 « Quand on a un marteau, tout ressemble à un clou. » Certes, mais en procédant de
 la sorte, je n'avais qu'un seul module pour lequel je pouvais avoir des problèmes
-qu'il fallait contourner, soit des bugs, soit des 
+qu'il fallait contourner, soit des bugs, soit des
 [PECEC](https://fr.wiktionary.org/wiki/entre_la_chaise_et_le_clavier).
 
 ### Programme `umpire.raku`, anciennement `arbitre.p6`
@@ -1362,9 +1362,9 @@ Voici les différentes étapes pour un tour de jeu.
 Le  programme  extrait  de  la collections  `Turns`  tous  les  coups
 vérifiant les conditions suivantes :
 
-- 1 Même page.
-- 2 Partie antérieure (en se  basant sur la clé date-heure).
-- 3 Même pilote ou simplement pilote similaire.
+1. Même page.
+2. Partie antérieure (en se  basant sur la clé date-heure).
+3. Même pilote ou simplement pilote similaire.
 
 Reprenons les critères.
 
@@ -1760,7 +1760,7 @@ cela écourte la séance d'entraînement et cela réduit les informations dispon
 pour les combats ultérieurs. J'ai donc créé une option _--no-fleeing_ (pas de fuite) où le
 choix de l'attaque est privilégié par rapport à la fuite.
 
-Mon but avec ce projet était de montrer que les _Dikta Boelke_  et les 
+Mon but avec ce projet était de montrer que les _Dikta Boelke_  et les
 [règles de Sailor Malan](https://fr.wikipedia.org/wiki/Sailor\_Malan#Les\_10\_r%C3%A8gles\_du\_combat\_a%C3%A9rien\_par\_Sailor\_Malan)
 peuvent se  déduire d'une  expérimentation du  type Alpha-_xxx_-Zéro.
 Certes, on  ne pourra  pas tout retrouver.  Par exemple,  Sailor Malan
@@ -1880,7 +1880,7 @@ qui enchaîne ces commandes et donne la date et l'heure entre deux.
     echo "export PATH=$(pwd)/install/bin/:$(pwd)/install/share/perl6/site/bin:\$PATH" >> ~/.bashrc
     source ~/.bashrc
 
-Certes, j'ai lancé ce script sur une machine virtuelle, donc nécessairement moins puissante 
+Certes, j'ai lancé ce script sur une machine virtuelle, donc nécessairement moins puissante
 que la machine physique hôte. Le temps est donc plus long que sur la machine physique.
 Néanmoins, cela donne une idée du temps nécessaire.
 
@@ -1898,7 +1898,7 @@ de Perl 6, ce qui se traduit par des erreurs dans "spectest". C'est normal.
 On m'a fait remarquer que la compilation des sources nécessite beaucoup d'accès disque
 et que l'utilisation d'une machine virtuelle pénalise ainsi la compilation. Donc les durées
 que j'ai trouvées ne sont pas significatives. Néanmoins, cela montre que vous ne devez
-pas vous attendre à ce que l'installation par compilation des sources soit réglée en 
+pas vous attendre à ce que l'installation par compilation des sources soit réglée en
 cinq minutes sur votre machine.
 
 Un participant des journées Perl a essayé de compiler Rakudo Star pendant la conférence.
@@ -1909,7 +1909,7 @@ Un autre participant, qui utilise Perl 6 depuis plusieurs années et, même, par
 développement, a dit qu'il compilait la version de développement de Rakudo Star chaque jour.
 En fait, il semble que le temps énorme que prend la compilation est dû à l'installation de
 modules Perl 5 nécessaires pour certaines étapes de cette compilation ou des tests. Donc, si
-l'on compile Rakudo Star tous les matins, les modules utilitaires sont déjà installés et 
+l'on compile Rakudo Star tous les matins, les modules utilitaires sont déjà installés et
 les étapes de la compilation prennent moins de temps que le premier jour.
 
 Après les Journées Perl, j'ai réinitialisé ma machine xubuntu-16.10 64
@@ -2159,7 +2159,7 @@ en APL et
 en Raku. Rappelons que les indices commencent habituellement à 1 en APL et qu'ils
 commencent à 0 en Raku. Et appelons ces vecteurs `NBJ` en APL et `@nbj` en Raku.
 
-Si c'est pour calculer le nombre de jours dans l'année, il suffit de faire 
+Si c'est pour calculer le nombre de jours dans l'année, il suffit de faire
 
     +/NBJ
     [+] @nbj
@@ -2186,7 +2186,7 @@ et hourra ! j'ai obtenu le résultat attendu
 
     0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334,  365
 
-J'ai eu besoin d'un autre opérateur APL pour mon 
+J'ai eu besoin d'un autre opérateur APL pour mon
 [module de calendrier maya](https://modules.raku.org/dist/Date::Calendar::MayaAztec:cpan:JFORGET),
 pour convertir  un nombre de  jours en compte long  ou réciproquement.
 Comme vous n'êtes pas familiers  du calendrier maya, je vais illustrer
@@ -2202,7 +2202,7 @@ Réponse, cela  fait 1 semaine,  4 jours, 13  heures, 46 minutes  et 40
 secondes. Vérification :
 
         52 7 24 60 60 ⊥ 1 4 13 46 40
-    1000000 
+    1000000
 
 Je n'ai pas trouvé tout seul l'équivalent en Raku. J'ai demandé sur la
 liste de messagerie et on m'a indiqué la
@@ -2237,14 +2237,14 @@ Le résultat est une erreur :
 
 Je n'ai rien trouvé sur ce sujet dans les livres qui m'ont servi à apprendre Perl 6.
 J'ai essayé avec [la documentation en ligne de substr](https://docs.perl6.org/routine/substr),
-rien non plus sur ce sujet. J'ai essayé de regarder dans la 
+rien non plus sur ce sujet. J'ai essayé de regarder dans la
 [documentation du type Str](https://docs.perl6.org/type/Str)
-et pour cela il n'y avait pas de lien hypertexte depuis 
+et pour cela il n'y avait pas de lien hypertexte depuis
 [la documentation en ligne de substr](https://docs.perl6.org/routine/substr),
-j'ai dû passer par 
+j'ai dû passer par
 [la liste des types standards](https://docs.perl6.org/type.html).
 Et sur la [documentation du type Str](https://docs.perl6.org/type/Str),
-j'ai enfin trouvé ce que je cherchais, la 
+j'ai enfin trouvé ce que je cherchais, la
 [fonction `substr-rw`](https://docs.perl6.org/type/Str#method_substr-rw).
 
 ### Notation fonctionnelle
@@ -2352,8 +2352,8 @@ d'une date qui s'y trouve. La solution basique consiste à écrire :
     say join "\n", @t1;
 
 En mettant un mouchard dans la fonction de comparaison, on constate qu'elle est appelée 15 fois,
-donc la fonction `extr` est appelée 30 fois, pour trier 8 paragraphes. L'idée est donc de 
-remplacer 
+donc la fonction `extr` est appelée 30 fois, pour trier 8 paragraphes. L'idée est donc de
+remplacer
 
     my @t1 = sort { extr($a) <=> extr($b) } @t;
 
@@ -2435,14 +2435,14 @@ de haut en bas. Ainsi, le programme devient :
 Un point qui m'ennuie, c'est le fait d'être
 obligé d'ajouter un backslash en fin de ligne pour indiquer que l'instruction
 se poursuit à la ligne suivante. Comme l'a dit une personne dans la salle,
-« C'est un retour quarante ans en arrière. ». Voir le 
+« C'est un retour quarante ans en arrière. ». Voir le
 [point suivant](#alignement-vertical).
 
 #### Au-delà de la transformation schwartzienne
 
 En fait, comme on m'a fait remarquer, la transformation schwartzienne perd pas mal
 d'intérêt en Perl 6. Dans le cas particulier assez fréquent d'un tri avec une comparaison mono-critère,
-vous pouvez remplacer la fonction de comparaison par la fonction d'extraction de 
+vous pouvez remplacer la fonction de comparaison par la fonction d'extraction de
 ce critère unique. Cela donne :
 
     @t ==> sort { extr($_) } \
@@ -2491,7 +2491,7 @@ Moi, je me suis résigné à écrire
 
 Tous les éléments restent alignés verticalement, sauf les crochets ouvrants.
 
-Il existe une fonctionnalité intéressante que vous avez aperçue au paragraphe sur 
+Il existe une fonctionnalité intéressante que vous avez aperçue au paragraphe sur
 la transformation schwartzienne, le _unspace_. S'il y a un backslash suivi par
 un ou plusieurs caractères blancs (espace, saut de ligne, etc), alors l'interpréteur
 Perl 6 considère qu'il n'y a pas de blanc. Ainsi, les deux lignes suivantes
@@ -2520,7 +2520,7 @@ une faute d'orthographe et à écrire soit
     $longuer[$n] = $longuer[$n - 1] + $dx;
     $largeur[$n] = $largeur[$n - 1] + $dy;
 
-soit 
+soit
 
     $longueur[$n] = $longueur[$n - 1] + $dx;
     $largeurr[$n] = $largeurr[$n - 1] + $dy;
@@ -2540,7 +2540,7 @@ et après le renommage de _Perl 6_ en _Raku_.
 particuliers, peu nombreux, avaient le statut de « caractères spéciaux »,
 tels l'accent circonflexe et le dollar servant de balises, le point servant
 de caractère générique et l'étoile servant de quantificateur et tous les autres
-caractères avaient leur valeur littérale. Ultérieurement, 
+caractères avaient leur valeur littérale. Ultérieurement,
 avec les versions évoluées de `grep` et l'apparition de `awk`, les caractères spéciaux
 sont devenus de plus en plus nombreux, mais dans leur essence, les expressions régulières
 étaient toujours des chaînes de caractères mêlant caractères littéraux et caractères spéciaux.
@@ -2548,7 +2548,7 @@ sont devenus de plus en plus nombreux, mais dans leur essence, les expressions r
 D'autres langages sont partis dans une autre direction, définissant les expressions
 régulières comme une classe d'objets particulière, avec ses attributs et ses méthodes.
 
-De temps en temps, un chercheur en mathématiques ou en informatique signale que telle 
+De temps en temps, un chercheur en mathématiques ou en informatique signale que telle
 ou telle construction intellectuelle est
 [« accidentellement complète au sens de Turing »](https://fr.wikipedia.org/wiki/Turing-complet#Exemples_en_dehors_des_langages_de_programmation).
 C'est le cas du Jeu de la Vie de John Conway, c'est le cas de
@@ -2565,7 +2565,7 @@ mais tout simplement « regex ». Une regex contient du code Raku avec une syn
 assez différente de la syntaxe impérative et procédurale habituelle, mais c'est du code
 Raku, mêlant chaînes littérales, variables et opérateurs. C'est dit succintement page 5, c'est dit
 de façon beaucoup plus détaillée dans la section 4.6, pages 42 à 46. Voici un exemple du
-changement de mentalité à adopter avec Raku. Reprenons l'extraction d'une date 
+changement de mentalité à adopter avec Raku. Reprenons l'extraction d'une date
 figurant dans le paragraphe ci-dessus sur la transformée schwartzienne. En Perl 5,
 l'extraction se fait ainsi
 
@@ -2582,7 +2582,7 @@ avec 12 chaînes littérales `"janvier"`, `"février"` etc. En toute rigueur, j'
 dû ajouter des `quotemeta`, mais comme les noms de mois sont purement alphabétiques,
 ce n'était pas nécessaire dans cet exemple.
 
-Ma première tentative en Raku, avant de lire le livre de Moritz Lenz et 
+Ma première tentative en Raku, avant de lire le livre de Moritz Lenz et
 de comprendre quelle était la nature profonde des regex en Raku fut :
 
     my %mois = qw/janvier  1    février   2   mars      3
@@ -2660,7 +2660,7 @@ et c'est passé !
 
 ### Undef et (nil)
 
-Un autre point qu'il faudra que je règle, c'est le typage des paramètres 
+Un autre point qu'il faudra que je règle, c'est le typage des paramètres
 dans les fonctions. Si la déclaration de la fonction attribue
 un type à un paramètre et qu'on appelle cette fonction avec `undef`,
 le programme plante parce que l'on fournit une valeur de type `(Nil)`
@@ -2709,19 +2709,19 @@ la possibilité de créer ses propres opérateurs. Comment définit-on la
 priorité de ces opérateurs par rapport aux opérateurs traditionnels ?
 
 La réponse a été donnée pendant les Journées Perl. Elle consiste à utiliser
-les « traits » `is tighter` ou `is looser`. 
+les « traits » `is tighter` ou `is looser`.
 [C'est marqué dans la doc](http://design.perl6.org/S06.html#Subroutine_traits)
 à condition de savoir où chercher.
 
 ### POD
 
 Je ne me suis pas du tout intéressé à POD en version Perl 6. J'ai écrit la documentation de mes
-programmes avec du POD tel que je le codais en Perl 5. La seule différence, 
+programmes avec du POD tel que je le codais en Perl 5. La seule différence,
 c'est qu'il faut obligatoirement une balise `=begin POD` et une balise `=end POD`.
 Et il n'y a pas de commande `perl6doc`, à la place il faut utliser `perl6`
 avec l'option `--doc`.
 
-Néanmoins, si vous regardez les statistiques calculées par Github sur mon dépôt, 
+Néanmoins, si vous regardez les statistiques calculées par Github sur mon dépôt,
 vous verrez que parmi les langages utilisés, Perl 6 est très largement dominant.
 Ce qui veut dire que le présent texte, entièrement écrit en POD version Perl 5,
 n'a pas été pris en compte par les statistiques de Github, voire a été pris
@@ -2758,7 +2758,7 @@ la documentation d'une version 3.x. Par exemple, le site propose une commande
 d'avoir une doc légèrement déphasée plutôt que de cliquer sur de nombreux liens
 pour trouver la doc parfaitement adaptée.
 
-Avec l'installateur intégré `zef` de Rakudo Star, l'installation du 
+Avec l'installateur intégré `zef` de Rakudo Star, l'installation du
 [module MongoDB](https://modules.perl6.org/t/DATABASE)
 se fait simplement par :
 
@@ -2791,7 +2791,7 @@ de _bytecode_ que je n'ai pas  vu. Le _bytecode_ n'ayant pas changé,
 le bug est toujours là.
 
 Je clone donc le
-[dépôt Git Hub](https://github.com/MARTIMM/mongo-perl6-driver/), 
+[dépôt Git Hub](https://github.com/MARTIMM/mongo-perl6-driver/),
 je supprime les trois messages de débug et je réinstalle par :
 
     zef install --/test .
@@ -2806,7 +2806,7 @@ Est-ce la bonne solution ? Je ne sais pas, mais au moins, ça fonctionne.
 Le programme proposé dans la documentation du module fonctionne, à condition
 d'enlever le `findAndUpdate` qui n'existe pas en version 2.6.
 
-Quand j'essaie de faire mes propres accès à MongoDB, j'ai de nouveau un 
+Quand j'essaie de faire mes propres accès à MongoDB, j'ai de nouveau un
 problème, une histoire de promesse non tenue. Après moult tentatives, j'en viens
 à la conclusion que dans un `find`, il est indispensable de coder le paramètre :
 
@@ -2830,9 +2830,9 @@ pas les options `sort`, `limit` et `skip`. Et ce n'est pas un problème de versi
 contre 3.x, ces trois options sont mentionnées dans le livre O'Reilly de 2013 (page 68 si vous
 voulez vérifier).
 
-On trouve avec MongoDB une variante du problème évoqué dans le 
+On trouve avec MongoDB une variante du problème évoqué dans le
 [paragraphe sur le typage des données](#typage-des-valeurs-et-des-variables).
-MongoDB connaît les entiers `(Int)` et les flottants `(Num)`, mais pas les 
+MongoDB connaît les entiers `(Int)` et les flottants `(Num)`, mais pas les
 rationnels `(Rat)`. Le message d'erreur n'est pas très clair :
 
     2018-05-25 05:31:06.093687 [E]  1: localhost:27017: encode() on 0.5, error: Not yet implemented
@@ -2882,7 +2882,7 @@ Et l'installation s'est faite. J'ai lancé quelques programmes Perl 6 utilisant
 MongoDB et ils ont fonctionné du premier coup. Un grand pas en avant entre
 mars et juin 2018 !
 
-Remarquez que je n'ai pas cherché à voir si le problème de 
+Remarquez que je n'ai pas cherché à voir si le problème de
 
       projection => ( _id => 0, )
 
@@ -2895,14 +2895,14 @@ des `(Rat)` est toujours présent.
 ## Bailador
 
 Au début, je n'avais pas l'intention de faire du web dynamique. Puis j'ai trouvé que
-les fichiers HTML, avec les liens hypertextes qui conviennent, c'est plus facile à 
+les fichiers HTML, avec les liens hypertextes qui conviennent, c'est plus facile à
 lire que le résultat d'une requête écrite dans un interpréteur de JavaScript.
 
-Donc, j'ai installé Bailador. Que dire ? J'ai installé le module, j'ai 
-écrit un programme basé sur Bailador, et ça tourne. Je n'ai rien de croustillant 
+Donc, j'ai installé Bailador. Que dire ? J'ai installé le module, j'ai
+écrit un programme basé sur Bailador, et ça tourne. Je n'ai rien de croustillant
 à raconter.
 
-Il faut dire que mon utilisation de Bailador est aussi rustique que l'utilisation 
+Il faut dire que mon utilisation de Bailador est aussi rustique que l'utilisation
 de Dancer2 que j'ai présentée l'an dernier. Plus rustique même, puisque je n'utilise
 pas de formulaires HTML. Si vous vous attendez à avoir autant
 [de modules pour Bailador](https://modules.perl6.org/t/WEB)
@@ -2913,7 +2913,7 @@ il va falloir attendre un peu (et, pourquoi pas, contribuer à l'effort).
 Il y a juste un point à ajouter. Ce point n'est pas une conséquence de l'utilisation
 de Bailador, mais je l'ai découvert parce que j'ai décidé d'utiliser Bailador.
 Même si je ne connais rien à l'architecture MVC (_Model, View, Controller_), j'ai
-décidé de scinder mon programme Bailador en plusieurs fichiers. Le premier, 
+décidé de scinder mon programme Bailador en plusieurs fichiers. Le premier,
 `website.raku` correspond, je pense, au Contrôleur. Dans un sous-répertoire,
 j'ai `lib/access-mongodb.rakumod`, correspondant au Modèle. Et j'ai d'autres
 fichiers `lib/player-turn-page.rakumod`, `lib/game-list-page.rakumod` et `lib/game-page.rakumod`
@@ -2977,6 +2977,6 @@ remarquer lesdits détails, les retenir et les mettre à profit.
 
 # LICENCE
 
-Texte diffusé sous la licence CC-BY-NC-ND : Creative Commons avec clause de paternité, excluant l'utilisation commerciale et excluant la modification. 
+Texte diffusé sous la licence CC-BY-NC-ND : Creative Commons avec clause de paternité, excluant l'utilisation commerciale et excluant la modification.
 
 Certaines illustrations sont diffusées avec une licence différente. Celle-ci est mentionnée à la suite de l'illustration.
