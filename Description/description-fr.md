@@ -1107,7 +1107,7 @@ départ + manœuvre  → page d'arrivée. Ce livret est  codé sous la forme
 d'un fichier JSON avec en prime un fichier HTML.
 
 Vous en saurez plus en lisant la
-[documentation](https://github.com/jforget/Perl6-Alpha-As-des-As-Zero/blob/master/Preparation/description-fr.pod)
+[documentation](https://github.com/jforget/Perl6-Alpha-As-des-As-Zero/blob/master/Preparation/description-fr.md)
 particulière de cette étape.
 
 ## Jeu

@@ -2,6 +2,15 @@
 
 =encoding utf-8
 
+=head1 Warning
+
+You should  rather read  the L<Markdown  version|description-en.md> of
+the present text. In spring 2022,  I noticed that the rendering of POD
+texts by Github was wrong  for paragraphs containing codepoints beyond
+U+00FF. See for example the examples  of idiomatic code in the chapter
+on L<The  Most Useful Feature  Of Raku>,  or the chapter  on L<Unicode
+Operators>.
+
 =head1 Introduction
 
 This document is not an exact translation of F<description-fr.pod>.

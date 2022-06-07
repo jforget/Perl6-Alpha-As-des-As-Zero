@@ -2,6 +2,16 @@
 
 =encoding utf-8
 
+=head1 Avertissement
+
+Vous devriez  plutôt lire la L<version  Markdown|description-fr.md> de
+ce document. En  effet, au printemps 2022, j'ai remarqué  que le rendu
+de la version POD par Github posait des problèmes dans les paragraphes
+comportant  des caractères  au-delà de  U+00FF. Voir  par exemple  les
+exemples de code idiomatique dans  le chapitre sur L<la fonctionnalité
+de Raku la plus utile|"La fonctionnalité de Raku la plus utile"> ainsi
+que le chapitre sur les L<opérateurs Unicode|"Opérateurs Unicode">.
+
 =head1 Introduction
 
 Voici la présentation que j'ai donnée aux Journées Perl 2018, le 18 mai 2018.

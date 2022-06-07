@@ -1,9 +1,10 @@
 # Introduction
 
-This document is not an exact translation of `description-fr.pod`.
-The documents are about two years apart. In the interim Perl 6 has been renamed
-Raku and I have learned much about this language. And I have removed
-a few jokes which would puzzle the readers who does not share the same background
+This document is  not an exact translation  of `description-fr.pod` or
+its Markdown  equivalent `description-fr.md`. The documents  are about
+two years  apart. In the  interim Perl 6 has  been renamed Raku  and I
+have learned much about this language.  And I have removed a few jokes
+which would puzzle the readers who  does not share the same background
 as me.
 
 This project was what is called _Conference-driven development_.
@@ -997,7 +998,7 @@ I generate a booklet, that is, the full list of transitions
 JSON format and in HTML format.
 
 You will learn more by reading the dedicated
-[documentation](https://github.com/jforget/Perl6-Alpha-As-des-As-Zero/blob/master/Preparation/description-en.pod)
+[documentation](https://github.com/jforget/Perl6-Alpha-As-des-As-Zero/blob/master/Preparation/description-en.md)
 for this step.
 
 ## Game
