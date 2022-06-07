@@ -4,7 +4,9 @@
 
 =head1 Avertissement
 
-Vous devriez  plutôt lire la L<version  Markdown|description-fr.md> de
+Vous devriez plutôt lire la
+L<version  Markdown|https://github.com/jforget/Perl6-Alpha-As-des-As-Zero/blob/master/Description/description-fr.md>
+de
 ce document. En  effet, au printemps 2022, j'ai remarqué  que le rendu
 de la version POD par Github posait des problèmes dans les paragraphes
 comportant  des caractères  au-delà de  U+00FF. Voir  par exemple  les

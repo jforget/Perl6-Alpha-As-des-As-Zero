@@ -8,23 +8,24 @@ entries. This is boring and error-prone. And you have to do this for
 at least two booklets. Even with _Wingleader_ and 13 maneuvers per
 page, that amounts to 2886 entries for each booklet.
 
-Fortunately, the different pages represent the location and heading of a 
+Fortunately, the different pages represent the location and heading of a
 plane on a 37-hexagon grid, with 6 possible headings. By using this
 underlying geometry, we can just copy a significant subset of transitions
 (start page, maneuver) → end page and generate the other transitions by geometrical
 computation and by inference.
 
-Additionally, all the games of the series use the same 37-hexagon grid with
-the same numbering. So, you have to build an electronic version of the
-37-hexagon grid only once, and then you can initialize any booklet by 
-specifying the 13 to 26 maneuvers (plus the fire table, which is harder to
-compute).
+Additionally, all the games of the series use the same 37-hexagon grid
+with the same  numbering. So, you have to build  an electronic version
+of the  37-hexagon grid  only once,  and then  you can  initialize any
+booklet by  specifying the 13  to 26  maneuvers (plus the  fire table,
+which is harder to compute).
 
-So I built the electronic version of the hex-grid using the FW190 booklet
-from _Wingleader_, then I checked it by generating the booklets for
-the Sopwith Camel and the Fokker DR1 from _Handy Rotary_ and for the 
-P-51 and the FW190 from _Wingleader_. I also generated booklets for
-a new game involving a sparrowhawk and a hobbyist's drone.
+So I  built the  electronic version  of the  hex-grid using  the FW190
+booklet  from  _Wingleader_,  then  I checked  it  by  generating  the
+booklets for the Sopwith Camel and  the Fokker DR1 from _Handy Rotary_
+and for  the P-51 and  the FW190  from _Wingleader_. I  also generated
+booklets  for a  new game  involving  a sparrowhawk  and a  hobbyist's
+drone.
 
 ## Warning
 
@@ -61,16 +62,16 @@ since the beginning.
 
 ## Typing
 
-Using your preferred text editor, write a `Drone-init.json` file. This file
-describes the maneuvers the drone can execute and the pages where it can 
-"shoot" at the sparrowhawk (actually shooting film). The file does not contain
-any transition (start page, maneuver) → endpage.
+Using your preferred text editor, write a `Drone-init.json` file. This
+file describes the maneuvers the drone can execute and the pages where
+it can "shoot"  at the sparrowhawk (actually shooting  film). The file
+does not contain any transition (start page, maneuver) → endpage.
 
 ## Initialization
 
 The `init.p6` program initializes or resets a `aoa_prep` MongoDB database.
 
-Then it copies the contents of `Drone-init.json` in a `Manoeuvres` 
+Then it copies the contents of `Drone-init.json` in a `Manoeuvres`
 collection (French for "maneuvers"). And it initializes another collection,
 `Pages`, with only two pages: page 223, which has a special status and
 page 187, an ordinary page from which we will bootstrap the geometrical description.
@@ -204,7 +205,7 @@ solutionn but I doubt there could be a much faster solution.
 "Display" translates as _Affichage_, so the program name is `aff.p6`.
 This program generates an HTML table listing all the known pages
 and transitions. It displays also an ASCII art hexgrid, showing all
-known page numbers, with the sparrowhawk at the center of the grid 
+known page numbers, with the sparrowhawk at the center of the grid
 and heading to the top of the document, and the drone anywhere in the
 grid and with any heading. This helps me choosing the next page I will use
 when running `maj.p6`, because it is more efficient to use a page
@@ -240,14 +241,14 @@ drone relative to the sparrowhawk, or the final position of the drone
 relative to its start position, when it executes a maneuver. For this,
 I have created the `Depl.pm6` class, "depl" for _déplacement_ or "move".
 It represents the move of the drone while maneuvering, from its start position
-to its end position, or it represents the virtual move to go from the 
+to its end position, or it represents the virtual move to go from the
 sparrowhawk position to the drone position.
 
 ### Hexagon Coordinates
 
-To implement this class, I need first to define how I will 
+To implement this class, I need first to define how I will
 pinpoint each one of the 37 hexes in the grid. For the heading
-difference, we will see later. So in this paragraph, I will 
+difference, we will see later. So in this paragraph, I will
 use the words "page" and "hex" (or "hexagon") to mean the same
 thing.
 
@@ -257,7 +258,7 @@ My first idea was to use orthonormal cartesian coordinates:
 
 _Personal picture. License is the same as for the text._
 
-    .                       -------- 
+    .                       --------
     .                      /        \               Number     X         Y
     .              --------    16    --------            2     0        -1
     .             /        \        /        \           3    -0.866    -0.5
@@ -267,7 +268,7 @@ _Personal picture. License is the same as for the text._
     .             /        \        /        \          17     0.866     0.5
     .            (     3    --------     1    )         16     0         1
     .             \        /        \        /
-    .              --------    2     -------- 
+    .              --------    2     --------
     .                      \        /
     .                       --------
 
@@ -277,7 +278,7 @@ Then orthogonal cartesian coordinates, while not orthonormal:
 
 _Personal picture. License is the same as for the text._
 
-    .                       -------- 
+    .                       --------
     .                      /        \               Number     X         Y
     .              --------    16    --------            2     0        -1
     .             /        \        /        \           3    -1        -0.5
@@ -287,13 +288,13 @@ _Personal picture. License is the same as for the text._
     .             /        \        /        \          17     1         0.5
     .            (     3    --------     1    )         16     0         1
     .             \        /        \        /
-    .              --------    2     -------- 
+    .              --------    2     --------
     .                      \        /
     .                       --------
 
 Even a cartesian coordinate system where the axis have the same graduations,
 but they are not perpendicular to each other, they are 60° (or 120°) apart.
-Do not laugh, some 
+Do not laugh, some
 [vintage Avalon Hill wargames](https://boardgamegeek.com/boardgame/1711/richthofens-war).
 use this kind of coordinates.
 
@@ -301,7 +302,7 @@ use this kind of coordinates.
 
 _Personal picture. License is the same as for the text._
 
-    .                       -------- 
+    .                       --------
     .                      /        \               Number     X         Y
     .              --------    16    --------            2     0        -1
     .             /        \        /        \           1     1        -1
@@ -311,14 +312,14 @@ _Personal picture. License is the same as for the text._
     .             /        \        /        \          15    -1         1
     .            (     3    --------     1    )         16     0         1
     .             \        /        \        /
-    .              --------    2     -------- 
+    .              --------    2     --------
     .                      \        /
     .                       --------
 
 Polar coordinates seems to be a better approach. Actually, it is similar to the
 clock system in use with WWII pilots.
 
-    .                       -------- 
+    .                       --------
     .                      /        \               Number     R      angle
     .              --------    16    --------          187     0      undef
     .             /        \        /        \          16     1        12h
@@ -328,7 +329,7 @@ clock system in use with WWII pilots.
     .             /        \        /        \           3     1         8h
     .            (     3    --------     1    )         15     1        10h
     .             \        /        \        /
-    .              --------    2     -------- 
+    .              --------    2     --------
     .                      \        /
     .                       --------
 
@@ -340,7 +341,7 @@ It is very fine for the first ring, but we have a few problems as soon as we
 reach the second ring, the radiuses are no longer integers, even if the
 angles are still simple angles, multiples of 30°.
 
-    .                       -------- 
+    .                       --------
     .                      /        \               Number     R      angle
     .              --------    91    --------          187     0      undef
     .             /        \        /        \          16     1        12h    0°
@@ -354,7 +355,7 @@ angles are still simple angles, multiples of 30°.
     .    \        /        \        /        \          91     2         0h  240°
     .     --------     3    --------     1    )        107     1.732     1h   30°
     .             \        /        \        /         118     1.732    11h  330°
-    .              --------    2     --------          
+    .              --------    2     --------
     .                      \        /
     .                       --------
 
@@ -364,7 +365,7 @@ even if that means that we zigzag a little. A move is thus modelized as
 a series of directions `0` to `5`, the length of each step being implicitly 1.
 Here are the paths from hex 187:
 
-    .                       -------- 
+    .                       --------
     .                      /        \               Number     path
     .              --------    91    --------          187     (nothing)
     .             /        \        /        \          16     0
@@ -378,7 +379,7 @@ Here are the paths from hex 187:
     .    \        /        \        /        \          91     00
     .     --------     3    --------     1    )        107     01
     .             \        /        \        /         118     05
-    .              --------    2     --------          
+    .              --------    2     --------
     .                      \        /
     .                       --------
 
@@ -396,7 +397,7 @@ diff of the German relative to the British is `5`.
 The class uses two different models for a move, a string model and a numeric
 model. The string is the concatenation of the path steps from the sparrowhawk's
 position (or the British plane's position) to the drone's position (or the German plane's
-position), then you have a semi-colon, and last you have 
+position), then you have a semi-colon, and last you have
 the heading difference between the sparrowhawk and the drone. For example,
 page 1 has the following representation:
 

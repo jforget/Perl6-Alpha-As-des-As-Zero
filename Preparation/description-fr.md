@@ -10,8 +10,8 @@ par page, cela ferait 2886 entrées à taper pour chaque livret.
 
 Heureusement, les différentes pages correspondent au positionnement d'un
 avion sur une grille de 37 hexagones avec 6 orientations possibles.
-En se basant sur cette géométrie sous-jacente, il est possible 
-de saisir un sous-ensemble représentatif 
+En se basant sur cette géométrie sous-jacente, il est possible
+de saisir un sous-ensemble représentatif
 de transitions (page de départ, manœuvre) → page d'arrivée
 et d'obtenir toutes les autres par calcul et par déduction.
 
@@ -91,7 +91,7 @@ ce sera forcément avec la page 187, donc la ligne de commande sera :
 
     perl6 maj.p6 --page=187 -a=205 -b=187 -c=198 -d=3 -e=15 -f=16 -g=2 -h=17 -i=1
 
-Le programme met à jour les 
+Le programme met à jour les
 transitions (page de départ, manœuvre) → page d'arrivée.
 Si la ligne de commande mentionne des pages d'arrivée que l'on n'avait pas
 encore rencontrées jusqu'à présent, le programme détermine où se situent
@@ -149,7 +149,7 @@ _Copie d'écran personnelle. Les conditions de licence sont les mêmes que pour 
 
 En examinant les pages nouvellement créées 15, 16 et 17 et en leur appliquant
 les manœuvres A, B et C, le programme constate que sur les 9 tentatives, deux
-réussissent. Par conséquent, il ajoute les enchaînements 
+réussissent. Par conséquent, il ajoute les enchaînements
 
     ( 15, C) → 16
     ( 17, A) → 16
@@ -172,7 +172,7 @@ _Copie d'écran personnelle. Les conditions de licence sont les mêmes que pour 
 
 En examinant les pages nouvellement créées 46, 91 et 107 et en leur appliquant
 les manœuvres A, B et C, le programme
-ajoute les enchaînements 
+ajoute les enchaînements
 
     ( 46, C) → 91
     (107, A) → 91
@@ -274,7 +274,7 @@ un repère orthonormé.
 
 _Copie d'écran personnelle. Les conditions de licence sont les mêmes que pour le texte._
 
-    .                       -------- 
+    .                       --------
     .                      /        \               Numéro     X         Y
     .              --------    16    --------            2     0        -1
     .             /        \        /        \           3    -0.866    -0.5
@@ -284,7 +284,7 @@ _Copie d'écran personnelle. Les conditions de licence sont les mêmes que pour 
     .             /        \        /        \          17     0.866     0.5
     .            (     3    --------     1    )         16     0         1
     .             \        /        \        /
-    .              --------    2     -------- 
+    .              --------    2     --------
     .                      \        /
     .                       --------
 
@@ -294,7 +294,7 @@ Puis un repère orthogonal sans être normé
 
 _Copie d'écran personnelle. Les conditions de licence sont les mêmes que pour le texte._
 
-    .                       -------- 
+    .                       --------
     .                      /        \               Numéro     X         Y
     .              --------    16    --------            2     0        -1
     .             /        \        /        \           3    -1        -0.5
@@ -304,7 +304,7 @@ _Copie d'écran personnelle. Les conditions de licence sont les mêmes que pour 
     .             /        \        /        \          17     1         0.5
     .            (     3    --------     1    )         16     0         1
     .             \        /        \        /
-    .              --------    2     -------- 
+    .              --------    2     --------
     .                      \        /
     .                       --------
 
@@ -317,7 +317,7 @@ jeux d'Avalon Hill utilisent un tel système de coordonnées.
 
 _Copie d'écran personnelle. Les conditions de licence sont les mêmes que pour le texte._
 
-    .                       -------- 
+    .                       --------
     .                      /        \               Numéro     X         Y
     .              --------    16    --------            2     0        -1
     .             /        \        /        \           1     1        -1
@@ -327,14 +327,14 @@ _Copie d'écran personnelle. Les conditions de licence sont les mêmes que pour 
     .             /        \        /        \          15    -1         1
     .            (     3    --------     1    )         16     0         1
     .             \        /        \        /
-    .              --------    2     -------- 
+    .              --------    2     --------
     .                      \        /
     .                       --------
 
 Les coordonnées polaires semblent offrir plus de promesses. D'ailleurs, c'était utilisé
 par les pilotes de la Seconde Guerre Mondiale avec le système du cadran d'horloge.
 
-    .                       -------- 
+    .                       --------
     .                      /        \               Numéro     R      angle
     .              --------    16    --------          187     0      indéfini
     .             /        \        /        \          16     1        12h
@@ -344,7 +344,7 @@ par les pilotes de la Seconde Guerre Mondiale avec le système du cadran d'horlo
     .             /        \        /        \           3     1         8h
     .            (     3    --------     1    )         15     1        10h
     .             \        /        \        /
-    .              --------    2     -------- 
+    .              --------    2     --------
     .                      \        /
     .                       --------
 
@@ -356,7 +356,7 @@ Pour la première couronne, c'est bien beau, mais on commence à avoir des probl
 avec la deuxième couronne, les rayons ne sont plus entiers, même si les angles sont
 encore des angles simples, multiples de 30°.
 
-    .                       -------- 
+    .                       --------
     .                      /        \               Numéro     R      angle
     .              --------    91    --------          187     0      indéfini
     .             /        \        /        \          16     1        12h    0°
@@ -370,17 +370,17 @@ encore des angles simples, multiples de 30°.
     .    \        /        \        /        \          91     2         0h  240°
     .     --------     3    --------     1    )        107     1,732     1h   30°
     .             \        /        \        /         118     1,732    11h  330°
-    .              --------    2     --------          
+    .              --------    2     --------
     .                      \        /
     .                       --------
 
 Pour avoir des valeurs plus simples à utiliser, on considère que le déplacement
-ne se fait pas en ligne droite, mais pas à pas en passant par des hexagones intermédiaires, 
+ne se fait pas en ligne droite, mais pas à pas en passant par des hexagones intermédiaires,
 quitte à zigzaguer un peu. On représente ainsi un chemin par une suite de
 directions `0` à `5`, la longueur de chaque pas étant implicitement de 1.
 Voici par exemple les chemins depuis l'hexagone 187 :
 
-    .                       -------- 
+    .                       --------
     .                      /        \               Numéro     chemin
     .              --------    91    --------          187     (rien)
     .             /        \        /        \          16     0
@@ -394,7 +394,7 @@ Voici par exemple les chemins depuis l'hexagone 187 :
     .    \        /        \        /        \          91     00
     .     --------     3    --------     1    )        107     01
     .             \        /        \        /         118     05
-    .              --------    2     --------          
+    .              --------    2     --------
     .                      \        /
     .                       --------
 
@@ -446,8 +446,8 @@ compte le nombre de pas dans les directions `0` à `5`. Exemples :
 
 ### Cas particuliers
 
-Il existe 6 pages représentant les deux avions dans le même hexagone, l'un au-dessus 
-de l'autre (la seule intervention de l'altitude dans le jeu d'introduction). Dans ce 
+Il existe 6 pages représentant les deux avions dans le même hexagone, l'un au-dessus
+de l'autre (la seule intervention de l'altitude dans le jeu d'introduction). Dans ce
 cas, toutes les valeurs de `@.avance` sont à zéro et le contenu de `$.chemin` commence
 par un point-virgule. Ainsi, la page 187 représente les avions dans le même hexagone
 avec le même cap, donc `$.chemin` contient « `;0` ». Page 188, les deux avions sont
@@ -466,7 +466,7 @@ chemin dans lequel les pas élémentaires sont dans l'ordre croissant. C'est-à-
 Cette problématique ne concerne pas la représentation numérique.
 
 Une autre problématique concerne les deux représentations. Il se peut que l'on obtienne
-un chemin plus long que le chemin minimal, par exemple à la suite d'un calcul. 
+un chemin plus long que le chemin minimal, par exemple à la suite d'un calcul.
 Ainsi, le chemin `13;0` est équivalent au chemin `2;0`. Il faut donc ajuster le
 chemin courant jusqu'à obtenir la version équivalente la plus courte. Pour ce faire,
 il suffit d'appliquer deux mécanismes.
@@ -485,4 +485,4 @@ dans un deuxième temps le chemin vide `;1`.
 
 # LICENCE
 
-Texte diffusé sous la licence CC-BY-NC-ND : Creative Commons avec clause de paternité, excluant l'utilisation commerciale et excluant la modification. 
+Texte diffusé sous la licence CC-BY-NC-ND : Creative Commons avec clause de paternité, excluant l'utilisation commerciale et excluant la modification.
