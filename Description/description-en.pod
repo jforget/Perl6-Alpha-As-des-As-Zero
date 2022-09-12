@@ -11,14 +11,16 @@ the present text. In spring 2022,  I noticed that the rendering of POD
 texts by Github was wrong  for paragraphs containing codepoints beyond
 U+00FF. See for example the examples  of idiomatic code in the chapter
 on L<The  Most Useful Feature  Of Raku>,  or the chapter  on L<Unicode
-Operators>.
+Operators> and compare them with their
+L<Marldown|https://github.com/jforget/Perl6-Alpha-As-des-As-Zero/blob/master/Description/description-en.md#user-content-the-most-useful-feature-of-raku>
+L<equivalents|https://github.com/jforget/Perl6-Alpha-As-des-As-Zero/blob/master/Description/description-en.md#user-content-unicode-operators>.
 
 =head1 Introduction
 
 This document is not an exact translation of F<description-fr.pod>.
 The documents are about two years apart. In the interim Perl 6 has been renamed
 Raku and I have learned much about this language. And I have removed
-a few jokes which would puzzle the readers who does not share the same background
+a few jokes which would puzzle the readers who do not share the same background
 as me.
 
 This project was what is called I<Conference-driven development>.

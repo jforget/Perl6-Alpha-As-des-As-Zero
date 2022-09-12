@@ -4,8 +4,8 @@ This document is  not an exact translation  of `description-fr.pod` or
 its Markdown  equivalent `description-fr.md`. The documents  are about
 two years  apart. In the  interim Perl 6 has  been renamed Raku  and I
 have learned much about this language.  And I have removed a few jokes
-which would puzzle the readers who  does not share the same background
-as me.
+which would puzzle the readers who do not share the same background as
+me.
 
 This project was what is called _Conference-driven development_.
 In 2018, I was looking for a project which could use Raku and MongoDB and

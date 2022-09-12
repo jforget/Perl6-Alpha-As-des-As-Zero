@@ -13,6 +13,9 @@ comportant  des caractères  au-delà de  U+00FF. Voir  par exemple  les
 exemples de code idiomatique dans  le chapitre sur L<la fonctionnalité
 de Raku la plus utile|"La fonctionnalité de Raku la plus utile"> ainsi
 que le chapitre sur les L<opérateurs Unicode|"Opérateurs Unicode">.
+Comparez donc ces paragraphes avec leur
+L<équivalent|https://github.com/jforget/Perl6-Alpha-As-des-As-Zero/blob/master/Description/description-fr.md#user-content-la-fonctionnalité-de-raku-la-plus-utile>
+L<Markdown|https://github.com/jforget/Perl6-Alpha-As-des-As-Zero/blob/master/Description/description-fr.md#user-content-opérateurs-unicode>.
 
 =head1 Introduction
 
